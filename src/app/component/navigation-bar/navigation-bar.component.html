@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg bg-dark-subtle py-2">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <a class="navbar-brand text-dark-emphasis " routerLink="/home">
+      BIZET Théo - Développeur <i class="fa fa-code" aria-hidden="true"></i>
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+    <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="isMenuCollapsed">
+      <ul class="navbar-nav ms-auto  text-dark-emphasis">
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/about" routerLinkActive="active">À propos de moi</a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/education" routerLinkActive="active">Éducation</a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/projects" routerLinkActive="active">Projets</a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/experience" routerLinkActive="active">Expérience</a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/contact" routerLinkActive="active">Contact</a>
+        </li>
+        <li class="nav-item dropdown" ngbDropdown display="dynamic">
+          <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" ngbDropdownToggle><i class="fa fa-gear" aria-hidden="true"></i></a>
+          <div class="dropdown-menu bg-dark-subtle" aria-labelledby="navbarScrollingDropdown" ngbDropdownMenu>
+            <button class="dropdown-item text-center" ngbDropdownItem (click)="toggleDarkMode()">
+              Theme :
+              <span *ngIf="isDarkTheme; else lightTheme"><i class="fa fa-moon" aria-hidden="true"></i></span>
+              <ng-template #lightTheme><i class="fa fa-sun" aria-hidden="true"></i></ng-template>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

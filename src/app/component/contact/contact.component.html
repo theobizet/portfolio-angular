@@ -1,0 +1,68 @@
+<main class="container-fluid d-flex flex-column bg-transparent py-2">
+  <h2 class="border-bottom pb-2 text-light">Contact</h2>
+  <div class="row row-cols-1 row-cols-md-2 g-2">
+    <div class="col col-md-5 col-lg-3">
+      <div class="card bg-dark-subtle">
+        <div class="card-body text-left rounded-2">
+          <img
+            ngSrc="../../../assets/Image1.png"
+            alt="My photo"
+            class="mb-2 rounded-5 border border-5 border-secondary w-75"
+            height="400" width="500"
+            style="background-color: rgba(128, 128 , 128, 0.33);">
+          <h2 class="card-title mb-2">Théo BIZET</h2>
+          <p class="crad-text text-secondary mb-3">Développeur</p>
+          <p class="card-text mb-4">Création et maintient de solutions logicielles, web ou mobiles</p>
+          <p class="card-text mb-3">
+            <i class="fa fa-envelope" aria-hidden="true"></i> Email :
+            <a href="mailto:theobizet&#64;outlook.fr">theobizet&#64;outlook.fr</a>
+          </p>
+          <p class="card-text mb-3">
+            <i class="fa fa-phone" aria-hidden="true"></i> Téléphone :
+            <a href="tel:+33603704701">+33 6 03 70 47 01</a>
+          </p>
+          <div class="social-icons mb-4">
+            <a href="https://www.linkedin.com/in/théo-bizet" target="_blank" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/theobizet" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-7 col-lg-9">
+      <div class="card bg-dark-subtle">
+        <div class="card-header">
+          <h2 class="pb-2">Envoyez-moi un message!</h2>
+        </div>
+        <div class="card-body">
+          <form action="https://api.staticforms.xyz/submit" method="post" id="staticform" class="form">
+            <!-- Replace with your StaticForms accessKey -->
+            <input type="hidden" name="accessKey" value="84929462-7e63-47b4-9b5f-84cdb1e5cba9">
+            <input type="hidden" name="subject" value="Contact depuis mon site">
+            <div class="mb-3">
+              <label class="form-label">Nom</label>
+              <div class="control">
+                <input class="form-control" type="text" name="name" placeholder="Entrez votre nom" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Adresse mail</label>
+              <div class="control">
+                <input class="form-control" type="email" name="email" placeholder="Entrez votre adresse mail" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <div class="control">
+                <textarea class="form-control" name="message" placeholder="Écrivez votre message" required></textarea>
+              </div>
+            </div>
+            <button class="btn btn-outline-secondary" type="Submit">
+              Envoyer <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+            <input type="hidden" name="redirectTo" value="https://theobizet.github.io/fr/#contact">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

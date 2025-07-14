@@ -1,0 +1,12 @@
+<div class="col">
+  <div class="card bg-dark-subtle">
+    <div class="card-header ">
+      {{ year() }}
+    </div>
+    <div class="card-body " style="height: 8rem;">
+      <h5 class="card-title">{{ title() }}</h5>
+      <p class="card-text" *ngIf="role">Rôle : {{ role() }}</p>
+    </div>
+    <img class="card-img-bottom" [ngSrc]="imageUrl()" height="200" width="100" style="object-fit: cover;"/>
+  </div>
+</div>

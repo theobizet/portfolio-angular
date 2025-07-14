@@ -1,0 +1,9 @@
+<main class="container-fluid bg-transparent py-2">
+  <h2 class="border-bottom pb-2 text-light">Projets</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <app-card
+      *ngFor="let project of projects"
+      [project]="project">
+    </app-card>
+  </div>
+</main>
