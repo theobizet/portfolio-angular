@@ -18,7 +18,7 @@ export class HomeComponent {
       title: 'À propos de moi',
       description: 'Présentation et parcours personnel',
       route: '/about',
-      imageUrl : '../../../assets/about.jpeg'
+      imageUrl : '../../../assets/about.jpg'
     },
     {
       title: 'Éducation',

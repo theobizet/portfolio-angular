@@ -16,7 +16,7 @@ export class ProjectsComponent {
       year: '2024-2025',
       title: 'Création d’un logiciel basique de modification d’image pour le cours de traitement d’image',
       role: 'Développeur',
-      imageUrl: '../../../assets/ImgProcessorApp.png'
+      imageUrl: '../../../assets/ImgProcessorApp.jpg'
     },
     {
       year: '2024-2025',
