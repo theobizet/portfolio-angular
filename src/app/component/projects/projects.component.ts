@@ -16,13 +16,13 @@ export class ProjectsComponent {
       year: '2024-2025',
       title: 'Création d’un logiciel basique de modification d’image pour le cours de traitement d’image',
       role: 'Développeur',
-      imageUrl: '../../../assets/ImgProcessorApp.jpg'
+      imageUrl: '../../../assets/imgprocessorapp.jpg'
     },
     {
       year: '2024-2025',
       title: 'Création d’un logiciel démonstratif de la notion de graphe dans le cadre du cours sur les graphes',
       role: 'Chef de projet',
-      imageUrl: '../../../assets/Graph.jpg'
+      imageUrl: '../../../assets/graph.jpg'
     },
     {
       year: '2024-2025',
