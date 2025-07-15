@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
   imports: [CardComponent,CommonModule],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css',
-  schemas: [NO_ERRORS_SCHEMA]
 })
 export class ProjectsComponent {
   projects = [

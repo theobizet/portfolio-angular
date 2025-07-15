@@ -2,7 +2,7 @@
   @if (tabs) {
     <ngb-carousel [keyboard]="true">
       <ng-template ngbSlide *ngFor="let tab of tabs">
-        <img [ngSrc]="tab.imageUrl" width="700" height="800"/>
+        <img [src]="tab.imageUrl" width="700" height="800"/>
         <div class="carousel-caption text-dark-emphasis bg-body-tertiary rounded-3 bg-opacity-75">
           <h3>{{tab.title}}</h3>
           <p>{{tab.description}}</p>

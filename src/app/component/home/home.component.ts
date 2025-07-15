@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
@@ -6,7 +6,7 @@ import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink,NgbCarouselModule,CommonModule,NgOptimizedImage],
+  imports: [RouterLink,NgbCarouselModule,CommonModule],
   providers: [NgbCarouselConfig],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
