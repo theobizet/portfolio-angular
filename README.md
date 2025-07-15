@@ -29,11 +29,11 @@ Qualités
 Capture d'écran
 ```
 ## Prochaine mises à jours :
-`
+```
 langues :
   + anglais
   + allemand
-`
+```
 
 ## Licence
 
