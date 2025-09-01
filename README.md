@@ -1,27 +1,44 @@
-# PortfolioAngular
+# Mon CV en ligne
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+Bienvenue sur mon projet de CV en ligne ! Ce projet est une version moderne de mon CV, conçue pour être facilement accessible et lisible en ligne, et pour montrer mes compétences en développement web avec Angular et TypeScript.
 
-## Development server
+## Technologies utilisées
+```
+Angular
+TypeScript
+HTML5
+CSS
+Bootstrap
+JavaScript
+Structure du projet
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Contenu du CV
 
-## Code scaffolding
+Le CV contient les sections suivantes :
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+À propos de moi
+Langues
+Compétences
+Éducation
+Projets
+Expériences
+Contact
+Qualités
+Capture d'écran
+```
+## Prochaine mises à jours :
+```
+langues :
+  + anglais
+  + allemand
+```
 
-## Build
+## Licence
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ce projet n'est sous aucune licence.
 
-## Running unit tests
+## Auteur
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Théo Bizet
