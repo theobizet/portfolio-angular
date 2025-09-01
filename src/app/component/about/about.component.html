@@ -1,6 +1,6 @@
 <main class="container-fluid bg-transparent py-2">
   <h2 class="border-bottom pb-2 text-light">À propos de moi</h2>
-  <div class="container-fluid p-2 bg-body bg-opacity-75 rounded-3 p-3">
+  <div class="container-fluid bg-body bg-opacity-75 rounded-3 p-3">
     <img ngSrc="./assets/Image1.png"
           alt="Théo BIZET"
           class="img-fluid rounded float-start me-3 mb-0"
@@ -16,5 +16,53 @@
       <br>
       Par ailleurs, je consacre une partie de mon temps libre à l'apprentissage autodidacte de nouvelles technologies afin d'élargir mon champ de compétences. Je me forme actuellement à Angular et ReactJS pour approfondir mes connaissances en développement frontend moderne, ainsi qu'à Kotlin pour explorer le développement d'applications mobiles et backend. Cette démarche proactive me permet de rester à jour avec les évolutions du secteur et de renforcer ma polyvalence en tant que développeur.
     </p>
+  </div>
+  <h2 class="border-bottom px-2 text-light">Mes compétences</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Langages de programmation et frameworks -->
+    <div class="col">
+      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-3">Langages & Frameworks</h3>
+          <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
+            <li *ngFor="let icon of svgIcons; trackBy: trackByIndex" [innerHTML]="icon.sanitized" class="text-center"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Environnements de développement -->
+    <div class="col">
+      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-3">Environnements</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-transparent border-0 text-center">QT Creator</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Microsoft SSMS</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Visual Studio Code</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Microsoft Visual Studio</li>
+            <li class="list-group-item bg-transparent border-0 text-center">PyCharm</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Android Studio</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Code::Blocks</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Eclipse IDE</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Compétences complémentaires -->
+    <div class="col">
+      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-3">Compétences complémentaires</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-transparent border-0 text-center">Comptabilité</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Gestion de projet</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Office 365</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Intelligence artificielle (bases)</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Conception assistée par ordinateur (CAO)</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Git & GitHub</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </main>

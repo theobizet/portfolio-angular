@@ -17,7 +17,7 @@ export class ExperienceComponent {
 
   experiences = [
     {
-        year: 'mai 2025 - aujourd\'hui',
+        year: 'mai 2025 - aout 2025',
         title: 'Hôte de caisse - E.Leclerc, Cernay',
         description: 'Accueil et encaissement des clients du supermarché. Gestion des transactions financières, traitement des paiements par carte et en espèces. Assurer un service client de qualité en répondant aux questions des clients et en résolvant les éventuels problèmes rencontrés. Utilisation de logiciels de caisse pour enregistrer les ventes et gérer les stocks de caisse.',
         skills: 'Gestion de la caisse, Service client, Logiciels de point de vente'
