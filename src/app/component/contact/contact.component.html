@@ -2,14 +2,14 @@
   <h2 class="border-bottom pb-2 text-light">Contact</h2>
   <div class="row row-cols-1 row-cols-md-2 g-2">
     <div class="col col-md-5 col-lg-3">
-      <div class="card bg-dark-subtle">
-        <div class="card-body text-left rounded-2">
-          <img
+      <div class="card bg-dark-subtle" style="height: 78dvh">
+        <img
             ngSrc="./assets/Image1.png"
             alt="My photo"
-            class="mb-2 rounded-5 border border-5 border-secondary w-75"
-            height="400" width="500"
-            style="background-color: rgba(128, 128 , 128, 0.33);">
+            class="m-2 rounded-5 border border-5 border-secondary position-relative h-50 center"
+            fill="true"
+            style="background-color: rgba(128, 128 , 128, 0.33); object-fit: cover; object-position: center; width: auto;">
+        <div class="card-body text-left rounded-2">
           <h2 class="card-title mb-2">Théo BIZET</h2>
           <p class="crad-text text-secondary mb-3">Développeur</p>
           <p class="card-text mb-4">Création et maintient de solutions logicielles, web ou mobiles</p>
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="col col-md-7 col-lg-9">
-      <div class="card bg-dark-subtle">
+      <div class="card bg-dark-subtle" style="height: 78dvh">
         <div class="card-header">
           <h2 class="pb-2">Envoyez-moi un message!</h2>
         </div>
@@ -53,7 +53,7 @@
             <div class="mb-3">
               <label class="form-label">Message</label>
               <div class="control">
-                <textarea class="form-control" name="message" placeholder="Écrivez votre message" required></textarea>
+                <textarea class="form-control" name="message" placeholder="Écrivez votre message" style="height: 40dvh; width: 100%; position: relative;" required></textarea>
               </div>
             </div>
             <button class="btn btn-outline-secondary" type="Submit">

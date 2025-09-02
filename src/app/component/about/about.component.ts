@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgOptimizedImage } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ThemeService } from '../../theme.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 interface SvgIcon {
   content: string;
@@ -11,11 +13,13 @@ interface SvgIcon {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, FontAwesomeModule],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
+  isDarkTheme: boolean | undefined;
+
   svgIcons: SvgIcon[] = [
   {
     content: `
@@ -168,11 +172,15 @@ export class AboutComponent {
   ];
 
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, public themeService: ThemeService) {
     this.svgIcons = this.svgIcons.map(icon => ({
       ...icon,
       sanitized: this.sanitizer.bypassSecurityTrustHtml(icon.content)
     }));
+
+    this.themeService.darkMode$.subscribe(darkMode => {
+      this.isDarkTheme = darkMode;
+    });
   }
 
   trackByIndex(index: number): number {

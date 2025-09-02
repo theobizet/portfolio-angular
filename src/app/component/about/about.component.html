@@ -1,31 +1,57 @@
 <main class="container-fluid bg-transparent py-2">
   <h2 class="border-bottom pb-2 text-light">À propos de moi</h2>
-  <div class="container-fluid bg-body bg-opacity-75 rounded-3 p-3">
+  <div class="container-fluid bg-body bg-opacity-75 rounded-3 p-4">
     <img ngSrc="./assets/Image1.png"
-          alt="Théo BIZET"
-          class="img-fluid rounded float-start me-3 mb-0"
-          style="object-fit: cover;"
-          width="180"
-          height="240">
-    <p class="text-justify">
-      Je viens de valider avec succès ma troisième année de licence en informatique, ce qui m'a permis d'être admis en master MIAGE à la rentrée prochaine. Cette réussite témoigne de mon engagement, de ma rigueur et de ma capacité à atteindre mes objectifs académiques. Ma passion pour les technologies numériques et la création de solutions innovantes reste intacte et se renforce au fil de mon parcours. Titulaire des permis B et AM, je bénéficie d'une bonne mobilité pour saisir diverses opportunités professionnelles ou académiques. En parallèle de mon cursus, je fais preuve de curiosité et de polyvalence : j'ai pratiqué la guitare pendant neuf ans, une expérience qui a renforcé ma créativité, ma discipline et ma persévérance. J’aime également m’investir dans des projets collectifs et relever de nouveaux défis, ce qui me motive à poursuivre mon développement personnel et professionnel au sein du master MIAGE.
-      <br>
-      J'ai également un intérêt prononcé pour l'histoire et la culture générale, des domaines qui alimentent ma soif d'apprentissage. Je m'intéresse particulièrement à la conception assistée par ordinateur (CAO), un domaine où la technique rencontre l'imagination, ainsi qu'au développement frontend, où l'esthétique et l'utilité se combinent harmonieusement. Mon ambition est de devenir développeur full-stack, afin de maîtriser pleinement les multiples aspects du métier et de contribuer à des projets technologiques modernes et impactants.
-      <br>
-      En tant que développeur polyvalent, j'ai acquis une solide expertise dans plusieurs langages de programmation, notamment C++, Java, JavaScript, Python, PHP, HTML & CSS, ainsi que SQL. Mon environnement de développement inclut principalement des outils comme QT pour les interfaces utilisateur, Laravel pour le développement web, et Microsoft SSMS pour la gestion des bases de données. En complément de mes compétences techniques, je possède également des connaissances en comptabilité et en gestion de projet, ce qui me permet de comprendre et de répondre efficacement aux besoins opérationnels et financiers des projets sur lesquels je travaille. Cette combinaison de compétences techniques et de gestion me permet de contribuer de manière significative à des projets variés, allant du développement logiciel à la gestion de projets complexes.
-      <br>
-      Par ailleurs, je consacre une partie de mon temps libre à l'apprentissage autodidacte de nouvelles technologies afin d'élargir mon champ de compétences. Je me forme actuellement à Angular et ReactJS pour approfondir mes connaissances en développement frontend moderne, ainsi qu'à Kotlin pour explorer le développement d'applications mobiles et backend. Cette démarche proactive me permet de rester à jour avec les évolutions du secteur et de renforcer ma polyvalence en tant que développeur.
-    </p>
-  </div>
-  <h2 class="border-bottom px-2 text-light">Mes compétences</h2>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+         alt="Théo BIZET - Développeur Full-Stack en devenir"
+         class="img-fluid border rounded border-3 border-body bg-primary bg-opacity-25 float-end ms-3 shadow-sm"
+         style="object-fit: cover;"
+         width="250"
+         height="310">
+
+    <div class="text-justify lh-base">
+        <h3 class="text-primary mb-3 text-decoration-underline">Mon Parcours</h3>
+        <p>
+            <strong>Diplômé en licence d’informatique</strong>, je me prépare à intégrer le master <strong>MIAGE</strong> à la rentrée prochaine. Ce parcours académique rigoureux a renforcé ma capacité à résoudre des problèmes complexes et à m’adapter aux évolutions technologiques. Mon objectif : allier expertise technique et innovation pour contribuer à des projets ambitieux.
+        </p>
+
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">Ce qui me définit</h3>
+        <p>
+            <strong>Curiosité et polyvalence</strong> sont au cœur de mon approche. Avec <strong>neuf ans de pratique de la guitare</strong>, j’ai développé discipline, créativité et persévérance – des qualités que je mets au service de mes projets techniques et collaboratifs. Titulaire des permis <strong>B et AM</strong>, je suis mobile et prêt à saisir les opportunités qui se présentent.
+        </p>
+
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">Passions & Ambitions</h3>
+        <p>
+            Passionné par <strong>l’histoire, la culture générale et les technologies</strong>, j’aime explorer les liens entre technique et créativité. La <strong>conception assistée par ordinateur (CAO)</strong> et le <strong>développement frontend</strong> sont deux domaines qui me fascinent particulièrement. Mon ambition ? Devenir <strong>développeur full-stack</strong> pour concevoir des solutions complètes, alliant performance et expérience utilisateur.
+        </p>
+
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">Formation Continue</h3>
+        <p>
+            En autodidacte, je me forme actuellement à :
+        </p>
+        <ul>
+            <li><strong>Angular & ReactJS</strong> pour le développement frontend moderne,</li>
+            <li><strong>Kotlin</strong> pour explorer le développement mobile et backend.</li>
+        </ul>
+        <p>
+            Cette démarche proactive me permet de rester à la pointe des technologies et d’élargir mes horizons en tant que développeur.
+        </p>
+    </div>
+</div>
+
+  <h2 class="border-bottom py-2 text-light">Mes compétences</h2>
+  <div class="row row-cols-1 row-cols-md-4 g-2">
     <!-- Langages de programmation et frameworks -->
     <div class="col">
       <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title text-center mb-3">Langages & Frameworks</h3>
           <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
-            <li *ngFor="let icon of svgIcons; trackBy: trackByIndex" [innerHTML]="icon.sanitized" class="text-center"></li>
+            @if (isDarkTheme) {
+              <li *ngFor="let icon of svgIcons; trackBy: trackByIndex" [innerHTML]="icon.sanitized" class="text-center" style="filter: invert(0.7);"></li>
+            }
+            @else {
+              <li *ngFor="let icon of svgIcons; trackBy: trackByIndex" [innerHTML]="icon.sanitized" class="text-center"></li>
+            }
           </ul>
         </div>
       </div>
@@ -60,6 +86,17 @@
             <li class="list-group-item bg-transparent border-0 text-center">Intelligence artificielle (bases)</li>
             <li class="list-group-item bg-transparent border-0 text-center">Conception assistée par ordinateur (CAO)</li>
             <li class="list-group-item bg-transparent border-0 text-center">Git & GitHub</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-3">Langues</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-transparent border-0 text-center">Allemand : B1</li>
+            <li class="list-group-item bg-transparent border-0 text-center">Anglais : C1</li>
           </ul>
         </div>
       </div>
