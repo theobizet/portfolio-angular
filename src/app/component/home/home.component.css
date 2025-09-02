@@ -15,10 +15,10 @@ img{
   background-color: white!important;
 }
 .carousel-control-prev-icon{
-  background-image: url('/assets/arrow-left-thin-svgrepo-com.svg')!important;
+  background-image: url("../../../assets/arrow-left-thin-svgrepo-com.svg")!important;
 }
 .carousel-control-next-icon {
-  background-image: url('/assets/arrow-right-thin-svgrepo-com.svg')!important;
+  background-image: url('../../../assets/arrow-right-thin-svgrepo-com.svg')!important;
 }
 
 .carousel-indicators {
