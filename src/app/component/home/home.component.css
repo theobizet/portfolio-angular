@@ -1,27 +1,27 @@
 img{
-  height: 84vh;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 15px;
+  height: 84vh!important;
+  width: 100%!important;
+  object-fit: cover!important;
+  object-position: center!important;
+  border-radius: 15px!important;
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  filter: invert(1);
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background-color: white;
+  filter: invert(1)!important;
+  width: 70px!important;
+  height: 70px!important;
+  border-radius: 50%!important;
+  background-color: white!important;
 }
 .carousel-control-prev-icon{
-  background-image: url('/assets/arrow-left-thin-svgrepo-com.svg');
+  background-image: url('/assets/arrow-left-thin-svgrepo-com.svg')!important;
 }
 .carousel-control-next-icon {
-  background-image: url('/assets/arrow-right-thin-svgrepo-com.svg');
+  background-image: url('/assets/arrow-right-thin-svgrepo-com.svg')!important;
 }
 
 .carousel-indicators {
-  filter: invert(1);
+  filter: invert(1)!important;
 }
 
