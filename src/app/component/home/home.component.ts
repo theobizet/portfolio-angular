@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
+import { ThemeService } from '../../theme.service';
 import { RouterLink } from '@angular/router';
 import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,6 +14,7 @@ import { NgbCarouselConfig, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent {
+  isDarkTheme: boolean | undefined;
   tabs = [
     {
       title: 'À propos de moi',
@@ -45,4 +47,9 @@ export class HomeComponent {
       imageUrl : './assets/contact.jpg'
     }
   ];
+  constructor(public themeService: ThemeService, config: NgbCarouselConfig) {
+    this.themeService.darkMode$.subscribe(darkMode => {
+      this.isDarkTheme = darkMode;
+    });
+  }
 }
