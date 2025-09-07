@@ -1,21 +1,37 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
   private darkMode = new BehaviorSubject<boolean>(false);
+
   darkMode$ = this.darkMode.asObservable();
 
-  toggleDarkMode() {
-    this.darkMode.next(!this.darkMode.value);
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.loadDarkMode();
   }
+
+  private loadDarkMode(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const savedMode = localStorage.getItem('darkmode');
+      if (savedMode !== null) {
+        this.darkMode.next(savedMode === 'true');
+      }
+    }
+  }
+
+  toggleDarkMode(): void {
+    const newSetting = !this.darkMode.value;
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('darkmode', newSetting.toString());
+    }
+    this.darkMode.next(newSetting);
+  }
+
   isDarkMode(): boolean {
     return this.darkMode.value;
   }
 }
-// This service uses BehaviorSubject to manage the dark mode state.
-// The `darkMode$` observable can be subscribed to in components to react to changes.
-// The `toggleDarkMode` method toggles the dark mode state.
-// The `isDarkMode` method returns the current state of dark mode.

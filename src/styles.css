@@ -7,11 +7,11 @@ html, body {
 
 :root,
 [data-bs-theme="light"] {
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 [data-bs-theme="dark"] {
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 body,main,nav,footer,.card {
