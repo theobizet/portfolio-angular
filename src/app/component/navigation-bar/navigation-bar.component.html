@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark-subtle py-2">
   <div class="container-fluid d-flex justify-content-between align-items-center">
-    <a class="navbar-brand text-dark-emphasis" routerLink="/home" (click)="isMenuCollapsed = !isMenuCollapsed">
+    <a class="navbar-brand text-dark-emphasis" routerLink="/home" (click)="isMenuCollapsed == false? isMenuCollapsed = true : null">
       BIZET Théo - Développeur <i class="fa fa-code" aria-hidden="true"></i>
     </a>
     <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
