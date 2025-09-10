@@ -11,7 +11,7 @@
     <div class="text-justify lh-base">
         <h3 class="text-primary mb-3 text-decoration-underline">Mon Parcours</h3>
         <p>
-            <strong>Diplômé en licence d’informatique</strong>, je me prépare à intégrer le master <strong>MIAGE</strong> à la rentrée prochaine. Ce parcours académique rigoureux a renforcé ma capacité à résoudre des problèmes complexes et à m’adapter aux évolutions technologiques. Mon objectif : allier expertise technique et innovation pour contribuer à des projets ambitieux.
+            <strong>Diplômé d’une licence en informatique</strong> et actuellement en master <strong>MIAGE</strong>, j’ai développé une solide expertise en résolution de problèmes complexes et une capacité à m’adapter rapidement aux évolutions technologiques. Mon parcours académique rigoureux m’a permis d’acquérir des compétences techniques pointues, que je mets au service de projets innovants. Mon objectif ? Allier expertise et créativité pour contribuer à des projets ambitieux et à forte valeur ajoutée.
         </p>
 
         <h3 class="text-primary mb-3 mt-4 text-decoration-underline">Ce qui me définit</h3>
@@ -39,59 +39,78 @@
 </div>
 
   <h2 class="border-bottom py-2 text-light">Mes compétences</h2>
-  <div class="row row-cols-1 row-cols-md-4 g-2">
+  <div class="row g-2">
     <!-- Langages de programmation et frameworks -->
-    <div class="col">
+    <div class="col-md-4">
       <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title text-center mb-3">Langages & Frameworks</h3>
           <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
             @if (isDarkTheme) {
-              <li *ngFor="let icon of svgIcons; trackBy: trackByIndex" [innerHTML]="icon.sanitized" class="text-center" style="filter: invert(0.7);"></li>
+              <li *ngFor="let icon of languages; trackBy: trackByIndex" class="text-center">
+                <div [innerHTML]="icon.sanitized" style="filter: invert(0.7);"></div>
+                <p>
+                  {{ icon.name }}
+                </p>
+              </li>
             }
             @else {
-              <li *ngFor="let icon of svgIcons; trackBy: trackByIndex" [innerHTML]="icon.sanitized" class="text-center"></li>
+              <li *ngFor="let icon of languages; trackBy: trackByIndex" class="text-center">
+                <div [innerHTML]="icon.sanitized"></div>
+                <p>
+                  {{ icon.name }}
+                </p>
+              </li>
             }
           </ul>
         </div>
       </div>
     </div>
     <!-- Environnements de développement -->
-    <div class="col">
+    <div class="col-md-4">
       <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title text-center mb-3">Environnements</h3>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item bg-transparent border-0 text-center">QT Creator</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Microsoft SSMS</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Visual Studio Code</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Microsoft Visual Studio</li>
-            <li class="list-group-item bg-transparent border-0 text-center">PyCharm</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Android Studio</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Code::Blocks</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Eclipse IDE</li>
+          <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
+            @if (isDarkTheme) {
+              <li *ngFor="let icon of environment; trackBy: trackByIndex" class="text-center">
+                <div [innerHTML]="icon.sanitized" style="filter: invert(0.7);"></div>
+                <p>
+                  {{ icon.name }}
+                </p>
+              </li>
+            }
+            @else {
+              <li *ngFor="let icon of environment; trackBy: trackByIndex" class="text-center">
+                <div [innerHTML]="icon.sanitized"></div>
+                <p>
+                  {{ icon.name }}
+                </p>
+              </li>
+            }
           </ul>
         </div>
       </div>
     </div>
     <!-- Compétences complémentaires -->
-    <div class="col">
-      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
-        <div class="card-body">
-          <h3 class="card-title text-center mb-3">Compétences complémentaires</h3>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item bg-transparent border-0 text-center">Comptabilité</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Gestion de projet</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Office 365</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Intelligence artificielle (bases)</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Conception assistée par ordinateur (CAO)</li>
-            <li class="list-group-item bg-transparent border-0 text-center">Git & GitHub</li>
-          </ul>
+    <div class="col-md-4 d-flex flex-column gap-2">
+      <div class="row-sm-6 d-flex flex-column flex-grow-1">
+        <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-3">Compétences complémentaires</h3>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item bg-transparent border-0 text-center">Comptabilité</li>
+              <li class="list-group-item bg-transparent border-0 text-center">Gestion de projet</li>
+              <li class="list-group-item bg-transparent border-0 text-center">Office 365</li>
+              <li class="list-group-item bg-transparent border-0 text-center">Intelligence artificielle (bases)</li>
+              <li class="list-group-item bg-transparent border-0 text-center">Conception assistée par ordinateur (CAO)</li>
+              <li class="list-group-item bg-transparent border-0 text-center">Git & GitHub</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="row-sm-6 d-flex flex-column flex-grow-1">
+        <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
         <div class="card-body">
           <h3 class="card-title text-center mb-3">Langues</h3>
           <ul class="list-group list-group-flush">
@@ -99,6 +118,7 @@
             <li class="list-group-item bg-transparent border-0 text-center">Anglais : C1</li>
           </ul>
         </div>
+      </div>
       </div>
     </div>
   </div>

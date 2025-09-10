@@ -12,7 +12,7 @@ import { ThemeService } from './theme.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  title = 'portfolio-angular';
+  title = 'CV-Theo-BIZET';
   constructor(
     private themeService: ThemeService,
     @Inject(PLATFORM_ID) private platformId: Object

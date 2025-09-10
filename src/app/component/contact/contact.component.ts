@@ -1,5 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
+import { ThemeService } from '../../theme.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,5 +10,11 @@ import { Component } from '@angular/core';
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
+  isDarkTheme: boolean | undefined;
 
+  constructor(public themeService: ThemeService) {
+    this.themeService.darkMode$.subscribe(darkMode => {
+      this.isDarkTheme = darkMode;
+    });
+  }
 }

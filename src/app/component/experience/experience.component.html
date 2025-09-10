@@ -1,15 +1,15 @@
 <main class="bg-transparent container-fluid py-2">
   <h2 class="border-bottom pb-2 text-light">Expériences</h2>
-  <div ngbAccordion>
-    <div ngbAccordionItem *ngFor="let experience of experiences">
+  <div ngbAccordion class="bg-transparent">
+    <div ngbAccordionItem *ngFor="let experience of experiences" class="bg-transparent">
       <h2 ngbAccordionHeader>
-        <button ngbAccordionButton class="bg-dark-subtle">
+        <button ngbAccordionButton class="bg-body bg-opacity-75">
           <span class="text-muted" style="margin-right: 10px;">{{ experience.year }}</span>
           <span class="fw-bold">{{ experience.title }}</span>
         </button>
       </h2>
       <div ngbAccordionCollapse>
-        <div ngbAccordionBody class="bg-light-subtle">
+        <div ngbAccordionBody class="bg-body-secondary bg-opacity-75">
           <ng-template>
             <p>@if(experience.subject){<strong>{{experience.subject}} :</strong>} {{ experience.description }}</p>
             <p class="mt-2"><strong>Compétences acquises :</strong> {{ experience.skills }}</p>
