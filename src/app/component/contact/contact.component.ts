@@ -1,11 +1,12 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { ThemeService } from '../../theme.service';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage,RouterLink,RouterModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
