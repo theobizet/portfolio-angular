@@ -1,44 +1,44 @@
 <main class="container-fluid bg-transparent py-2">
-  <h2 class="border-bottom pb-2 text-light">À propos de moi</h2>
+  <h2 class="border-bottom pb-2 text-light">{{ 'ABOUT.TITLE' | translate }}</h2>
   <div class="container-fluid bg-body bg-opacity-75 rounded-3 p-4">
     <img ngSrc="./assets/Image1.png"
-         alt="Théo BIZET - Développeur Full-Stack en devenir"
+         alt="{{ 'ABOUT.IMAGE_ALT' | translate }}"
          class="img-fluid border rounded border-3 border-body bg-primary bg-opacity-25 float-end ms-3 shadow-sm"
          style="object-fit: cover;"
          width="250"
          height="310">
 
     <div class="text-justify lh-base">
-        <h3 class="text-primary mb-3 text-decoration-underline">Mon Parcours</h3>
+        <h3 class="text-primary mb-3 text-decoration-underline">{{ 'ABOUT.PATH' | translate }}</h3>
         <p>
-            <strong>Diplômé d’une licence en informatique</strong> et actuellement en master <strong>MIAGE</strong>, j’ai développé une solide expertise en résolution de problèmes complexes et une capacité à m’adapter rapidement aux évolutions technologiques. Mon parcours académique rigoureux m’a permis d’acquérir des compétences techniques pointues, que je mets au service de projets innovants. Mon objectif ? Allier expertise et créativité pour contribuer à des projets ambitieux et à forte valeur ajoutée.
+            <strong>{{ 'ABOUT.DEGREE' | translate }}</strong> {{ 'ABOUT.AND' | translate }} <strong>{{ 'ABOUT.MASTER' | translate }}</strong>, {{ 'ABOUT.PARAGRAPH1' | translate }}
         </p>
 
-        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">Ce qui me définit</h3>
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.DEFINES' | translate }}</h3>
         <p>
-            <strong>Curiosité et polyvalence</strong> sont au cœur de mon approche. Avec <strong>neuf ans de pratique de la guitare</strong>, j’ai développé discipline, créativité et persévérance – des qualités que je mets au service de mes projets techniques et collaboratifs. Titulaire des permis <strong>B et AM</strong>, je suis mobile et prêt à saisir les opportunités qui se présentent.
+            <strong>{{ 'ABOUT.CURIOSITY' | translate }}</strong> {{ 'ABOUT.PARAGRAPH2' | translate }}
         </p>
 
-        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">Passions & Ambitions</h3>
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.PASSIONS' | translate }}</h3>
         <p>
-            Passionné par <strong>l’histoire, la culture générale et les technologies</strong>, j’aime explorer les liens entre technique et créativité. La <strong>conception assistée par ordinateur (CAO)</strong> et le <strong>développement frontend</strong> sont deux domaines qui me fascinent particulièrement. Mon ambition ? Devenir <strong>développeur full-stack</strong> pour concevoir des solutions complètes, alliant performance et expérience utilisateur.
+            {{ 'ABOUT.PARAGRAPH3' | translate }}
         </p>
 
-        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">Formation Continue</h3>
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.CONTINUOUS_LEARNING' | translate }}</h3>
         <p>
-            En autodidacte, je me forme actuellement à :
+            {{ 'ABOUT.PARAGRAPH4' | translate }}
         </p>
         <ul>
-            <li><strong>Angular & ReactJS</strong> pour le développement frontend moderne,</li>
-            <li><strong>Kotlin</strong> pour explorer le développement mobile et backend.</li>
+            <li>{{ 'ABOUT.LEARNING1' | translate }}</li>
+            <li>{{ 'ABOUT.LEARNING2' | translate }}</li>
         </ul>
         <p>
-            Cette démarche proactive me permet de rester à la pointe des technologies et d’élargir mes horizons en tant que développeur.
+            {{ 'ABOUT.PARAGRAPH5' | translate }}
         </p>
     </div>
 </div>
 
-  <h2 class="border-bottom py-2 text-light">Mes compétences</h2>
+  <h2 class="border-bottom py-2 text-light">{{ 'ABOUT.SKILLS.TITLE' | translate }}</h2>
   <div class="row g-2">
     <!-- Langages de programmation et frameworks -->
     <div class="col-md-4">
@@ -97,14 +97,14 @@
       <div class="row-sm-6 d-flex flex-column flex-grow-1">
         <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
           <div class="card-body">
-            <h3 class="card-title text-center mb-3">Compétences complémentaires</h3>
+            <h3 class="card-title text-center mb-3">{{ 'ABOUT.SKILLS.OTHER.TITLE' | translate }}</h3>
             <ul class="list-unstyled">
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>Comptabilité</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>Gestion de projet</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>Office 365</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>Intelligence artificielle (bases)</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>Conception assistée par ordinateur (CAO)</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>Git & GitHub</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.ACCOUNTING' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.PROJECT_MANAGEMENT' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.OFFICE_365' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.AI_BASICS' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.CAD' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.GIT' | translate }}</li>
             </ul>
           </div>
         </div>
@@ -112,10 +112,10 @@
       <div class="row-sm-6 d-flex flex-column flex-grow-1">
         <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
         <div class="card-body">
-          <h3 class="card-title text-center mb-3">Langues</h3>
+          <h3 class="card-title text-center mb-3">{{ 'ABOUT.SKILLS.LANGUAGES.TITLE' | translate }}</h3>
           <ul class="list-unstyled">
-            <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>Allemand : B1</li>
-            <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>Anglais : C1</li>
+            <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.LANGUAGES.GERMAN' | translate }}</li>
+            <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.LANGUAGES.ENGLISH' | translate }}</li>
           </ul>
         </div>
       </div>

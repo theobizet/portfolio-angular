@@ -4,12 +4,11 @@
       <ng-template ngbSlide *ngFor="let tab of tabs">
         <img [src]="tab.imageUrl" width="700" height="800"/>
         <div class="carousel-caption text-dark-emphasis bg-body-tertiary rounded-3 bg-opacity-75">
-          <h3>{{tab.title}}</h3>
-          <p>{{tab.description}}</p>
-          <a class="btn btn-outline-primary" [routerLink]="tab.route">aller à l'onglet</a>
+          <h3>{{tab.titleKey | translate}}</h3>
+          <p>{{tab.descriptionKey | translate}}</p>
+          <a class="btn btn-outline-primary" [routerLink]="tab.route">{{ 'HOME.GO_TO' | translate }}</a>
         </div>
       </ng-template>
     </ngb-carousel>
   }
-
 </main>

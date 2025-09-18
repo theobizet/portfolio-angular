@@ -1,10 +1,11 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,TranslateModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
@@ -16,7 +17,7 @@ export class CardComponent {
   }
 
   title(): string {
-    return this.project.title || 'Titre du projet';
+    return this.project.titleKey || 'Titre du projet';
   }
 
   year(): string {
@@ -24,6 +25,6 @@ export class CardComponent {
   }
 
   role(): string {
-    return this.project.role || 'non spécifié';
+    return this.project.roleKey || 'non spécifié';
   }
 }

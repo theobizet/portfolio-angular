@@ -4,6 +4,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ThemeService } from '../../theme.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface SvgIcon {
   name: string;
@@ -14,7 +15,7 @@ interface SvgIcon {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, FontAwesomeModule],
+  imports: [CommonModule, NgOptimizedImage, FontAwesomeModule, TranslateModule],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
