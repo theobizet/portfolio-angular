@@ -12,9 +12,6 @@
         <div ngbAccordionBody class="bg-body-secondary bg-opacity-75">
           <ng-template>
             <p>
-              @if ((experience.key + '.SUBJECT') !== ""){
-                <strong>{{ (experience.key + '.SUBJECT') | translate}} : </strong>
-              }
               {{ (experience.key + '.DESCRIPTION') | translate }}
             </p>
             <p class="mt-2">

@@ -148,8 +148,7 @@
     "ISL_STAGE": {
       "YEAR": "May 2024 - August 2024",
       "TITLE": "End-of-studies Internship – ISL, Saint-Louis",
-      "SUBJECT": "Analytical Accounting",
-      "DESCRIPTION": "Implementing protocols for the secure extraction of data from the human resources information system, ensuring confidentiality and integrity of information. This data was then made available to authorized personnel based on their group membership within the organization. Using encryption and authentication techniques to protect data during transfer and storage. Collaborating with HR managers to define access levels and ensure only authorized individuals could access relevant information. Training end-users on data security best practices and writing technical documentation to support these processes.",
+      "DESCRIPTION": "Analytical Accounting : Implementing protocols for the secure extraction of data from the human resources information system, ensuring confidentiality and integrity of information. This data was then made available to authorized personnel based on their group membership within the organization. Using encryption and authentication techniques to protect data during transfer and storage. Collaborating with HR managers to define access levels and ensure only authorized individuals could access relevant information. Training end-users on data security best practices and writing technical documentation to support these processes.",
       "SKILLS": "Databases, Analytical Accounting, IT Security, SQL, VBA, Microsoft Excel"
     },
     "CERP_RRM": {
