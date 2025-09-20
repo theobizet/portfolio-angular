@@ -213,5 +213,8 @@
       "MESSAGE": "Nachricht",
       "SEND": "Senden"
     }
+  },
+  "CARD": {
+    "ROLE": "Rolle: "
   }
 }
