@@ -1,0 +1,217 @@
+{
+  "NAVBAR": {
+    "BRAND": "BIZET Théo - Developer",
+    "HOME": "Home",
+    "ABOUT": "About Me",
+    "EDUCATION": "Education",
+    "PROJECTS": "Projects",
+    "EXPERIENCE": "Experience",
+    "CONTACT": "Contact",
+    "THEME": {
+      "TOGGLE": "Theme:"
+    }
+  },
+  "HOME": {
+    "ABOUT_TITLE": "About Me",
+    "ABOUT_DESCRIPTION": "Presentation and personal journey",
+    "EDUCATION_TITLE": "Education",
+    "EDUCATION_DESCRIPTION": "Academic background and acquired skills",
+    "PROJECTS_TITLE": "Projects",
+    "PROJECTS_DESCRIPTION": "Completed projects and technologies used",
+    "EXPERIENCE_TITLE": "Experience",
+    "EXPERIENCE_DESCRIPTION": "Professional experience and internships",
+    "CONTACT_TITLE": "Contact",
+    "CONTACT_DESCRIPTION": "Contact information and social networks",
+    "GO_TO": "Go to tab"
+  },
+  "ABOUT": {
+    "TITLE": "About Me",
+    "PATH": "My Journey",
+    "DEGREE": "Graduated with a Bachelor’s degree in Computer Science ",
+    "AND": "and currently pursuing a Master’s degree in ",
+    "MASTER": "MIAGE (Computer Science Methods Applied to Business Management)",
+    "PARAGRAPH1": "I have developed strong expertise in solving complex problems and the ability to quickly adapt to technological changes. My rigorous academic background has allowed me to acquire sharp technical skills, which I apply to innovative projects. My goal? To combine expertise and creativity to contribute to ambitious, high-value projects.",
+    "DEFINES": "What Defines Me",
+    "CURIOSITY": "Curiosity and versatility",
+    "PARAGRAPH2": "are at the heart of my approach. With nine years of guitar practice, I have developed discipline, creativity, and perseverance—qualities I bring to my technical and collaborative projects. Holding both B and AM driving licenses, I am mobile and ready to seize opportunities as they arise.",
+    "PASSIONS": "Passions & Ambitions",
+    "PARAGRAPH3": "Passionate about history, general culture, and technology, I love exploring the links between technique and creativity. Computer-aided design (CAD) and frontend development are two areas that particularly fascinate me. My ambition? To become a full-stack developer to design comprehensive solutions that combine performance and user experience.",
+    "CONTINUOUS_LEARNING": "Continuous Learning",
+    "PARAGRAPH4": "Self-taught, I am currently learning:",
+    "LEARNING1": "Angular & ReactJS for modern frontend development,",
+    "LEARNING2": "Kotlin to explore mobile and backend development.",
+    "PARAGRAPH5": "This proactive approach allows me to stay at the forefront of technology and broaden my horizons as a developer.",
+    "SKILLS": {
+      "TITLE": "My Skills",
+      "PROGRAMMING": "Languages and Frameworks",
+      "ENVIRONNEMENT": "Environments",
+      "OTHER": {
+        "TITLE": "Other Skills",
+        "ACCOUNTING": "Accounting",
+        "PROJECT_MANAGEMENT": "Project Management",
+        "OFFICE_365": "Office 365",
+        "AI_BASICS": "Artificial Intelligence (basics)",
+        "CAD": "Computer-Aided Design (CAD)",
+        "GIT": "Git & GitHub"
+      },
+      "LANGUAGES": {
+        "TITLE": "Languages",
+        "GERMAN": "German (B2)",
+        "ENGLISH": "English (C1)"
+      }
+    }
+  },
+  "EDUCATION": {
+    "TITLE": "Education",
+    "UHA": {
+      "NAME": "University of Upper Alsace – Mulhouse",
+      "LICENCE": "2019 - 2025: BACHELOR IN COMPUTER SCIENCE",
+      "MASTER": "2025 - Present: MASTER IN MIAGE",
+      "LANGUAGES_TITLE": "Languages and frameworks learned:",
+      "LANGUAGES": {
+        "C++": "C++",
+        "PHP": "PHP",
+        "JAVA": "Java",
+        "JAVASCRIPT": "JavaScript",
+        "SQL": "SQL",
+        "LARAVEL": "Laravel (PHP framework)",
+        "HTML_CSS": "HTML & CSS",
+        "QT": "QT framework",
+        "VBA": "VBA"
+      },
+      "SKILLS_TITLE": "Other skills acquired:",
+      "SKILLS": {
+        "AI": "Basics of Artificial Intelligence",
+        "PROJECT_MANAGEMENT": "Project Management",
+        "ACCOUNTING": "Accounting Basics",
+        "ANALYTICAL_ACCOUNTING": "Analytical Accounting (internship)",
+        "NETWORK": "Network Basics",
+        "UML": "UML Modeling",
+        "GIT": "Git and GitHub"
+      }
+    },
+    "DON_BOSCO": {
+      "NAME": "Lycée Général Don Bosco – Landser",
+      "BAC": "2016 - 2019: HIGH SCHOOL DIPLOMA IN ENGINEERING SCIENCE",
+      "SKILLS_TITLE": "Skills acquired:",
+      "SKILLS": {
+        "PYTHON": "Python",
+        "CAO": "Computer-Aided Design (CAD)",
+        "OFFICE": "Office 365",
+        "ELECTRONICS": "Basics of Electronics",
+        "MECHANICS": "Basics of Mechanics",
+        "AUTOMATIC": "Basics of Automation",
+        "ROBOTICS": "Basics of Robotics",
+        "TEAMWORK": "Teamwork",
+        "SOLIDWORKS": "SolidWorks",
+        "SKETCHUP": "SketchUp",
+        "ARDUINO": "Arduino"
+      }
+    },
+    "SELF_TAUGHT": {
+      "TITLE": "Self-Taught",
+      "SUBTITLE": "In my free time",
+      "SKILLS_TITLE": "Skills acquired:",
+      "SKILLS": {
+        "ANGULAR": "Angular",
+        "TYPESCRIPT": "TypeScript",
+        "REACT": "ReactJS",
+        "KOTLIN": "Kotlin"
+      }
+    }
+  },
+  "PROJECTS": {
+    "IMAGE_PROCESSOR_TITLE": "Creation of basic image editing software for the image processing course",
+    "GRAPH_SOFTWARE_TITLE": "Creation of demonstrative software on graph theory for the graphs course",
+    "MAZE_ROBOT_TITLE": "Creation of a robot solving mazes",
+    "EFA_CLOUD_TITLE": "Implementation of EFA Cloud software for Mulhouse-Aviron",
+    "MOBILENET_PRESENTATION_TITLE": "Presentation of MobileNet-SSD (Artificial Intelligence)",
+    "APPOINTMENT_MANAGER_TITLE": "Appointment manager with C++ and QT",
+    "VACATION_DATABASE_TITLE": "Database with Microsoft Access: Management of temporary workers at UHA",
+    "SKATEBOARD_MODULE_TITLE": "Module to motorize a skateboard",
+    "PYTHON_PONG_TITLE": "Video game 'Pong' in Python",
+    "ROLES": {
+      "DEVELOPER": "Developer",
+      "PROJECT_LEAD": "Project Lead",
+      "IT_SPECIALIST": "IT Specialist"
+    }
+  },
+  "EXPERIENCE": {
+    "TITLE": "Experience",
+    "SKILLS_TITLE": "Skills Acquired",
+    "LECLERC": {
+      "YEAR": "May 2025 - August 2025",
+      "TITLE": "Cashier – E.Leclerc, Cernay",
+      "DESCRIPTION": "Welcoming and checking out supermarket customers. Managing financial transactions, processing card and cash payments. Providing quality customer service by answering questions and resolving issues. Using point-of-sale software to record sales and manage cash registers.",
+      "SKILLS": "Cash register management, Customer service, Point-of-sale software"
+    },
+    "ISL_STAGE": {
+      "YEAR": "May 2024 - August 2024",
+      "TITLE": "End-of-studies Internship – ISL, Saint-Louis",
+      "DESCRIPTION": "Analytical Accounting : Implementing protocols for the secure extraction of data from the human resources information system, ensuring confidentiality and integrity of information. This data was then made available to authorized personnel based on their group membership within the organization. Using encryption and authentication techniques to protect data during transfer and storage. Collaborating with HR managers to define access levels and ensure only authorized individuals could access relevant information. Training end-users on data security best practices and writing technical documentation to support these processes.",
+      "SKILLS": "Databases, Analytical Accounting, IT Security, SQL, VBA, Microsoft Excel"
+    },
+    "CERP_RRM": {
+      "YEAR": "February 2023 - May 2025",
+      "TITLE": "Order Picker – CERP RRM, Illzach",
+      "DESCRIPTION": "Preparing and verifying orders for medications and medical supplies destined for pharmacies in the Mulhouse region. Using warehouse management systems to locate and gather ordered items. Packaging and labeling orders in compliance with safety and quality standards. Collaborating with logistics teams to ensure timely delivery and inventory management.",
+      "SKILLS": "Order picking, Inventory management, Logistics, Warehouse management systems"
+    },
+    "GRG_ALSACE_DB": {
+      "YEAR": "June 2022 - September 2022",
+      "TITLE": "Database Migration – GRG Alsace, Strasbourg",
+      "DESCRIPTION": "Participating in inventory, loading, and unloading trucks. Assisting in the migration of the company’s IT system from a Microsoft Access database to WSM Akanéa software. Cleaning and validating data to ensure integrity during transfer. Training end-users on the new system and writing technical documentation to support the transition.",
+      "SKILLS": "Database administration, Data migration, Microsoft Access, WSM Akanéa"
+    },
+    "BELL_SUISSE": {
+      "YEAR": "October 2020 - January 2021",
+      "TITLE": "Order Picker – Bell Suisse SA, Basel",
+      "DESCRIPTION": "Preparing and packaging orders of seafood products for COOP supermarkets. Using inventory management systems to track product levels and ensure availability. Collaborating with logistics teams to organize deliveries and maintain the cold chain. Adhering to hygiene and food safety standards.",
+      "SKILLS": "Order picking, Inventory management, Logistics, Hygiene and food safety"
+    },
+    "GRG_ALSACE_MANUT": {
+      "YEAR": "Summers of 2017, 2018, 2019, 2021",
+      "TITLE": "Warehouse Worker – GRG Alsace, Strasbourg",
+      "DESCRIPTION": "Conducting inventory, loading, and unloading trucks. Using handling equipment to safely move goods. Collaborating with logistics teams to organize deliveries and receipts. Following safety procedures to prevent accidents and ensure a safe working environment.",
+      "SKILLS": "Warehouse work, Logistics, Handling equipment, Workplace safety"
+    },
+    "MATCH": {
+      "YEAR": "August 2020 - September 2020",
+      "TITLE": "Sales Associate – Match Supermarket, Huningue",
+      "DESCRIPTION": "Responsible for restocking and maintaining the fruit and vegetable section. Welcoming and advising customers on available products. Managing inventory and ordering goods from suppliers. Participating in setting up promotions and organizing displays to attract customers.",
+      "SKILLS": "Sales, Department management, Customer service, Inventory management"
+    },
+    "JOURNAL_ALSACE": {
+      "YEAR": "January 2016",
+      "TITLE": "Observation Internship: IT Department – Journal L’Alsace, Mulhouse",
+      "DESCRIPTION": "Observing and assisting the IT technicians of Journal L’Alsace with maintenance tasks. Helping resolve technical issues and providing user support. Familiarizing myself with content management systems and digital publishing tools. Participating in projects to update IT equipment and maintain networks.",
+      "SKILLS": "IT maintenance, Technical support, Content management systems"
+    },
+    "EARL_FIX": {
+      "YEAR": "Summer 2015",
+      "TITLE": "Agricultural Worker – EARL Fix, Fessenheim-le-Bas",
+      "DESCRIPTION": "Sorting and preparing tobacco for a small farm. Participating in harvesting and processing activities. Using agricultural tools and machinery for sorting and packaging tasks. Collaborating with other farm workers to ensure smooth operations.",
+      "SKILLS": "Agricultural work, Product sorting, Agricultural machinery, Teamwork"
+    }
+  },
+  "CONTACT": {
+    "TITLE": "Contact Me",
+    "MY_NAME": "Théo Bizet",
+    "MY_JOB": "Junior Developer",
+    "EMAIL": "Email",
+    "MY_EMAIL_ADDRESS": "theobizet@outlook.fr",
+    "PHONE": "Phone",
+    "MY_PHONE_NUMBER": "+33 6 03 70 47 01",
+    "DESCRIPTION": "Creation and maintenance of software, web, or mobile solutions tailored to user needs.",
+    "FORM": {
+      "TITLE": "Send Me a Message",
+      "NAME_PLACEHOLDER": "Enter your name",
+      "EMAIL_PLACEHOLDER": "Enter your email address",
+      "MESSAGE_PLACEHOLDER": "Enter your message",
+      "NAME": "Name",
+      "EMAIL_ADDRESS": "Email address",
+      "MESSAGE": "Message",
+      "SEND": "Send"
+    }
+  }
+}

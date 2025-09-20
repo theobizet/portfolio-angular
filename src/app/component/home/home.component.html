@@ -1,0 +1,14 @@
+<main class="container-fluid bg-transparent py-2">
+  @if (tabs) {
+    <ngb-carousel [keyboard]="true" [pauseOnHover]="true" [interval]="5000" [wrap]="true" [showNavigationIndicators]="false" [showNavigationArrows]="true">
+      <ng-template ngbSlide *ngFor="let tab of tabs">
+        <img [src]="tab.imageUrl" width="700" height="800"/>
+        <div class="carousel-caption text-dark-emphasis bg-body-tertiary rounded-3 bg-opacity-75">
+          <h3>{{tab.titleKey | translate}}</h3>
+          <p>{{tab.descriptionKey | translate}}</p>
+          <a class="btn btn-outline-primary" [routerLink]="tab.route">{{ 'HOME.GO_TO' | translate }}</a>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  }
+</main>

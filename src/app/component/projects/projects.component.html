@@ -1,0 +1,11 @@
+<main class="container-fluid py-2 bg-transparent">
+  <h2 class="border-bottom pb-2 mb-4 text-light">Projets</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div *ngFor="let project of projects" class="col d-flex">
+      <app-card
+        [project]="project"
+        class="flex-fill d-flex flex-column h-100">
+      </app-card>
+    </div>
+  </div>
+</main>

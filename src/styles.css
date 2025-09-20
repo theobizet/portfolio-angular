@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+:root,
+[data-bs-theme="light"] {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+[data-bs-theme="dark"] {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body,main,nav,footer {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body {
+  background: url('/assets/bg-img.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color: black;
+  position: relative;
+}
+
+.content-wrapper{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+}
+
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+}

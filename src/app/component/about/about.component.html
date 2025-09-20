@@ -1,0 +1,125 @@
+<main class="container-fluid bg-transparent py-2">
+  <h2 class="border-bottom pb-2 text-light">{{ 'ABOUT.TITLE' | translate }}</h2>
+  <div class="container-fluid bg-body bg-opacity-75 rounded-3 p-4">
+    <img ngSrc="./assets/Image1.png"
+         alt="{{ 'ABOUT.IMAGE_ALT' | translate }}"
+         class="img-fluid border rounded border-3 border-body bg-primary bg-opacity-25 float-end ms-3 shadow-sm"
+         style="object-fit: cover;"
+         width="250"
+         height="310">
+
+    <div class="text-justify lh-base">
+        <h3 class="text-primary mb-3 text-decoration-underline">{{ 'ABOUT.PATH' | translate }}</h3>
+        <p>
+            <strong>{{ 'ABOUT.DEGREE' | translate }}</strong> {{ 'ABOUT.AND' | translate }} <strong>{{ 'ABOUT.MASTER' | translate }}</strong>, {{ 'ABOUT.PARAGRAPH1' | translate }}
+        </p>
+
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.DEFINES' | translate }}</h3>
+        <p>
+            <strong>{{ 'ABOUT.CURIOSITY' | translate }}</strong> {{ 'ABOUT.PARAGRAPH2' | translate }}
+        </p>
+
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.PASSIONS' | translate }}</h3>
+        <p>
+            {{ 'ABOUT.PARAGRAPH3' | translate }}
+        </p>
+
+        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.CONTINUOUS_LEARNING' | translate }}</h3>
+        <p>
+            {{ 'ABOUT.PARAGRAPH4' | translate }}
+        </p>
+        <ul>
+            <li>{{ 'ABOUT.LEARNING1' | translate }}</li>
+            <li>{{ 'ABOUT.LEARNING2' | translate }}</li>
+        </ul>
+        <p>
+            {{ 'ABOUT.PARAGRAPH5' | translate }}
+        </p>
+    </div>
+</div>
+
+  <h2 class="border-bottom py-2 text-light">{{ 'ABOUT.SKILLS.TITLE' | translate }}</h2>
+  <div class="row g-2">
+    <!-- Langages de programmation et frameworks -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-3">Langages & Frameworks</h3>
+          <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
+            @if (isDarkTheme) {
+              <li *ngFor="let icon of languages; trackBy: trackByIndex" class="text-center">
+                <div [innerHTML]="icon.sanitized" style="filter: invert(0.7);"></div>
+                <p>
+                  {{ icon.name }}
+                </p>
+              </li>
+            }
+            @else {
+              <li *ngFor="let icon of languages; trackBy: trackByIndex" class="text-center">
+                <div [innerHTML]="icon.sanitized"></div>
+                <p>
+                  {{ icon.name }}
+                </p>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Environnements de développement -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-3">Environnements</h3>
+          <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
+            @if (isDarkTheme) {
+              <li *ngFor="let icon of environment; trackBy: trackByIndex" class="text-center">
+                <div [innerHTML]="icon.sanitized" style="filter: invert(0.7);"></div>
+                <p>
+                  {{ icon.name }}
+                </p>
+              </li>
+            }
+            @else {
+              <li *ngFor="let icon of environment; trackBy: trackByIndex" class="text-center">
+                <div [innerHTML]="icon.sanitized"></div>
+                <p>
+                  {{ icon.name }}
+                </p>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Compétences complémentaires -->
+    <div class="col-md-4 d-flex flex-column gap-2">
+      <div class="row-sm-6 d-flex flex-column flex-grow-1">
+        <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-3">{{ 'ABOUT.SKILLS.OTHER.TITLE' | translate }}</h3>
+            <ul class="list-unstyled">
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.ACCOUNTING' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.PROJECT_MANAGEMENT' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.OFFICE_365' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.AI_BASICS' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.CAD' | translate }}</li>
+              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.GIT' | translate }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row-sm-6 d-flex flex-column flex-grow-1">
+        <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-3">{{ 'ABOUT.SKILLS.LANGUAGES.TITLE' | translate }}</h3>
+          <ul class="list-unstyled">
+            <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.LANGUAGES.GERMAN' | translate }}</li>
+            <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.LANGUAGES.ENGLISH' | translate }}</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</main>

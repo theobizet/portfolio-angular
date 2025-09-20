@@ -1,0 +1,217 @@
+{
+  "NAVBAR": {
+    "BRAND": "BIZET Théo - Entwickler",
+    "HOME": "Startseite",
+    "ABOUT": "Über mich",
+    "EDUCATION": "Ausbildung",
+    "PROJECTS": "Projekte",
+    "EXPERIENCE": "Erfahrung",
+    "CONTACT": "Kontakt",
+    "THEME": {
+      "TOGGLE": "Thema:"
+    }
+  },
+  "HOME": {
+    "ABOUT_TITLE": "Über mich",
+    "ABOUT_DESCRIPTION": "Vorstellung und persönlicher Werdegang",
+    "EDUCATION_TITLE": "Ausbildung",
+    "EDUCATION_DESCRIPTION": "Akademische Laufbahn und erworbene Fähigkeiten",
+    "PROJECTS_TITLE": "Projekte",
+    "PROJECTS_DESCRIPTION": "Durchgeführte Projekte und verwendete Technologien",
+    "EXPERIENCE_TITLE": "Erfahrung",
+    "EXPERIENCE_DESCRIPTION": "Berufserfahrung und Praktika",
+    "CONTACT_TITLE": "Kontakt",
+    "CONTACT_DESCRIPTION": "Kontaktinformationen und soziale Netzwerke",
+    "GO_TO": "Zum Tab gehen"
+  },
+  "ABOUT": {
+    "TITLE": "Über mich",
+    "PATH": "Mein Werdegang",
+    "DEGREE": "Abschluss eines Bachelorstudiums in Informatik ",
+    "AND": "und derzeit im Masterstudiengang ",
+    "MASTER": "MIAGE (Informatikmethoden für das Unternehmensmanagement)",
+    "PARAGRAPH1": "habe ich fundierte Expertise in der Lösung komplexer Probleme und die Fähigkeit entwickelt, mich schnell an technologische Entwicklungen anzupassen. Mein strenger akademischer Werdegang hat es mir ermöglicht, präzise technische Fähigkeiten zu erwerben, die ich in innovative Projekte einbringe. Mein Ziel? Expertise und Kreativität zu verbinden, um zu ehrgeizigen und wertschöpfenden Projekten beizutragen.",
+    "DEFINES": "Was mich ausmacht",
+    "CURIOSITY": "Neugierde und Vielseitigkeit",
+    "PARAGRAPH2": "stehen im Mittelpunkt meines Ansatzes. Mit neun Jahren Gitarrenpraxis habe ich Disziplin, Kreativität und Durchhaltevermögen entwickelt – Eigenschaften, die ich in meine technischen und kollaborativen Projekte einbringe. Im Besitz der Führerscheine B und AM bin ich mobil und bereit, sich bietende Chancen zu ergreifen.",
+    "PASSIONS": "Leidenschaften & Ambitionen",
+    "PARAGRAPH3": "Begeistert von Geschichte, Allgemeinwissen und Technologien, erkunde ich gerne die Verbindungen zwischen Technik und Kreativität. Besonders faszinieren mich Computer-Aided Design (CAD) und Frontend-Entwicklung. Mein Ziel? Ein Full-Stack-Entwickler zu werden, um umfassende Lösungen zu konzipieren, die Leistung und Benutzererlebnis vereinen.",
+    "CONTINUOUS_LEARNING": "Weiterbildung",
+    "PARAGRAPH4": "Im Selbststudium bilde ich mich derzeit in folgenden Bereichen weiter:",
+    "LEARNING1": "Angular & ReactJS für moderne Frontend-Entwicklung,",
+    "LEARNING2": "Kotlin für die Erkundung der mobilen und Backend-Entwicklung.",
+    "PARAGRAPH5": "Dieser proaktive Ansatz ermöglicht es mir, auf dem neuesten Stand der Technik zu bleiben und meine Horizonte als Entwickler zu erweitern.",
+    "SKILLS": {
+      "TITLE": "Meine Fähigkeiten",
+      "PROGRAMMING": "Programmiersprachen und Frameworks",
+      "ENVIRONNEMENT": "Umgebungen",
+      "OTHER": {
+        "TITLE": "Weitere Fähigkeiten",
+        "ACCOUNTING": "Buchhaltung",
+        "PROJECT_MANAGEMENT": "Projektmanagement",
+        "OFFICE_365": "Office 365",
+        "AI_BASICS": "Grundlagen der künstlichen Intelligenz",
+        "CAD": "Computer-Aided Design (CAD)",
+        "GIT": "Git & GitHub"
+      },
+      "LANGUAGES": {
+        "TITLE": "Sprachen",
+        "GERMAN": "Deutsch (B2)",
+        "ENGLISH": "Englisch (C1)"
+      }
+    }
+  },
+  "EDUCATION": {
+    "TITLE": "Ausbildung",
+    "UHA": {
+      "NAME": "Universität Oberelsass – Mülhausen",
+      "LICENCE": "2019 - 2025: BACHELOR INFORMATIK",
+      "MASTER": "2025 - heute: MASTER MIAGE",
+      "LANGUAGES_TITLE": "Erlernte Sprachen und Frameworks:",
+      "LANGUAGES": {
+        "C++": "C++",
+        "PHP": "PHP",
+        "JAVA": "Java",
+        "JAVASCRIPT": "JavaScript",
+        "SQL": "SQL",
+        "LARAVEL": "Laravel (PHP-Framework)",
+        "HTML_CSS": "HTML & CSS",
+        "QT": "QT-Framework",
+        "VBA": "VBA"
+      },
+      "SKILLS_TITLE": "Weitere erworbene Fähigkeiten:",
+      "SKILLS": {
+        "AI": "Grundlagen der künstlichen Intelligenz",
+        "PROJECT_MANAGEMENT": "Projektmanagement",
+        "ACCOUNTING": "Grundlagen der Buchhaltung",
+        "ANALYTICAL_ACCOUNTING": "Kostenrechnung (Praktikum)",
+        "NETWORK": "Netzwerkgrundlagen",
+        "UML": "UML-Modellierung",
+        "GIT": "Git und GitHub"
+      }
+    },
+    "DON_BOSCO": {
+      "NAME": "Lycée Général Don Bosco – Landser",
+      "BAC": "2016 - 2019: ABITUR INGENIEURWISSENSCHAFTEN",
+      "SKILLS_TITLE": "Erworbene Fähigkeiten:",
+      "SKILLS": {
+        "PYTHON": "Python",
+        "CAO": "Computer-Aided Design (CAD)",
+        "OFFICE": "Office 365",
+        "ELECTRONICS": "Grundlagen der Elektronik",
+        "MECHANICS": "Grundlagen der Mechanik",
+        "AUTOMATIC": "Grundlagen der Automatisierungstechnik",
+        "ROBOTICS": "Grundlagen der Robotik",
+        "TEAMWORK": "Teamarbeit",
+        "SOLIDWORKS": "SolidWorks",
+        "SKETCHUP": "SketchUp",
+        "ARDUINO": "Arduino"
+      }
+    },
+    "SELF_TAUGHT": {
+      "TITLE": "Selbststudium",
+      "SUBTITLE": "In meiner Freizeit",
+      "SKILLS_TITLE": "Erworbene Fähigkeiten:",
+      "SKILLS": {
+        "ANGULAR": "Angular",
+        "TYPESCRIPT": "TypeScript",
+        "REACT": "ReactJS",
+        "KOTLIN": "Kotlin"
+      }
+    }
+  },
+  "PROJECTS": {
+    "IMAGE_PROCESSOR_TITLE": "Erstellung einer einfachen Bildbearbeitungssoftware für den Bildverarbeitungskurs",
+    "GRAPH_SOFTWARE_TITLE": "Erstellung einer Demonstrationssoftware zum Konzept von Graphen im Rahmen des Graphenkurses",
+    "MAZE_ROBOT_TITLE": "Erstellung eines Roboters zur Lösung von Labyrinthen",
+    "EFA_CLOUD_TITLE": "Einrichtung der EFA-Cloud-Software für Mulhouse-Aviron",
+    "MOBILENET_PRESENTATION_TITLE": "Präsentation von MobileNet-SSD (Künstliche Intelligenz)",
+    "APPOINTMENT_MANAGER_TITLE": "Terminmanager mit C++ und QT",
+    "VACATION_DATABASE_TITLE": "Datenbank mit Microsoft Access: Verwaltung der Aushilfskräfte der UHA",
+    "SKATEBOARD_MODULE_TITLE": "Modul zur Motorisierung eines Skateboards",
+    "PYTHON_PONG_TITLE": "Videospiel „Pong“ in Python",
+    "ROLES": {
+      "DEVELOPER": "Entwickler",
+      "PROJECT_LEAD": "Projektleiter",
+      "IT_SPECIALIST": "Informatiker"
+    }
+  },
+  "EXPERIENCE": {
+    "TITLE": "Erfahrung",
+    "SKILLS_TITLE": "Erworbene Fähigkeiten",
+    "LECLERC": {
+      "YEAR": "Mai 2025 - August 2025",
+      "TITLE": "Kassierer – E.Leclerc, Cernay",
+      "DESCRIPTION": "Empfang und Abrechnung der Supermarktkunden. Verwaltung von Finanztransaktionen, Bearbeitung von Kartenzahlungen und Bargeld. Sicherstellung eines qualitativ hochwertigen Kundenservice durch Beantwortung von Kundenfragen und Lösung eventueller Probleme. Nutzung von Kassensoftware zur Erfassung von Verkäufen und Verwaltung der Kassenbestände.",
+      "SKILLS": "Kassenverwaltung, Kundenservice, Verkaufsstellen-Software"
+    },
+    "ISL_STAGE": {
+      "YEAR": "Mai 2024 - August 2024",
+      "TITLE": "Abschluss-Praktikum – ISL, Saint-Louis",
+      "DESCRIPTION": "Kostenrechnung : Umsetzung von Protokollen für die sichere Extraktion von Daten aus dem Personalinformationssystem unter Wahrung der Vertraulichkeit und Integrität der Informationen. Diese Daten wurden anschließend autorisiertem Personal entsprechend ihrer Zugehörigkeit zu bestimmten Gruppen innerhalb der Organisation zur Verfügung gestellt. Einsatz von Verschlüsselungs- und Authentifizierungstechniken zum Schutz der Daten während der Übertragung und Speicherung. Zusammenarbeit mit den Personalverantwortlichen zur Definition der Zugriffsebenen und Sicherstellung, dass nur berechtigte Personen auf die relevanten Informationen zugreifen konnten. Schulung der Endbenutzer in den besten Praktiken der Datensicherheit und Erstellung technischer Dokumentation zur Unterstützung dieser Prozesse.",
+      "SKILLS": "Datenbanken, Kostenrechnung, IT-Sicherheit, SQL, VBA, Microsoft Excel"
+    },
+    "CERP_RRM": {
+      "YEAR": "Februar 2023 - Mai 2025",
+      "TITLE": "Kommissionierer – CERP RRM, Illzach",
+      "DESCRIPTION": "Zusammenstellung und Überprüfung von Bestellungen für Medikamente und medizinisches Material, die an Apotheken in der Region Mülhausen geliefert werden. Nutzung von Lagerverwaltungssystemen zur Lokalisierung und Zusammenstellung der bestellten Artikel. Verpackung und Etikettierung der Bestellungen unter Einhaltung der Sicherheits- und Qualitätsnormen. Zusammenarbeit mit den Logistikteams, um die pünktliche Lieferung und die Bestandsverwaltung zu gewährleisten.",
+      "SKILLS": "Kommissionierung, Bestandsmanagement, Logistik, Lagerverwaltungssysteme"
+    },
+    "GRG_ALSACE_DB": {
+      "YEAR": "Juni 2022 - September 2022",
+      "TITLE": "Datenbankmigration – GRG Alsace, Straßburg",
+      "DESCRIPTION": "Mitwirkung bei Inventur, Be- und Entladung von LKWs. Unterstützung bei der Migration des Unternehmens-IT-Systems von einer Microsoft Access-Datenbank zur WSM Akanéa-Software. Bereinigung und Validierung der Daten, um deren Integrität während des Transfers zu gewährleisten. Schulung der Endbenutzer im neuen System und Erstellung technischer Dokumentation zur Unterstützung des Übergangs.",
+      "SKILLS": "Datenbankverwaltung, Datenmigration, Microsoft Access, WSM Akanéa"
+    },
+    "BELL_SUISSE": {
+      "YEAR": "Oktober 2020 - Januar 2021",
+      "TITLE": "Kommissionierer – Bell Suisse SA, Basel",
+      "DESCRIPTION": "Zusammenstellung und Verpackung von Bestellungen für Fischereiprodukte für COOP-Supermärkte. Nutzung von Bestandsverwaltungssystemen zur Überwachung der Produktbestände und Sicherstellung der Verfügbarkeit der Artikel. Zusammenarbeit mit den Logistikteams zur Organisation der Lieferungen und Aufrechterhaltung der Kühlkette. Einhaltung der Hygiene- und Lebensmittelsicherheitsnormen.",
+      "SKILLS": "Kommissionierung, Bestandsmanagement, Logistik, Hygiene und Lebensmittelsicherheit"
+    },
+    "GRG_ALSACE_MANUT": {
+      "YEAR": "Sommer 2017, 2018, 2019, 2021",
+      "TITLE": "Lagerarbeiter – GRG Alsace, Straßburg",
+      "DESCRIPTION": "Durchführung von Inventuren, Be- und Entladung von LKWs. Einsatz von Lagergeräten zum sicheren Transport von Waren. Zusammenarbeit mit den Logistikteams zur Organisation von Lieferungen und Wareneingängen. Einhaltung der Sicherheitsvorschriften zur Vermeidung von Unfällen und Gewährleistung eines sicheren Arbeitsumfelds.",
+      "SKILLS": "Lagerarbeit, Logistik, Bedienung von Lagergeräten, Arbeitssicherheit"
+    },
+    "MATCH": {
+      "YEAR": "August 2020 - September 2020",
+      "TITLE": "Verkäufer – Supermarkt Match, Huningue",
+      "DESCRIPTION": "Verantwortlich für die Auffüllung und Pflege der Obst- und Gemüseabteilung. Beratung und Betreuung der Kunden bei den verfügbaren Produkten. Verwaltung der Bestände und Bestellung von Waren bei den Lieferanten. Mitwirkung bei der Umsetzung von Werbeaktionen und der Gestaltung von Präsentationen zur Kundenansprache.",
+      "SKILLS": "Verkauf, Regalmanagement, Kundenservice, Bestandsmanagement"
+    },
+    "JOURNAL_ALSACE": {
+      "YEAR": "Januar 2016",
+      "TITLE": "Schülerpraktikum: IT-Abteilung – Journal L’Alsace, Mülhausen",
+      "DESCRIPTION": "Beobachtung und Unterstützung der Informatiker des Journal L’Alsace bei Wartungsarbeiten. Hilfe bei der Lösung technischer Probleme und Unterstützung der Benutzer. Vertrautmachen mit Content-Management-Systemen und digitalen Veröffentlichungstools. Mitwirkung bei Projekten zur Aktualisierung der IT-Ausstattung und Wartung der Netzwerke.",
+      "SKILLS": "IT-Wartung, Technischer Support, Content-Management-Systeme"
+    },
+    "EARL_FIX": {
+      "YEAR": "Sommer 2015",
+      "TITLE": "Landwirtschaftlicher Arbeiter – EARL Fix, Fessenheim-le-Bas",
+      "DESCRIPTION": "Sortieren und Vorbereiten von Tabak für einen kleinen landwirtschaftlichen Betrieb. Mitwirkung bei Ernte- und Verarbeitungsarbeiten. Einsatz von landwirtschaftlichen Werkzeugen und Maschinen für Sortier- und Verpackungsaufgaben. Zusammenarbeit mit anderen Landwirtschaftsarbeitern für einen reibungslosen Ablauf der Operationen.",
+      "SKILLS": "Landwirtschaftliche Arbeit, Produktsortierung, Bedienung landwirtschaftlicher Maschinen, Teamarbeit"
+    }
+  },
+  "CONTACT": {
+    "TITLE": "Kontaktieren Sie mich",
+    "MY_NAME": "Théo Bizet",
+    "MY_JOB": "Junior-Entwickler",
+    "EMAIL": "E-Mail",
+    "MY_EMAIL_ADDRESS": "theobizet@outlook.fr",
+    "PHONE": "Telefon",
+    "MY_PHONE_NUMBER": "+33 6 03 70 47 01",
+    "DESCRIPTION": "Erstellung und Wartung von Software-, Web- oder Mobilfunk-Lösungen, die auf die Bedürfnisse der Benutzer zugeschnitten sind.",
+    "FORM": {
+      "TITLE": "Senden Sie mir eine Nachricht",
+      "NAME_PLACEHOLDER": "Geben Sie Ihren Namen ein",
+      "EMAIL_PLACEHOLDER": "Geben Sie Ihre E-Mail-Adresse ein",
+      "MESSAGE_PLACEHOLDER": "Geben Sie Ihre Nachricht ein",
+      "NAME": "Name",
+      "EMAIL_ADDRESS": "E-Mail-Adresse",
+      "MESSAGE": "Nachricht",
+      "SEND": "Senden"
+    }
+  }
+}

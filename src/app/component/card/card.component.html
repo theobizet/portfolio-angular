@@ -1,0 +1,12 @@
+<div class="col">
+  <div class="card bg-body bg-opacity-75 h-100">
+    <div class="card-header">
+      {{ year() }}
+    </div>
+    <div class="card-body h-100">
+      <h5 class="card-title">{{ title() | translate}}</h5>
+      <p class="card-text" *ngIf="role">Rôle : {{ role() | translate}}</p>
+    </div>
+    <img class="card-img-bottom position-relative" [src]="imageUrl()" fill="true" style="object-fit : cover; height: 10dvh;"/>
+  </div>
+</div>

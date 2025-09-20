@@ -1,0 +1,26 @@
+<main class="bg-transparent container-fluid py-2">
+  <h2 class="border-bottom pb-2 text-light">{{ 'EXPERIENCE.TITLE' | translate }}</h2>
+  <div ngbAccordion class="bg-transparent">
+    <div ngbAccordionItem *ngFor="let experience of experiences" class="bg-transparent">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton class="bg-body bg-opacity-75">
+          <span class="text-muted" style="margin-right: 10px;">{{ (experience.key + '.YEAR') | translate }}</span>
+          <span class="fw-bold">{{ (experience.key + '.TITLE') | translate }}</span>
+        </button>
+      </h2>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody class="bg-body-secondary bg-opacity-75">
+          <ng-template>
+            <p>
+              {{ (experience.key + '.DESCRIPTION') | translate }}
+            </p>
+            <p class="mt-2">
+              <strong>{{ 'EXPERIENCE.SKILLS_TITLE' | translate }} : </strong>
+              {{ (experience.key + '.SKILLS') | translate }}
+            </p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

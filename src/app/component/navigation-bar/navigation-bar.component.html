@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-dark-subtle py-2">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <a class="navbar-brand text-dark-emphasis" routerLink="/home" (click)="isMenuCollapsed == false ? isMenuCollapsed = true : null">
+      {{ 'NAVBAR.BRAND' | translate }} <i class="fa fa-code" aria-hidden="true"></i>
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+    <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="isMenuCollapsed">
+      <ul class="navbar-nav ms-auto text-dark-emphasis">
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            {{ 'NAVBAR.HOME' | translate }}
+          </a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/about" routerLinkActive="active">
+            {{ 'NAVBAR.ABOUT' | translate }}
+          </a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/education" routerLinkActive="active">
+            {{ 'NAVBAR.EDUCATION' | translate }}
+          </a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/projects" routerLinkActive="active">
+            {{ 'NAVBAR.PROJECTS' | translate }}
+          </a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/experience" routerLinkActive="active">
+            {{ 'NAVBAR.EXPERIENCE' | translate }}
+          </a>
+        </li>
+        <li class="nav-item" ngbNavItem>
+          <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/contact" routerLinkActive="active">
+            {{ 'NAVBAR.CONTACT' | translate }}
+          </a>
+        </li>
+        <li class="nav-item dropdown" ngbDropdown display="dynamic">
+          <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" ngbDropdownToggle>
+            <i class="fa fa-gear" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu bg-dark-subtle" aria-labelledby="navbarScrollingDropdown" ngbDropdownMenu>
+            <!-- Bouton pour changer de thème -->
+            <button class="dropdown-item text-center" ngbDropdownItem (click)="toggleDarkMode(); isMenuCollapsed = true">
+              {{ 'NAVBAR.THEME.TOGGLE' | translate }}
+              <span *ngIf="isDarkTheme; else lightTheme"><i class="fa fa-moon" aria-hidden="true"></i></span>
+              <ng-template #lightTheme><i class="fa fa-sun" aria-hidden="true"></i></ng-template>
+            </button>
+
+            <!-- Séparateur -->
+            <div class="dropdown-divider"></div>
+
+            <!-- Boutons pour changer de langue -->
+            <button class="dropdown-item text-center" ngbDropdownItem (click)="changeLanguage('fr'); isMenuCollapsed = true">
+              <i class="flag-icon flag-icon-fr me-2"></i> Français
+            </button>
+            <button class="dropdown-item text-center" ngbDropdownItem (click)="changeLanguage('en'); isMenuCollapsed = true">
+              <i class="flag-icon flag-icon-gb me-2"></i> English
+            </button>
+            <button class="dropdown-item text-center" ngbDropdownItem (click)="changeLanguage('de'); isMenuCollapsed = true">
+              <i class="flag-icon flag-icon-de me-2"></i> Deutsch
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
