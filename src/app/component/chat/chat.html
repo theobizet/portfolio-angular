@@ -1,6 +1,8 @@
 <div class="chat-container">
   <div class="messages">
-    <div *ngFor="let message of messages" [class.user-message]="message.isUser" [class.bot-message]="!message.isUser">
+    <div *ngFor="let message of messages"
+         [class.user-message]="message.isUser"
+         [class.bot-message]="!message.isUser">
       {{ message.text }}
     </div>
   </div>

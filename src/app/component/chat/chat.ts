@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DialogflowService } from '../../dialog-flow-service';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -17,22 +16,28 @@ export class ChatComponent {
   userMessage: string = '';
   isLoading: boolean = false;
 
-  async sendMessage() {
-    if (!this.userMessage.trim()) return;
+  sendMessage() {
+    if (!this.userMessage.trim()) return; // Ignore les messages vides
 
+    // Ajoute le message de l'utilisateur à la conversation
     this.messages.push({ text: this.userMessage, isUser: true });
+    const currentMessage = this.userMessage; // Stocke le message avant de réinitialiser
     this.isLoading = true;
-    this.userMessage = '';
+    this.userMessage = ''; // Réinitialise le champ de saisie
 
-    try {
-      const response: any = await lastValueFrom(this.dialogflowService.sendMessage(this.userMessage));
-      const botReply = response.queryResult?.fulfillmentText || "Désolé, je n'ai pas compris.";
-      this.messages.push({ text: botReply, isUser: false });
-    } catch (error) {
-      console.error('Erreur :', error);
-      this.messages.push({ text: "Désolé, une erreur est survenue.", isUser: false });
-    } finally {
-      this.isLoading = false;
-    }
+    // Appelle le service Dialogflow
+    this.dialogflowService.sendMessage(currentMessage).subscribe({
+      next: (response: any) => {
+        const botReply = response.queryResult?.fulfillmentText || "Désolé, je n'ai pas compris.";
+        this.messages.push({ text: botReply, isUser: false });
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Erreur Dialogflow :', error);
+        const errorMessage = error.error?.message || "Désolé, une erreur est survenue.";
+        this.messages.push({ text: errorMessage, isUser: false });
+        this.isLoading = false;
+      }
+    });
   }
 }
