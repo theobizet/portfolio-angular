@@ -1,0 +1,18 @@
+<div class="chat-container">
+  <div class="messages">
+    <div *ngFor="let message of messages" [class.user-message]="message.isUser" [class.bot-message]="!message.isUser">
+      {{ message.text }}
+    </div>
+  </div>
+  <div class="input-area">
+    <input
+      [(ngModel)]="userMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="Écris un message..."
+      [disabled]="isLoading"
+    />
+    <button (click)="sendMessage()" [disabled]="isLoading || !userMessage.trim()">
+      {{ isLoading ? 'Envoi...' : 'Envoyer' }}
+    </button>
+  </div>
+</div>
