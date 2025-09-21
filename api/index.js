@@ -1,35 +1,32 @@
 const express = require('express');
-const cors = require('cors');
-
+const { GoogleAuth } = require('google-auth-library');
+const path = require('path');
 const app = express();
-app.use(cors());
 app.use(express.json());
 
-// Endpoint pour le webhook Dialogflow
-app.post('/webhook', (req, res) => {
-  const { queryResult } = req.body;
-  const { intent, parameters } = queryResult;
+// Charger la clé du compte de service depuis une variable d'environnement
+const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT);
 
-  let responseText = '';
-
-  // Logique personnalisée en fonction de l'intent
-  switch (intent.displayName) {
-    case 'Default Welcome Intent':
-      responseText = 'Bonjour ! Comment puis-je t’aider aujourd’hui ?';
-      break;
-    case 'monIntentPersonnalise':
-      responseText = `Voici une réponse personnalisée pour ${parameters.nomParametre || 'ton paramètre'}.`;
-      break;
-    default:
-      responseText = `Désolé, je ne comprends pas l'intent "${intent.displayName}".`;
+// Route pour obtenir un token Dialogflow
+app.get('/get-dialogflow-token', async (req, res) => {
+  try {
+    const auth = new GoogleAuth({
+      credentials: serviceAccount,
+      scopes: ['https://www.googleapis.com/auth/dialogflow'],
+    });
+    const client = await auth.getClient();
+    const token = await client.getAccessToken();
+    res.json({ token: token.token });
+  } catch (error) {
+    console.error('Erreur token :', error);
+    res.status(500).json({ error: 'Erreur serveur' });
   }
-
-  // Réponse au format attendu par Dialogflow
-  res.json({
-    fulfillmentText: responseText,
-    source: 'webhook'
-  });
 });
 
-// Export pour Vercel
+// Webhook pour Dialogflow
+app.post('/webhook', (req, res) => {
+  console.log('Webhook appelé :', req.body);
+  res.json({ fulfillmentText: "Réponse du webhook Vercel !" });
+});
+
 module.exports = app;
