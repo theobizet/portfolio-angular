@@ -2,6 +2,6 @@
   "rewrites": [
     { "source": "/webhook", "destination": "/api/index.js" },
     { "source": "/get-dialogflow-token", "destination": "/api/index.js" },
-    { "source": "/(.*)", "destination": "/src/index.html" }  // Pour le frontend Angular
+    { "source": "/(.*)", "destination": "/src/index.html" }
   ]
 }

@@ -1,38 +1,39 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 import { environment } from '../environments/environment';
-import { catchError, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DialogflowService {
   private http = inject(HttpClient);
-  private dialogflowApiUrl = 'https://dialogflow.googleapis.com/v2/projects/';
-  private sessionClientPath = '/agent/sessions/';
 
-  // Méthode pour envoyer un message à Dialogflow ou à ton webhook Vercel
-  sendMessage(message: string, sessionId: string = 'unique-session-id') {
+  async sendMessage(message: string) {
+    // 1. Récupérer un token frais depuis ton backend
+    const tokenResponse = await lastValueFrom(
+      this.http.get<{ token: string }>('/get-dialogflow-token')
+    );
+    const token = tokenResponse.token;
+
+    // 2. Appeler Dialogflow avec le token
     const projectId = environment.dialogflowProjectId;
-    const url = `${this.dialogflowApiUrl}${projectId}${this.sessionClientPath}${sessionId}:detectIntent`;
+    const url = `https://dialogflow.googleapis.com/v2/projects/${projectId}/agent/sessions/unique-session-id:detectIntent`;
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${environment.dialogflowAccessToken}`,
-      'Content-Type': 'application/json',
-    });
-
-    const body = {
-      queryInput: {
-        text: {
-          text: message,
-          languageCode: 'fr-FR',
+    const response = await lastValueFrom(
+      this.http.post(url, {
+        queryInput: {
+          text: {
+            text: message,
+            languageCode: 'fr-FR',
+          },
         },
-      },
-    };
-
-    return this.http.post(url, body, { headers }).pipe(
-      catchError((error) => {
-        console.error('Erreur Dialogflow :', error);
-        return of({ queryResult: { fulfillmentText: "Désolé, je n'ai pas compris." } });
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
       })
     );
+
+    return response;
   }
 }
