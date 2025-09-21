@@ -7,13 +7,13 @@ import { environment } from '../environments/environment';
 export class DialogflowService {
   private http = inject(HttpClient);
 
-  sendMessage(message: string): Observable<any> {
+  sendMessage(message: string, sessionId: string = '123456789'): Observable<any> {
     // 1. Récupérer le token
     return this.http.get<{ token: string }>('/get-dialogflow-token').pipe(
       switchMap((tokenResponse) => {
         const token = tokenResponse.token;
         const projectId = environment.dialogflowProjectId;
-        const url = `https://dialogflow.googleapis.com/v2/projects/${projectId}/agent/sessions/unique-session-id:detectIntent`;
+        const url = `https://dialogflow.googleapis.com/v2/projects/${projectId}/agent/sessions/${sessionId}:detectIntent`;
 
         // 2. Appeler Dialogflow avec le token
         return this.http.post(url, {
