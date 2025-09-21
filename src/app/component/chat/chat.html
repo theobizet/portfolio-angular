@@ -1,20 +1,62 @@
-<div class="chat-container">
-  <div class="messages">
-    <div *ngFor="let message of messages"
-         [class.user-message]="message.isUser"
-         [class.bot-message]="!message.isUser">
-      {{ message.text }}
+<div class="card border-0 shadow-sm" style="height: 78dvh">
+  <!-- En-tête -->
+  <div class="card-header bg-body-tertiary text-white">
+    <h2 class="pb-2 d-flex align-items-center">
+      <i class="fa fa-commenting me-1" aria-hidden="true"></i>Chatbot Assistant
+    </h2>
+  </div>
+
+  <!-- Zone des messages -->
+  <div
+    #messagesContainer
+    class="flex-grow-1 overflow-auto p-3 bg-body"
+  >
+    <div *ngFor="let message of messages" class="mb-3 d-flex"
+         [class.justify-content-end]="message.isUser"
+         [class.justify-content-start]="!message.isUser">
+      <div class="card rounded-3"
+           [ngClass]="{
+             'bg-primary text-white': message.isUser,
+             'bg-body-secondary': !message.isUser
+           }">
+        <div class="card-body p-2">
+          <p class="mb-1">{{ message.text }}</p>
+          <small [ngClass]="{
+             'text-white': message.isUser,
+             'text-muted': !message.isUser
+           }">
+            {{ message.timestamp | date:'HH:mm' }}
+          </small>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="input-area">
-    <input
-      [(ngModel)]="userMessage"
-      (keyup.enter)="sendMessage()"
-      placeholder="Écris un message..."
-      [disabled]="isLoading"
-    />
-    <button (click)="sendMessage()" [disabled]="isLoading || !userMessage.trim()">
-      {{ isLoading ? 'Envoi...' : 'Envoyer' }}
-    </button>
+
+  <!-- Zone de saisie -->
+  <div class="card-footer bg-body">
+    <div class="input-group">
+      <input
+        [(ngModel)]="userMessage"
+        (keyup.enter)="sendMessage()"
+        placeholder="Écris un message..."
+        [disabled]="isLoading"
+        class="form-control"
+      />
+      <button
+        (click)="sendMessage()"
+        [disabled]="isLoading || !userMessage.trim()"
+        class="btn"
+        [ngClass]="{
+          'btn-primary': !isLoading,
+          'btn-light': isLoading
+        }"
+      >
+        <ng-container *ngIf="!isLoading">Envoyer</ng-container>
+        <ng-container *ngIf="isLoading">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Envoi...
+        </ng-container>
+      </button>
+    </div>
   </div>
 </div>
