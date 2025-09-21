@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { AboutComponent } from './component/about/about.component';
@@ -5,6 +6,7 @@ import { ProjectsComponent } from './component/projects/projects.component';
 import { ContactComponent } from './component/contact/contact.component';
 import { EducationComponent } from './component/education/education.component';
 import { ExperienceComponent } from './component/experience/experience.component';
+import { NotFound } from './component/not-found/not-found';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,4 +16,5 @@ export const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'experience', component: ExperienceComponent },
   { path: 'contact', component: ContactComponent },
+  { path: '**', component: NotFound } // Route 404
 ];

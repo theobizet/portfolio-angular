@@ -216,5 +216,10 @@
   },
   "CARD":{
     "ROLE": "Rôle : "
+  },
+  "404":{
+    "TITLE":"404 - Page non trouvée",
+    "DESCRIPTION":"Désolé, la page que vous cherchez n'existe pas ou a été déplacée",
+    "RETURN":"Retour à l'accueil"
   }
 }

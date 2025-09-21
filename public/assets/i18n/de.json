@@ -216,5 +216,10 @@
   },
   "CARD": {
     "ROLE": "Rolle: "
+  },
+  "404": {
+    "TITLE": "404 - Seite nicht gefunden",
+    "DESCRIPTION": "Entschuldigung, die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "RETURN": "Zurück zur Startseite"
   }
 }

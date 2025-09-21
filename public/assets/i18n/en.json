@@ -216,5 +216,10 @@
   },
   "CARD": {
     "ROLE": "Role: "
+  },
+  "404": {
+    "TITLE": "404 - Page Not Found",
+    "DESCRIPTION": "Sorry, the page you are looking for does not exist or has been moved.",
+    "RETURN": "Return to Home"
   }
 }
