@@ -3,21 +3,20 @@
     "nom": "Théo Bizet",
     "profil": "Développeur full-stack passionné par la robotique et l’intelligence artificielle. Spécialisé en **Angular**, **Kotlin** et **C++**, avec une expérience en développement logiciel et en gestion de projets techniques.",
     "question_suivante": "Tu veux en savoir plus sur mon parcours, mes compétences ou mes projets ?",
-    "photo": "https://exemple.com/ton-photo.jpg",
-    "localisation": "Mulhouse, France"
+    "localisation": "Rantzwiller, France"
   },
 
   "competences": {
     "liste": [
-      { "nom": "Angular", "niveau": "Expert", "annees": 3 },
-      { "nom": "TypeScript", "niveau": "Expert", "annees": 3 },
-      { "nom": "Kotlin", "niveau": "Intermédiaire", "annees": 2 },
-      { "nom": "C++", "niveau": "Avancé", "annees": 4 },
+      { "nom": "Angular", "niveau": "Amateur", "annees": 1 },
+      { "nom": "TypeScript", "niveau": "Amateur", "annees": 1 },
+      { "nom": "Kotlin", "niveau": "Amateur", "annees": 1 },
+      { "nom": "C++", "niveau": "Avancé", "annees": 6 },
       { "nom": "PHP", "niveau": "Intermédiaire", "annees": 2 },
       { "nom": "Java", "niveau": "Intermédiaire", "annees": 2 },
       { "nom": "SQL", "niveau": "Avancé", "annees": 3 },
-      { "nom": "Laravel", "niveau": "Intermédiaire", "annees": 1 },
-      { "nom": "Git", "niveau": "Expert", "annees": 4 },
+      { "nom": "Laravel", "niveau": "Intermédiaire", "annees": 3 },
+      { "nom": "Git", "niveau": "Avancé", "annees": 4 },
       { "nom": "VBA", "niveau": "Débutant", "annees": 1 },
       { "nom": "Python", "niveau": "Intermédiaire", "annees": 2 },
       { "nom": "Robotique", "niveau": "Avancé", "annees": 3 },
@@ -76,7 +75,7 @@
       "entreprise": "GRG Alsace",
       "poste": "Manutentionnaire / Préparateur de commandes",
       "annee": "2017-2021",
-      "lieu": "Huningue, France",
+      "lieu": "Strasbourg, France",
       "type": "CDI",
       "details": [
         "Préparation et expédition de commandes pour les clients industriels.",
@@ -102,14 +101,14 @@
       "entreprise": "ISL (Stage)",
       "poste": "Développeur Logiciel",
       "annee": "2024",
-      "lieu": "Mulhouse, France",
+      "lieu": "Saint-Louis, France",
       "type": "Stage",
       "details": [
         "Migration de bases de données SQL vers un nouveau système.",
         "Développement d’outils internes en C++ et Java.",
         "Collaboration avec l’équipe IT pour améliorer les processus."
       ],
-      "competences": ["SQL", "C++", "Java", "Travail en équipe"]
+      "competences": ["SQL", "VBA", "Office 365"]
     }
   ],
 
