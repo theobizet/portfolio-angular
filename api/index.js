@@ -3,6 +3,7 @@ const { GoogleAuth } = require('google-auth-library');
 const path = require('path');
 const app = express();
 app.use(express.json());
+const cvData = require('cv.json');
 
 // Charger la clé du compte de service depuis une variable d'environnement
 const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT);

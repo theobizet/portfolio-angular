@@ -3,7 +3,7 @@
     "nom": "Théo Bizet",
     "profil": "Développeur full-stack passionné par la robotique et l’intelligence artificielle. Spécialisé en **Angular**, **Kotlin** et **C++**, avec une expérience en développement logiciel et en gestion de projets techniques.",
     "question_suivante": "Tu veux en savoir plus sur mon parcours, mes compétences ou mes projets ?",
-    "photo": "https://exemple.com/ton-photo.jpg",  // Optionnel : lien vers une photo de profil
+    "photo": "https://exemple.com/ton-photo.jpg",
     "localisation": "Mulhouse, France"
   },
 
@@ -165,7 +165,7 @@
         "Développement du software en C++ pour la détection des obstacles et la résolution du labyrinthe.",
         "Optimisation des algorithmes pour une résolution rapide."
       ],
-      "video": "https://youtu.be/ton-video"  // Optionnel : lien vers une démo
+      "video": "https://youtu.be/ton-video"
     },
     {
       "nom": "Gestionnaire de RDV",
@@ -200,7 +200,7 @@
     "linkedin": "https://linkedin.com/in/theo-bizet",
     "github": "https://github.com/ton-username",
     "site": "https://ton-portfolio.vercel.app",
-    "telephone": "+33 6 12 34 56 78",  // Optionnel
+    "telephone": "+33 6 12 34 56 78",
     "localisation": "Mulhouse, France"
   },
 
