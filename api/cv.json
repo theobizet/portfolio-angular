@@ -1,0 +1,74 @@
+{
+  "presentation": {
+    "nom": "Théo Bizet",
+    "profil": "Développeur full-stack spécialisé en Angular, Kotlin et C++. Passionné par la robotique et l’IA.",
+    "question_suivante": "Tu veux en savoir plus sur mon parcours ou mes projets ?"
+  },
+  "competences": {
+    "liste": ["Angular", "TypeScript", "Kotlin", "C++", "PHP", "Java", "SQL", "Laravel", "Git", "VBA"],
+    "details": {
+      "Angular": "J’ai développé mon portfolio avec Angular 20 et TypeScript, en utilisant Vercel pour le déploiement.",
+      "C++": "J’ai travaillé sur des projets de robotique (ex: robot solveur de labyrinthe) et des outils de traitement d’images.",
+      "Kotlin": "Utilisé pour des applications Android et des outils backend.",
+      "IA": "Projets académiques en machine learning et traitement de données."
+    }
+  },
+  "experiences": [
+    {
+      "entreprise": "E.Leclerc",
+      "poste": "Hôte de caisse",
+      "annee": "2025",
+      "details": "Gestion de caisse, service client et travail d’équipe."
+    },
+    {
+      "entreprise": "GRG Alsace",
+      "poste": "Stage en comptabilité",
+      "annee": "2022",
+      "details": "Migration de bases de données et développement d’outils internes."
+    },
+    {
+      "entreprise": "CERP RRM",
+      "poste": "Préparateur de commandes",
+      "annee": "2023-2025",
+      "details": "Logistique et gestion des stocks."
+    }
+  ],
+  "formations": [
+    {
+      "diplome": "Licence Informatique",
+      "etablissement": "UHA Mulhouse",
+      "annee": "2019-2025",
+      "details": "Bases en développement, réseaux et bases de données. Projet : Logiciel de traitement d’images."
+    },
+    {
+      "diplome": "Master MIAGE",
+      "etablissement": "UHA Mulhouse",
+      "annee": "2025-en cours",
+      "details": "Spécialisation full-stack, IA et gestion de projet."
+    }
+  ],
+  "projets": [
+    {
+      "nom": "Portfolio en ligne",
+      "technos": ["Angular", "TypeScript", "Vercel"],
+      "details": "Site vitrine avec chatbot intégré et thème personnalisable.",
+      "lien": "https://ton-portfolio.vercel.app"
+    },
+    {
+      "nom": "Robot solveur de labyrinthe",
+      "technos": ["C++"],
+      "details": "Robot appliquant des algorithmes de résolution."
+    },
+    {
+      "nom": "Gestionnaire de RDV",
+      "technos": ["Java", "SQL"],
+      "details": "Outil de planification pour les professionnels de santé."
+    }
+  ],
+  "contact": {
+    "email": "ton-email@example.com",
+    "linkedin": "https://linkedin.com/in/ton-profil",
+    "github": "https://github.com/ton-username",
+    "site": "https://ton-portfolio.vercel.app"
+  }
+}
