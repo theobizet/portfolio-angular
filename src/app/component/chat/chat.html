@@ -1,4 +1,4 @@
-<div class="card border-0 shadow-sm bg-body bg-opacity-0" style="height: 78dvh">
+<div class="card bg-body bg-opacity-75" style="height: 78dvh">
   <!-- En-tête -->
   <div class="card-header">
     <h2 class="pb-2 d-flex align-items-center">
@@ -14,7 +14,7 @@
     <div *ngFor="let message of messages" class="mb-3 d-flex"
          [class.justify-content-end]="message.isUser"
          [class.justify-content-start]="!message.isUser">
-      <div class="card rounded-3"
+      <div class="card rounded-3 bg-opacity-75"
            [ngClass]="{
              'bg-primary text-white': message.isUser,
              'bg-body-secondary': !message.isUser
