@@ -66,11 +66,23 @@ app.post('/webhook', (req, res) => {
 
       case 'competence_detail':
         const competenceName = parameters.competence;
-        const competenceObj = findInList(cvData.competences.liste, competenceName, 'nom');
-        const competenceDetails = competenceObj ? cvData.competences.details[competenceObj.nom] : null;
+        let competenceObj = findInList(cvData.competences.liste, competenceName, 'nom');
+        let competenceDetails = competenceObj ? cvData.competences.details[competenceObj.nom] : null;
 
-        if (competenceDetails) {
-          responseText = `Oui, je maîtrise ${competenceObj.nom} (Niveau: ${competenceObj.niveau}, ${competenceObj.annees} ans d'expérience) :\n`;
+        // Gestion pour "développement web"
+        if (!competenceObj && competenceName.toLowerCase().includes('web')) {
+          responseText = `En développement web, j'utilise principalement Angular, TypeScript, HTML/CSS et JavaScript. Tu veux des détails sur l'une de ces technologies ?`;
+        }
+        // Gestion pour "développement mobile"
+        else if (!competenceObj && (competenceName.toLowerCase().includes('mobile') || competenceName.toLowerCase().includes('android'))) {
+          responseText = `En développement mobile, j'utilise surtout Kotlin et Java pour Android. Tu veux des détails sur Kotlin, Java ou un projet mobile en particulier ?`;
+        }
+        // Gestion pour "développement logiciel"
+        else if (!competenceObj && competenceName.toLowerCase().includes('logiciel')) {
+          responseText = `En développement logiciel, j'ai de l'expérience avec C++, Python, Qt et OpenCV pour créer des applications de bureau et des outils spécialisés. Tu veux des détails sur l'une de ces technologies ou sur un projet logiciel ?`;
+        }
+        else if (competenceDetails) {
+          responseText = `Oui, je maîtrise ${competenceObj.nom} :\n`;
           responseText += `${competenceDetails.description}\n`;
           responseText += `Projets associés : ${competenceDetails.projets.join(', ')}.\n`;
           responseText += `Outils utilisés : ${competenceDetails.outils.join(', ')}.`;
