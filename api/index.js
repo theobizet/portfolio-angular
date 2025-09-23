@@ -178,8 +178,9 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'laisser_message':
-        responseText = "Super ! Quel est ton email et ton message ?";
+        //responseText = "Super ! Quel est ton email et ton message ?";
         // Pour gérer une conversation multi-étapes, utilise outputContexts
+        responseText = "Je ne peux pas encore recevoir de messages directement, mais tu peux m’envoyer un email via mon adresse de contact ou la section 'envoyer un message' de mon site.";
         break;
 
       case 'merci':

@@ -1,94 +1,135 @@
 {
   "presentation": {
     "nom": "Théo Bizet",
-    "profil": "Développeur full-stack passionné par la robotique et l’intelligence artificielle. Spécialisé en **Angular**, **Kotlin** et **C++**, avec une expérience en développement logiciel et en gestion de projets techniques.",
+    "profil": "Développeur full-stack passionné par la robotique et l’intelligence artificielle. Spécialisé en Angular, Kotlin et C++, avec une expérience en développement logiciel et en gestion de projets techniques.",
+    "poste": "Étudiant en Master MIAGE en Alternance",
     "question_suivante": "Tu veux en savoir plus sur mon parcours, mes compétences ou mes projets ?",
     "localisation": "Rantzwiller, France"
   },
 
   "competences": {
     "liste": [
-      { "nom": "Angular", "niveau": "Amateur", "annees": 1 },
-      { "nom": "TypeScript", "niveau": "Amateur", "annees": 1 },
-      { "nom": "Kotlin", "niveau": "Amateur", "annees": 1 },
-      { "nom": "C++", "niveau": "Avancé", "annees": 6 },
-      { "nom": "PHP", "niveau": "Intermédiaire", "annees": 2 },
-      { "nom": "Java", "niveau": "Intermédiaire", "annees": 2 },
-      { "nom": "SQL", "niveau": "Avancé", "annees": 3 },
-      { "nom": "Laravel", "niveau": "Intermédiaire", "annees": 3 },
-      { "nom": "Git", "niveau": "Avancé", "annees": 4 },
-      { "nom": "VBA", "niveau": "Débutant", "annees": 1 },
-      { "nom": "Python", "niveau": "Intermédiaire", "annees": 2 },
-      { "nom": "Robotique", "niveau": "Avancé", "annees": 3 },
-      { "nom": "Intelligence Artificielle", "niveau": "Intermédiaire", "annees": 2 }
+      { "nom": "Angular", "cadre": "Autodidacte" },
+      { "nom": "TypeScript", "cadre": "Autodidacte" },
+      { "nom": "Kotlin", "cadre": "Autodidacte" },
+      { "nom": "C++", "cadre": "Université, Projets personnels" },
+      { "nom": "PHP", "cadre": "Université, Projets personnels" },
+      { "nom": "Java", "cadre": "Université" },
+      { "nom": "SQL", "cadre": "Université, Stage" },
+      { "nom": "Laravel", "cadre": "Université, Projets personnels" },
+      { "nom": "Git", "cadre": "Université, Projets personnels" },
+      { "nom": "VBA", "cadre": "Stage, Université" },
+      { "nom": "Python", "cadre": "Université, Projets personnels" },
+      { "nom": "Intelligence Artificielle", "cadre": "Université, Projets académiques" },
+      { "nom": "Dialogflow", "cadre": "Projet personnel" },
+      { "nom": "HTML/CSS", "cadre": "Université, Projets personnels" },
+      { "nom": "JavaScript", "cadre": "Université, Projets personnels" },
+      { "nom": "Office 365", "cadre": "Stage, Université" },
+      { "nom": "OpenCV", "cadre": "Université, Projet académique" },
+      { "nom": "Qt", "cadre": "Projet personnel" },
+      { "nom": "Arduino", "cadre": "Université, Projets personnels" },
+      { "nom": "Réseaux", "cadre": "Université" },
+      { "nom": "Algorithmes", "cadre": "Université" },
+      { "nom": "Base de données", "cadre": "Université, Stage" },
+      { "nom": "TensorFlow", "cadre": "Université, Projet académique" },
+      { "nom": "Jupyter", "cadre": "Université, Projet académique" }
     ],
     "details": {
       "Angular": {
-        "description": "Développement d'applications web dynamiques avec Angular 20+ et TypeScript. Utilisation de Vercel pour le déploiement et Dialogflow pour les chatbots.",
-        "projets": ["Portfolio en ligne", "Gestionnaire de RDV"],
-        "outils": ["RxJS", "NgBootstrap", "Vercel"]
+      "description": "Développement d'applications web dynamiques avec Angular 20+ et TypeScript. Utilisation de Vercel pour le déploiement, Dialogflow pour les chatbots, et intégration de thèmes personnalisables. Expérience avec la création de sites vitrines, gestion multilingue et accessibilité.",
+      "projets": ["Portfolio en ligne", "Gestionnaire de RDV"],
+      "outils": ["Express", "NgBootstrap", "Vercel", "Dialogflow", "TypeScript"]
       },
       "C++": {
-        "description": "Développement de logiciels embarqués et de robots autonomes. Expérience avec Arduino et les capteurs (ultrasoniques, infrarouges).",
-        "projets": ["Robot solveur de labyrinthe", "Logiciel de traitement d’images"],
-        "outils": ["Arduino IDE", "OpenCV", "Qt"]
+      "description": "Développement de robots en console et d'outils logiciels pour la résolution de problèmes complexes. Utilisation de C++ pour des projets académiques et personnels, notamment la résolution de labyrinthes et la gestion de rendez-vous.",
+      "projets": ["Robot solveur de labyrinthe", "Gestionnaire de RDV"],
+      "outils": ["C++", "Qt", "OpenCV"]
       },
       "Kotlin": {
-        "description": "Développement d’applications Android et d’outils backend. Utilisation de coroutines et de Room pour la persistance des données.",
-        "projets": ["Application mobile de gestion de tâches"],
-        "outils": ["Android Studio", "Retrofit"]
-      },
-      "Robotique": {
-        "description": "Conception et programmation de robots autonomes. Expérience avec les algorithmes de pathfinding et les capteurs.",
-        "projets": ["Robot solveur de labyrinthe"],
-        "outils": ["Arduino", "Raspberry Pi"]
+      "description": "Développement d’applications Android en Kotlin, avec une attention particulière à l’ergonomie et à la gestion des tâches. Expérience en auto-formation et expérimentation de nouvelles fonctionnalités mobiles.",
+      "projets": ["Application mobile de gestion de tâches"],
+      "outils": ["Android Studio", "Kotlin"]
       },
       "Intelligence Artificielle": {
-        "description": "Projets académiques en machine learning et traitement de données. Utilisation de TensorFlow et scikit-learn.",
-        "projets": ["Classificateur d’images", "Prédiction de séries temporelles"],
-        "outils": ["Python", "TensorFlow", "Jupyter"]
+      "description": "Projets académiques d'étude de MobileNet-SSD, utilisation de TensorFlow et Jupyter pour la classification d’images et la détection d’objets. Expérience en réseaux de neurones convolutifs et traitement d’images.",
+      "projets": ["Classificateur d’images", "Détection d’objets", "Réseaux de neurones convolutifs", "Logiciel de traitement d’images"],
+      "outils": ["Python", "TensorFlow", "Jupyter", "OpenCV"]
+      },
+      "Python": {
+      "description": "Développement d’outils de traitement d’images et d’analyse de données. Utilisation de Python pour des projets académiques et personnels, avec des bibliothèques telles qu’OpenCV et tkinter.",
+      "projets": ["Logiciel de traitement d’images"],
+      "outils": ["Python", "OpenCV", "tkinter", "Jupyter"]
+      },
+      "SQL": {
+      "description": "Optimisation et gestion de bases de données relationnelles. Expérience en conception de schémas, requêtes complexes et intégration avec des applications métiers.",
+      "projets": ["Optimisation de bases de données (ISL)"],
+      "outils": ["SQL", "VBA", "Office 365"]
+      },
+      "Dialogflow": {
+      "description": "Création et intégration de chatbots conversationnels pour sites web. Utilisation de Dialogflow pour automatiser les réponses et améliorer l’expérience utilisateur.",
+      "projets": ["Portfolio en ligne"],
+      "outils": ["Dialogflow", "Angular"]
+      },
+      "Git": {
+      "description": "Gestion de versions et collaboration sur des projets personnels, universitaires et professionnels. Utilisation de GitHub pour le suivi des évolutions et la publication de projets open source.",
+      "projets": ["Portfolio en ligne", "Robot solveur de labyrinthe", "Logiciel de traitement d’images"],
+      "outils": ["Git", "GitHub"]
       }
     },
     "categories": {
-      "Frontend": ["Angular", "TypeScript", "HTML/CSS"],
-      "Backend": ["Kotlin", "PHP", "Java", "SQL"],
-      "Embarqué": ["C++", "Arduino"],
-      "Outils": ["Git", "VBA", "Dialogflow"]
+      "Frontend": ["Angular", "TypeScript", "HTML/CSS", "JavaScript", "Bootstrap", "Vercel"],
+      "Backend": ["PHP", "Java", "SQL" , "Laravel", "Node.js", "Express", "VBA"],
+      "Moblie": ["Kotlin", "Java"],
+      "Outils": ["Git", "Dialogflow"]
     }
   },
 
   "experiences": [
     {
+      "entreprise": "Stellantis",
+      "poste": "Développeur no code Power Apps (alternance)",
+      "annee": "2025-en cours",
+      "lieu": "Mulhouse, France",
+      "type": "Alternance",
+      "details": [
+        "Développement d’applications internes pour améliorer les processus métier.",
+        "Collaboration avec les équipes fonctionnelles pour recueillir les besoins et proposer des solutions adaptées.",
+        "Intégration avec d’autres services Microsoft (Power Automate, SharePoint, etc.)."
+      ],
+      "competences": ["Power Apps", "Power Automate", "SharePoint", "Gestion de projet"]
+    },
+    {
       "entreprise": "E.Leclerc",
       "poste": "Hôte de caisse",
       "annee": "2025",
-      "lieu": "Mulhouse, France",
+      "lieu": "Cernay, France",
       "type": "CDD",
       "details": [
         "Gestion des transactions et service client.",
         "Travail en équipe dans un environnement dynamique.",
-        "Utilisation de logiciels de caisse et gestion des stocks."
+        "Gestion de caisse.",
+        "Caisses Libre Service."
       ],
-      "competences": ["Service client", "Travail d’équipe", "Gestion des conflits"]
+      "competences": ["Service client", "Travail d’équipe"]
     },
     {
       "entreprise": "GRG Alsace",
       "poste": "Manutentionnaire / Préparateur de commandes",
       "annee": "2017-2021",
       "lieu": "Strasbourg, France",
-      "type": "CDI",
+      "type": "CDD saisonnier",
       "details": [
         "Préparation et expédition de commandes pour les clients industriels.",
         "Utilisation de chariots élévateurs et respect des normes de sécurité.",
         "Gestion des inventaires et optimisation des processus logistiques."
       ],
-      "competences": ["Logistique", "Gestion des stocks", "Sécurité au travail"]
+      "competences": ["Logistique", "Gestion des stocks", "Sécurité au travail", "Inventaire", "Gerbeur électrique" ]
     },
     {
       "entreprise": "CERP RRM",
       "poste": "Préparateur de commandes (logistique médicale)",
       "annee": "2023-2025",
-      "lieu": "Mulhouse, France",
+      "lieu": "Illzach, France",
       "type": "CDD",
       "details": [
         "Préparation de commandes de matériel médical et pharmaceutique.",
@@ -99,14 +140,12 @@
     },
     {
       "entreprise": "ISL (Stage)",
-      "poste": "Développeur Logiciel",
+      "poste": "Développeur Database",
       "annee": "2024",
       "lieu": "Saint-Louis, France",
       "type": "Stage",
       "details": [
-        "Migration de bases de données SQL vers un nouveau système.",
-        "Développement d’outils internes en C++ et Java.",
-        "Collaboration avec l’équipe IT pour améliorer les processus."
+        "Optimisation de bases de données pour ameliorer la comptabilité analytique."
       ],
       "competences": ["SQL", "VBA", "Office 365"]
     }
@@ -120,8 +159,8 @@
       "lieu": "Mulhouse, France",
       "details": [
         "Spécialisation en développement full-stack et gestion de projet.",
-        "Cours avancés en intelligence artificielle, bases de données et architecture logicielle.",
-        "Projet de fin d’études : Développement d’un chatbot avec Dialogflow et Angular."
+        "Cours avancés en contrôle de gestion, bases de données et architecture logicielle.",
+        "Alternance chez Stellantis en tant que développeur no code Power Apps."
       ],
       "competences": ["Angular", "IA", "Gestion de projet", "Base de données"]
     },
@@ -132,10 +171,48 @@
       "lieu": "Mulhouse, France",
       "details": [
         "Acquisition des bases en développement, réseaux et systèmes.",
-        "Projet notable : Logiciel de traitement d’images en C++ avec OpenCV.",
-        "Stage en entreprise : Développement d’outils internes en Java."
+        "Projet notable : Logiciel de traitement d’images en Python avec OpenCV.",
+        "Stage en entreprise : Optimisation de bases de données."
       ],
-      "competences": ["C++", "Java", "Réseaux", "Algorithmes"]
+      "competences": [
+        "C++",
+        "Java",
+        "Réseaux",
+        "Algorithmes",
+        "Base de données",
+        "Python",
+        "OpenCV",
+        "SQL",
+        "VBA",
+        "Office 365",
+        "Git",
+        "Laravel",
+        "PHP",
+        "JavaScript",
+        "HTML/CSS"
+      ]
+    },
+    {
+      "diplome": "Baccalauréat Scientifique, option Sciences de l’Ingénieur",
+      "etablissement": "Lycée Don Bosco Landser",
+      "annee": "2019",
+      "lieu": "Landser, France",
+      "details": [
+        "Mention Bien.",
+        "Projets en électronique et programmation (Arduino)."
+      ],
+      "competences": ["Sciences de l’ingénieur", "Mathématiques", "Physique-Chimie", "Arduino", "Informatique et sciences du numérique" ]
+    },
+    {
+      "diplome": "Formation autodidacte en développement web et mobile",
+      "etablissement": "Projets personnels, ressources en ligne et auto-apprentissage",
+      "annee": "2020-en cours",
+      "lieu": "En ligne",
+      "details": [
+        "Auto-formation continue via des projets personnels, tutoriels, MOOCs et documentation officielle.",
+        "Veille technologique et expérimentation régulière de nouveaux frameworks et outils."
+      ],
+      "competences": ["Angular", "TypeScript", "Kotlin", "Dialogflow", "Git"]
     }
   ],
 
@@ -144,63 +221,64 @@
       "nom": "Portfolio en ligne",
       "description": "Site vitrine personnel avec un chatbot intégré, un thème personnalisable et une section projets.",
       "technos": ["Angular", "TypeScript", "Vercel", "Dialogflow"],
-      "lien": "https://ton-portfolio.vercel.app",
+      "lien": "https://portfolio-angular-theo.vercel.app",
       "annee": "2025",
       "details": [
         "Migration de GitHub Pages vers Vercel pour un hébergement plus performant.",
         "Intégration d’un chatbot basé sur Dialogflow pour répondre aux questions des visiteurs.",
-        "Design responsive et accessible."
+        "Design responsive et accessible.",
+        "Section projets avec descriptions détaillées.",
+        "Thème clair & sombre pour une meilleure expérience utilisateur.",
+        "Multilingue (Français, Allemand et Anglais)."
       ],
-      "github": "https://github.com/ton-username/portfolio-angular"
+      "github": "https://github.com/theobizet/portfolio-angular"
     },
     {
       "nom": "Robot solveur de labyrinthe",
-      "description": "Robot autonome capable de résoudre des labyrinthes grâce à des capteurs ultrasoniques et un algorithme de pathfinding.",
-      "technos": ["Arduino", "C++", "Capteurs ultrasoniques"],
-      "lien": "https://github.com/ton-username/robot-labyrinthe",
-      "annee": "2023",
+      "description": "Robot capable de résoudre des labyrinthes grâce à un algorithme de pathfinding.",
+      "technos": ["C++", "Algorithmes"],
+      "lien": "https://github.com/theobizet/projet-qualite-de-prog",
+      "annee": "2024",
       "details": [
-        "Conception du hardware (châssis, moteurs, capteurs).",
-        "Développement du software en C++ pour la détection des obstacles et la résolution du labyrinthe.",
-        "Optimisation des algorithmes pour une résolution rapide."
+        "Développement en C++ de la résolution du labyrinthe.",
+        "Algorithme de la main gauche pour le pathfinding."
       ],
-      "video": "https://youtu.be/ton-video"
+      "github": "https://github.com/theobizet/Projet_Qualite_de_prog"
     },
     {
       "nom": "Gestionnaire de RDV",
       "description": "Outil de planification pour les professionnels de santé, permettant de gérer les rendez-vous et les patients.",
-      "technos": ["Java", "SQL", "Swing"],
+      "technos": ["C++", "Qt"],
       "lien": null,
-      "annee": "2024",
+      "annee": "2022",
       "details": [
-        "Développement d’une interface utilisateur intuitive avec Java Swing.",
-        "Base de données SQL pour stocker les informations des patients et des rendez-vous.",
+        "Développement d’une interface utilisateur intuitive avec Qt.",
+        "ase de données SQL pour stocker les informations des patients et des rendez-vous.",
         "Fonctionnalités : création, modification et annulation de rendez-vous."
-      ],
-      "github": "https://github.com/ton-username/gestionnaire-rdv"
+      ]
     },
     {
       "nom": "Logiciel de traitement d’images",
       "description": "Outil de traitement d’images développé en C++ avec la bibliothèque OpenCV.",
-      "technos": ["C++", "OpenCV", "Qt"],
+      "technos": ["Python", "OpenCV", "tkinter"],
       "lien": null,
       "annee": "2022",
       "details": [
         "Fonctionnalités : filtrage, détection de contours, et reconnaissance de formes.",
-        "Interface graphique développée avec Qt pour une utilisation facile.",
+        "Interface graphique développée avec TKinter pour une utilisation facile.",
         "Projet académique réalisé dans le cadre de la Licence Informatique."
       ],
-      "github": "https://github.com/ton-username/logiciel-traitement-images"
+      "github": "https://github.com/theobizet/image_processing_app"
     }
   ],
 
   "contact": {
-    "email": "theo.bizet@example.com",
-    "linkedin": "https://linkedin.com/in/theo-bizet",
-    "github": "https://github.com/ton-username",
-    "site": "https://ton-portfolio.vercel.app",
-    "telephone": "+33 6 12 34 56 78",
-    "localisation": "Mulhouse, France"
+    "email": "theo.bizet@outlook.fr",
+    "linkedin": "https://linkedin.com/in/theobizet",
+    "github": "https://github.com/theobizet",
+    "site": "https://portfolio-angular-theo.vercel.app",
+    "telephone": "+33 6 03 70 47 01",
+    "localisation": "Rantzwiller, France"
   },
 
   "langues": [
