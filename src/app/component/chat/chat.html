@@ -20,7 +20,7 @@
              'bg-body-secondary': !message.isUser
            }">
         <div class="card-body p-2">
-          <p class="mb-1">{{ message.text }}</p>
+            <p class="mb-1" [innerHTML]="message.text"></p>
           <small [ngClass]="{
              'text-white': message.isUser,
              'text-muted': !message.isUser
