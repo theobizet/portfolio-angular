@@ -50,7 +50,13 @@ app.post('/webhook', (req, res) => {
     // Logique pour chaque intent
     switch (intent.displayName) {
       case 'presentation':
-        responseText = `${cvData.presentation.profil} ${cvData.presentation.question_suivante}`;
+        // Si des variations existent dans cvData.presentation.variations, choisir aléatoirement
+        if (cvData.presentation.variations && Array.isArray(cvData.presentation.variations) && cvData.presentation.variations.length > 0) {
+          const variation = cvData.presentation.variations[Math.floor(Math.random() * cvData.presentation.variations.length)];
+          responseText = `${variation} ${cvData.presentation.question_suivante}`;
+        } else {
+          responseText = `${cvData.presentation.profil} ${cvData.presentation.question_suivante}`;
+        }
         break;
 
       case 'competences':

@@ -2,6 +2,16 @@
   "presentation": {
     "nom": "Théo Bizet",
     "profil": "Développeur full-stack passionné par la robotique et l’intelligence artificielle. Spécialisé en Angular, Kotlin et C++, avec une expérience en développement logiciel et en gestion de projets techniques.",
+    "variations": [
+      "Ingénieur logiciel orienté full-stack, curieux et créatif, avec un intérêt marqué pour l’IA et la robotique.",
+      "Développeur polyvalent, à l’aise sur le front-end comme le back-end, motivé par l’innovation et la résolution de problèmes complexes.",
+      "Étudiant en informatique, passionné par les technologies émergentes et l’automatisation, avec une solide expérience en projets académiques et personnels.",
+      "Spécialiste Angular et Kotlin, appréciant le travail en équipe et la conception de solutions logicielles robustes.",
+      "Développeur autodidacte, toujours en veille technologique, aimant expérimenter de nouveaux frameworks et outils.",
+      "Passionné par le développement web et mobile, avec une forte appétence pour l’intelligence artificielle et les systèmes embarqués.",
+      "Ingénieur en devenir, combinant rigueur académique et créativité technique, avec un intérêt particulier pour les applications pratiques de l’IA.",
+      "Développeur curieux et adaptable, cherchant constamment à améliorer ses compétences et à relever de nouveaux défis techniques."
+    ],
     "poste": "Étudiant en Master MIAGE en Alternance",
     "question_suivante": "Tu veux en savoir plus sur mon parcours, mes compétences ou mes projets ?",
     "localisation": "Rantzwiller, France"
