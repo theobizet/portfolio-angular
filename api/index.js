@@ -26,7 +26,7 @@ app.get('/get-dialogflow-token', async (req, res) => {
 // Helper pour formater les listes
 const formatList = (items, property) => {
   if (!items || !Array.isArray(items)) return "Aucune donnée disponible.";
-  return items.map(item => `• ${property ? item[property] : item}`).join('\n');
+  return items.map(item => `• ${property ? item[property] : item}`).join('<br>');
 };
 
 // Helper pour trouver un élément dans une liste (case-insensitive)
@@ -60,7 +60,7 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'competences':
-        responseText = `Voici mes compétences principales :\n${formatList(cvData.competences.liste, 'nom')}\n\n`;
+        responseText = `Voici mes compétences principales :<br>${formatList(cvData.competences.liste, 'nom')}<br><br>`;
         responseText += "Tu veux des détails sur une technologie en particulier ?";
         break;
 
@@ -82,18 +82,18 @@ app.post('/webhook', (req, res) => {
           responseText = `En développement logiciel, j'ai de l'expérience avec C++, Python, Qt et OpenCV pour créer des applications de bureau et des outils spécialisés. Tu veux des détails sur l'une de ces technologies ou sur un projet logiciel ?`;
         }
         else if (competenceDetails) {
-          responseText = `Oui, je maîtrise ${competenceObj.nom} :\n`;
-          responseText += `${competenceDetails.description}\n`;
-          responseText += `Projets associés : ${competenceDetails.projets.join(', ')}.\n`;
+          responseText = `Oui, je maîtrise ${competenceObj.nom} :<br>`;
+          responseText += `${competenceDetails.description}<br>`;
+          responseText += `Projets associés : ${competenceDetails.projets.join(', ')}.<br>`;
           responseText += `Outils utilisés : ${competenceDetails.outils.join(', ')}.`;
         } else {
-          responseText = `Je connais ${competenceName}, mais je n’ai pas encore de détails spécifiques à te montrer.\n`;
+          responseText = `Je connais ${competenceName}, mais je n’ai pas encore de détails spécifiques à te montrer.<br>`;
           responseText += `Voici mes compétences : ${formatList(cvData.competences.liste, 'nom')}.`;
         }
         break;
 
       case 'experience':
-        responseText = `J’ai travaillé chez :\n${formatList(cvData.experiences, 'entreprise')}\n`;
+        responseText = `J’ai travaillé chez :<br>${formatList(cvData.experiences, 'entreprise')}<br>`;
         responseText += "Tu veux des détails sur une expérience en particulier ?";
         break;
 
@@ -102,22 +102,22 @@ app.post('/webhook', (req, res) => {
         const exp = findInList(cvData.experiences, entreprise, 'entreprise');
 
         if (exp) {
-          responseText = `Chez ${exp.entreprise} (${exp.annee} à ${exp.lieu}), j’ai occupé le poste de ${exp.poste} (${exp.type}).\n`;
-          responseText += "Mes missions incluaient :\n";
-          responseText += exp.details.map(detail => `- ${detail}`).join('\n');
-          responseText += `\nCompétences acquises : ${exp.competences.join(', ')}.`;
+          responseText = `Chez ${exp.entreprise} (${exp.annee} à ${exp.lieu}), j’ai occupé le poste de ${exp.poste} (${exp.type}).<br>`;
+          responseText += "Mes missions incluaient :<br>";
+          responseText += exp.details.map(detail => `- ${detail}`).join('<br>');
+          responseText += `<br>Compétences acquises : ${exp.competences.join(', ')}.`;
         } else {
-          responseText = `Je n’ai pas d’expérience enregistrée pour ${entreprise}.\n`;
+          responseText = `Je n’ai pas d’expérience enregistrée pour ${entreprise}.<br>`;
           responseText += `Voici mes expériences : ${formatList(cvData.experiences, 'entreprise')}.`;
         }
         break;
 
       case 'formation':
-        responseText = `Voici mon parcours académique :\n`;
+        responseText = `Voici mon parcours académique :<br>`;
         responseText += cvData.formations.map(f =>
           `• ${f.diplome} à ${f.etablissement} (${f.annee})`
-        ).join('\n');
-        responseText += "\nTu veux des précisions sur une formation ?";
+        ).join('<br>');
+        responseText += "<br>Tu veux des précisions sur une formation ?";
         break;
 
       case 'formation_detail':
@@ -128,21 +128,21 @@ app.post('/webhook', (req, res) => {
         );
 
         if (form) {
-          responseText = `Pendant ma ${form.diplome} à ${form.etablissement} (${form.annee}, ${form.lieu}) :\n`;
-          responseText += form.details.map(detail => `- ${detail}`).join('\n');
-          responseText += `\nCompétences acquises : ${form.competences.join(', ')}.`;
+          responseText = `Pendant ma ${form.diplome} à ${form.etablissement} (${form.annee}, ${form.lieu}) :<br>`;
+          responseText += form.details.map(detail => `- ${detail}`).join('<br>');
+          responseText += `<br>Compétences acquises : ${form.competences.join(', ')}.`;
         } else {
-          responseText = `Je n’ai pas de formation enregistrée pour "${formationTerm}".\n`;
+          responseText = `Je n’ai pas de formation enregistrée pour "${formationTerm}".<br>`;
           responseText += `Voici mon parcours : ${formatList(cvData.formations, 'diplome')}.`;
         }
         break;
 
       case 'projets':
-        responseText = `Voici quelques projets :\n`;
+        responseText = `Voici quelques projets :<br>`;
         responseText += cvData.projets.map(p =>
           `• ${p.nom} (${p.technos.join(', ')}) - ${p.annee}`
-        ).join('\n');
-        responseText += "\nTu veux des détails sur l’un d’eux ?";
+        ).join('<br>');
+        responseText += "<br>Tu veux des détails sur l’un d’eux ?";
         break;
 
       case 'projet_detail':
@@ -150,14 +150,14 @@ app.post('/webhook', (req, res) => {
         const proj = findInList(cvData.projets, projetName, 'nom');
 
         if (proj) {
-          responseText = `${proj.nom} (${proj.annee}) :\n${proj.description}\n`;
-          responseText += `Technologies : ${proj.technos.join(', ')}.\n`;
+          responseText = `${proj.nom} (${proj.annee}) :<br>${proj.description}<br>`;
+          responseText += `Technologies : ${proj.technos.join(', ')}.<br>`;
 
-          if (proj.lien) responseText += `Lien : ${proj.lien}\n`;
-          if (proj.github) responseText += `Code source : ${proj.github}\n`;
+          if (proj.lien) responseText += `Lien : ${proj.lien}<br>`;
+          if (proj.github) responseText += `Code source : ${proj.github}<br>`;
 
-          responseText += "Détails :\n";
-          responseText += proj.details.map(detail => `- ${detail}`).join('\n');
+          responseText += "Détails :<br>";
+          responseText += proj.details.map(detail => `- ${detail}`).join('<br>');
 
           if (proj.lien || proj.github) {
             richResponses = [{
@@ -168,17 +168,17 @@ app.post('/webhook', (req, res) => {
             }];
           }
         } else {
-          responseText = `Je n’ai pas de projet nommé "${projetName}".\n`;
+          responseText = `Je n’ai pas de projet nommé "${projetName}".<br>`;
           responseText += `Voici mes projets : ${formatList(cvData.projets, 'nom')}.`;
         }
         break;
 
       case 'contact':
-        responseText = `Tu peux me contacter via :\n`;
-        responseText += `• Email : ${cvData.contact.email}\n`;
-        responseText += `• LinkedIn : ${cvData.contact.linkedin}\n`;
-        responseText += `• GitHub : ${cvData.contact.github}\n`;
-        responseText += `• Site web : ${cvData.contact.site}\n`;
+        responseText = `Tu peux me contacter via :<br>`;
+        responseText += `• Email : ${cvData.contact.email}<br>`;
+        responseText += `• LinkedIn : ${cvData.contact.linkedin}<br>`;
+        responseText += `• GitHub : ${cvData.contact.github}<br>`;
+        responseText += `• Site web : ${cvData.contact.site}<br>`;
         responseText += "Quel moyen préfères-tu ?";
         break;
 
@@ -187,10 +187,10 @@ app.post('/webhook', (req, res) => {
         if (cvData.contact[typeContact]) {
           responseText = `Voici mon ${typeContact} : ${cvData.contact[typeContact]}`;
         } else {
-          responseText = `Je n’ai pas de ${typeContact} enregistré.\n`;
-          responseText += "Voici mes coordonnées disponibles :\n";
+          responseText = `Je n’ai pas de ${typeContact} enregistré.<br>`;
+          responseText += "Voici mes coordonnées disponibles :<br>";
           for (const [key, value] of Object.entries(cvData.contact)) {
-            if (value) responseText += `• ${key} : ${value}\n`;
+            if (value) responseText += `• ${key} : ${value}<br>`;
           }
         }
         break;
