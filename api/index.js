@@ -398,7 +398,7 @@ app.post('/webhook', (req, res) => {
           } else {
             responseText = `Je ne maîtrise pas ${competenceName} pour le moment.`;
           }
-          responseText += `<br>Voici mes principales compétences : ${formatList(cvData.competences.liste.slice(0, 8), 'nom')}.`;
+          responseText += `<br>Voici mes principales compétences :<br> ${formatList(cvData.competences.liste.slice(0, 8), 'nom')}.`;
         }
         break;
 
