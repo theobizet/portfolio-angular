@@ -1,10 +1,43 @@
 const express = require('express');
 const { GoogleAuth } = require('google-auth-library');
 const app = express();
+
+// Security middleware - Disable X-Powered-By header
+app.disable('x-powered-by');
+
+// Store de sessions pour contexte conversationnel (en production, utiliser Redis)
+const conversationSessions = new Map();
+
+// Configuration IA pour réponses intelligentes
+const AI_CONFIG = {
+  sentiment: {
+    positive: ['excellent', 'super', 'parfait', 'génial', 'fantastique'],
+    negative: ['problème', 'difficile', 'compliqué', 'dur', 'impossible'],
+    neutral: ['ok', 'bien', 'ça va', 'normal', 'standard']
+  },
+  contextDuration: 10 * 60 * 1000, // 10 minutes
+  maxContextHistory: 5
+};
+
+// CORS configuration for security
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGINS || '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+// Rate limiting for webhook endpoint
+const webhookLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP'
+});
 app.use(express.json());
 
 // Charger les données du CV
 const cvData = require('./cv.json');
+const rateLimit = require('express-rate-limit');
 
 // Route pour obtenir un token Dialogflow
 app.get('/get-dialogflow-token', async (req, res) => {
@@ -39,13 +72,176 @@ const findInList = (list, searchTerm, property) => {
   );
 };
 
+// 🧠 Classe pour gérer le contexte conversationnel intelligent
+class ConversationContext {
+  constructor(sessionId) {
+    this.sessionId = sessionId;
+    this.history = [];
+    this.currentTopic = null;
+    this.userPreferences = {};
+    this.lastInteraction = Date.now();
+    this.sentiment = 'neutral';
+  }
+
+  addInteraction(intent, parameters, response) {
+    this.history.push({
+      timestamp: Date.now(),
+      intent: intent.displayName,
+      parameters,
+      response: response.substring(0, 100) + '...'
+    });
+    
+    // Garder seulement les dernières interactions
+    if (this.history.length > AI_CONFIG.maxContextHistory) {
+      this.history.shift();
+    }
+    
+    this.lastInteraction = Date.now();
+    this.updateCurrentTopic(intent.displayName);
+  }
+
+  updateCurrentTopic(intentName) {
+    const topicMap = {
+      'competences': 'competences',
+      'competence_detail': 'competences',
+      'experience': 'experience',
+      'experience_detail': 'experience',
+      'formation': 'formation',
+      'formation_detail': 'formation',
+      'projets': 'projets',
+      'projet_detail': 'projets'
+    };
+    this.currentTopic = topicMap[intentName] || null;
+  }
+
+  isExpired() {
+    return Date.now() - this.lastInteraction > AI_CONFIG.contextDuration;
+  }
+
+  getRelatedSuggestions() {
+    const suggestions = {
+      'competences': [
+        "Veux-tu voir des projets utilisant une technologie spécifique ?",
+        "Quel type de développement t'intéresse le plus ?",
+        "As-tu des questions sur mon expérience avec ces technologies ?"
+      ],
+      'experience': [
+        "Veux-tu connaître les compétences acquises dans une entreprise ?",
+        "T'intéresses-tu à un type de poste en particulier ?",
+        "Veux-tu voir des projets liés à cette expérience ?"
+      ],
+      'projets': [
+        "Quel type de projet t'intéresse le plus ?",
+        "Veux-tu voir le code source d'un projet ?",
+        "As-tu des questions techniques sur l'implémentation ?"
+      ]
+    };
+    
+    return suggestions[this.currentTopic] || [
+      "Que veux-tu savoir d'autre sur mon profil ?",
+      "As-tu des questions sur un domaine spécifique ?"
+    ];
+  }
+}
+
+// 🎯 Fonction d'analyse de sentiment avancée
+const analyzeSentiment = (text) => {
+  if (!text) return 'neutral';
+  
+  const lowerText = text.toLowerCase();
+  
+  // Compter les mots positifs/négatifs
+  let positiveScore = 0;
+  let negativeScore = 0;
+  
+  AI_CONFIG.sentiment.positive.forEach(word => {
+    if (lowerText.includes(word)) positiveScore++;
+  });
+  
+  AI_CONFIG.sentiment.negative.forEach(word => {
+    if (lowerText.includes(word)) negativeScore++;
+  });
+  
+  if (positiveScore > negativeScore) return 'positive';
+  if (negativeScore > positiveScore) return 'negative';
+  return 'neutral';
+};
+
+// 🔍 Recherche floue intelligente
+const fuzzySearch = (searchTerm, items, property) => {
+  if (!items || !Array.isArray(items)) return [];
+  
+  const results = items.map(item => {
+    const target = property ? item[property] : item;
+    const similarity = calculateSimilarity(searchTerm.toLowerCase(), target.toLowerCase());
+    return { item, similarity };
+  });
+  
+  return results
+    .filter(r => r.similarity > 0.3) // Seuil de similarité
+    .sort((a, b) => b.similarity - a.similarity)
+    .map(r => r.item);
+};
+
+// Calcul de similarité (algorithme de Levenshtein simplifié)
+const calculateSimilarity = (a, b) => {
+  const longer = a.length > b.length ? a : b;
+  const shorter = a.length > b.length ? b : a;
+  
+  if (longer.length === 0) return 1.0;
+  
+  // Recherche de sous-chaînes communes
+  if (longer.includes(shorter)) return 0.8;
+  if (shorter.includes(longer.substring(0, 3))) return 0.6;
+  
+  return 0.2; // Similarité minimale
+};
+
+// 🎨 Génération de réponses adaptatives selon le sentiment
+const adaptResponseToSentiment = (response, sentiment, context) => {
+  const adaptations = {
+    positive: {
+      prefix: ["Super ! ", "Excellent ! ", "Parfait ! "],
+      suffix: [" 🎉", " 👍", " ✨"]
+    },
+    negative: {
+      prefix: ["Je comprends, ", "Pas de souci, ", "D'accord, "],
+      suffix: [" N'hésite pas si tu as besoin de précisions.", " Je suis là pour t'aider.", " On peut creuser davantage si tu veux."]
+    },
+    neutral: {
+      prefix: ["", "Alors, ", "Voici "],
+      suffix: ["", " Que veux-tu savoir d'autre ?", " As-tu d'autres questions ?"]
+    }
+  };
+  
+  const adaptation = adaptations[sentiment] || adaptations.neutral;
+  const prefix = adaptation.prefix[Math.floor(Math.random() * adaptation.prefix.length)];
+  const suffix = adaptation.suffix[Math.floor(Math.random() * adaptation.suffix.length)];
+  
+  return prefix + response + suffix;
+};
+
 app.post('/webhook', (req, res) => {
   try {
-    const { queryResult } = req.body;
-    const { intent, parameters } = queryResult;
+    const { queryResult, session } = req.body;
+    const { intent, parameters, queryText } = queryResult;
+    
+    // 🧠 Gestion intelligente du contexte de session
+    const sessionId = session ? session.split('/').pop() : 'anonymous';
+    let context = conversationSessions.get(sessionId);
+    
+    if (!context || context.isExpired()) {
+      context = new ConversationContext(sessionId);
+      conversationSessions.set(sessionId, context);
+    }
+    
+    // Analyse du sentiment de la requête utilisateur
+    const userSentiment = analyzeSentiment(queryText);
+    context.sentiment = userSentiment;
 
     let responseText = '';
     let richResponses = [];
+    let suggestions = [];
 
     // Logique pour chaque intent
     switch (intent.displayName) {
@@ -66,29 +262,70 @@ app.post('/webhook', (req, res) => {
 
       case 'competence_detail':
         const competenceName = parameters.competence;
+        
+        // 🔍 Recherche intelligente avec fuzzy matching
         let competenceObj = findInList(cvData.competences.liste, competenceName, 'nom');
+        
+        // Si pas trouvé, essayer la recherche floue
+        if (!competenceObj) {
+          const fuzzyResults = fuzzySearch(competenceName, cvData.competences.liste, 'nom');
+          competenceObj = fuzzyResults[0];
+        }
+        
         let competenceDetails = competenceObj ? cvData.competences.details[competenceObj.nom] : null;
 
-        // Gestion pour "développement web"
+        // 🎯 Gestion contextuelle avancée
         if (!competenceObj && competenceName.toLowerCase().includes('web')) {
-          responseText = `En développement web, j'utilise principalement Angular, TypeScript, HTML/CSS et JavaScript. Tu veux des détails sur l'une de ces technologies ?`;
+          responseText = `En développement web, j'utilise principalement Angular, TypeScript, HTML/CSS et JavaScript.`;
+          suggestions = [
+            "Détails sur Angular et TypeScript",
+            "Voir mes projets web", 
+            "Technologies front-end vs back-end"
+          ];
         }
-        // Gestion pour "développement mobile"
         else if (!competenceObj && (competenceName.toLowerCase().includes('mobile') || competenceName.toLowerCase().includes('android'))) {
-          responseText = `En développement mobile, j'utilise surtout Kotlin et Java pour Android. Tu veux des détails sur Kotlin, Java ou un projet mobile en particulier ?`;
+          responseText = `En développement mobile, j'utilise surtout Kotlin et Java pour Android.`;
+          suggestions = [
+            "Projets mobiles réalisés",
+            "Détails sur Kotlin",
+            "Expérience avec Android Studio"
+          ];
         }
-        // Gestion pour "développement logiciel"
         else if (!competenceObj && competenceName.toLowerCase().includes('logiciel')) {
-          responseText = `En développement logiciel, j'ai de l'expérience avec C++, Python, Qt et OpenCV pour créer des applications de bureau et des outils spécialisés. Tu veux des détails sur l'une de ces technologies ou sur un projet logiciel ?`;
+          responseText = `En développement logiciel, j'ai de l'expérience avec C++, Python, Qt et OpenCV.`;
+          suggestions = [
+            "Applications desktop créées",
+            "Projets avec OpenCV",
+            "Détails sur Qt et C++"
+          ];
         }
         else if (competenceDetails) {
-          responseText = `Oui, je maîtrise ${competenceObj.nom} :<br>`;
+          responseText = `Excellente question sur ${competenceObj.nom} ! `;
           responseText += `${competenceDetails.description}<br>`;
-          responseText += `Projets associés : ${competenceDetails.projets.join(', ')}.<br>`;
-          responseText += `Outils utilisés : ${competenceDetails.outils.join(', ')}.`;
-        } else {
-          responseText = `Je connais ${competenceName}, mais je n’ai pas encore de détails spécifiques à te montrer.<br>`;
-          responseText += `Voici mes compétences : ${formatList(cvData.competences.liste, 'nom')}.`;
+          responseText += `📋 Projets associés : ${competenceDetails.projets.join(', ')}.<br>`;
+          responseText += `🛠️ Outils utilisés : ${competenceDetails.outils.join(', ')}.`;
+          
+          // Suggestions contextuelles basées sur la compétence
+          suggestions = [
+            `Voir des projets ${competenceObj.nom}`,
+            "Autres technologies similaires",
+            "Mon parcours d'apprentissage"
+          ];
+        }
+        else if (competenceObj) {
+          responseText = `Je connais ${competenceName}, mais je développe encore mes connaissances dans ce domaine.`;
+          suggestions = context.getRelatedSuggestions();
+        }
+        else {
+          // 💡 Suggestions intelligentes même en cas d'échec
+          const similarCompetences = fuzzySearch(competenceName, cvData.competences.liste, 'nom').slice(0, 3);
+          if (similarCompetences.length > 0) {
+            responseText = `Je ne maîtrise pas exactement "${competenceName}", mais peut-être cherches-tu `;
+            responseText += similarCompetences.map(c => c.nom).join(', ') + ' ?';
+          } else {
+            responseText = `Je ne maîtrise pas ${competenceName} pour le moment.`;
+          }
+          responseText += `<br>Voici mes principales compétences : ${formatList(cvData.competences.liste.slice(0, 8), 'nom')}.`;
         }
         break;
 
@@ -206,7 +443,31 @@ app.post('/webhook', (req, res) => {
         break;
 
       default:
-        responseText = "Je peux te parler de mon parcours, mes compétences ou mes projets. Que veux-tu savoir ?";
+        // 🎯 Cas par défaut intelligent avec suggestions contextuelles
+        if (context.currentTopic) {
+          responseText = `Je n'ai pas bien saisi ta question sur ${context.currentTopic}. `;
+          suggestions = context.getRelatedSuggestions();
+        } else {
+          responseText = "Je peux te parler de mon parcours, mes compétences ou mes projets. ";
+          suggestions = [
+            "Mes compétences techniques",
+            "Mon expérience professionnelle",
+            "Mes projets récents",
+            "Ma formation"
+          ];
+        }
+        responseText += "Que veux-tu savoir ?";
+    }
+
+    // 🧠 Enregistrer l'interaction dans le contexte
+    context.addInteraction(intent, parameters, responseText);
+    
+    // 🎨 Adapter la réponse selon le sentiment
+    responseText = adaptResponseToSentiment(responseText, userSentiment, context);
+    
+    // 💡 Ajouter des suggestions si disponibles
+    if (suggestions.length > 0) {
+      responseText += `<br><br>💭 Suggestions : ${suggestions.join(' • ')}`;
     }
 
     // Réponse avec rich content si nécessaire
@@ -223,6 +484,14 @@ app.post('/webhook', (req, res) => {
       }];
     }
 
+    // 📊 Ajouter des métadonnées pour le tracking (optionnel)
+    response.payload = {
+      sessionId: sessionId,
+      sentiment: userSentiment,
+      topic: context.currentTopic,
+      interactionCount: context.history.length
+    };
+
     res.json(response);
 
   } catch (error) {
@@ -232,6 +501,87 @@ app.post('/webhook', (req, res) => {
       source: 'webhook'
     });
   }
+});
+
+// 📊 Route d'analytics pour surveiller les performances du chatbot
+app.get('/chatbot-analytics', (req, res) => {
+  try {
+    const analytics = {
+      totalSessions: conversationSessions.size,
+      activeSessions: Array.from(conversationSessions.values()).filter(ctx => !ctx.isExpired()).length,
+      topTopics: getTopTopics(),
+      avgInteractionsPerSession: getAverageInteractions(),
+      sentimentDistribution: getSentimentDistribution()
+    };
+    
+    res.json(analytics);
+  } catch (error) {
+    console.error('Erreur analytics :', error);
+    res.status(500).json({ error: 'Erreur lors de la récupération des analytics' });
+  }
+});
+
+// 🧹 Fonction de nettoyage des sessions expirées (à appeler périodiquement)
+const cleanupExpiredSessions = () => {
+  const now = Date.now();
+  const expiredSessions = [];
+  
+  for (const [sessionId, context] of conversationSessions.entries()) {
+    if (context.isExpired()) {
+      expiredSessions.push(sessionId);
+    }
+  }
+  
+  expiredSessions.forEach(sessionId => {
+    conversationSessions.delete(sessionId);
+  });
+  
+  console.log(`🧹 Nettoyage : ${expiredSessions.length} sessions expirées supprimées`);
+};
+
+// Fonctions d'analytics helper
+const getTopTopics = () => {
+  const topics = {};
+  for (const context of conversationSessions.values()) {
+    if (context.currentTopic) {
+      topics[context.currentTopic] = (topics[context.currentTopic] || 0) + 1;
+    }
+  }
+  return Object.entries(topics)
+    .sort(([,a], [,b]) => b - a)
+    .slice(0, 5)
+    .map(([topic, count]) => ({ topic, count }));
+};
+
+const getAverageInteractions = () => {
+  const sessions = Array.from(conversationSessions.values());
+  if (sessions.length === 0) return 0;
+  
+  const totalInteractions = sessions.reduce((sum, ctx) => sum + ctx.history.length, 0);
+  return Math.round(totalInteractions / sessions.length * 100) / 100;
+};
+
+const getSentimentDistribution = () => {
+  const sentiments = { positive: 0, negative: 0, neutral: 0 };
+  
+  for (const context of conversationSessions.values()) {
+    sentiments[context.sentiment] = (sentiments[context.sentiment] || 0) + 1;
+  }
+  
+  return sentiments;
+};
+
+// 🔄 Nettoyage automatique toutes les heures
+setInterval(cleanupExpiredSessions, 60 * 60 * 1000);
+
+// Route de health check améliorée
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    activeSessions: Array.from(conversationSessions.values()).filter(ctx => !ctx.isExpired()).length,
+    totalSessions: conversationSessions.size
+  });
 });
 
 module.exports = app;
