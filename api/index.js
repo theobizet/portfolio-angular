@@ -18,7 +18,6 @@ const AI_CONFIG = {
   contextDuration: 10 * 60 * 1000, // 10 minutes
   maxContextHistory: 5
 };
-
 // CORS configuration for security
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGINS || '*');
@@ -282,7 +281,7 @@ const adaptResponseToSentiment = (response, sentiment, context) => {
       suffix: [" N'hésite pas si tu as besoin de précisions.", " Je suis là pour t'aider.", " On peut creuser davantage si tu veux."]
     },
     neutral: {
-      prefix: ["", "Alors, ", "Voici "],
+      prefix: ["", "Alors, ", "Bien, ", "D'accord, ", "Je vois que tu es intéressé par ce sujet."],
       suffix: ["", " Que veux-tu savoir d'autre ?", " As-tu d'autres questions ?"]
     }
   };
@@ -292,6 +291,170 @@ const adaptResponseToSentiment = (response, sentiment, context) => {
   const suffix = adaptation.suffix[Math.floor(Math.random() * adaptation.suffix.length)];
   
   return prefix + response + suffix;
+};
+
+// 🧠 Détection d'affirmation et négation dans le contexte
+const detectAffirmationNegation = (text) => {
+  const lowerText = text.toLowerCase();
+  
+  // Patterns d'affirmation
+  const affirmationPatterns = [
+    /\b(oui|yes|ok|d'accord|parfait|exactement|correct|c'est ça|tout à fait|absolument)\b/,
+    /\b(merci|super|génial|excellent|cool|top|bien)\b/,
+    /\b(j'aime|j'adore|m'intéresse|intéressant|impressionnant)\b/
+  ];
+  
+  // Patterns de négation
+  const negationPatterns = [
+    /\b(non|no|pas|jamais|aucun|rien|nope|nan)\b/,
+    /\b(pas vraiment|pas du tout|pas trop|pas tellement)\b/,
+    /\b(je ne|j'ai pas|n'ai pas|ne sais pas|connais pas)\b/
+  ];
+  
+  const hasAffirmation = affirmationPatterns.some(pattern => pattern.test(lowerText));
+  const hasNegation = negationPatterns.some(pattern => pattern.test(lowerText));
+  
+  if (hasAffirmation && !hasNegation) return 'affirmation';
+  if (hasNegation && !hasAffirmation) return 'negation';
+  if (hasAffirmation && hasNegation) return 'mixed';
+  return 'neutral';
+};
+
+// 🎯 Génération de réponses adaptées au contexte d'affirmation/négation
+const adaptResponseToContext = (response, affirmationStatus, context, intent) => {
+  const contextualAdaptations = {
+    affirmation: {
+      competences: [
+        "Parfait ! Je vois que tu t'intéresses à mes compétences techniques. ",
+        "Super ! Ravi que mes compétences t'intéressent. ",
+        "Excellent ! Tu veux creuser davantage sur mes technologies ? "
+      ],
+      experience: [
+        "Génial ! Mon parcours professionnel semble te plaire. ",
+        "Super ! Tu veux en savoir plus sur une expérience spécifique ? ",
+        "Parfait ! Ces expériences m'ont beaucoup appris. "
+      ],
+      projets: [
+        "Formidable ! Mes projets t'inspirent ? ",
+        "Cool ! Tu veux voir le code ou une démo ? ",
+        "Excellent ! J'ai pris plaisir à développer ces projets. "
+      ],
+      default: [
+        "Parfait ! Je suis content que ça t'intéresse. ",
+        "Super ! On continue sur ce sujet ? ",
+        "Génial ! Tu veux approfondir ? "
+      ]
+    },
+    
+    negation: {
+      competences: [
+        "Pas de problème ! Peut-être qu'un autre domaine t'intéresse plus ? ",
+        "Je comprends, tout le monde a ses préférences tech. ",
+        "D'accord ! Tu cherches quelque chose de spécifique ? "
+      ],
+      experience: [
+        "Pas de souci ! Tu préfères peut-être voir mes projets ou compétences ? ",
+        "Je comprends, ce type d'expérience ne correspond peut-être pas à ce que tu cherches. ",
+        "D'accord ! Qu'est-ce qui t'intéresserait davantage ? "
+      ],
+      projets: [
+        "Pas de problème ! Quel type de projet t'intéresserait plus ? ",
+        "Je comprends, ces projets ne correspondent peut-être pas à tes attentes. ",
+        "D'accord ! Tu cherches quelque chose de plus spécifique ? "
+      ],
+      default: [
+        "Pas de problème ! Qu'est-ce qui t'intéresserait plutôt ? ",
+        "Je comprends ! On peut changer de sujet. ",
+        "D'accord ! Dis-moi ce que tu aimerais savoir. "
+      ]
+    },
+    
+    mixed: {
+      default: [
+        "Je vois que tu as des sentiments mitigés ! ",
+        "Intéressant, tu sembles avoir des réserves. ",
+        "Je comprends ta position nuancée. "
+      ]
+    }
+  };
+  
+  if (affirmationStatus === 'neutral') return response;
+  
+  const currentTopic = context.currentTopic || 'default';
+  const adaptationCategory = contextualAdaptations[affirmationStatus];
+  const adaptationOptions = adaptationCategory[currentTopic] || adaptationCategory.default;
+  
+  if (!adaptationOptions) return response;
+  
+  const selectedAdaptation = adaptationOptions[Math.floor(Math.random() * adaptationOptions.length)];
+  
+  // Pour les négations, ajouter des suggestions alternatives
+  if (affirmationStatus === 'negation') {
+    const alternatives = generateAlternativeSuggestions(currentTopic, context);
+    return selectedAdaptation + response + alternatives;
+  }
+  
+  // Pour les affirmations, encourager l'exploration
+  if (affirmationStatus === 'affirmation') {
+    const encouragements = generateEncouragements(currentTopic, context);
+    return selectedAdaptation + response + encouragements;
+  }
+  
+  return selectedAdaptation + response;
+};
+
+// 💡 Génération de suggestions alternatives pour les négations
+const generateAlternativeSuggestions = (currentTopic, context) => {
+  const alternatives = {
+    competences: [
+      "<br><br>💭 Alternatives : Mes projets • Mon expérience • Ma formation",
+      "<br><br>🔄 Peut-être que mes réalisations concrètes t'intéresseraient plus ?"
+    ],
+    experience: [
+      "<br><br>💭 Alternatives : Mes compétences techniques • Mes projets • Ma formation",
+      "<br><br>🔄 Veux-tu plutôt voir ce que j'ai créé ?"
+    ],
+    projets: [
+      "<br><br>💭 Alternatives : Mes compétences • Mon expérience • Contact",
+      "<br><br>🔄 Tu préfères peut-être discuter de mes compétences techniques ?"
+    ],
+    default: [
+      "<br><br>💭 Je peux te parler de : Compétences • Projets • Expérience • Formation • Contact",
+      "<br><br>🔄 Qu'est-ce qui t'intéresserait le plus ?"
+    ]
+  };
+  
+  const options = alternatives[currentTopic] || alternatives.default;
+  return options[Math.floor(Math.random() * options.length)];
+};
+
+// 🚀 Génération d'encouragements pour les affirmations
+const generateEncouragements = (currentTopic, context) => {
+  const encouragements = {
+    competences: [
+      "<br><br>🔍 Tu veux voir ces compétences en action dans mes projets ?",
+      "<br><br>💡 Je peux te montrer comment j'utilise ces technologies !",
+      "<br><br>⚡ Veux-tu des détails sur une technologie spécifique ?"
+    ],
+    experience: [
+      "<br><br>🎯 Tu veux connaître les compétences acquises lors de ces expériences ?",
+      "<br><br>📂 Je peux te montrer les projets liés à cette expérience !",
+      "<br><br>💼 Veux-tu des détails sur un poste particulier ?"
+    ],
+    projets: [
+      "<br><br>🛠️ Tu veux voir le code source ou une démo ?",
+      "<br><br>⚙️ Je peux t'expliquer les défis techniques rencontrés !",
+      "<br><br>🎨 Veux-tu connaître le processus de développement ?"
+    ],
+    default: [
+      "<br><br>🚀 Continuons à explorer ! Que veux-tu savoir d'autre ?",
+      "<br><br>✨ Je suis là pour répondre à toutes tes questions !",
+      "<br><br>🎪 N'hésite pas à creuser davantage !"
+    ]
+  };
+  
+  const options = encouragements[currentTopic] || encouragements.default;
+  return options[Math.floor(Math.random() * options.length)];
 };
 
 app.post('/webhook', (req, res) => {
@@ -311,6 +474,9 @@ app.post('/webhook', (req, res) => {
     // Analyse du sentiment de la requête utilisateur
     const userSentiment = analyzeSentiment(queryText);
     context.sentiment = userSentiment;
+    
+    // 🎯 Détection d'affirmation/négation pour adaptation contextuelle
+    const affirmationStatus = detectAffirmationNegation(queryText);
 
     let responseText = '';
     let richResponses = [];
@@ -326,11 +492,24 @@ app.post('/webhook', (req, res) => {
         } else {
           responseText = `${cvData.presentation.profil} ${cvData.presentation.question_suivante}`;
         }
+        
+        // 🎯 Suggestions personnalisées pour la première interaction
+        suggestions = [
+          "Mes compétences principales",
+          "Mon expérience professionnelle", 
+          "Mes projets récents",
+          "Ma formation"
+        ];
         break;
 
       case 'competences':
         responseText = `Voici mes compétences principales :<br>${formatList(cvData.competences.liste, 'nom')}<br><br>`;
         responseText += "Tu veux des détails sur une technologie en particulier ?";
+        
+        // 🎯 Suggestions adaptées selon l'historique de conversation
+        if (context.history.length > 0) {
+          suggestions = ["Technologies front-end", "Développement mobile", "Intelligence artificielle", "Outils de développement"];
+        }
         break;
 
       case 'competence_detail':
@@ -535,7 +714,10 @@ app.post('/webhook', (req, res) => {
     // 🧠 Enregistrer l'interaction dans le contexte
     context.addInteraction(intent, parameters, responseText);
     
-    // 🎨 Adapter la réponse selon le sentiment
+    // � Adapter la réponse selon l'affirmation/négation détectée
+    responseText = adaptResponseToContext(responseText, affirmationStatus, context, intent);
+    
+    // �🎨 Adapter la réponse selon le sentiment (après l'adaptation contextuelle)
     responseText = adaptResponseToSentiment(responseText, userSentiment, context);
     
     // 💡 Ajouter des suggestions si disponibles
