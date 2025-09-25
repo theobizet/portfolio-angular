@@ -27,32 +27,105 @@ app.use((req, res, next) => {
   next();
 });
 
+// Charger les données du CV
+const cvData = require('./cv.json');
+const rateLimit = require('express-rate-limit');
+
 // Rate limiting for webhook endpoint
 const webhookLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 100, // limit each IP to 100 requests per windowMs
   message: 'Too many requests from this IP'
 });
-app.use(express.json());
 
-// Charger les données du CV
-const cvData = require('./cv.json');
-const rateLimit = require('express-rate-limit');
+app.use(express.json());
 
 // Route pour obtenir un token Dialogflow
 app.get('/get-dialogflow-token', async (req, res) => {
   try {
-    const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT);
+    // 🔍 Validation des variables d'environnement
+    if (!process.env.GOOGLE_SERVICE_ACCOUNT) {
+      console.error('❌ Variable GOOGLE_SERVICE_ACCOUNT non définie');
+      return res.status(500).json({ 
+        error: 'Configuration manquante',
+        details: 'GOOGLE_SERVICE_ACCOUNT non configuré'
+      });
+    }
+
+    let serviceAccount;
+    try {
+      serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT);
+    } catch (parseError) {
+      console.error('❌ Erreur parsing GOOGLE_SERVICE_ACCOUNT:', parseError.message);
+      return res.status(500).json({ 
+        error: 'Configuration invalide',
+        details: 'Format JSON invalide pour GOOGLE_SERVICE_ACCOUNT'
+      });
+    }
+
+    // 🔑 Validation des champs requis du service account
+    const requiredFields = ['client_email', 'private_key', 'project_id'];
+    const missingFields = requiredFields.filter(field => !serviceAccount[field]);
+    
+    if (missingFields.length > 0) {
+      console.error('❌ Champs manquants dans service account:', missingFields);
+      return res.status(500).json({ 
+        error: 'Configuration incomplète',
+        details: `Champs manquants: ${missingFields.join(', ')}`
+      });
+    }
+
+    console.log('🔐 Tentative d\'authentification Google Cloud...');
+    
     const auth = new GoogleAuth({
       credentials: serviceAccount,
       scopes: ['https://www.googleapis.com/auth/dialogflow'],
     });
+    
     const client = await auth.getClient();
     const token = await client.getAccessToken();
-    res.json({ token: token.token });
+    
+    if (!token || !token.token) {
+      console.error('❌ Token vide reçu de Google Auth');
+      return res.status(500).json({ 
+        error: 'Authentification échouée',
+        details: 'Token vide reçu'
+      });
+    }
+
+    console.log('✅ Token Dialogflow généré avec succès');
+    res.json({ 
+      token: token.token,
+      expires_at: token.expiry_date || Date.now() + 3600000 // 1 heure par défaut
+    });
+    
   } catch (error) {
-    console.error('Erreur token :', error);
-    res.status(500).json({ error: 'Erreur serveur lors de la génération du token' });
+    console.error('❌ Erreur complète lors de la génération du token:', {
+      message: error.message,
+      code: error.code,
+      stack: error.stack
+    });
+    
+    // 🎯 Messages d'erreur spécifiques selon le type d'erreur
+    let userMessage = 'Erreur serveur lors de la génération du token';
+    let statusCode = 500;
+    
+    if (error.message?.includes('invalid_grant')) {
+      userMessage = 'Credentials Google invalides ou expirés';
+      statusCode = 401;
+    } else if (error.message?.includes('service account')) {
+      userMessage = 'Configuration du service account incorrecte';
+      statusCode = 500;
+    } else if (error.code === 'ENOTFOUND') {
+      userMessage = 'Problème de connectivité avec Google APIs';
+      statusCode = 503;
+    }
+    
+    res.status(statusCode).json({ 
+      error: userMessage,
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
+      timestamp: new Date().toISOString()
+    });
   }
 });
 
@@ -503,7 +576,95 @@ app.post('/webhook', (req, res) => {
   }
 });
 
-// 📊 Route d'analytics pour surveiller les performances du chatbot
+// � Route de diagnostic pour vérifier la configuration Google Cloud
+app.get('/diagnose-google-config', (req, res) => {
+  try {
+    const diagnosis = {
+      timestamp: new Date().toISOString(),
+      status: 'checking',
+      checks: {}
+    };
+
+    // Check 1: Variable d'environnement présente
+    diagnosis.checks.envVarExists = {
+      status: !!process.env.GOOGLE_SERVICE_ACCOUNT,
+      message: process.env.GOOGLE_SERVICE_ACCOUNT ? '✅ GOOGLE_SERVICE_ACCOUNT définie' : '❌ GOOGLE_SERVICE_ACCOUNT manquante'
+    };
+
+    if (process.env.GOOGLE_SERVICE_ACCOUNT) {
+      try {
+        // Check 2: JSON valide
+        const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT);
+        diagnosis.checks.jsonValid = {
+          status: true,
+          message: '✅ JSON valide'
+        };
+
+        // Check 3: Champs requis
+        const requiredFields = ['client_email', 'private_key', 'project_id', 'type'];
+        const presentFields = requiredFields.filter(field => serviceAccount[field]);
+        const missingFields = requiredFields.filter(field => !serviceAccount[field]);
+
+        diagnosis.checks.requiredFields = {
+          status: missingFields.length === 0,
+          message: missingFields.length === 0 
+            ? `✅ Tous les champs requis présents (${presentFields.length})`
+            : `❌ Champs manquants: ${missingFields.join(', ')}`,
+          present: presentFields,
+          missing: missingFields
+        };
+
+        // Check 4: Format des champs
+        diagnosis.checks.fieldFormats = {
+          client_email: {
+            valid: serviceAccount.client_email && serviceAccount.client_email.includes('@'),
+            value: serviceAccount.client_email ? `${serviceAccount.client_email.substring(0, 20)}...` : 'manquant'
+          },
+          private_key: {
+            valid: serviceAccount.private_key && serviceAccount.private_key.includes('BEGIN PRIVATE KEY'),
+            value: serviceAccount.private_key ? `${serviceAccount.private_key.substring(0, 30)}...` : 'manquant'
+          },
+          project_id: {
+            valid: serviceAccount.project_id && serviceAccount.project_id.length > 0,
+            value: serviceAccount.project_id || 'manquant'
+          }
+        };
+
+        // Check 5: Type de service account
+        diagnosis.checks.serviceAccountType = {
+          status: serviceAccount.type === 'service_account',
+          message: serviceAccount.type === 'service_account' 
+            ? '✅ Type service_account correct'
+            : `❌ Type incorrect: ${serviceAccount.type || 'manquant'}`,
+          actual: serviceAccount.type
+        };
+
+      } catch (parseError) {
+        diagnosis.checks.jsonValid = {
+          status: false,
+          message: '❌ JSON invalide',
+          error: parseError.message
+        };
+      }
+    }
+
+    // Évaluation globale
+    const allChecks = Object.values(diagnosis.checks);
+    const passedChecks = allChecks.filter(check => check.status === true).length;
+    diagnosis.overallStatus = passedChecks === allChecks.length ? 'healthy' : 'issues_found';
+    diagnosis.summary = `${passedChecks}/${allChecks.length} vérifications réussies`;
+
+    res.json(diagnosis);
+  } catch (error) {
+    console.error('Erreur diagnostic :', error);
+    res.status(500).json({
+      error: 'Erreur lors du diagnostic',
+      details: error.message
+    });
+  }
+});
+
+// �📊 Route d'analytics pour surveiller les performances du chatbot
 app.get('/chatbot-analytics', (req, res) => {
   try {
     const analytics = {
