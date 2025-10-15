@@ -526,31 +526,39 @@ const handleMultipleEntities = (entities, entityType, cvData) => {
   
   switch (entityType) {
     case 'langues':
-      response = `Super ! Tu t'intéresses à plusieurs de mes compétences linguistiques ! 🌍<br><br>`;
+      response = `Super ! Tu t'intéresses à plusieurs de mes compétences linguistiques !<br><br>`;
       
       entities.forEach((langue, index) => {
-        const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        console.log('🔍 Processing langue in handleMultipleEntities:', langue);
         
-        response += `📌 <strong>${langue.nom}</strong> : ${langue.niveau}<br>`;
+        if (!langue || !langue.nom || !langue.niveau) {
+          console.error('❌ Invalid langue object:', langue);
+          return;
+        }
+        
+        const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        console.log('🔍 Normalized langue name:', langueNormalized);
+        
+        response += `• ${langue.nom} : ${langue.niveau}<br>`;
         
         // Détails contextuels par langue
-        if (langueNormalized.includes('francais') || langueNormalized.includes('français')) {
-          response += "→ Langue maternelle, maîtrise parfaite à l'oral et à l'écrit.<br>";
-        } else if (langueNormalized.includes('anglais') || langueNormalized.includes('english')) {
-          response += "→ Niveau avancé pour environnement professionnel international et documentation technique.<br>";
-        } else if (langueNormalized.includes('allemand') || langueNormalized.includes('german')) {
-          response += "→ Communication courante, atout régional en Alsace.<br>";
+        if (langueNormalized.includes('francais')) {
+          response += "-> Langue maternelle, maitrise parfaite a l'oral et a l'ecrit.<br>";
+        } else if (langueNormalized.includes('anglais')) {
+          response += "-> Niveau avance pour environnement professionnel international.<br>";
+        } else if (langueNormalized.includes('allemand')) {
+          response += "-> Communication courante, atout regional en Alsace.<br>";
         }
         
         if (index < entities.length - 1) response += "<br>";
       });
       
-      response += `<br>Ces ${entities.length} langues me permettent de travailler dans des contextes multiculturels variés !`;
+      response += `<br>Ces ${entities.length} langues me permettent de travailler dans des contextes multiculturels varies !`;
       
       suggestions = [
-        "Expérience en environnement international",
+        "Experience en environnement international",
         "Certifications linguistiques",
-        "Retour aux compétences principales"
+        "Retour aux competences principales"
       ];
       break;
       
@@ -635,8 +643,14 @@ const handleMultipleEntities = (entities, entityType, cvData) => {
 
 app.post('/webhook', (req, res) => {
   try {
+    console.log('🔄 Webhook called with:', JSON.stringify(req.body, null, 2));
+    
     const { queryResult, session } = req.body;
     const { intent, parameters, queryText } = queryResult;
+    
+    console.log('📝 Intent:', intent.displayName);
+    console.log('📝 Parameters:', parameters);
+    console.log('📝 QueryText:', queryText);
     
     // 🧠 Gestion intelligente du contexte de session
     const sessionId = session ? session.split('/').pop() : 'anonymous';
@@ -954,6 +968,10 @@ app.post('/webhook', (req, res) => {
         const langueParam = parameters.langue;
         const languesArray = Array.isArray(langueParam) ? langueParam : (langueParam ? [langueParam] : []);
         
+        console.log('🔍 langue_detail - langueParam:', langueParam);
+        console.log('🔍 langue_detail - languesArray:', languesArray);
+        console.log('🔍 cvData.langues:', cvData.langues);
+        
         // Si plusieurs langues dans le paramètre Dialogflow
         if (languesArray.length > 1) {
           // Rechercher chaque langue dans cvData
@@ -968,7 +986,9 @@ app.post('/webhook', (req, res) => {
           });
           
           // Utiliser le handler multi-entités
+          console.log('🔍 Calling handleMultipleEntities with:', foundLangues);
           const multiLanguesResult = handleMultipleEntities(foundLangues, 'langues', cvData);
+          console.log('✅ handleMultipleEntities result:', multiLanguesResult);
           
           if (multiLanguesResult.found && multiLanguesResult.multi) {
             responseText = multiLanguesResult.response;
@@ -1021,11 +1041,11 @@ app.post('/webhook', (req, res) => {
             // Ajouter des détails contextuels selon la langue (normalisation)
             const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
-            if (langueNormalized.includes('francais') || langueNormalized.includes('français')) {
+            if (langueNormalized.includes('francais')) {
               responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
-            } else if (langueNormalized.includes('anglais') || langueNormalized.includes('english')) {
+            } else if (langueNormalized.includes('anglais')) {
               responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
-            } else if (langueNormalized.includes('allemand') || langueNormalized.includes('german') || langueNormalized.includes('deutsch')) {
+            } else if (langueNormalized.includes('allemand')) {
               responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
             } else {
               // Réponse générique pour d'autres langues
@@ -1141,10 +1161,16 @@ app.post('/webhook', (req, res) => {
     res.json(response);
 
   } catch (error) {
-    console.error('Erreur dans le webhook :', error);
+    console.error('❌ ERREUR WEBHOOK COMPLETE:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+      requestBody: req.body
+    });
     res.status(500).json({
       fulfillmentText: "Désolé, une erreur est survenue. Peux-tu répéter ta question ?",
-      source: 'webhook'
+      source: 'webhook',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 });
