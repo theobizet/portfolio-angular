@@ -526,24 +526,35 @@ const handleMultipleEntities = (entities, entityType, cvData) => {
   
   switch (entityType) {
     case 'langues':
-      response = `Je parle plusieurs langues !`;
+      response = `Super ! Tu t'intéresses à plusieurs de mes compétences linguistiques ! 🌍<br><br>`;
       
       entities.forEach((langue, index) => {
         if (!langue || !langue.nom || !langue.niveau) {
           return;
         }
         
-        // Normaliser le nom pour éviter les problèmes d'encodage
-        const nomSafe = langue.nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        response += ` ${nomSafe} (${langue.niveau})`;
-        if (index < entities.length - 1) response += ',';
+        response += `📌 <strong>${langue.nom}</strong> : ${langue.niveau}<br>`;
+        
+        // Détails contextuels par langue
+        const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        
+        if (langueNormalized.includes('francais')) {
+          response += "→ Langue maternelle, maîtrise parfaite à l'oral et à l'écrit.<br>";
+        } else if (langueNormalized.includes('anglais')) {
+          response += "→ Niveau avancé pour environnement professionnel international et documentation technique.<br>";
+        } else if (langueNormalized.includes('allemand')) {
+          response += "→ Communication courante, atout régional en Alsace.<br>";
+        }
+        
+        if (index < entities.length - 1) response += "<br>";
       });
       
-      response += ` - Total: ${entities.length} langues.`;
+      response += `<br>Ces ${entities.length} langues me permettent de travailler dans des contextes multiculturels variés !`;
       
       suggestions = [
-        "Plus d'infos",
-        "Autres competences"
+        "Expérience en environnement international",
+        "Certifications linguistiques",
+        "Retour aux compétences principales"
       ];
       break;
       
@@ -551,7 +562,7 @@ const handleMultipleEntities = (entities, entityType, cvData) => {
       response = `Excellent ! Tu veux connaître mes compétences en ${entities.map(c => c.nom).join(', ')} ! 💻<br><br>`;
       
       entities.forEach((competence, index) => {
-        const details = cvData.competences.details[competence.nom];
+        const details = cvData.competences.details ? cvData.competences.details[competence.nom] : null;
         
         response += `📌 <strong>${competence.nom}</strong><br>`;
         
@@ -574,22 +585,25 @@ const handleMultipleEntities = (entities, entityType, cvData) => {
       break;
       
     case 'projets':
-      response = `Génial ! Je vais te parler de ces ${entities.length} projets ! 🚀<br><br>`;
+      response = `Génial ! Je vais te parler de ces ${entities.length} projets qui me tiennent à cœur ! 🚀<br><br>`;
       
       entities.forEach((projet, index) => {
         response += `📌 <strong>${projet.nom}</strong> (${projet.annee})<br>`;
         response += `→ ${projet.description}<br>`;
         response += `→ Technologies : ${projet.technos.join(', ')}<br>`;
         
-        if (projet.lien) response += `→ <a href="${projet.lien}">Voir le projet</a><br>`;
-        if (projet.github) response += `→ <a href="${projet.github}">Code source</a><br>`;
+        if (projet.lien) response += `→ <a href="${projet.lien}" target="_blank">Voir le projet en ligne</a><br>`;
+        if (projet.github) response += `→ <a href="${projet.github}" target="_blank">Code source sur GitHub</a><br>`;
         
         if (index < entities.length - 1) response += "<br>";
       });
       
+      response += `<br>Ces projets montrent ma progression et ma passion pour le développement ! Veux-tu en savoir plus sur l'un d'eux ?`;
+      
       suggestions = entities.map(p => `Détails techniques sur ${p.nom}`).concat([
         "Comparer ces projets",
-        "Technologies communes utilisées"
+        "Technologies communes utilisées",
+        "Défis rencontrés"
       ]);
       break;
       
@@ -963,13 +977,9 @@ app.post('/webhook', (req, res) => {
           // Utiliser le handler multi-entités
           const multiLanguesResult = handleMultipleEntities(foundLangues, 'langues', cvData);
           
-          console.log('🔍 multiLanguesResult:', multiLanguesResult);
-          
           if (multiLanguesResult.found && multiLanguesResult.multi) {
-            console.log('✅ Multi-langues case matched');
             responseText = multiLanguesResult.response;
             suggestions = multiLanguesResult.suggestions;
-            console.log('✅ responseText set to:', responseText);
           } else if (foundLangues.length === 1) {
             // Une seule langue trouvée, traitement standard
             const langue = foundLangues[0];
@@ -1114,8 +1124,6 @@ app.post('/webhook', (req, res) => {
     }
 
     // Réponse avec rich content si nécessaire
-    console.log('🔍 Final responseText before sending:', responseText);
-    
     const response = {
       fulfillmentText: responseText,
       source: 'webhook'
