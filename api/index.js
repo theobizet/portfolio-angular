@@ -963,9 +963,13 @@ app.post('/webhook', (req, res) => {
           // Utiliser le handler multi-entités
           const multiLanguesResult = handleMultipleEntities(foundLangues, 'langues', cvData);
           
+          console.log('🔍 multiLanguesResult:', multiLanguesResult);
+          
           if (multiLanguesResult.found && multiLanguesResult.multi) {
+            console.log('✅ Multi-langues case matched');
             responseText = multiLanguesResult.response;
             suggestions = multiLanguesResult.suggestions;
+            console.log('✅ responseText set to:', responseText);
           } else if (foundLangues.length === 1) {
             // Une seule langue trouvée, traitement standard
             const langue = foundLangues[0];
@@ -1110,6 +1114,8 @@ app.post('/webhook', (req, res) => {
     }
 
     // Réponse avec rich content si nécessaire
+    console.log('🔍 Final responseText before sending:', responseText);
+    
     const response = {
       fulfillmentText: responseText,
       source: 'webhook'
