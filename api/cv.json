@@ -300,7 +300,7 @@
   },
 
   "langues": [
-    { "nom": "Français", "niveau": "Langue maternelle" },
+    { "nom": "Français", "niveau": "C1" },
     { "nom": "Allemand", "niveau": "B2" },
     { "nom": "Anglais", "niveau": "C1" }
   ],
