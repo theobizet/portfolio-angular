@@ -1304,7 +1304,7 @@ Ce projet est sous licence MIT.
 
 - Portfolio : https://portfolio-angular-theo.vercel.app
 - GitHub : [@theobizet](https://github.com/theobizet)
-- LinkedIn : [Votre LinkedIn]
+- LinkedIn : [Théo bizet](https://www.linkedin.com/in/theobizet)
 
 ---
 
