@@ -300,9 +300,9 @@
   },
 
   "langues": [
-    { "nom": "Français", "niveau": "C1" },
-    { "nom": "Allemand", "niveau": "B2" },
-    { "nom": "Anglais", "niveau": "C1" }
+    { "nom": "français", "niveau": "C1" },
+    { "nom": "allemand", "niveau": "B1" },
+    { "nom": "anglais", "niveau": "C1" }
   ],
 
   "centres_interet": [

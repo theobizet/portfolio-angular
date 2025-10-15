@@ -678,7 +678,7 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'langue_detail':
-        const langueNom = parameters.langue ? parameters.langue.toLowerCase() : '';
+        const langueNom = parameters.langue.toLowerCase();
         const langue = cvData.langues.find(l => 
           l.nom.toLowerCase().includes(langueNom) || 
           langueNom.includes(l.nom.toLowerCase())
