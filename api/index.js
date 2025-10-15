@@ -460,6 +460,179 @@ const generateEncouragements = (currentTopic, context) => {
   return options[Math.floor(Math.random() * options.length)];
 };
 
+// 🔍 Extraction intelligente de plusieurs entités dans une requête
+const extractMultipleEntities = (text, entityType, dataSource) => {
+  if (!text || !dataSource) return [];
+  
+  const lowerText = text.toLowerCase();
+  const matches = [];
+  
+  // Patterns de séparation courants
+  const separators = /\bet\b|\bou\b|,|;|\//gi;
+  
+  dataSource.forEach(item => {
+    const itemName = (typeof item === 'string' ? item : item.nom || item.name || '').toLowerCase();
+    
+    // Vérifier si l'entité est mentionnée dans le texte
+    if (lowerText.includes(itemName)) {
+      matches.push(item);
+    }
+    
+    // Vérifier aussi les synonymes ou variantes courantes
+    if (entityType === 'langues') {
+      const synonyms = {
+        'anglais': ['english', 'anglophone'],
+        'allemand': ['german', 'deutsch', 'germanophone'],
+        'français': ['french', 'francais', 'francophone']
+      };
+      
+      if (synonyms[itemName] && synonyms[itemName].some(syn => lowerText.includes(syn))) {
+        if (!matches.includes(item)) matches.push(item);
+      }
+    }
+    
+    if (entityType === 'competences') {
+      const techSynonyms = {
+        'angular': ['angularjs', 'angular 2+'],
+        'javascript': ['js', 'es6', 'ecmascript'],
+        'typescript': ['ts'],
+        'python': ['py'],
+        'c++': ['cpp', 'c plus plus']
+      };
+      
+      if (techSynonyms[itemName] && techSynonyms[itemName].some(syn => lowerText.includes(syn))) {
+        if (!matches.includes(item)) matches.push(item);
+      }
+    }
+  });
+  
+  return matches;
+};
+
+// 🎯 Gestionnaire de réponses multi-entités
+const handleMultipleEntities = (entities, entityType, cvData) => {
+  if (!entities || entities.length === 0) {
+    return { found: false, response: '', suggestions: [] };
+  }
+  
+  if (entities.length === 1) {
+    // Une seule entité - traitement standard
+    return { found: true, single: true, entity: entities[0] };
+  }
+  
+  // Plusieurs entités détectées
+  let response = '';
+  const suggestions = [];
+  
+  switch (entityType) {
+    case 'langues':
+      response = `Super ! Tu t'intéresses à plusieurs de mes compétences linguistiques ! 🌍<br><br>`;
+      
+      entities.forEach((langue, index) => {
+        const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        
+        response += `📌 <strong>${langue.nom}</strong> : ${langue.niveau}<br>`;
+        
+        // Détails contextuels par langue
+        if (langueNormalized.includes('francais') || langueNormalized.includes('français')) {
+          response += "→ Langue maternelle, maîtrise parfaite à l'oral et à l'écrit.<br>";
+        } else if (langueNormalized.includes('anglais') || langueNormalized.includes('english')) {
+          response += "→ Niveau avancé pour environnement professionnel international et documentation technique.<br>";
+        } else if (langueNormalized.includes('allemand') || langueNormalized.includes('german')) {
+          response += "→ Communication courante, atout régional en Alsace.<br>";
+        }
+        
+        if (index < entities.length - 1) response += "<br>";
+      });
+      
+      response += `<br>Ces ${entities.length} langues me permettent de travailler dans des contextes multiculturels variés !`;
+      
+      suggestions = [
+        "Expérience en environnement international",
+        "Certifications linguistiques",
+        "Retour aux compétences principales"
+      ];
+      break;
+      
+    case 'competences':
+      response = `Excellent ! Tu veux connaître mes compétences en ${entities.map(c => c.nom).join(', ')} ! 💻<br><br>`;
+      
+      entities.forEach((competence, index) => {
+        const details = cvData.competences.details[competence.nom];
+        
+        response += `📌 <strong>${competence.nom}</strong><br>`;
+        
+        if (details) {
+          response += `→ ${details.description.substring(0, 150)}...<br>`;
+          response += `→ Projets : ${details.projets.slice(0, 2).join(', ')}${details.projets.length > 2 ? '...' : ''}<br>`;
+        } else {
+          response += `→ Compétence acquise via ${competence.cadre}.<br>`;
+        }
+        
+        if (index < entities.length - 1) response += "<br>";
+      });
+      
+      response += `<br>Veux-tu approfondir l'une de ces ${entities.length} technologies en particulier ?`;
+      
+      suggestions = entities.map(c => `Détails sur ${c.nom}`).concat([
+        "Voir les projets utilisant ces technologies",
+        "Comparaison de ces compétences"
+      ]);
+      break;
+      
+    case 'projets':
+      response = `Génial ! Je vais te parler de ces ${entities.length} projets ! 🚀<br><br>`;
+      
+      entities.forEach((projet, index) => {
+        response += `📌 <strong>${projet.nom}</strong> (${projet.annee})<br>`;
+        response += `→ ${projet.description}<br>`;
+        response += `→ Technologies : ${projet.technos.join(', ')}<br>`;
+        
+        if (projet.lien) response += `→ <a href="${projet.lien}">Voir le projet</a><br>`;
+        if (projet.github) response += `→ <a href="${projet.github}">Code source</a><br>`;
+        
+        if (index < entities.length - 1) response += "<br>";
+      });
+      
+      suggestions = entities.map(p => `Détails techniques sur ${p.nom}`).concat([
+        "Comparer ces projets",
+        "Technologies communes utilisées"
+      ]);
+      break;
+      
+    case 'experiences':
+      response = `Parfait ! Voici un aperçu de ces ${entities.length} expériences ! 💼<br><br>`;
+      
+      entities.forEach((exp, index) => {
+        response += `📌 <strong>${exp.entreprise}</strong> (${exp.annee})<br>`;
+        response += `→ Poste : ${exp.poste} (${exp.type})<br>`;
+        response += `→ Lieu : ${exp.lieu}<br>`;
+        response += `→ Compétences clés : ${exp.competences.slice(0, 3).join(', ')}${exp.competences.length > 3 ? '...' : ''}<br>`;
+        
+        if (index < entities.length - 1) response += "<br>";
+      });
+      
+      response += `<br>Veux-tu des détails sur l'une de ces expériences ?`;
+      
+      suggestions = entities.map(e => `Missions chez ${e.entreprise}`).concat([
+        "Comparer ces expériences",
+        "Évolution de carrière"
+      ]);
+      break;
+      
+    default:
+      return { found: false, response: '', suggestions: [] };
+  }
+  
+  return {
+    found: true,
+    multi: true,
+    count: entities.length,
+    response,
+    suggestions
+  };
+};
+
 app.post('/webhook', (req, res) => {
   try {
     const { queryResult, session } = req.body;
@@ -516,71 +689,82 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'competence_detail':
-        const competenceName = parameters.competence;
+        const competenceName = parameters.competence ? parameters.competence : '';
         
-        // 🔍 Recherche intelligente avec fuzzy matching
-        let competenceObj = findInList(cvData.competences.liste, competenceName, 'nom');
+        // 🔍 Détection de plusieurs compétences dans la requête
+        const multipleCompetences = extractMultipleEntities(queryText, 'competences', cvData.competences.liste);
+        const multiCompetencesResult = handleMultipleEntities(multipleCompetences, 'competences', cvData);
         
-        // Si pas trouvé, essayer la recherche floue
-        if (!competenceObj) {
-          const fuzzyResults = fuzzySearch(competenceName, cvData.competences.liste, 'nom');
-          competenceObj = fuzzyResults[0];
-        }
-        
-        let competenceDetails = competenceObj ? cvData.competences.details[competenceObj.nom] : null;
-
-        // 🎯 Gestion contextuelle avancée
-        if (!competenceObj && competenceName.toLowerCase().includes('web')) {
-          responseText = `En développement web, j'utilise principalement Angular, TypeScript, HTML/CSS et JavaScript.`;
-          suggestions = [
-            "Détails sur Angular et TypeScript",
-            "Voir mes projets web", 
-            "Technologies front-end vs back-end"
-          ];
-        }
-        else if (!competenceObj && (competenceName.toLowerCase().includes('mobile') || competenceName.toLowerCase().includes('android'))) {
-          responseText = `En développement mobile, j'utilise surtout Kotlin et Java pour Android.`;
-          suggestions = [
-            "Projets mobiles réalisés",
-            "Détails sur Kotlin",
-            "Expérience avec Android Studio"
-          ];
-        }
-        else if (!competenceObj && competenceName.toLowerCase().includes('logiciel')) {
-          responseText = `En développement logiciel, j'ai de l'expérience avec C++, Python, Qt et OpenCV.`;
-          suggestions = [
-            "Applications desktop créées",
-            "Projets avec OpenCV",
-            "Détails sur Qt et C++"
-          ];
-        }
-        else if (competenceDetails) {
-          responseText = `Excellente question sur ${competenceObj.nom} ! `;
-          responseText += `${competenceDetails.description}<br>`;
-          responseText += `📋 Projets associés : ${competenceDetails.projets.join(', ')}.<br>`;
-          responseText += `🛠️ Outils utilisés : ${competenceDetails.outils.join(', ')}.`;
+        if (multiCompetencesResult.found && multiCompetencesResult.multi) {
+          // Plusieurs compétences détectées
+          responseText = multiCompetencesResult.response;
+          suggestions = multiCompetencesResult.suggestions;
+        } else {
+          // Une seule compétence ou recherche standard
+          // 🔍 Recherche intelligente avec fuzzy matching
+          let competenceObj = findInList(cvData.competences.liste, competenceName, 'nom');
           
-          // Suggestions contextuelles basées sur la compétence
-          suggestions = [
-            `Voir des projets ${competenceObj.nom}`,
-            "Autres technologies similaires",
-            "Mon parcours d'apprentissage"
-          ];
-        }
-        else if (competenceObj) {
-          responseText = `Je connais ${competenceName}, mais je développe encore mes connaissances dans ce domaine.`;
-          suggestions = context.getRelatedSuggestions();
-        }
-        else {
-          // 💡 Suggestions intelligentes même en cas d'échec
-          const similarCompetences = fuzzySearch(competenceName, cvData.competences.liste, 'nom').slice(0, 3);
-          if (similarCompetences.length > 0) {
-            responseText = `Je ne maîtrise pas exactement "${competenceName}", mais peut-être cherches-tu `;
-            responseText += similarCompetences.map(c => c.nom).join(', ') + ' ?';
-          } else {
-            responseText = `Je ne maîtrise pas ${competenceName} pour le moment.`;
+          // Si pas trouvé, essayer la recherche floue
+          if (!competenceObj) {
+            const fuzzyResults = fuzzySearch(competenceName, cvData.competences.liste, 'nom');
+            competenceObj = fuzzyResults[0];
           }
-          responseText += `<br>Voici mes principales compétences :<br> ${formatList(cvData.competences.liste.slice(0, 8), 'nom')}.<br>`;
+          
+          let competenceDetails = competenceObj ? cvData.competences.details[competenceObj.nom] : null;
+
+          // 🎯 Gestion contextuelle avancée
+          if (!competenceObj && competenceName.toLowerCase().includes('web')) {
+            responseText = `En développement web, j'utilise principalement Angular, TypeScript, HTML/CSS et JavaScript.`;
+            suggestions = [
+              "Détails sur Angular et TypeScript",
+              "Voir mes projets web", 
+              "Technologies front-end vs back-end"
+            ];
+          }
+          else if (!competenceObj && (competenceName.toLowerCase().includes('mobile') || competenceName.toLowerCase().includes('android'))) {
+            responseText = `En développement mobile, j'utilise surtout Kotlin et Java pour Android.`;
+            suggestions = [
+              "Projets mobiles réalisés",
+              "Détails sur Kotlin",
+              "Expérience avec Android Studio"
+            ];
+          }
+          else if (!competenceObj && competenceName.toLowerCase().includes('logiciel')) {
+            responseText = `En développement logiciel, j'ai de l'expérience avec C++, Python, Qt et OpenCV.`;
+            suggestions = [
+              "Applications desktop créées",
+              "Projets avec OpenCV",
+              "Détails sur Qt et C++"
+            ];
+          }
+          else if (competenceDetails) {
+            responseText = `Excellente question sur ${competenceObj.nom} ! `;
+            responseText += `${competenceDetails.description}<br>`;
+            responseText += `📋 Projets associés : ${competenceDetails.projets.join(', ')}.<br>`;
+            responseText += `🛠️ Outils utilisés : ${competenceDetails.outils.join(', ')}.`;
+            
+            // Suggestions contextuelles basées sur la compétence
+            suggestions = [
+              `Voir des projets ${competenceObj.nom}`,
+              "Autres technologies similaires",
+              "Mon parcours d'apprentissage"
+            ];
+          }
+          else if (competenceObj) {
+            responseText = `Je connais ${competenceName}, mais je développe encore mes connaissances dans ce domaine.`;
+            suggestions = context.getRelatedSuggestions();
+          }
+          else {
+            // 💡 Suggestions intelligentes même en cas d'échec
+            const similarCompetences = fuzzySearch(competenceName, cvData.competences.liste, 'nom').slice(0, 3);
+            if (similarCompetences.length > 0) {
+              responseText = `Je ne maîtrise pas exactement "${competenceName}", mais peut-être cherches-tu `;
+              responseText += similarCompetences.map(c => c.nom).join(', ') + ' ?';
+            } else {
+              responseText = `Je ne maîtrise pas ${competenceName} pour le moment.`;
+            }
+            responseText += `<br>Voici mes principales compétences :<br> ${formatList(cvData.competences.liste.slice(0, 8), 'nom')}.<br>`;
+          }
         }
         break;
 
@@ -638,10 +822,21 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'projet_detail':
-        const projetName = parameters.projet.toLowerCase();
-        const proj = findInList(cvData.projets, projetName, 'nom');
+        const projetName = parameters.projet ? parameters.projet.toLowerCase() : '';
+        
+        // 🔍 Détection de plusieurs projets dans la requête
+        const multipleProjets = extractMultipleEntities(queryText, 'projets', cvData.projets);
+        const multiProjetsResult = handleMultipleEntities(multipleProjets, 'projets', cvData);
+        
+        if (multiProjetsResult.found && multiProjetsResult.multi) {
+          // Plusieurs projets détectés
+          responseText = multiProjetsResult.response;
+          suggestions = multiProjetsResult.suggestions;
+        } else {
+          // Un seul projet ou recherche standard
+          const proj = findInList(cvData.projets, projetName, 'nom');
 
-        if (proj) {
+          if (proj) {
           responseText = `${proj.nom} (${proj.annee}) :<br>${proj.description}<br>`;
           responseText += `Technologies : ${proj.technos.join(', ')}.<br>`;
 
@@ -664,6 +859,7 @@ app.post('/webhook', (req, res) => {
           responseText += `Voici mes projets : ${formatList(cvData.projets, 'nom')}.`;
         }
         break;
+        }
       
       case 'langues':
         responseText = `Je parle plusieurs langues :<br>`;
@@ -678,54 +874,64 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'langue_detail':
-        const langueNom = parameters.langue.toLowerCase();
+        const langueNom = parameters.langue ? parameters.langue.toLowerCase() : '';
         
-        // 🔍 Recherche intelligente avec fuzzy matching pour les langues
-        let langue = cvData.langues.find(l => 
-          l.nom.toLowerCase().includes(langueNom) || 
-          langueNom.includes(l.nom.toLowerCase())
-        );
+        // 🔍 Détection de plusieurs langues dans la requête
+        const multipleLangues = extractMultipleEntities(queryText, 'langues', cvData.langues);
+        const multiLanguesResult = handleMultipleEntities(multipleLangues, 'langues', cvData);
         
-        // Si pas trouvé, essayer la recherche floue
-        if (!langue) {
-          const fuzzyResults = fuzzySearch(langueNom, cvData.langues, 'nom');
-          langue = fuzzyResults[0];
-        }
-
-        if (langue) {
-          responseText = `Mon niveau en ${langue.nom} est ${langue.niveau}.<br>`;
-          
-          // Ajouter des détails contextuels selon la langue (normalisation)
-          const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-          
-          if (langueNormalized.includes('francais') || langueNormalized.includes('français')) {
-        responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
-          } else if (langueNormalized.includes('anglais') || langueNormalized.includes('english')) {
-        responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
-          } else if (langueNormalized.includes('allemand') || langueNormalized.includes('german') || langueNormalized.includes('deutsch')) {
-        responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
-          } else {
-        // Réponse générique pour d'autres langues
-        responseText += `Cette compétence linguistique enrichit mon profil professionnel.`;
-          }
-          
-          suggestions = [
-        "Mes autres compétences linguistiques",
-        "Mon expérience en environnement international",
-        "Retour aux informations principales"
-          ];
+        if (multiLanguesResult.found && multiLanguesResult.multi) {
+          // Plusieurs langues détectées
+          responseText = multiLanguesResult.response;
+          suggestions = multiLanguesResult.suggestions;
         } else {
-          // 💡 Suggestions intelligentes même en cas d'échec
-          const similarLangues = fuzzySearch(langueNom, cvData.langues, 'nom').slice(0, 3);
-          if (similarLangues.length > 0) {
-        responseText = `Je ne parle pas exactement "${langueNom}", mais peut-être cherches-tu `;
-        responseText += similarLangues.map(l => l.nom).join(', ') + ' ?<br>';
-          } else {
-        responseText = `Je n'ai pas de niveau enregistré pour "${langueNom}".<br>`;
-          }
-          responseText += `Voici les langues que je parle : ${cvData.langues.map(l => l.nom).join(', ')}.`;
+          // Une seule langue ou recherche standard
+          let langue = cvData.langues.find(l => 
+            l.nom.toLowerCase().includes(langueNom) || 
+            langueNom.includes(l.nom.toLowerCase())
+          );
           
-          suggestions = cvData.langues.map(l => `Niveau en ${l.nom}`);
+          // Si pas trouvé, essayer la recherche floue
+          if (!langue) {
+            const fuzzyResults = fuzzySearch(langueNom, cvData.langues, 'nom');
+            langue = fuzzyResults[0];
+          }
+
+          if (langue) {
+            responseText = `Mon niveau en ${langue.nom} est ${langue.niveau}.<br>`;
+            
+            // Ajouter des détails contextuels selon la langue (normalisation)
+            const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            if (langueNormalized.includes('francais') || langueNormalized.includes('français')) {
+              responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
+            } else if (langueNormalized.includes('anglais') || langueNormalized.includes('english')) {
+              responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
+            } else if (langueNormalized.includes('allemand') || langueNormalized.includes('german') || langueNormalized.includes('deutsch')) {
+              responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
+            } else {
+              // Réponse générique pour d'autres langues
+              responseText += `Cette compétence linguistique enrichit mon profil professionnel.`;
+            }
+            
+            suggestions = [
+              "Mes autres compétences linguistiques",
+              "Mon expérience en environnement international",
+              "Retour aux informations principales"
+            ];
+          } else {
+            // 💡 Suggestions intelligentes même en cas d'échec
+            const similarLangues = fuzzySearch(langueNom, cvData.langues, 'nom').slice(0, 3);
+            if (similarLangues.length > 0) {
+              responseText = `Je ne parle pas exactement "${langueNom}", mais peut-être cherches-tu `;
+              responseText += similarLangues.map(l => l.nom).join(', ') + ' ?<br>';
+            } else {
+              responseText = `Je n'ai pas de niveau enregistré pour "${langueNom}".<br>`;
+            }
+            responseText += `Voici les langues que je parle : ${cvData.langues.map(l => l.nom).join(', ')}.`;
+            
+            suggestions = cvData.langues.map(l => `Niveau en ${l.nom}`);
+          }
         }
         break;
 
