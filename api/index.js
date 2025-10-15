@@ -679,21 +679,34 @@ app.post('/webhook', (req, res) => {
 
       case 'langue_detail':
         const langueNom = parameters.langue.toLowerCase();
-        const langue = cvData.langues.find(l => 
+        
+        // 🔍 Recherche intelligente avec fuzzy matching pour les langues
+        let langue = cvData.langues.find(l => 
           l.nom.toLowerCase().includes(langueNom) || 
           langueNom.includes(l.nom.toLowerCase())
         );
+        
+        // Si pas trouvé, essayer la recherche floue
+        if (!langue) {
+          const fuzzyResults = fuzzySearch(langueNom, cvData.langues, 'nom');
+          langue = fuzzyResults[0];
+        }
 
         if (langue) {
           responseText = `Mon niveau en ${langue.nom} est ${langue.niveau}.<br>`;
           
-          // Ajouter des détails contextuels selon la langue
-          if (langue.nom.toLowerCase() === 'français') {
+          // Ajouter des détails contextuels selon la langue (normalisation)
+          const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          
+          if (langueNormalized.includes('francais') || langueNormalized.includes('français')) {
         responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
-          } else if (langue.nom.toLowerCase() === 'anglais') {
+          } else if (langueNormalized.includes('anglais') || langueNormalized.includes('english')) {
         responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
-          } else if (langue.nom.toLowerCase() === 'allemand') {
+          } else if (langueNormalized.includes('allemand') || langueNormalized.includes('german') || langueNormalized.includes('deutsch')) {
         responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
+          } else {
+        // Réponse générique pour d'autres langues
+        responseText += `Cette compétence linguistique enrichit mon profil professionnel.`;
           }
           
           suggestions = [
@@ -702,7 +715,14 @@ app.post('/webhook', (req, res) => {
         "Retour aux informations principales"
           ];
         } else {
-          responseText = `Je n'ai pas de niveau enregistré pour "${langueNom}".<br>`;
+          // 💡 Suggestions intelligentes même en cas d'échec
+          const similarLangues = fuzzySearch(langueNom, cvData.langues, 'nom').slice(0, 3);
+          if (similarLangues.length > 0) {
+        responseText = `Je ne parle pas exactement "${langueNom}", mais peut-être cherches-tu `;
+        responseText += similarLangues.map(l => l.nom).join(', ') + ' ?<br>';
+          } else {
+        responseText = `Je n'ai pas de niveau enregistré pour "${langueNom}".<br>`;
+          }
           responseText += `Voici les langues que je parle : ${cvData.langues.map(l => l.nom).join(', ')}.`;
           
           suggestions = cvData.langues.map(l => `Niveau en ${l.nom}`);
