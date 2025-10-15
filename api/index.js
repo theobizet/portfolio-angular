@@ -15,7 +15,7 @@ const AI_CONFIG = {
     negative: ['problème', 'difficile', 'compliqué', 'dur', 'impossible'],
     neutral: ['ok', 'bien', 'ça va', 'normal', 'standard']
   },
-  contextDuration: 10 * 60 * 1000, // 10 minutes
+  contextDuration: 15 * 60 * 1000, // 15 minutes
   maxContextHistory: 5
 };
 // CORS configuration for security
@@ -661,6 +661,50 @@ app.post('/webhook', (req, res) => {
           responseText += `Voici mes projets : ${formatList(cvData.projets, 'nom')}.`;
         }
         break;
+      
+      case 'langues':
+        responseText = `Je parle plusieurs langues :<br>`;
+        responseText += cvData.langues.map(l => `• ${l.nom} : ${l.niveau}`).join('<br>');
+        responseText += "<br>Tu veux en savoir plus sur mon niveau dans une langue spécifique ?";
+
+        suggestions = [
+          "Niveau d'anglais",
+          "Niveau d'allemand",
+          "Mes certifications linguistiques"
+        ];
+        break;
+
+      case 'langue_detail':
+        const langueNom = parameters.langue ? parameters.langue.toLowerCase() : '';
+        const langue = cvData.langues.find(l => 
+          l.nom.toLowerCase().includes(langueNom) || 
+          langueNom.includes(l.nom.toLowerCase())
+        );
+
+        if (langue) {
+          responseText = `Mon niveau en ${langue.nom} est ${langue.niveau}.<br>`;
+          
+          // Ajouter des détails contextuels selon la langue
+          if (langue.nom.toLowerCase() === 'français') {
+        responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
+          } else if (langue.nom.toLowerCase() === 'anglais') {
+        responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
+          } else if (langue.nom.toLowerCase() === 'allemand') {
+        responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
+          }
+          
+          suggestions = [
+        "Mes autres compétences linguistiques",
+        "Mon expérience en environnement international",
+        "Retour aux informations principales"
+          ];
+        } else {
+          responseText = `Je n'ai pas de niveau enregistré pour "${langueNom}".<br>`;
+          responseText += `Voici les langues que je parle : ${cvData.langues.map(l => l.nom).join(', ')}.`;
+          
+          suggestions = cvData.langues.map(l => `Niveau en ${l.nom}`);
+        }
+        break;
 
       case 'contact':
         responseText = `Tu peux me contacter via :<br>`;
@@ -722,7 +766,7 @@ app.post('/webhook', (req, res) => {
     
     // 💡 Ajouter des suggestions si disponibles
     if (suggestions.length > 0) {
-      responseText += `<br><br>💭 Suggestions : ${suggestions.join(' • ')}`;
+      responseText += `<br><br>💭 Suggestions : ${suggestions.join('<br> • ')}`;
     }
 
     // Réponse avec rich content si nécessaire
@@ -926,5 +970,3 @@ app.get('/health', (req, res) => {
     totalSessions: conversationSessions.size
   });
 });
-
-module.exports = app;

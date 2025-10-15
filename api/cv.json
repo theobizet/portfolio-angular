@@ -19,49 +19,57 @@
 
   "competences": {
     "liste": [
-      { "nom": "Angular", "cadre": "Autodidacte" },
-      { "nom": "TypeScript", "cadre": "Autodidacte" },
-      { "nom": "Kotlin", "cadre": "Autodidacte" },
-      { "nom": "C++", "cadre": "Université, Projets personnels" },
+      { "nom": "Angular", "cadre": "Projets personnels" },
+      { "nom": "TypeScript", "cadre": "Projets personnels" },
+      { "nom": "Kotlin", "cadre": "Projets personnels" },
+      { "nom": "C++", "cadre": "Université, Projets personnels, Projets académiques" },
       { "nom": "PHP", "cadre": "Université, Projets personnels" },
       { "nom": "Java", "cadre": "Université" },
       { "nom": "SQL", "cadre": "Université, Stage" },
       { "nom": "Laravel", "cadre": "Université, Projets personnels" },
       { "nom": "Git", "cadre": "Université, Projets personnels" },
       { "nom": "VBA", "cadre": "Stage, Université" },
-      { "nom": "Python", "cadre": "Université, Projets personnels" },
+      { "nom": "Python", "cadre": "Lycée, Université, Projets personnels" },
       { "nom": "Intelligence Artificielle", "cadre": "Université, Projets académiques" },
       { "nom": "Dialogflow", "cadre": "Projet personnel" },
       { "nom": "HTML/CSS", "cadre": "Université, Projets personnels" },
       { "nom": "JavaScript", "cadre": "Université, Projets personnels" },
-      { "nom": "Office 365", "cadre": "Stage, Université" },
+      { "nom": "Office 365", "cadre": "Stage, Université, Alternance" },
       { "nom": "OpenCV", "cadre": "Université, Projet académique" },
-      { "nom": "Qt", "cadre": "Projet personnel" },
-      { "nom": "Arduino", "cadre": "Université, Projets personnels" },
+      { "nom": "Qt", "cadre": "Université, Projet académique" },
+      { "nom": "Arduino", "cadre": "Lycée" },
       { "nom": "Réseaux", "cadre": "Université" },
       { "nom": "Algorithmes", "cadre": "Université" },
       { "nom": "Base de données", "cadre": "Université, Stage" },
       { "nom": "TensorFlow", "cadre": "Université, Projet académique" },
-      { "nom": "Jupyter", "cadre": "Université, Projet académique" }
+      { "nom": "Power BI", "cadre": "Alternance" },
+      { "nom": "Power Apps", "cadre": "Alternance" },
+      { "nom": "Power Automate", "cadre": "Alternance" },
+      { "nom": "SharePoint", "cadre": "Alternance" },
+      { "nom": "Vercel", "cadre": "Projet personnel" },
+      { "nom": "Bootstrap", "cadre": "Université, Projets personnels" },
+      { "nom": "NgBootstrap", "cadre": "Projet personnel" },
+      { "nom": "Express", "cadre": "Projet personnel" },
+      { "nom": "Node.js", "cadre": "Université, Projets personnels" }
     ],
     "details": {
       "Angular": {
-      "description": "Développement d'applications web dynamiques avec Angular 20+ et TypeScript. Utilisation de Vercel pour le déploiement, Dialogflow pour les chatbots, et intégration de thèmes personnalisables. Expérience avec la création de sites vitrines, gestion multilingue et accessibilité.",
-      "projets": ["Portfolio en ligne", "Gestionnaire de RDV"],
+      "description": "Framework front-end open-source maintenu par Google pour créer des applications web monopage robustes et évolutives. Basé sur TypeScript, il offre un écosystème intégré (CLI, modules, injection de dépendances, RxJS) facilitant architecture claire, testabilité et performance. Mise en œuvre de bonnes pratiques : lazy loading, optimisation de build, internationalisation (i18n), theming accessible et déploiement continu (Vercel dans ce projet).",
+      "projets": ["Portfolio en ligne"],
       "outils": ["Express", "NgBootstrap", "Vercel", "Dialogflow", "TypeScript"]
       },
       "C++": {
-      "description": "Développement de robots en console et d'outils logiciels pour la résolution de problèmes complexes. Utilisation de C++ pour des projets académiques et personnels, notamment la résolution de labyrinthes et la gestion de rendez-vous.",
+      "description": "C++ est un langage compilé multi-paradigmes (procédural, orienté objet, générique, moderne) offrant un contrôle fin de la mémoire et des performances élevées. Il est utilisé dans les systèmes critiques (embarqué, temps réel, moteurs, finance) où efficacité et robustesse sont essentielles. Mon expérience inclut la mise en oeuvre d’algorithmes (résolution de labyrinthe), d’interfaces avec Qt et de traitement d’images avec OpenCV, en appliquant modularité, bonnes pratiques de gestion mémoire (RAII, smart pointers) et optimisation.",
       "projets": ["Robot solveur de labyrinthe", "Gestionnaire de RDV"],
       "outils": ["C++", "Qt", "OpenCV"]
       },
       "Kotlin": {
-      "description": "Développement d’applications Android en Kotlin, avec une attention particulière à l’ergonomie et à la gestion des tâches. Expérience en auto-formation et expérimentation de nouvelles fonctionnalités mobiles.",
+      "description": "Kotlin est un langage moderne, statiquement typé et interopérable à 100 % avec Java, conçu pour réduire le code boilerplate et améliorer la fiabilité (null-safety, data classes, immutabilité). Il intègre les coroutines pour une gestion efficace de l’asynchrone, facilite l’écriture de DSL lisibles et offre une syntaxe concise. Langage officiel Android, il s’étend aussi au backend (Ktor, Spring) et au multiplateforme (Kotlin Multiplatform), offrant un socle cohérent, maintenable et durable pour l’entreprise.",
       "projets": ["Application mobile de gestion de tâches"],
       "outils": ["Android Studio", "Kotlin"]
       },
       "Intelligence Artificielle": {
-      "description": "Projets académiques d'étude de MobileNet-SSD, utilisation de TensorFlow et Jupyter pour la classification d’images et la détection d’objets. Expérience en réseaux de neurones convolutifs et traitement d’images.",
+      "description": "Discipline visant à permettre aux systèmes de résoudre des tâches complexes (classification, détection, décision) à partir de données. Concepts clés maîtrisés : apprentissage supervisé vs non supervisé, surapprentissage (réduction via régularisation et augmentation de données), évaluation (précision, rappel, F1), réseaux de neurones convolutifs (convolution, pooling, backpropagation), traitement et préparation d’images (normalisation, augmentation), optimisation (descente de gradient, taux d’apprentissage, early stopping) et notions d’algorithmes évolutionnaires (sélection, croisement, mutation) pour exploration d’hyperparamètres. Sensibilisation aux enjeux de biais, explicabilité et robustesse des modèles.",
       "projets": ["Classificateur d’images", "Détection d’objets", "Réseaux de neurones convolutifs", "Logiciel de traitement d’images"],
       "outils": ["Python", "TensorFlow", "Jupyter", "OpenCV"]
       },
@@ -97,7 +105,7 @@
   "experiences": [
     {
       "entreprise": "Stellantis",
-      "poste": "Développeur no code Power Apps (alternance)",
+      "poste": "Développeur low code/no code Power Apps (alternance)",
       "annee": "2025-en cours",
       "lieu": "Mulhouse, France",
       "type": "Alternance",
@@ -214,7 +222,7 @@
       "competences": ["Sciences de l’ingénieur", "Mathématiques", "Physique-Chimie", "Arduino", "Informatique et sciences du numérique" ]
     },
     {
-      "diplome": "Formation autodidacte en développement web et mobile",
+      "diplome": "Formation autodidacte et veille technologique",
       "etablissement": "Projets personnels, ressources en ligne et auto-apprentissage",
       "annee": "2020-en cours",
       "lieu": "En ligne",
@@ -302,6 +310,10 @@
     "Intelligence Artificielle",
     "Histoire et culture générale",
     "Randonnée",
-    "Photographie"
+    "Musique",
+    "Jeux vidéo",
+    "Technologies émergentes",
+    "Automobile",
+    "systèmes embarqués"
   ]
 }
