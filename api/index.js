@@ -959,10 +959,11 @@ app.post('/webhook', (req, res) => {
           // Rechercher chaque langue dans cvData
           const foundLangues = [];
           languesArray.forEach(langueNom => {
-            const langue = cvData.langues.find(l => 
-              l.nom.toLowerCase().includes(langueNom.toLowerCase()) || 
-              langueNom.toLowerCase().includes(l.nom.toLowerCase())
-            );
+            const langueNomLower = langueNom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const langue = cvData.langues.find(l => {
+              const nomLower = l.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+              return nomLower.includes(langueNomLower) || langueNomLower.includes(nomLower);
+            });
             if (langue) foundLangues.push(langue);
           });
           
@@ -1002,10 +1003,11 @@ app.post('/webhook', (req, res) => {
           // Une seule langue (traitement classique)
           const langueNom = languesArray[0] ? languesArray[0].toLowerCase() : '';
           
-          let langue = cvData.langues.find(l => 
-            l.nom.toLowerCase().includes(langueNom) || 
-            langueNom.includes(l.nom.toLowerCase())
-          );
+          const langueNomLower = langueNom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          let langue = cvData.langues.find(l => {
+            const nomLower = l.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            return nomLower.includes(langueNomLower) || langueNomLower.includes(nomLower);
+          });
           
           // Si pas trouvé, essayer la recherche floue
           if (!langue) {
