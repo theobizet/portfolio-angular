@@ -522,7 +522,7 @@ const handleMultipleEntities = (entities, entityType, cvData) => {
   
   // Plusieurs entités détectées
   let response = '';
-  const suggestions = [];
+  let suggestions = [];
   
   switch (entityType) {
     case 'langues':
