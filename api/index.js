@@ -181,7 +181,10 @@ class ConversationContext {
       'formation': 'formation',
       'formation_detail': 'formation',
       'projets': 'projets',
-      'projet_detail': 'projets'
+      'projet_detail': 'projets',
+      'langues': 'langues',
+      'langue_detail': 'langues',
+      'presentation': 'presentation',
     };
     this.currentTopic = topicMap[intentName] || null;
   }
