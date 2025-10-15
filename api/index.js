@@ -970,3 +970,5 @@ app.get('/health', (req, res) => {
     totalSessions: conversationSessions.size
   });
 });
+
+module.exports = app;
