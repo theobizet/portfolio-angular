@@ -526,39 +526,24 @@ const handleMultipleEntities = (entities, entityType, cvData) => {
   
   switch (entityType) {
     case 'langues':
-      response = `Super ! Tu t'intéresses à plusieurs de mes compétences linguistiques !<br><br>`;
+      response = `Je parle plusieurs langues !`;
       
       entities.forEach((langue, index) => {
-        console.log('🔍 Processing langue in handleMultipleEntities:', langue);
-        
         if (!langue || !langue.nom || !langue.niveau) {
-          console.error('❌ Invalid langue object:', langue);
           return;
         }
         
-        const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        console.log('🔍 Normalized langue name:', langueNormalized);
-        
-        response += `• ${langue.nom} : ${langue.niveau}<br>`;
-        
-        // Détails contextuels par langue
-        if (langueNormalized.includes('francais')) {
-          response += "-> Langue maternelle, maitrise parfaite a l'oral et a l'ecrit.<br>";
-        } else if (langueNormalized.includes('anglais')) {
-          response += "-> Niveau avance pour environnement professionnel international.<br>";
-        } else if (langueNormalized.includes('allemand')) {
-          response += "-> Communication courante, atout regional en Alsace.<br>";
-        }
-        
-        if (index < entities.length - 1) response += "<br>";
+        // Normaliser le nom pour éviter les problèmes d'encodage
+        const nomSafe = langue.nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        response += ` ${nomSafe} (${langue.niveau})`;
+        if (index < entities.length - 1) response += ',';
       });
       
-      response += `<br>Ces ${entities.length} langues me permettent de travailler dans des contextes multiculturels varies !`;
+      response += ` - Total: ${entities.length} langues.`;
       
       suggestions = [
-        "Experience en environnement international",
-        "Certifications linguistiques",
-        "Retour aux competences principales"
+        "Plus d'infos",
+        "Autres competences"
       ];
       break;
       
@@ -643,14 +628,8 @@ const handleMultipleEntities = (entities, entityType, cvData) => {
 
 app.post('/webhook', (req, res) => {
   try {
-    console.log('🔄 Webhook called with:', JSON.stringify(req.body, null, 2));
-    
     const { queryResult, session } = req.body;
     const { intent, parameters, queryText } = queryResult;
-    
-    console.log('📝 Intent:', intent.displayName);
-    console.log('📝 Parameters:', parameters);
-    console.log('📝 QueryText:', queryText);
     
     // 🧠 Gestion intelligente du contexte de session
     const sessionId = session ? session.split('/').pop() : 'anonymous';
@@ -968,10 +947,6 @@ app.post('/webhook', (req, res) => {
         const langueParam = parameters.langue;
         const languesArray = Array.isArray(langueParam) ? langueParam : (langueParam ? [langueParam] : []);
         
-        console.log('🔍 langue_detail - langueParam:', langueParam);
-        console.log('🔍 langue_detail - languesArray:', languesArray);
-        console.log('🔍 cvData.langues:', cvData.langues);
-        
         // Si plusieurs langues dans le paramètre Dialogflow
         if (languesArray.length > 1) {
           // Rechercher chaque langue dans cvData
@@ -986,9 +961,7 @@ app.post('/webhook', (req, res) => {
           });
           
           // Utiliser le handler multi-entités
-          console.log('🔍 Calling handleMultipleEntities with:', foundLangues);
           const multiLanguesResult = handleMultipleEntities(foundLangues, 'langues', cvData);
-          console.log('✅ handleMultipleEntities result:', multiLanguesResult);
           
           if (multiLanguesResult.found && multiLanguesResult.multi) {
             responseText = multiLanguesResult.response;
