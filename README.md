@@ -639,6 +639,62 @@ Un recruteur peut poser des questions complexes combinant plusieurs entités :
 
 Le webhook détecte automatiquement ces requêtes multi-entités et génère des réponses structurées.
 
+### 🎯 Support natif des tableaux Dialogflow
+
+Quand un utilisateur mentionne plusieurs entités dans une seule phrase, Dialogflow détecte automatiquement ces multiples valeurs et les renvoie sous forme de **tableau** dans le paramètre correspondant.
+
+**Exemple** :
+```
+User: "Tu parles anglais et allemand ?"
+Dialogflow: parameters.langue = ["anglais", "allemand"] (array)
+Bot: Réponse structurée avec les 2 langues
+```
+
+#### Adaptation du code pour les tableaux Dialogflow
+
+**Pour les langues (langue_detail)** :
+```javascript
+const langueParam = parameters.langue;
+const languesArray = Array.isArray(langueParam) 
+  ? langueParam 
+  : (langueParam ? [langueParam] : []);
+
+if (languesArray.length > 1) {
+  // Traitement multi-langues avec handleMultipleEntities
+}
+```
+
+**Pour les compétences (competence_detail)** :
+```javascript
+const competenceParam = parameters.competence;
+const competencesArray = Array.isArray(competenceParam) 
+  ? competenceParam 
+  : (competenceParam ? [competenceParam] : []);
+
+if (competencesArray.length > 1) {
+  // Traitement multi-compétences avec handleMultipleEntities
+}
+```
+
+**Pour les projets (projet_detail)** :
+```javascript
+const projetParam = parameters.projet;
+const projetsArray = Array.isArray(projetParam) 
+  ? projetParam 
+  : (projetParam ? [projetParam] : []);
+
+if (projetsArray.length > 1) {
+  // Traitement multi-projets avec handleMultipleEntities
+}
+```
+
+#### Avantages du support natif
+
+✅ **Compatibilité Dialogflow native** - Utilise directement les paramètres extraits par Dialogflow  
+✅ **Plus fiable** - Pas besoin de parsing manuel du texte  
+✅ **Robustesse** - Gère tableaux, strings, undefined, null  
+✅ **Rétrocompatible** - Fonctionne toujours avec une seule entité
+
 ### Fonctionnement technique
 
 #### 1. Extraction multi-entités
@@ -849,6 +905,69 @@ User: "Tu codes en web et mobile ?"
 Bot: Détecte "web" et "mobile" (domaines)
      → Liste les technologies web (Angular, TypeScript...)
      → Liste les technologies mobile (Kotlin, Java...)
+```
+
+### 🔍 Configuration Dialogflow requise
+
+#### Training phrases recommandées
+
+Pour que Dialogflow détecte correctement plusieurs entités, ajoutez des training phrases avec plusieurs entités annotées :
+
+**Intent: langue_detail**
+```
+Tu parles @langue:anglais et @langue:allemand ?
+@langue:anglais, @langue:allemand et @langue:français ?
+Tu maîtrises l'@langue:anglais ou l'@langue:allemand ?
+```
+
+**Intent: competence_detail**
+```
+Tu connais @competence:Angular et @competence:TypeScript ?
+@competence:Python, @competence:Java et @competence:C++ ?
+Tu maîtrises @competence:Angular ou @competence:React ?
+```
+
+**Intent: projet_detail**
+```
+Parle-moi de @projet:portfolio et @projet:appli mobile
+@projet:portfolio, @projet:labyrinthe et @projet:pong
+Tu as développé @projet:portfolio ou @projet:reconnaissance objets ?
+```
+
+#### Configuration des entités
+
+Assurez-vous que vos entités Dialogflow sont configurées avec :
+- **Allow multiple values** : ✅ Activé (important !)
+- **Synonyms** : Ajoutez des variantes (ex: "english" → "anglais")
+
+### 🧪 Tests de validation
+
+**Test 1 : Une seule entité**
+```
+User: "Tu parles anglais ?"
+Expected: parameters.langue = "anglais" (string)
+Result: ✅ Traitement standard
+```
+
+**Test 2 : Deux entités**
+```
+User: "Tu parles anglais et allemand ?"
+Expected: parameters.langue = ["anglais", "allemand"] (array)
+Result: ✅ Traitement multi-entités
+```
+
+**Test 3 : Trois entités ou plus**
+```
+User: "Tu parles anglais, allemand et français ?"
+Expected: parameters.langue = ["anglais", "allemand", "français"] (array)
+Result: ✅ Traitement multi-entités avec 3 langues
+```
+
+**Test 4 : Entité non trouvée**
+```
+User: "Tu parles anglais et chinois ?"
+Expected: parameters.langue = ["anglais", "chinois"] (array)
+Result: ✅ Affiche anglais + message que chinois n'est pas dans le CV
 ```
 
 ---

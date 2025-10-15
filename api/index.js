@@ -689,18 +689,60 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'competence_detail':
-        const competenceName = parameters.competence ? parameters.competence : '';
+        // 🎯 Dialogflow renvoie un tableau quand plusieurs compétences sont détectées
+        const competenceParam = parameters.competence;
+        const competencesArray = Array.isArray(competenceParam) ? competenceParam : (competenceParam ? [competenceParam] : []);
         
-        // 🔍 Détection de plusieurs compétences dans la requête
-        const multipleCompetences = extractMultipleEntities(queryText, 'competences', cvData.competences.liste);
-        const multiCompetencesResult = handleMultipleEntities(multipleCompetences, 'competences', cvData);
-        
-        if (multiCompetencesResult.found && multiCompetencesResult.multi) {
-          // Plusieurs compétences détectées
-          responseText = multiCompetencesResult.response;
-          suggestions = multiCompetencesResult.suggestions;
+        // Si plusieurs compétences dans le paramètre Dialogflow
+        if (competencesArray.length > 1) {
+          // Rechercher chaque compétence dans cvData
+          const foundCompetences = [];
+          competencesArray.forEach(competenceName => {
+            let competenceObj = findInList(cvData.competences.liste, competenceName, 'nom');
+            
+            // Si pas trouvé, essayer la recherche floue
+            if (!competenceObj) {
+              const fuzzyResults = fuzzySearch(competenceName, cvData.competences.liste, 'nom');
+              competenceObj = fuzzyResults[0];
+            }
+            
+            if (competenceObj) foundCompetences.push(competenceObj);
+          });
+          
+          // Utiliser le handler multi-entités
+          const multiCompetencesResult = handleMultipleEntities(foundCompetences, 'competences', cvData);
+          
+          if (multiCompetencesResult.found && multiCompetencesResult.multi) {
+            responseText = multiCompetencesResult.response;
+            suggestions = multiCompetencesResult.suggestions;
+          } else if (foundCompetences.length === 1) {
+            // Une seule compétence trouvée, traitement standard
+            const competenceObj = foundCompetences[0];
+            let competenceDetails = cvData.competences.details[competenceObj.nom];
+            
+            if (competenceDetails) {
+              responseText = `Excellente question sur ${competenceObj.nom} ! `;
+              responseText += `${competenceDetails.description}<br>`;
+              responseText += `📋 Projets associés : ${competenceDetails.projets.join(', ')}.<br>`;
+              responseText += `🛠️ Outils utilisés : ${competenceDetails.outils.join(', ')}.`;
+              
+              suggestions = [
+                `Voir des projets ${competenceObj.nom}`,
+                "Autres technologies similaires",
+                "Mon parcours d'apprentissage"
+              ];
+            } else {
+              responseText = `Je connais ${competenceObj.nom}, mais je développe encore mes connaissances dans ce domaine.`;
+              suggestions = context.getRelatedSuggestions();
+            }
+          } else {
+            responseText = `Je n'ai pas trouvé toutes les compétences demandées dans mon profil.<br>`;
+            responseText += `Voici mes principales compétences :<br>${formatList(cvData.competences.liste.slice(0, 8), 'nom')}.<br>`;
+          }
         } else {
-          // Une seule compétence ou recherche standard
+          // Une seule compétence (traitement classique)
+          const competenceName = competencesArray[0] || '';
+          
           // 🔍 Recherche intelligente avec fuzzy matching
           let competenceObj = findInList(cvData.competences.liste, competenceName, 'nom');
           
@@ -822,18 +864,52 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'projet_detail':
-        const projetName = parameters.projet ? parameters.projet.toLowerCase() : '';
+        // 🎯 Dialogflow renvoie un tableau quand plusieurs projets sont détectés
+        const projetParam = parameters.projet;
+        const projetsArray = Array.isArray(projetParam) ? projetParam : (projetParam ? [projetParam] : []);
         
-        // 🔍 Détection de plusieurs projets dans la requête
-        const multipleProjets = extractMultipleEntities(queryText, 'projets', cvData.projets);
-        const multiProjetsResult = handleMultipleEntities(multipleProjets, 'projets', cvData);
-        
-        if (multiProjetsResult.found && multiProjetsResult.multi) {
-          // Plusieurs projets détectés
-          responseText = multiProjetsResult.response;
-          suggestions = multiProjetsResult.suggestions;
+        // Si plusieurs projets dans le paramètre Dialogflow
+        if (projetsArray.length > 1) {
+          // Rechercher chaque projet dans cvData
+          const foundProjets = [];
+          projetsArray.forEach(projetName => {
+            const proj = findInList(cvData.projets, projetName, 'nom');
+            if (proj) foundProjets.push(proj);
+          });
+          
+          // Utiliser le handler multi-entités
+          const multiProjetsResult = handleMultipleEntities(foundProjets, 'projets', cvData);
+          
+          if (multiProjetsResult.found && multiProjetsResult.multi) {
+            responseText = multiProjetsResult.response;
+            suggestions = multiProjetsResult.suggestions;
+          } else if (foundProjets.length === 1) {
+            // Un seul projet trouvé, traitement standard
+            const proj = foundProjets[0];
+            responseText = `${proj.nom} (${proj.annee}) :<br>${proj.description}<br>`;
+            responseText += `Technologies : ${proj.technos.join(', ')}.<br>`;
+
+            if (proj.lien) responseText += `Lien : ${proj.lien}<br>`;
+            if (proj.github) responseText += `Code source : ${proj.github}<br>`;
+
+            responseText += "Détails :<br>";
+            responseText += proj.details.map(detail => `- ${detail}`).join('<br>');
+
+            if (proj.lien || proj.github) {
+              richResponses = [{
+                type: "info",
+                title: proj.nom,
+                subtitle: proj.description,
+                actionLink: proj.lien || proj.github
+              }];
+            }
+          } else {
+            responseText = `Je n'ai pas trouvé tous les projets demandés dans mon portfolio.<br>`;
+            responseText += `Voici mes projets : ${formatList(cvData.projets, 'nom')}.`;
+          }
         } else {
-          // Un seul projet ou recherche standard
+          // Un seul projet (traitement classique)
+          const projetName = projetsArray[0] ? projetsArray[0].toLowerCase() : '';
           const proj = findInList(cvData.projets, projetName, 'nom');
 
           if (proj) {
@@ -858,8 +934,8 @@ app.post('/webhook', (req, res) => {
           responseText = `Je n’ai pas de projet nommé "${projetName}".<br>`;
           responseText += `Voici mes projets : ${formatList(cvData.projets, 'nom')}.`;
         }
-        break;
         }
+        break;
       
       case 'langues':
         responseText = `Je parle plusieurs langues :<br>`;
@@ -874,18 +950,58 @@ app.post('/webhook', (req, res) => {
         break;
 
       case 'langue_detail':
-        const langueNom = parameters.langue ? parameters.langue.toLowerCase() : '';
+        // 🎯 Dialogflow renvoie un tableau quand plusieurs langues sont détectées
+        const langueParam = parameters.langue;
+        const languesArray = Array.isArray(langueParam) ? langueParam : (langueParam ? [langueParam] : []);
         
-        // 🔍 Détection de plusieurs langues dans la requête
-        const multipleLangues = extractMultipleEntities(queryText, 'langues', cvData.langues);
-        const multiLanguesResult = handleMultipleEntities(multipleLangues, 'langues', cvData);
-        
-        if (multiLanguesResult.found && multiLanguesResult.multi) {
-          // Plusieurs langues détectées
-          responseText = multiLanguesResult.response;
-          suggestions = multiLanguesResult.suggestions;
+        // Si plusieurs langues dans le paramètre Dialogflow
+        if (languesArray.length > 1) {
+          // Rechercher chaque langue dans cvData
+          const foundLangues = [];
+          languesArray.forEach(langueNom => {
+            const langue = cvData.langues.find(l => 
+              l.nom.toLowerCase().includes(langueNom.toLowerCase()) || 
+              langueNom.toLowerCase().includes(l.nom.toLowerCase())
+            );
+            if (langue) foundLangues.push(langue);
+          });
+          
+          // Utiliser le handler multi-entités
+          const multiLanguesResult = handleMultipleEntities(foundLangues, 'langues', cvData);
+          
+          if (multiLanguesResult.found && multiLanguesResult.multi) {
+            responseText = multiLanguesResult.response;
+            suggestions = multiLanguesResult.suggestions;
+          } else if (foundLangues.length === 1) {
+            // Une seule langue trouvée, traitement standard
+            const langue = foundLangues[0];
+            responseText = `Mon niveau en ${langue.nom} est ${langue.niveau}.<br>`;
+            
+            const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            if (langueNormalized.includes('francais') || langueNormalized.includes('français')) {
+              responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
+            } else if (langueNormalized.includes('anglais') || langueNormalized.includes('english')) {
+              responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
+            } else if (langueNormalized.includes('allemand') || langueNormalized.includes('german') || langueNormalized.includes('deutsch')) {
+              responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
+            } else {
+              responseText += `Cette compétence linguistique enrichit mon profil professionnel.`;
+            }
+            
+            suggestions = [
+              "Mes autres compétences linguistiques",
+              "Mon expérience en environnement international",
+              "Retour aux informations principales"
+            ];
+          } else {
+            responseText = `Je n'ai pas trouvé toutes les langues demandées dans mon profil.<br>`;
+            responseText += `Voici les langues que je parle : ${cvData.langues.map(l => l.nom).join(', ')}.`;
+          }
         } else {
-          // Une seule langue ou recherche standard
+          // Une seule langue (traitement classique)
+          const langueNom = languesArray[0] ? languesArray[0].toLowerCase() : '';
+          
           let langue = cvData.langues.find(l => 
             l.nom.toLowerCase().includes(langueNom) || 
             langueNom.includes(l.nom.toLowerCase())
