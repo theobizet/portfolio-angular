@@ -6,8 +6,3 @@
     transform: rotate(360deg);
   }
 }
-
-.spinning-icon {
-  animation: spin 1.5s linear infinite;
-  transform-origin: center;
-}

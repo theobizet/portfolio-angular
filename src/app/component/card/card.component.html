@@ -5,7 +5,7 @@
     </div>
     <div class="card-body h-100">
       <h5 class="card-title">{{ title() | translate}}</h5>
-      <p class="card-text" *ngIf="role">{{ 'CARD.ROLE' | translate }}{{ role() | translate}}</p>
+      <p class="card-text text-justify" *ngIf="role">{{ 'CARD.ROLE' | translate }}{{ role() | translate}}</p>
     </div>
     <img class="card-img-bottom position-relative" [src]="imageUrl()" fill="true" style="object-fit : cover; height: 10dvh;"/>
   </div>

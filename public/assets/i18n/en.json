@@ -27,13 +27,9 @@
   "ABOUT": {
     "TITLE": "About Me",
     "PATH": "My Journey",
-    "DEGREE": "Graduated with a Bachelor’s degree in Computer Science ",
-    "AND": "and currently pursuing a Master’s degree in ",
-    "MASTER": "MIAGE (Computer Science Methods Applied to Business Management)",
-    "PARAGRAPH1": "I have developed strong expertise in solving complex problems and the ability to quickly adapt to technological changes. My rigorous academic background has allowed me to acquire sharp technical skills, which I apply to innovative projects. My goal? To combine expertise and creativity to contribute to ambitious, high-value projects.",
+    "PARAGRAPH1": "Graduated with a Bachelor's degree in Computer Science and currently pursuing a Master's degree in MIAGE (Computer Science Methods Applied to Business Management), I have developed strong expertise in solving complex problems and the ability to quickly adapt to technological changes. My rigorous academic background has allowed me to acquire sharp technical skills, which I apply to innovative projects. My goal? To combine expertise and creativity to contribute to ambitious, high-value projects.",
     "DEFINES": "What Defines Me",
-    "CURIOSITY": "Curiosity and versatility",
-    "PARAGRAPH2": "are at the heart of my approach. With nine years of guitar practice, I have developed discipline, creativity, and perseverance—qualities I bring to my technical and collaborative projects. Holding both B and AM driving licenses, I am mobile and ready to seize opportunities as they arise.",
+    "PARAGRAPH2": "Curiosity and versatility are at the heart of my approach. With nine years of guitar practice, I have developed discipline, creativity, and perseverance—qualities I bring to my technical and collaborative projects. Holding both B and AM driving licenses, I am mobile and ready to seize opportunities as they arise.",
     "PASSIONS": "Passions & Ambitions",
     "PARAGRAPH3": "Passionate about history, general culture, and technology, I love exploring the links between technique and creativity. Computer-aided design (CAD) and frontend development are two areas that particularly fascinate me. My ambition? To become a full-stack developer to design comprehensive solutions that combine performance and user experience.",
     "CONTINUOUS_LEARNING": "Continuous Learning",
@@ -220,6 +216,7 @@
   "404": {
     "TITLE": "404 - Page Not Found",
     "DESCRIPTION": "Sorry, the page you are looking for does not exist or has been moved.",
-    "RETURN": "Return to Home"
+    "RETURN": "Return to Home",
+    "SUGGESTION": "Use the navigation menu to explore my portfolio"
   }
 }

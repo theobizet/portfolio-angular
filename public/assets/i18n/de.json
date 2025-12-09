@@ -27,13 +27,9 @@
   "ABOUT": {
     "TITLE": "Über mich",
     "PATH": "Mein Werdegang",
-    "DEGREE": "Abschluss eines Bachelorstudiums in Informatik ",
-    "AND": "und derzeit im Masterstudiengang ",
-    "MASTER": "MIAGE (Informatikmethoden für das Unternehmensmanagement)",
-    "PARAGRAPH1": "habe ich fundierte Expertise in der Lösung komplexer Probleme und die Fähigkeit entwickelt, mich schnell an technologische Entwicklungen anzupassen. Mein strenger akademischer Werdegang hat es mir ermöglicht, präzise technische Fähigkeiten zu erwerben, die ich in innovative Projekte einbringe. Mein Ziel? Expertise und Kreativität zu verbinden, um zu ehrgeizigen und wertschöpfenden Projekten beizutragen.",
+    "PARAGRAPH1": "Mit einem Abschluss eines Bachelorstudiums in Informatik und derzeit im Masterstudiengang MIAGE (Informatikmethoden für das Unternehmensmanagement) habe ich fundierte Expertise in der Lösung komplexer Probleme und die Fähigkeit entwickelt, mich schnell an technologische Entwicklungen anzupassen. Mein strenger akademischer Werdegang hat es mir ermöglicht, präzise technische Fähigkeiten zu erwerben, die ich in innovative Projekte einbringe. Mein Ziel? Expertise und Kreativität zu verbinden, um zu ehrgeizigen und wertschöpfenden Projekten beizutragen.",
     "DEFINES": "Was mich ausmacht",
-    "CURIOSITY": "Neugierde und Vielseitigkeit",
-    "PARAGRAPH2": "stehen im Mittelpunkt meines Ansatzes. Mit neun Jahren Gitarrenpraxis habe ich Disziplin, Kreativität und Durchhaltevermögen entwickelt – Eigenschaften, die ich in meine technischen und kollaborativen Projekte einbringe. Im Besitz der Führerscheine B und AM bin ich mobil und bereit, sich bietende Chancen zu ergreifen.",
+    "PARAGRAPH2": "Neugierde und Vielseitigkeit stehen im Mittelpunkt meines Ansatzes. Mit neun Jahren Gitarrenpraxis habe ich Disziplin, Kreativität und Durchhaltevermögen entwickelt – Eigenschaften, die ich in meine technischen und kollaborativen Projekte einbringe. Im Besitz der Führerscheine B und AM bin ich mobil und bereit, sich bietende Chancen zu ergreifen.",
     "PASSIONS": "Leidenschaften & Ambitionen",
     "PARAGRAPH3": "Begeistert von Geschichte, Allgemeinwissen und Technologien, erkunde ich gerne die Verbindungen zwischen Technik und Kreativität. Besonders faszinieren mich Computer-Aided Design (CAD) und Frontend-Entwicklung. Mein Ziel? Ein Full-Stack-Entwickler zu werden, um umfassende Lösungen zu konzipieren, die Leistung und Benutzererlebnis vereinen.",
     "CONTINUOUS_LEARNING": "Weiterbildung",
@@ -220,6 +216,7 @@
   "404": {
     "TITLE": "404 - Seite nicht gefunden",
     "DESCRIPTION": "Entschuldigung, die gesuchte Seite existiert nicht oder wurde verschoben.",
-    "RETURN": "Zurück zur Startseite"
+    "RETURN": "Zurück zur Startseite",
+    "SUGGESTION": "Verwenden Sie das Navigationsmenü, um mein Portfolio zu erkunden"
   }
 }

@@ -1,10 +1,39 @@
-<div class="container text-center mt-5">
-  <ngb-alert type="danger" [dismissible]="false">
-    <h1 class="display-4">{{'404.TITLE'|translate}}</h1>
-    <p class="lead">{{'404.DESCRIPTION'|translate}}</p>
-  </ngb-alert>
-
-  <button class="btn btn-primary btn-lg" routerLink="/">
-    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> {{'404.RETURN'|translate}}
-  </button>
+<div class="container-fluid d-flex align-items-center justify-content-center min-vh-100 bg-transparent">
+  <div class="row justify-content-center w-100">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 bg-opacity-75 bg-body">
+        <div class="card-body text-center p-5">
+          <div class="mb-4">
+            <i class="fas fa-exclamation-triangle text-warning" style="font-size: 5rem;"></i>
+          </div>
+          
+          <h1 class="display-1 fw-bold text-primary mb-3">404</h1>
+          <h2 class="h3 mb-4 text-secondary">{{'404.TITLE' | translate}}</h2>
+          <p class="lead text-muted mb-5">{{'404.DESCRIPTION' | translate}}</p>
+          
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <button class="btn btn-primary btn-lg px-4" routerLink="/">
+              <i class="fa fa-arrow-circle-left me-2" aria-hidden="true"></i>
+              {{'404.RETURN' | translate}}
+            </button>
+            <button class="btn btn-outline-secondary btn-lg px-4" routerLink="/contact">
+              <i class="fa fa-envelope me-2" aria-hidden="true"></i>
+              {{'NAVBAR.CONTACT' | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <div class="card border-0 shadow-sm bg-opacity-75 bg-body">
+          <div class="card-body py-2">
+            <p class="mb-0">
+              <i class="fas fa-lightbulb me-2 text-warning"></i>
+              <small><strong>{{'404.SUGGESTION' | translate}}</strong></small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

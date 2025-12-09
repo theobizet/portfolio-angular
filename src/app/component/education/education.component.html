@@ -1,6 +1,6 @@
 <main class="container-fluid bg-transparent py-2">
-  <h2 class="border-bottom pb-2 text-light mb-4">{{ 'EDUCATION.TITLE' | translate }}</h2>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
+  <h2 class="border-bottom pb-2 text-light mb-2">{{ 'EDUCATION.TITLE' | translate }}</h2>
+  <div class="row row-cols-1 row-cols-md-2 g-2">
     <!-- UHA -->
     <div class="col-md-4">
       <div class="card bg-body bg-opacity-75 shadow-sm border-0">
@@ -13,27 +13,17 @@
           <div class="col-6">
             <h5 class="card-title fw-bold text-decoration-underline">{{ 'EDUCATION.UHA.LANGUAGES_TITLE' | translate }}</h5>
             <ul class="list-unstyled">
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.C++' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.PHP' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.JAVA' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.JAVASCRIPT' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.SQL' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.LARAVEL' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.HTML_CSS' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.QT' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.LANGUAGES.VBA' | translate }}</li>
+              <li class="mb-2" *ngFor="let language of uhaLanguages">
+                <i class="fas fa-check-circle text-primary me-2"></i>{{ language }}
+              </li>
             </ul>
           </div>
           <div class="col-6">
             <h5 class="card-title fw-bold text-decoration-underline">{{ 'EDUCATION.UHA.SKILLS_TITLE' | translate }}</h5>
             <ul class="list-unstyled">
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.SKILLS.AI' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.SKILLS.PROJECT_MANAGEMENT' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.SKILLS.ACCOUNTING' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.SKILLS.ANALYTICAL_ACCOUNTING' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.SKILLS.NETWORK' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.SKILLS.UML' | translate }}</li>
-              <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.UHA.SKILLS.GIT' | translate }}</li>
+              <li class="mb-2" *ngFor="let skill of uhaSkills">
+                <i class="fas fa-check-circle text-primary me-2"></i>{{ skill }}
+              </li>
             </ul>
           </div>
         </div>
@@ -57,17 +47,9 @@
         <div class="card-body">
           <h5 class="card-title fw-bold text-decoration-underline">{{ 'EDUCATION.DON_BOSCO.SKILLS_TITLE' | translate }}</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.PYTHON' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.CAO' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.OFFICE' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.ELECTRONICS' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.MECHANICS' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.AUTOMATIC' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.ROBOTICS' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.TEAMWORK' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.SOLIDWORKS' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.SKETCHUP' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.DON_BOSCO.SKILLS.ARDUINO' | translate }}</li>
+            <li class="mb-2" *ngFor="let skill of donBoscoSkills">
+              <i class="fas fa-check-circle text-primary me-2"></i>{{ skill }}
+            </li>
           </ul>
         </div>
       </div>
@@ -84,10 +66,9 @@
         <div class="card-body">
           <h5 class="card-title fw-bold text-decoration-underline">{{ 'EDUCATION.SELF_TAUGHT.SKILLS_TITLE' | translate }}</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.SELF_TAUGHT.SKILLS.ANGULAR' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.SELF_TAUGHT.SKILLS.TYPESCRIPT' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.SELF_TAUGHT.SKILLS.REACT' | translate }}</li>
-            <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'EDUCATION.SELF_TAUGHT.SKILLS.KOTLIN' | translate }}</li>
+            <li class="mb-2" *ngFor="let skill of selfTaughtSkills">
+              <i class="fas fa-check-circle text-primary me-2"></i>{{ skill }}
+            </li>
           </ul>
         </div>
       </div>

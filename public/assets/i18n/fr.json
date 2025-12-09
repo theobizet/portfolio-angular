@@ -27,15 +27,11 @@
   "ABOUT": {
     "TITLE": "À propos de moi",
     "PATH": "Mon parcours",
-    "DEGREE": "Diplômé d’une licence en informatique ",
-    "AND": "et actuellement en master ",
-    "MASTER": "MIAGE (Méthodes Informatiques Appliquées à la Gestion des Entreprises)",
-    "PARAGRAPH1": "j’ai développé une solide expertise en résolution de problèmes complexes et une capacité à m’adapter rapidement aux évolutions technologiques. Mon parcours académique rigoureux m’a permis d’acquérir des compétences techniques pointues, que je mets au service de projets innovants. Mon objectif ? Allier expertise et créativité pour contribuer à des projets ambitieux et à forte valeur ajoutée.",
-    "DEFINES":"Ce qui me définit",
-    "CURIOSITY": "Curiosité et polyvalence",
-    "PARAGRAPH2": "sont au cœur de mon approche. Avec neuf ans de pratique de la guitare, j’ai développé discipline, créativité et persévérance – des qualités que je mets au service de mes projets techniques et collaboratifs. Titulaire des permis B et AM, je suis mobile et prêt à saisir les opportunités qui se présentent.",
+    "PARAGRAPH1": "Diplômé d'une licence en informatique et actuellement en master MIAGE (Méthodes Informatiques Appliquées à la Gestion des Entreprises), j'ai développé une solide expertise en résolution de problèmes complexes et une capacité à m'adapter rapidement aux évolutions technologiques. Mon parcours académique rigoureux m'a permis d'acquérir des compétences techniques pointues, que je mets au service de projets innovants. Mon objectif ? Allier expertise et créativité pour contribuer à des projets ambitieux et à forte valeur ajoutée.",
+    "DEFINES": "Ce qui me définit",
+    "PARAGRAPH2": "Curiosité et polyvalence sont au cœur de mon approche. Avec neuf ans de pratique de la guitare, j'ai développé discipline, créativité et persévérance – des qualités que je mets au service de mes projets techniques et collaboratifs. Titulaire des permis B et AM, je suis mobile et prêt à saisir les opportunités qui se présentent.",
     "PASSIONS": "Passions & Ambitions",
-    "PARAGRAPH3": "Passionné par l’histoire, la culture générale et les technologies, j’aime explorer les liens entre technique et créativité. La conception assistée par ordinateur (CAO) et le développement frontend sont deux domaines qui me fascinent particulièrement. Mon ambition ? Devenir développeur full-stack pour concevoir des solutions complètes, alliant performance et expérience utilisateur. ",
+    "PARAGRAPH3": "Passionné par l'histoire, la culture générale et les technologies, j'aime explorer les liens entre technique et créativité. La conception assistée par ordinateur (CAO) et le développement frontend sont deux domaines qui me fascinent particulièrement. Mon ambition ? Devenir développeur full-stack pour concevoir des solutions complètes, alliant performance et expérience utilisateur.",
     "CONTINUOUS_LEARNING": "Formation Continue",
     "PARAGRAPH4": "En autodidacte, je me forme actuellement à :",
     "LEARNING1": "Angular & ReactJS pour le développement frontend moderne,",
@@ -77,7 +73,11 @@
         "LARAVEL": "Laravel (PHP framework)",
         "HTML_CSS": "HTML & CSS",
         "QT": "QT framework",
-        "VBA": "VBA"
+        "VBA": "VBA",
+        "PYTHON_AI": "Python orienté IA",
+        "FLUTTER": "Flutter & Dart",
+        "BASH": "Bash scripting",
+        "POWERSHELL": "PowerShell scripting"
       },
       "SKILLS_TITLE": "Autres compétences acquises :",
       "SKILLS": {
@@ -87,7 +87,9 @@
         "ANALYTICAL_ACCOUNTING": "Comptabilité Analytique (stage)",
         "NETWORK": "Notions de réseau",
         "UML": "Modélisation UML",
-        "GIT": "Git et GitHub"
+        "GIT": "Git et GitHub",
+        "DATABASES": "Administration de bases de données",
+        "SOFTWARE_DEVELOPMENT": "Méthodologies de développement logiciel"
       }
     },
     "DON_BOSCO": {
@@ -220,6 +222,7 @@
   "404":{
     "TITLE":"404 - Page non trouvée",
     "DESCRIPTION":"Désolé, la page que vous cherchez n'existe pas ou a été déplacée",
-    "RETURN":"Retour à l'accueil"
+    "RETURN":"Retour à l'accueil",
+    "SUGGESTION":"Utilisez le menu de navigation pour explorer mon portfolio"
   }
 }
