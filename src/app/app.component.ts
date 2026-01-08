@@ -1,18 +1,14 @@
-import { Component, Inject, OnInit, PLATFORM_ID ,inject} from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavigationBarComponent } from './component/navigation-bar/navigation-bar.component';
 import { ThemeService } from './theme.service';
-import {
-    TranslateService,
-    TranslatePipe,
-    TranslateDirective
-} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavigationBarComponent, TranslatePipe, TranslateDirective],
+  imports: [RouterOutlet, NavigationBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

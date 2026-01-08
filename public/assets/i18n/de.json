@@ -73,7 +73,11 @@
         "LARAVEL": "Laravel (PHP-Framework)",
         "HTML_CSS": "HTML & CSS",
         "QT": "QT-Framework",
-        "VBA": "VBA"
+        "VBA": "VBA",
+        "PYTHON_AI": "KI-orientiertes Python",
+        "FLUTTER": "Flutter & Dart",
+        "BASH": "Bash-Scripting",
+        "POWERSHELL": "PowerShell-Scripting"
       },
       "SKILLS_TITLE": "Weitere erworbene Fähigkeiten:",
       "SKILLS": {
@@ -83,7 +87,9 @@
         "ANALYTICAL_ACCOUNTING": "Kostenrechnung (Praktikum)",
         "NETWORK": "Netzwerkgrundlagen",
         "UML": "UML-Modellierung",
-        "GIT": "Git und GitHub"
+        "GIT": "Git und GitHub",
+        "DATABASES": "Datenbankadministration",
+        "SOFTWARE_DEVELOPMENT": "Softwareentwicklungsmethoden"
       }
     },
     "DON_BOSCO": {

@@ -73,7 +73,11 @@
         "LARAVEL": "Laravel (PHP framework)",
         "HTML_CSS": "HTML & CSS",
         "QT": "QT framework",
-        "VBA": "VBA"
+        "VBA": "VBA",
+        "PYTHON_AI": "AI-focused Python",
+        "FLUTTER": "Flutter & Dart",
+        "BASH": "Bash scripting",
+        "POWERSHELL": "PowerShell scripting"
       },
       "SKILLS_TITLE": "Other skills acquired:",
       "SKILLS": {
@@ -83,7 +87,9 @@
         "ANALYTICAL_ACCOUNTING": "Analytical Accounting (internship)",
         "NETWORK": "Network Basics",
         "UML": "UML Modeling",
-        "GIT": "Git and GitHub"
+        "GIT": "Git and GitHub",
+        "DATABASES": "Database Administration",
+        "SOFTWARE_DEVELOPMENT": "Software Development Methodologies"
       }
     },
     "DON_BOSCO": {

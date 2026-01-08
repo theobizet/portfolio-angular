@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../theme.service';
-import { NgOptimizedImage, KeyValuePipe, NgFor } from '@angular/common';
+import { NgOptimizedImage, NgFor } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-education',
   standalone: true,
-  imports: [NgOptimizedImage, TranslateModule, KeyValuePipe, NgFor],
+  imports: [NgOptimizedImage, TranslateModule, NgFor],
   templateUrl: './education.component.html',
   styleUrl: './education.component.css'
 })
