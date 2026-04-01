@@ -9,45 +9,51 @@
 
 export default {
   async fetch(request, env) {
+    // Headers CORS à renvoyer systématiquement
+    const corsHeaders = {
+      'Access-Control-Allow-Origin': '*', // En dev, on accepte toutes les origines
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Max-Age': '86400',
+    };
+
     // Gérer les requêtes OPTIONS (CORS preflight)
     if (request.method === 'OPTIONS') {
       return new Response(null, {
-        headers: {
-          'Access-Control-Allow-Origin': env.ALLOWED_ORIGINS || '*',
-          'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        },
+        status: 204,
+        headers: corsHeaders,
       });
     }
 
-    // Route Health Check
-    if (request.url.includes('/health') && request.method === 'GET') {
-      return new Response(JSON.stringify({ status: 'ok', timestamp: new Date().toISOString() }), {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': env.ALLOWED_ORIGINS || '*',
-        },
-      });
-    }
+    try {
+      // Route Health Check
+      if (request.url.includes('/health') && request.method === 'GET') {
+        return new Response(JSON.stringify({ status: 'ok', timestamp: new Date().toISOString() }), {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            ...corsHeaders,
+          },
+        });
+      }
 
-    // Route principale - Appel au LLM
-    if (request.method === 'POST') {
-      try {
-        const { prompt, stream = false } = await request.json();
+      // Route principale - Appel au LLM
+      if (request.method === 'POST') {
+        try {
+          const { prompt, stream = false } = await request.json();
 
-        if (!prompt) {
-          return new Response(JSON.stringify({ error: 'Prompt is required' }), {
-            status: 400,
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': env.ALLOWED_ORIGINS || '*',
-            },
-          });
-        }
+          if (!prompt) {
+            return new Response(JSON.stringify({ error: 'Prompt is required' }), {
+              status: 400,
+              headers: {
+                'Content-Type': 'application/json',
+                ...corsHeaders,
+              },
+            });
+          }
 
-        // System prompt enrichi pour présenter Théo Bizet
-        const systemPrompt = `Tu es Théo Bizet, développeur junior français basé à Mulhouse, passionné par l'intelligence artificielle, les technologies innovantes et la création de solutions web/mobile.
+          // System prompt enrichi pour présenter Théo Bizet
+          const systemPrompt = `Tu es Théo Bizet, développeur junior français basé à Mulhouse, passionné par l'intelligence artificielle, les technologies innovantes et la création de solutions web/mobile.
 
 ## À PROPOS
 - **Formation** : Licence Informatique (UHA) + Master MIAGE en cours
@@ -94,63 +100,80 @@ export default {
 - Si tu ne sais pas quelque chose, propre que le visiteur demande directement via le formulaire
 - N'invente JAMAIS d'info - si tu doutes, abstiens-toi et redirige`;
 
-        // Appel à Cloudflare Workers AI - Modèle Mistral
-        const response = await env.AI.run('@cf/mistral/mistral-7b-instruct-v0.1', {
-          messages: [
-            {
-              role: 'system',
-              content: systemPrompt,
-            },
-            {
-              role: 'user',
-              content: prompt,
-            },
-          ],
-          max_tokens: 512,
-          temperature: 0.7,
-        });
+          // Appel à Cloudflare Workers AI - Modèle Mistral
+          const response = await env.AI.run('@cf/mistral/mistral-7b-instruct-v0.1', {
+            messages: [
+              {
+                role: 'system',
+                content: systemPrompt,
+              },
+              {
+                role: 'user',
+                content: prompt,
+              },
+            ],
+            max_tokens: 512,
+            temperature: 0.7,
+          });
 
-        // Formater la réponse
-        const result = {
-          success: true,
-          response: response.response,
-          model: '@cf/mistral/mistral-7b-instruct-v0.1',
-          timestamp: new Date().toISOString(),
-        };
+          // Formater la réponse
+          const result = {
+            success: true,
+            response: response.response,
+            model: '@cf/mistral/mistral-7b-instruct-v0.1',
+            timestamp: new Date().toISOString(),
+          };
 
-        return new Response(JSON.stringify(result), {
-          status: 200,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': env.ALLOWED_ORIGINS || '*',
-            'Cache-Control': 'no-cache', // Les réponses IA ne doivent pas être en cache
-          },
-        });
-      } catch (error) {
-        console.error('Erreur LLM:', error);
-        return new Response(
-          JSON.stringify({
-            success: false,
-            error: error.message || 'Erreur lors de l\'appel au modèle',
-          }),
-          {
-            status: 500,
+          return new Response(JSON.stringify(result), {
+            status: 200,
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': env.ALLOWED_ORIGINS || '*',
+              ...corsHeaders,
+              'Cache-Control': 'no-cache',
             },
-          }
-        );
+          });
+        } catch (error) {
+          console.error('❌ Erreur LLM:', error);
+          return new Response(
+            JSON.stringify({
+              success: false,
+              error: error.message || 'Erreur lors de l\'appel au modèle',
+            }),
+            {
+              status: 500,
+              headers: {
+                'Content-Type': 'application/json',
+                ...corsHeaders,
+              },
+            }
+          );
+        }
       }
-    }
 
-    // Autre requête
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-      status: 405,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': env.ALLOWED_ORIGINS || '*',
-      },
-    });
+      // Method not allowed
+      return new Response(JSON.stringify({ error: 'Method not allowed. Use POST /api or GET /health' }), {
+        status: 405,
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsHeaders,
+        },
+      });
+    } catch (globalError) {
+      console.error('❌ Erreur globale Worker:', globalError);
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Erreur serveur interne',
+          details: error.message,
+        }),
+        {
+          status: 500,
+          headers: {
+            'Content-Type': 'application/json',
+            ...corsHeaders,
+          },
+        }
+      );
+    }
   },
 };
