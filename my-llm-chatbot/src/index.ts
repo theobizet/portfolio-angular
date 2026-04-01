@@ -138,7 +138,7 @@ INSTRUCTIONS CRITIQUES
               },
             ],
             max_tokens: 150,
-            temperature: 0.3,
+            temperature: 0.5,
           });
 
           // Formater la réponse
