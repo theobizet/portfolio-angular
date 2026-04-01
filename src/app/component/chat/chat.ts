@@ -1,8 +1,8 @@
-import { Component, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DialogflowService } from '../../dialog-flow-service';
+import { ChatService } from '../../chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -11,13 +11,19 @@ import { DialogflowService } from '../../dialog-flow-service';
   templateUrl: './chat.html',
   styleUrls: ['./chat.css']
 })
-export class ChatComponent {
-  private dialogflowService = inject(DialogflowService);
+export class ChatComponent implements OnInit {
+  private chatService = inject(ChatService);
   messages: { text: string; isUser: boolean; timestamp: Date }[] = [];
   userMessage: string = '';
   isLoading: boolean = false;
+  activeService: string = '';
 
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
+
+  ngOnInit() {
+    this.activeService = this.chatService.getActiveService();
+    console.log('🤖 Service actif:', this.activeService);
+  }
 
   sendMessage() {
     if (!this.userMessage.trim()) return;
@@ -35,7 +41,7 @@ export class ChatComponent {
     // Défile automatiquement vers le bas
     setTimeout(() => this.scrollToBottom());
 
-    this.dialogflowService.sendMessage(currentMessage).subscribe({
+    this.chatService.sendMessage(currentMessage).subscribe({
       next: (response: any) => {
         const botReply = response.queryResult?.fulfillmentText || "Désolé, je n'ai pas compris.";
         this.messages.push({
@@ -47,9 +53,9 @@ export class ChatComponent {
         this.scrollToBottom();
       },
       error: (error) => {
-        console.error('Erreur Dialogflow :', error);
+        console.error('Erreur Chat:', error);
         this.messages.push({
-          text: "Désolé, une erreur est survenue.",
+          text: "❌ Désolé, une erreur est survenue. Vérifiez que le service est configuré correctement.",
           isUser: false,
           timestamp: new Date()
         });

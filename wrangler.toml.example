@@ -1,0 +1,57 @@
+name = "my-llm-chatbot"
+type = "service"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Variables d'environnement
+env_vars = { ALLOWED_ORIGINS = "https://ton-portfolio.vercel.app" }
+
+# Configuration pour développement
+[env.development]
+env_vars = { ALLOWED_ORIGINS = "http://localhost:4200" }
+
+# Configuration pour production
+[env.production]
+env_vars = { ALLOWED_ORIGINS = "https://ton-portfolio.vercel.app" }
+
+# Liaisons pour Cloudflare AI
+[[env.production.ai]]
+binding = "AI"
+
+[[env.development.ai]]
+binding = "AI"
+
+# Configuration Routes (optionnel)
+[[routes]]
+pattern = "my-llm-chatbot.YOUR_SUBDOMAIN.workers.dev/*"
+zone_name = "YOUR_DOMAIN.com"
+
+# Triggers (optionnel)
+[triggers]
+crons = []
+
+# Observabilité
+[observability]
+enabled = true
+
+# Build
+[build]
+command = ""
+cwd = ""
+
+# Env bindings
+[env.development.env_vars]
+ALLOWED_ORIGINS = "http://localhost:4200,http://localhost:4201"
+
+[env.production.env_vars]
+ALLOWED_ORIGINS = "https://ton-portfolio.vercel.app,https://www.ton-portfolio.com"
+
+# Rate Limiting (optional feature)
+# Uncomment to enable rate limiting
+# [rate_limiting]
+# limit = 100
+# period = 3600
+
+# Analytics Engine (optional)
+# [analytics]
+# enabled = true
