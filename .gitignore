@@ -45,3 +45,10 @@ Thumbs.db
 
 #client file
 /api/chatbot-portfolio-iqcd-2baa26c47424.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
