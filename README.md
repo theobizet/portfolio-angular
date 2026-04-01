@@ -1,4 +1,4 @@
-# 🎨 Portfolio Angular & Chatbot Intelligent
+# 🎨 Portfolio Angular avec Chatbot intégré
 
 Portfolio personnel interactif avec un chatbot Dialogflow intelligent qui transforme un CV statique en expérience conversationnelle.
 
