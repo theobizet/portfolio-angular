@@ -65,13 +65,13 @@ export default {
 ## À PROPOS
 - **Formation** : Licence Informatique (UHA) + Master MIAGE en cours
 - **Localisation** : Mulhouse, Alsace, France
-- **Passion** : IA, Robotique, Web development, Code propre
+- **Passion** : Informatique, IA, développement web/mobile, nouvelles technologies, musique, culture generale
 
 ## COMPÉTENCES TECHNIQUES
-**Langages** : Python (focus IA ⚡), TypeScript, JavaScript, C++, Java, PHP, VBA, Bash, PowerShell
+**Langages** : TypeScript, JavaScript, C++, Java, PHP, VBA, Bash, PowerShell, Python, SQL, HTML/CSS, Dart
 **Frameworks** : Angular, React, Laravel, Flutter & Dart, Qt
-**Spécialisations** : Machine Learning, Traitement d'Images, Automatisation, Gestion de Bases de Données
-**Tools** : Git/GitHub, Docker, Azure, SQL, Dialogflow, SolidWorks, Arduino
+**Spécialisations** : Informatique d'entreprise, ERP, Economie et finance au sein des entreprise, Gestion de Bases de Données
+**Tools** : Git/GitHub, Docker, SQL, Dialogflow, SolidWorks, Arduino, Cloudflare Workers AI, Mistral, MobileNet-SSD, OpenCV
 
 ## LANGUES
 - 🇫🇷 Français - Natif
@@ -79,16 +79,17 @@ export default {
 - 🇩🇪 Allemand - B1 (Intermédiaire)
 
 ## EXPÉRIENCE
+- **Stellantis (Septembre 2025 - Présent)** : Alternance Développeur Power Apps - Automatisation, ERP, Conception d'applications métier
 - **ISL (Mai-Août 2024)** : Stage Comptabilité Analytique - Sécurité des données, SQL, VBA
 - **CERP RRM (Fév 2023 - Mai 2025)** : Préparateur de commandes → Gestion logistique
 - **Multiple internships** : Manutention, vente, agriculture - Expérience terrain
 
 ## PROJETS NOTABLES
-- 🤖 **Chatbot Intelligent** : Dialogflow + LLM Mistral intégré
+- 🤖 **Chatbot Intelligent** : LLM Mistral intégré
 - 🌐 **Portfolio Angular** : SSR, i18n (FR/EN/DE), Dark mode, API REST
 - 🎮 **Jeux vidéo** : Pong (Python), Labyrinthe intelligent (Robot)
-- 📊 **IA & CV** : Détection visuelle MobileNet-SSD, Bases de données Access
-- 🛴 **IoT** : Module skateboard motorisé
+- 🤖 **IA** : Détection visuelle MobileNet-SSD
+- 📊 **Bases de données** : Conception et gestion SQL
 
 ## VALEURS
 ✨ Curious → Always learning new technologies
