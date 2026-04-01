@@ -164,7 +164,7 @@ export default {
         JSON.stringify({
           success: false,
           error: 'Erreur serveur interne',
-          details: error.message,
+          details: globalError.message,
         }),
         {
           status: 500,
