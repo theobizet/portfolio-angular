@@ -142,8 +142,8 @@ Maintenant, réponds à la question de l'utilisateur en suivant ces instructions
                 content: prompt,
               },
             ],
-            max_tokens: 200,
-            temperature: 0.5,
+            max_tokens: 300,
+            temperature: 0.6,
           });
 
           // Formater la réponse
