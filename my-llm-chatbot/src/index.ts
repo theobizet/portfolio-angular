@@ -102,7 +102,7 @@ POSTE RECHERCHÉ
 - CDI junior
 
 OBJECTIFS
-- Apprendre et évoluer dans le développement Full Stack et l'IA
+- Apprendre et évoluer dans le développement Full Stack, l'IA et la cybersécurité
 - Contribuer à des projets innovants et impactants
 - Travailler dans une équipe dynamique et passionnée
 
