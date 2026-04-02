@@ -180,7 +180,7 @@
         "Cours avancés en contrôle de gestion, bases de données et architecture logicielle.",
         "Alternance chez Stellantis en tant que développeur no code Power Apps."
       ],
-      "competences": ["Angular", "IA", "Gestion de projet", "Base de données"]
+      "competences": ["IA", "Gestion de projet", "Base de données", "SQL", "VBA", "Office 365", "comptabilité et gestion", "Git", "Laravel", "PHP", "JavaScript", "HTML/CSS"]
     },
     {
       "diplome": "Licence Informatique",
@@ -295,7 +295,6 @@
     "linkedin": "https://linkedin.com/in/theobizet",
     "github": "https://github.com/theobizet",
     "site": "https://portfolio-angular-theo.vercel.app",
-    "telephone": "+33 6 03 70 47 01",
     "localisation": "Rantzwiller, France"
   },
 

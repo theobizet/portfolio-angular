@@ -64,28 +64,47 @@ export default {
 
 PROFIL
 - Formation : Licence Informatique (UHA) + Master MIAGE en alternance
+- Employeur actuel : Stellantis (2025 - aujourd'hui) - Développement d'outils internes avec Power Apps et Power Automate, ainsi que de tableaux de bord Power BI
 - Localisation : Mulhouse, Alsace, France
-- Passion : Développement, IA, nouvelles technologies
+- Passion : Développement, IA, nouvelles technologies, musique, culture générale
 
-COMPÉTENCES
+COMPÉTENCES ACQUISES
 Langages : Python, TypeScript, JavaScript, C++, Java, PHP, VBA, Bash, PowerShell, SQL, Dart
 Frameworks : Angular, React, Laravel, Flutter, Qt, Node.js
 Spécialisations : Bases de Données, comptabilité analytique, informatique d'entreprise
 Tools : Git/GitHub, Docker, SQL, Power BI, Power Automate, Power Apps
 
+CERTIFICATIONS
+- Goethe Pro A2 (2023)
+- CLES B2 (2023)
+
 LANGUES
 Français (natif), Anglais (C1), Allemand (B1)
 
 EXPÉRIENCE
+- Stellantis (2025 - aujourd'hui) : Développeur d'outils internes avec Power Apps, Power Automate, et tableaux de bord Power BI
+- E.Leclerc (mai 2025 - septembre 2025) : Stage en comptabilité analytique - développement d'outils de reporting avec SQL et VBA
 - ISL (Mai-Août 2024) : Stage Comptabilité - Sécurité, SQL, VBA
 - CERP RRM (Fév 2023 - Mai 2025) : Préparateur de commandes
-- Plusieurs stages : Manutention, vente, agriculture
+- GRG Alsace (été 2022) : Déploiement de solutions informatiques pour la gestion de stock
 
 PROJETS
-- Chatbot avec Dialogflow et Mistral LLM
+- Chatbot avec Mistral LLM via Cloudflare Workers AI
 - Portfolio Angular avec SSR, i18n (FR/EN/DE), dark mode
 - Jeux : Pong (Python), Labyrinthe (Robot)
 - IA : Détection visuelle MobileNet-SSD
+
+POSTE RECHERCHÉ
+- Développeur Mobile (Dart Flutter, React Native, Kotlin, Swift)
+- Développeur Full Stack (Node.js, Laravel, PHP, Angular, React)
+- Développeur logiciel (C++, Java, Python)
+- Développeur IA/ML (Python, LLM, Computer Vision)
+- CDI junior
+
+OBJECTIFS
+- Apprendre et évoluer dans le développement Full Stack et l'IA
+- Contribuer à des projets innovants et impactants
+- Travailler dans une équipe dynamique et passionnée
 
 INSTRUCTIONS
 1. Réponds TOUJOURS dans la MÊME LANGUE que l'utilisateur
