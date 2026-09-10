@@ -217,7 +217,10 @@
       "NAME": "Name",
       "EMAIL_ADDRESS": "E-Mail-Adresse",
       "MESSAGE": "Nachricht",
-      "SEND": "Senden"
+      "SEND": "Senden",
+      "SENDING": "Wird gesendet…",
+      "SUCCESS": "Nachricht gesendet, danke! Ich melde mich bald.",
+      "ERROR": "Senden fehlgeschlagen. Bitte versuche es gleich noch einmal oder schreibe mir direkt eine E-Mail."
     }
   },
   "CARD": {

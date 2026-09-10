@@ -7,6 +7,8 @@
 
 interface Env {
   AI: Ai;
+  /** Clé API Static Forms, injectée via `wrangler secret put STATICFORMS_API_KEY`. */
+  STATICFORMS_API_KEY: string;
 }
 
 interface LLMRequest {
@@ -14,16 +16,92 @@ interface LLMRequest {
   stream?: boolean;
 }
 
+interface ContactRequest {
+  name?: string;
+  email?: string;
+  message?: string;
+  /** Champ piège : invisible pour un humain, rempli par les robots. */
+  honeypot?: string;
+}
+
+const STATICFORMS_ENDPOINT = 'https://api.staticforms.dev/submit';
+
+/** Origines autorisées à poster le formulaire de contact. */
+const ALLOWED_FORM_ORIGINS = [
+  'https://portfolio-angular-theo.vercel.app',
+  'http://localhost:4200',
+];
+
+// Headers CORS à renvoyer systématiquement
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Max-Age': '86400',
+};
+
+// Toutes les réponses JSON du Worker passent par ici (statut + CORS + Content-Type)
+const jsonResponse = (body: unknown, status = 200, extraHeaders: Record<string, string> = {}) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      ...corsHeaders,
+      ...extraHeaders,
+    },
+  });
+
+/**
+ * Relaie le formulaire de contact vers Static Forms.
+ * La clé API reste côté Worker : elle n'apparaît jamais dans le bundle du site.
+ */
+const handleContact = async (request: Request, env: Env): Promise<Response> => {
+  const origin = request.headers.get('Origin');
+  if (origin && !ALLOWED_FORM_ORIGINS.includes(origin)) {
+    return jsonResponse({ success: false, error: 'Origine non autorisée' }, 403);
+  }
+
+  const { name, email, message, honeypot } = (await request.json()) as ContactRequest;
+
+  // Piège à robots : on répond « ok » sans rien transmettre
+  if (honeypot) {
+    return jsonResponse({ success: true }, 200);
+  }
+
+  if (!name?.trim() || !email?.trim() || !message?.trim()) {
+    return jsonResponse({ success: false, error: 'Nom, email et message sont obligatoires' }, 400);
+  }
+
+  if (!env.STATICFORMS_API_KEY) {
+    console.error('❌ STATICFORMS_API_KEY absente : `wrangler secret put STATICFORMS_API_KEY`');
+    return jsonResponse({ success: false, error: 'Formulaire non configuré' }, 500);
+  }
+
+  const upstream = await fetch(STATICFORMS_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      apiKey: env.STATICFORMS_API_KEY,
+      subject: 'Contact depuis mon site',
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      replyTo: email.trim(),
+    }),
+  });
+
+  const result = (await upstream.json()) as { success?: boolean; message?: string };
+
+  if (!upstream.ok || result.success === false) {
+    console.error('❌ Static Forms a refusé la soumission:', upstream.status, result.message);
+    return jsonResponse({ success: false, error: "L'envoi a échoué, réessaie plus tard." }, 502);
+  }
+
+  return jsonResponse({ success: true }, 200);
+};
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    // Headers CORS à renvoyer systématiquement
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Access-Control-Max-Age': '86400',
-    };
-
     // Gérer les requêtes OPTIONS (CORS preflight)
     if (request.method === 'OPTIONS') {
       return new Response(null, {
@@ -35,13 +113,12 @@ export default {
     try {
       // Route Health Check
       if (request.url.includes('/health') && request.method === 'GET') {
-        return new Response(JSON.stringify({ status: 'ok', timestamp: new Date().toISOString() }), {
-          status: 200,
-          headers: {
-            'Content-Type': 'application/json',
-            ...corsHeaders,
-          },
-        });
+        return jsonResponse({ status: 'ok', timestamp: new Date().toISOString() }, 200);
+      }
+
+      // Route formulaire de contact
+      if (request.method === 'POST' && new URL(request.url).pathname === '/contact') {
+        return await handleContact(request, env);
       }
 
       // Route principale - Appel au LLM
@@ -50,13 +127,7 @@ export default {
           const { prompt, stream = false } = (await request.json()) as LLMRequest;
 
           if (!prompt) {
-            return new Response(JSON.stringify({ error: 'Prompt is required' }), {
-              status: 400,
-              headers: {
-                'Content-Type': 'application/json',
-                ...corsHeaders,
-              },
-            });
+            return jsonResponse({ error: 'Prompt is required' }, 400);
           }
 
           // System prompt enrichi pour présenter Théo Bizet
@@ -154,56 +225,25 @@ Maintenant, réponds à la question de l'utilisateur en suivant ces instructions
             timestamp: new Date().toISOString(),
           };
 
-          return new Response(JSON.stringify(result), {
-            status: 200,
-            headers: {
-              'Content-Type': 'application/json',
-              ...corsHeaders,
-              'Cache-Control': 'no-cache',
-            },
-          });
+          return jsonResponse(result, 200, { 'Cache-Control': 'no-cache' });
         } catch (error) {
           console.error('❌ Erreur LLM:', error);
-          return new Response(
-            JSON.stringify({
-              success: false,
-              error: (error as Error).message || 'Erreur lors de l\'appel au modèle',
-            }),
-            {
-              status: 500,
-              headers: {
-                'Content-Type': 'application/json',
-                ...corsHeaders,
-              },
-            }
-          );
+          return jsonResponse({
+            success: false,
+            error: (error as Error).message || 'Erreur lors de l\'appel au modèle',
+          }, 500);
         }
       }
 
       // Method not allowed
-      return new Response(JSON.stringify({ error: 'Method not allowed. Use POST / or GET /health' }), {
-        status: 405,
-        headers: {
-          'Content-Type': 'application/json',
-          ...corsHeaders,
-        },
-      });
+      return jsonResponse({ error: 'Method not allowed. Use POST /, POST /contact or GET /health' }, 405);
     } catch (globalError) {
       console.error('❌ Erreur globale Worker:', globalError);
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: 'Erreur serveur interne',
-          details: (globalError as Error).message,
-        }),
-        {
-          status: 500,
-          headers: {
-            'Content-Type': 'application/json',
-            ...corsHeaders,
-          },
-        }
-      );
+      return jsonResponse({
+        success: false,
+        error: 'Erreur serveur interne',
+        details: (globalError as Error).message,
+      }, 500);
     }
   },
 } satisfies ExportedHandler<Env>;

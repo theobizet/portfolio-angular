@@ -11,9 +11,8 @@
 npm create cloudflare@latest my-llm-chatbot -- --type hello-world
 cd my-llm-chatbot
 
-# Copier le code du Worker
-# Ouvre: cloudflare-worker.js du portfolio
-# Remplace le contenu de: src/index.js
+# Le code du Worker est déjà dans le dépôt
+# Fichier: my-llm-chatbot/src/index.ts
 
 # Déployer
 npx wrangler login

@@ -1,13 +1,17 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
-import { DialogFlowService } from './dialog-flow-service';
+import { DialogflowService } from './dialog-flow-service';
 
-describe('DialogFlowService', () => {
-  let service: DialogFlowService;
+describe('DialogflowService', () => {
+  let service: DialogflowService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(DialogFlowService);
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideHttpClientTesting()]
+    });
+    service = TestBed.inject(DialogflowService);
   });
 
   it('should be created', () => {

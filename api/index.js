@@ -220,6 +220,64 @@ class ConversationContext {
 }
 
 // 🎯 Fonction d'analyse de sentiment avancée
+// Minuscules sans accents, pour comparer des noms saisis librement
+const normalizeText = (text) => (text || '').toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+// Recherche une langue du CV à partir d'un nom saisi librement
+const findLangue = (cvData, langueNom) => {
+  const recherche = normalizeText(langueNom);
+  return cvData.langues.find(l => {
+    const nom = normalizeText(l.nom);
+    return nom.includes(recherche) || recherche.includes(nom);
+  });
+};
+
+// Détail d'un projet : texte de réponse + carte enrichie si un lien existe
+const formatProjetDetail = (proj) => {
+  let responseText = `${proj.nom} (${proj.annee}) :<br>${proj.description}<br>`;
+  responseText += `Technologies : ${proj.technos.join(', ')}.<br>`;
+
+  if (proj.lien) responseText += `Lien : ${proj.lien}<br>`;
+  if (proj.github) responseText += `Code source : ${proj.github}<br>`;
+
+  responseText += "Détails :<br>";
+  responseText += proj.details.map(detail => `- ${detail}`).join('<br>');
+
+  const richResponses = (proj.lien || proj.github) ? [{
+    type: "info",
+    title: proj.nom,
+    subtitle: proj.description,
+    actionLink: proj.lien || proj.github
+  }] : null;
+
+  return { responseText, richResponses };
+};
+
+// Niveau dans une langue : texte de réponse + suggestions de relance
+const formatLangueDetail = (langue) => {
+  let responseText = `Mon niveau en ${langue.nom} est ${langue.niveau}.<br>`;
+  const langueNormalized = normalizeText(langue.nom);
+
+  if (langueNormalized.includes('francais')) {
+    responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
+  } else if (langueNormalized.includes('anglais')) {
+    responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
+  } else if (langueNormalized.includes('allemand')) {
+    responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
+  } else {
+    responseText += `Cette compétence linguistique enrichit mon profil professionnel.`;
+  }
+
+  return {
+    responseText,
+    suggestions: [
+      "Mes autres compétences linguistiques",
+      "Mon expérience en environnement international",
+      "Retour aux informations principales"
+    ]
+  };
+};
+
 const analyzeSentiment = (text) => {
   if (!text) return 'neutral';
   
@@ -893,23 +951,9 @@ app.post('/webhook', (req, res) => {
           } else if (foundProjets.length === 1) {
             // Un seul projet trouvé, traitement standard
             const proj = foundProjets[0];
-            responseText = `${proj.nom} (${proj.annee}) :<br>${proj.description}<br>`;
-            responseText += `Technologies : ${proj.technos.join(', ')}.<br>`;
-
-            if (proj.lien) responseText += `Lien : ${proj.lien}<br>`;
-            if (proj.github) responseText += `Code source : ${proj.github}<br>`;
-
-            responseText += "Détails :<br>";
-            responseText += proj.details.map(detail => `- ${detail}`).join('<br>');
-
-            if (proj.lien || proj.github) {
-              richResponses = [{
-                type: "info",
-                title: proj.nom,
-                subtitle: proj.description,
-                actionLink: proj.lien || proj.github
-              }];
-            }
+            const projetDetail = formatProjetDetail(proj);
+            responseText = projetDetail.responseText;
+            if (projetDetail.richResponses) richResponses = projetDetail.richResponses;
           } else {
             responseText = `Je n'ai pas trouvé tous les projets demandés dans mon portfolio.<br>`;
             responseText += `Voici mes projets : ${formatList(cvData.projets, 'nom')}.`;
@@ -920,23 +964,9 @@ app.post('/webhook', (req, res) => {
           const proj = findInList(cvData.projets, projetName, 'nom');
 
           if (proj) {
-          responseText = `${proj.nom} (${proj.annee}) :<br>${proj.description}<br>`;
-          responseText += `Technologies : ${proj.technos.join(', ')}.<br>`;
-
-          if (proj.lien) responseText += `Lien : ${proj.lien}<br>`;
-          if (proj.github) responseText += `Code source : ${proj.github}<br>`;
-
-          responseText += "Détails :<br>";
-          responseText += proj.details.map(detail => `- ${detail}`).join('<br>');
-
-          if (proj.lien || proj.github) {
-            richResponses = [{
-              type: "info",
-              title: proj.nom,
-              subtitle: proj.description,
-              actionLink: proj.lien || proj.github
-            }];
-          }
+          const projetDetail = formatProjetDetail(proj);
+          responseText = projetDetail.responseText;
+          if (projetDetail.richResponses) richResponses = projetDetail.richResponses;
         } else {
           responseText = `Je n’ai pas de projet nommé "${projetName}".<br>`;
           responseText += `Voici mes projets : ${formatList(cvData.projets, 'nom')}.`;
@@ -966,11 +996,7 @@ app.post('/webhook', (req, res) => {
           // Rechercher chaque langue dans cvData
           const foundLangues = [];
           languesArray.forEach(langueNom => {
-            const langueNomLower = langueNom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            const langue = cvData.langues.find(l => {
-              const nomLower = l.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-              return nomLower.includes(langueNomLower) || langueNomLower.includes(nomLower);
-            });
+            const langue = findLangue(cvData, langueNom);
             if (langue) foundLangues.push(langue);
           });
           
@@ -983,25 +1009,9 @@ app.post('/webhook', (req, res) => {
           } else if (foundLangues.length === 1) {
             // Une seule langue trouvée, traitement standard
             const langue = foundLangues[0];
-            responseText = `Mon niveau en ${langue.nom} est ${langue.niveau}.<br>`;
-            
-            const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            
-            if (langueNormalized.includes('francais') || langueNormalized.includes('français')) {
-              responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
-            } else if (langueNormalized.includes('anglais') || langueNormalized.includes('english')) {
-              responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
-            } else if (langueNormalized.includes('allemand') || langueNormalized.includes('german') || langueNormalized.includes('deutsch')) {
-              responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
-            } else {
-              responseText += `Cette compétence linguistique enrichit mon profil professionnel.`;
-            }
-            
-            suggestions = [
-              "Mes autres compétences linguistiques",
-              "Mon expérience en environnement international",
-              "Retour aux informations principales"
-            ];
+            const langueDetail = formatLangueDetail(langue);
+            responseText = langueDetail.responseText;
+            suggestions = langueDetail.suggestions;
           } else {
             responseText = `Je n'ai pas trouvé toutes les langues demandées dans mon profil.<br>`;
             responseText += `Voici les langues que je parle : ${cvData.langues.map(l => l.nom).join(', ')}.`;
@@ -1010,11 +1020,7 @@ app.post('/webhook', (req, res) => {
           // Une seule langue (traitement classique)
           const langueNom = languesArray[0] ? languesArray[0].toLowerCase() : '';
           
-          const langueNomLower = langueNom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-          let langue = cvData.langues.find(l => {
-            const nomLower = l.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            return nomLower.includes(langueNomLower) || langueNomLower.includes(nomLower);
-          });
+          let langue = findLangue(cvData, langueNom);
           
           // Si pas trouvé, essayer la recherche floue
           if (!langue) {
@@ -1023,27 +1029,9 @@ app.post('/webhook', (req, res) => {
           }
 
           if (langue) {
-            responseText = `Mon niveau en ${langue.nom} est ${langue.niveau}.<br>`;
-            
-            // Ajouter des détails contextuels selon la langue (normalisation)
-            const langueNormalized = langue.nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            
-            if (langueNormalized.includes('francais')) {
-              responseText += "C'est ma langue maternelle, je la maîtrise parfaitement à l'oral comme à l'écrit.";
-            } else if (langueNormalized.includes('anglais')) {
-              responseText += "J'ai un niveau avancé qui me permet de travailler efficacement dans un environnement international et de consulter la documentation technique en anglais.";
-            } else if (langueNormalized.includes('allemand')) {
-              responseText += "Je peux communiquer couramment en allemand, ce qui est un atout dans la région alsacienne.";
-            } else {
-              // Réponse générique pour d'autres langues
-              responseText += `Cette compétence linguistique enrichit mon profil professionnel.`;
-            }
-            
-            suggestions = [
-              "Mes autres compétences linguistiques",
-              "Mon expérience en environnement international",
-              "Retour aux informations principales"
-            ];
+            const langueDetail = formatLangueDetail(langue);
+            responseText = langueDetail.responseText;
+            suggestions = langueDetail.suggestions;
           } else {
             // 💡 Suggestions intelligentes même en cas d'échec
             const similarLangues = fuzzySearch(langueNom, cvData.langues, 'nom').slice(0, 3);

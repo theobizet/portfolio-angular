@@ -217,7 +217,10 @@
       "NAME": "Name",
       "EMAIL_ADDRESS": "Email address",
       "MESSAGE": "Message",
-      "SEND": "Send"
+      "SEND": "Send",
+      "SENDING": "Sending…",
+      "SUCCESS": "Message sent, thanks! I'll get back to you shortly.",
+      "ERROR": "Sending failed. Try again in a moment, or email me directly."
     }
   },
   "CARD": {

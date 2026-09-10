@@ -24,9 +24,9 @@ cd my-llm-chatbot
 
 ### 1.3. Ajouter le code du Worker
 
-1. Ouvre `src/index.js` (ou crée-le s'il n'existe pas)
-2. Copie le contenu de `cloudflare-worker.js` de ce projet
-3. Colle-le dans `src/index.js`
+1. Ouvre `my-llm-chatbot/src/index.ts` — c'est la seule copie du code du Worker
+2. Modifie-le directement (ne le duplique pas ailleurs)
+3. Déploie avec `cd my-llm-chatbot && npx wrangler deploy`
 
 ### 1.4. Configurer wrangler.toml
 
@@ -63,6 +63,33 @@ npx wrangler deploy --env production
 ```
 
 Tu recevras une URL du type : `https://my-llm-chatbot.YOUR_SUBDOMAIN.workers.dev`
+
+### 1.6. Configurer le formulaire de contact
+
+Le Worker relaie aussi le formulaire de contact (`POST /contact`) vers Static Forms.
+La clé API du service **ne doit jamais** vivre dans le code Angular : elle partirait
+dans le bundle public. On la stocke en secret Wrangler :
+
+```bash
+cd my-llm-chatbot
+
+# Récupère la clé sur https://www.staticforms.dev (Dashboard → API key)
+npx wrangler secret put STATICFORMS_API_KEY
+
+# Redéploie pour que le Worker voie le secret
+npx wrangler deploy
+```
+
+Sans ce secret, `POST /contact` répond `500` et le formulaire affiche un message d'erreur.
+
+Deux garde-fous anti-spam sont déjà en place dans le Worker :
+
+- un champ piège (*honeypot*) masqué dans le formulaire : s'il est rempli, la soumission
+  est absorbée sans être transmise ;
+- une liste d'origines autorisées (`ALLOWED_FORM_ORIGINS` dans `src/index.ts`) : pense à
+  l'ajuster si le domaine du portfolio change.
+
+---
 
 ### 1.6. Tester le Worker
 
@@ -156,7 +183,7 @@ ng serve --configuration development
                     ▼
    ┌─────────────────────────────────────┐
    │   CLOUDFLARE WORKER (Serverless)    │
-   │   cloudflare-worker.js              │
+   │   my-llm-chatbot/src/index.ts       │
    │   - Reçoit le prompt                │
    │   - Appelle Workers AI              │
    └──────────┬────────────────────────────┘
@@ -234,7 +261,7 @@ Ajoute un sélecteur dans le composant chat :
 ### Configuration CORS Sécurisée
 
 ```javascript
-// Dans cloudflare-worker.js
+// Dans my-llm-chatbot/src/index.ts
 const allowedOrigins = [
   'https://ton-portfolio.vercel.app',
   'https://www.ton-portfolio.com',

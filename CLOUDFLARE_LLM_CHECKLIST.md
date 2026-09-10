@@ -7,7 +7,7 @@ Cette page résume les fichiers créés et les étapes à suivre pour mettre en 
 ## ✅ Fichiers Créés/Modifiés
 
 ### Backend (Worker Cloudflare)
-- ✅ `cloudflare-worker.js` - Code du Worker à déployer sur Cloudflare
+- ✅ `my-llm-chatbot/src/index.ts` - Code du Worker (source unique, déployé via Wrangler)
 - ✅ `wrangler.toml.example` - Configuration exemple pour le Worker
 
 ### Frontend (Portfolio Angular)
@@ -35,9 +35,9 @@ Cette page résume les fichiers créés et les étapes à suivre pour mettre en 
 npm create cloudflare@latest my-llm-chatbot -- --type hello-world
 cd my-llm-chatbot
 
-# 2. Copier le code du Worker
-# Ouvre cloudflare-worker.js du portfolio
-# Copie le contenu dans src/index.js de ton projet Worker
+# 2. Déployer le Worker
+# Le code vit dans my-llm-chatbot/src/index.ts
+cd my-llm-chatbot && npx wrangler deploy
 
 # 3. Copier la configuration wrangler.toml
 # Ouvre wrangler.toml.example

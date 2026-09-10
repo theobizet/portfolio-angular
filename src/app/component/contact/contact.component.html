@@ -52,32 +52,40 @@
           <h2 class="pb-2">{{'CONTACT.FORM.TITLE' | translate}}</h2>
         </div>
         <div class="card-body">
-          <form action="https://api.staticforms.xyz/submit" method="post" id="staticform" class="form">
-            <!-- Replace with your StaticForms accessKey -->
-            <input type="hidden" name="accessKey" value="84929462-7e63-47b4-9b5f-84cdb1e5cba9">
-            <input type="hidden" name="subject" value="Contact depuis mon site">
+          <form class="form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+            <!-- Champ piège : masqué pour un humain, rempli par les robots -->
+            <input class="d-none" type="text" name="honeypot" ngModel tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="mb-3">
-              <label class="form-label">{{'CONTACT.FORM.NAME' | translate}}</label>
+              <label class="form-label" for="contact-name">{{'CONTACT.FORM.NAME' | translate}}</label>
               <div class="control">
-                <input class="form-control bg-body-secondary bg-opacity-75" type="text" name="name" placeholder="{{'CONTACT.FORM.NAME_PLACEHOLDER' | translate}}" required>
+                <input class="form-control bg-body-secondary bg-opacity-75" id="contact-name" type="text" name="name" ngModel required placeholder="{{'CONTACT.FORM.NAME_PLACEHOLDER' | translate}}">
               </div>
             </div>
             <div class="mb-3">
-              <label class="form-label">{{'CONTACT.FORM.EMAIL_ADDRESS' | translate}}</label>
+              <label class="form-label" for="contact-email">{{'CONTACT.FORM.EMAIL_ADDRESS' | translate}}</label>
               <div class="control">
-                <input class="form-control bg-body-secondary bg-opacity-75" type="email" name="email" placeholder="{{'CONTACT.FORM.EMAIL_PLACEHOLDER' | translate}}" required>
+                <input class="form-control bg-body-secondary bg-opacity-75" id="contact-email" type="email" name="email" ngModel required email placeholder="{{'CONTACT.FORM.EMAIL_PLACEHOLDER' | translate}}">
               </div>
             </div>
             <div class="mb-3">
-              <label class="form-label">{{'CONTACT.FORM.MESSAGE' | translate}}</label>
+              <label class="form-label" for="contact-message">{{'CONTACT.FORM.MESSAGE' | translate}}</label>
               <div class="control">
-                <textarea class="form-control bg-body-secondary bg-opacity-75" name="message" placeholder="{{'CONTACT.FORM.MESSAGE_PLACEHOLDER' | translate}}" required></textarea>
+                <textarea class="form-control bg-body-secondary bg-opacity-75" id="contact-message" name="message" ngModel required placeholder="{{'CONTACT.FORM.MESSAGE_PLACEHOLDER' | translate}}"></textarea>
               </div>
             </div>
-            <button class="btn btn-outline-secondary" type="Submit">
-              {{'CONTACT.FORM.SEND' | translate}} <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            <button class="btn btn-outline-secondary" type="submit" [disabled]="status === 'sending'">
+              @if (status === 'sending') {
+                {{'CONTACT.FORM.SENDING' | translate}}
+              } @else {
+                {{'CONTACT.FORM.SEND' | translate}}
+              }
             </button>
-            <input type="hidden" name="redirectTo" value="https://theobizet.github.io/portfolio-angular/contact">
+            @if (status === 'sent') {
+              <p class="alert alert-success mt-3 mb-0" role="status">{{'CONTACT.FORM.SUCCESS' | translate}}</p>
+            }
+            @if (status === 'error') {
+              <p class="alert alert-danger mt-3 mb-0" role="alert">{{'CONTACT.FORM.ERROR' | translate}}</p>
+            }
           </form>
         </div>
       </div>

@@ -35,24 +35,7 @@
       <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title text-center mb-3">Langages & Frameworks</h3>
-          <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
-            @if (isDarkTheme) {
-              <li *ngFor="let icon of languages; trackBy: trackByIndex" class="text-center">
-                <div [innerHTML]="icon.sanitized" style="filter: invert(0.7);"></div>
-                <p>
-                  {{ icon.name }}
-                </p>
-              </li>
-            }
-            @else {
-              <li *ngFor="let icon of languages; trackBy: trackByIndex" class="text-center">
-                <div [innerHTML]="icon.sanitized"></div>
-                <p>
-                  {{ icon.name }}
-                </p>
-              </li>
-            }
-          </ul>
+          <ng-container *ngTemplateOutlet="iconGrid; context: { $implicit: languages }"></ng-container>
         </div>
       </div>
     </div>
@@ -61,24 +44,7 @@
       <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title text-center mb-3">Environnements</h3>
-          <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
-            @if (isDarkTheme) {
-              <li *ngFor="let icon of environment; trackBy: trackByIndex" class="text-center">
-                <div [innerHTML]="icon.sanitized" style="filter: invert(0.7);"></div>
-                <p>
-                  {{ icon.name }}
-                </p>
-              </li>
-            }
-            @else {
-              <li *ngFor="let icon of environment; trackBy: trackByIndex" class="text-center">
-                <div [innerHTML]="icon.sanitized"></div>
-                <p>
-                  {{ icon.name }}
-                </p>
-              </li>
-            }
-          </ul>
+          <ng-container *ngTemplateOutlet="iconGrid; context: { $implicit: environment }"></ng-container>
         </div>
       </div>
     </div>
@@ -126,3 +92,15 @@
     </div>
   </div>
 </main>
+
+<!-- Grille d'icônes partagée par les cartes « Langages » et « Environnements ». -->
+<ng-template #iconGrid let-icons>
+  <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
+    <li *ngFor="let icon of icons; trackBy: trackByIndex" class="text-center">
+      <div [innerHTML]="icon.sanitized" [style.filter]="isDarkTheme ? 'invert(0.7)' : null"></div>
+      <p>
+        {{ icon.name }}
+      </p>
+    </li>
+  </ul>
+</ng-template>

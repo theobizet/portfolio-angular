@@ -36,12 +36,10 @@ src/
 
 ```
 Portfolio Root/
-├── cloudflare-worker.js              ✨ NOUVEAU - Code du Worker à déployer
-├── wrangler.toml.example             ✨ NOUVEAU - Configuration Wrangler
-└── [À créer dans un repo séparé Cloudflare]
+└── my-llm-chatbot/                   Projet Wrangler du Worker (dans ce dépôt)
     ├── src/
-    │   └── index.js                  (Copier cloudflare-worker.js here)
-    ├── wrangler.toml                 (Copier wrangler.toml.example)
+    │   └── index.ts                  Code du Worker - source unique
+    ├── wrangler.jsonc                Configuration Wrangler
     └── package.json
 ```
 
@@ -98,7 +96,7 @@ export class ChatService {
 
 ---
 
-### 3. `cloudflare-worker.js`
+### 3. `my-llm-chatbot/src/index.ts`
 **Role**: Travailler Cloudflare exécutant le modèle
 **Responsabilités**:
 - Handler HTTP (POST, GET, OPTIONS)

@@ -208,7 +208,7 @@ console.log(this.chatService.getActiveService());
 ### 2. Tester le Worker localement
 ```bash
 # Terminal 1
-cd cloudflare-worker-project
+cd my-llm-chatbot
 npx wrangler dev
 
 # Terminal 2
@@ -253,7 +253,7 @@ npx wrangler tail --env production
 ## ❓ FAQ
 
 ### Q: Puis-je utiliser plusieurs modèles ?
-**R**: Oui, change `@cf/mistral/mistral-7b-instruct-v0.1` par un autre modèle supporté dans `cloudflare-worker.js`.
+**R**: Oui, change `@cf/mistral/mistral-7b-instruct-v0.1` par un autre modèle supporté dans `my-llm-chatbot/src/index.ts`.
 
 ### Q: Comment ajouter du contexte de conversation ?
 **R**: Maintiens une liste de messages et passe-les avec le nouveau message au Worker.
