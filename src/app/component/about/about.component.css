@@ -1,0 +1,75 @@
+/*
+ * Complément à Bootstrap 5.3 : uniquement ce que les utilitaires ne savent pas faire.
+ * Tout le reste (grille, flex, espacements, bordures, tailles de texte) est en classes
+ * Bootstrap dans le template.
+ */
+
+/* Les titres de section se posent sur la photo de fond : une ombre les décolle. */
+.about-heading {
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* Barre d'accent devant les sous-titres. Le conteneur est mis en flex côté template. */
+.about-subheading::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 0.25rem;
+  height: 1.4em;
+  border-radius: 0.125rem;
+  background-color: rgb(var(--bs-primary-rgb));
+}
+
+/* Coche dessinée en CSS, pour ne pas dépendre d'une police d'icônes. */
+.about-list li {
+  position: relative;
+  padding-left: 1.6rem;
+}
+
+.about-list li::before {
+  content: '';
+  position: absolute;
+  left: 0.3rem;
+  top: 0.4em;
+  width: 0.4rem;
+  height: 0.75rem;
+  border: solid rgb(var(--bs-primary-rgb));
+  border-width: 0 0.16rem 0.16rem 0;
+  transform: rotate(45deg);
+}
+
+/* Bootstrap ne fournit pas d'effet de survol : c'est le seul ajout ici. */
+.about-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.6rem 1.25rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.about-icon {
+  width: 5.5rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.about-icon:hover {
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+  transform: translateY(-2px);
+}
+
+/* Les SVG arrivent par [innerHTML] : ::ng-deep pour les mettre à la même taille. */
+.about-icon ::ng-deep svg {
+  width: 44px;
+  height: 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-card,
+  .about-card:hover,
+  .about-icon,
+  .about-icon:hover {
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,93 +1,96 @@
 <main class="container-fluid bg-transparent py-2">
-  <h2 class="border-bottom pb-2 text-light">{{ 'ABOUT.TITLE' | translate }}</h2>
-  <div class="container-fluid bg-body bg-opacity-75 rounded-3 p-4">
-    <img ngSrc="./assets/Image1.png"
-         alt="{{ 'ABOUT.IMAGE_ALT' | translate }}"
-         class="img-fluid border rounded border-3 border-body bg-primary bg-opacity-25 float-end ms-3 shadow-sm"
-         style="object-fit: cover;"
-         width="250"
-         height="310">
+  <h2 class="about-heading border-bottom pb-2 text-light">{{ 'ABOUT.TITLE' | translate }}</h2>
 
-    <div class="text-justify lh-base">
-        <h3 class="text-primary mb-3 text-decoration-underline">{{ 'ABOUT.PATH' | translate }}</h3>
+  <div class="container-fluid bg-body bg-opacity-75 rounded-3 shadow-sm p-4">
+    <div class="row g-4 align-items-start">
+      <div class="col-md-4 order-md-2 text-center">
+        <img class="img-fluid rounded-4 shadow border border-3 border-primary-subtle"
+             ngSrc="./assets/Image1.png"
+             alt="{{ 'ABOUT.IMAGE_ALT' | translate }}"
+             width="250"
+             height="310">
+      </div>
+
+      <div class="col-md-8 order-md-1 text-justify lh-base">
+        <h3 class="about-subheading d-flex align-items-center gap-2 fs-5 text-primary mb-3">{{ 'ABOUT.PATH' | translate }}</h3>
         <p>{{ 'ABOUT.PARAGRAPH1' | translate }}</p>
 
-        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.DEFINES' | translate }}</h3>
+        <h3 class="about-subheading d-flex align-items-center gap-2 fs-5 text-primary mb-3 mt-4">{{ 'ABOUT.DEFINES' | translate }}</h3>
         <p>{{ 'ABOUT.PARAGRAPH2' | translate }}</p>
 
-        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.PASSIONS' | translate }}</h3>
+        <h3 class="about-subheading d-flex align-items-center gap-2 fs-5 text-primary mb-3 mt-4">{{ 'ABOUT.PASSIONS' | translate }}</h3>
         <p>{{ 'ABOUT.PARAGRAPH3' | translate }}</p>
 
-        <h3 class="text-primary mb-3 mt-4 text-decoration-underline">{{ 'ABOUT.CONTINUOUS_LEARNING' | translate }}</h3>
+        <h3 class="about-subheading d-flex align-items-center gap-2 fs-5 text-primary mb-3 mt-4">{{ 'ABOUT.CONTINUOUS_LEARNING' | translate }}</h3>
         <p>{{ 'ABOUT.PARAGRAPH4' | translate }}</p>
-        <ul>
-            <li>{{ 'ABOUT.LEARNING1' | translate }}</li>
-            <li>{{ 'ABOUT.LEARNING2' | translate }}</li>
+        <ul class="about-list list-unstyled mb-3">
+          <li class="mb-2">{{ 'ABOUT.LEARNING1' | translate }}</li>
+          <li class="mb-2">{{ 'ABOUT.LEARNING2' | translate }}</li>
         </ul>
-        <p>{{ 'ABOUT.PARAGRAPH5' | translate }}</p>
+        <p class="mb-0">{{ 'ABOUT.PARAGRAPH5' | translate }}</p>
+      </div>
     </div>
-</div>
+  </div>
 
-  <h2 class="border-bottom py-2 text-light">{{ 'ABOUT.SKILLS.TITLE' | translate }}</h2>
-  <div class="row g-2">
+  <h2 class="about-heading border-bottom py-2 mt-4 text-light">{{ 'ABOUT.SKILLS.TITLE' | translate }}</h2>
+
+  <div class="row g-3">
     <!-- Langages de programmation et frameworks -->
     <div class="col-md-4">
-      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
-          <h3 class="card-title text-center mb-3">Langages & Frameworks</h3>
+          <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary-subtle">{{ 'ABOUT.SKILLS.PROGRAMMING' | translate }}</h3>
           <ng-container *ngTemplateOutlet="iconGrid; context: { $implicit: languages }"></ng-container>
         </div>
       </div>
     </div>
+
     <!-- Environnements de développement -->
     <div class="col-md-4">
-      <div class="card h-100 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
-          <h3 class="card-title text-center mb-3">Environnements</h3>
+          <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary-subtle">{{ 'ABOUT.SKILLS.ENVIRONNEMENT' | translate }}</h3>
           <ng-container *ngTemplateOutlet="iconGrid; context: { $implicit: environment }"></ng-container>
         </div>
       </div>
     </div>
-    <!-- Compétences complémentaires -->
-    <div class="col-md-4 d-flex flex-column gap-2">
-      <div class="row-sm-6 d-flex flex-column flex-grow-1">
-        <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
-          <div class="card-body">
-            <h3 class="card-title text-center mb-3">{{ 'ABOUT.SKILLS.OTHER.TITLE' | translate }}</h3>
-            <ul class="list-unstyled">
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.ACCOUNTING' | translate }}</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.PROJECT_MANAGEMENT' | translate }}</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.OFFICE_365' | translate }}</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.AI_BASICS' | translate }}</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.CAD' | translate }}</li>
-              <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.OTHER.GIT' | translate }}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="row-sm-6 d-flex flex-column flex-grow-1">
-        <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
-          <div class="card-body">
-            <h3 class="card-title text-center mb-3">{{ 'ABOUT.SKILLS.CERTIFICATIONS.TITLE' | translate }}</h3>
-            <app-credly-badge
-              badgeId="01f83ed1-ebe1-4056-a912-381e81d261bc"
-              name="Introduction to Cybersecurity"
-              issuer="Cisco"
-              image="./assets/credly-intro-cybersecurity.png">
-            </app-credly-badge>
-          </div>
-        </div>
-      </div>
-      <div class="row-sm-6 d-flex flex-column flex-grow-1">
-        <div class="card shadow-sm bg-body bg-opacity-75 rounded-3 flex-grow-1 flex-fill">
+
+    <!-- Compétences complémentaires, certifications et langues -->
+    <div class="col-md-4 d-flex flex-column gap-3">
+      <div class="card about-card border shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
-          <h3 class="card-title text-center mb-3">{{ 'ABOUT.SKILLS.LANGUAGES.TITLE' | translate }}</h3>
-          <ul class="list-unstyled">
-            <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.LANGUAGES.GERMAN' | translate }}</li>
-            <li class="list-group-item bg-transparent border-0"><i class="fas fa-check-circle text-primary me-2"></i>{{ 'ABOUT.SKILLS.LANGUAGES.ENGLISH' | translate }}</li>
+          <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary-subtle">{{ 'ABOUT.SKILLS.OTHER.TITLE' | translate }}</h3>
+          <ul class="about-list list-unstyled mb-0">
+            <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.ACCOUNTING' | translate }}</li>
+            <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.PROJECT_MANAGEMENT' | translate }}</li>
+            <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.OFFICE_365' | translate }}</li>
+            <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.AI_BASICS' | translate }}</li>
+            <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.CAD' | translate }}</li>
+            <li class="mb-0">{{ 'ABOUT.SKILLS.OTHER.GIT' | translate }}</li>
           </ul>
         </div>
       </div>
+
+      <div class="card about-card border shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body">
+          <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary-subtle">{{ 'ABOUT.SKILLS.CERTIFICATIONS.TITLE' | translate }}</h3>
+          <app-credly-badge
+            badgeId="01f83ed1-ebe1-4056-a912-381e81d261bc"
+            name="Introduction to Cybersecurity"
+            issuer="Cisco"
+            image="./assets/credly-intro-cybersecurity.png">
+          </app-credly-badge>
+        </div>
+      </div>
+
+      <div class="card about-card border shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body">
+          <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary-subtle">{{ 'ABOUT.SKILLS.LANGUAGES.TITLE' | translate }}</h3>
+          <ul class="about-list list-unstyled mb-0">
+            <li class="mb-2">{{ 'ABOUT.SKILLS.LANGUAGES.GERMAN' | translate }}</li>
+            <li class="mb-0">{{ 'ABOUT.SKILLS.LANGUAGES.ENGLISH' | translate }}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -95,12 +98,10 @@
 
 <!-- Grille d'icônes partagée par les cartes « Langages » et « Environnements ». -->
 <ng-template #iconGrid let-icons>
-  <ul class="list-unstyled d-flex flex-wrap justify-content-center align-items-center gap-3">
-    <li *ngFor="let icon of icons; trackBy: trackByIndex" class="text-center">
+  <ul class="list-unstyled d-flex flex-wrap justify-content-center gap-3 mb-0">
+    <li *ngFor="let icon of icons; trackBy: trackByIndex" class="about-icon text-center p-2 rounded">
       <div [innerHTML]="icon.sanitized" [style.filter]="isDarkTheme ? 'invert(0.7)' : null"></div>
-      <p>
-        {{ icon.name }}
-      </p>
+      <p class="small text-body-secondary lh-sm mt-2 mb-0">{{ icon.name }}</p>
     </li>
   </ul>
 </ng-template>
