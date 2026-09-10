@@ -50,6 +50,10 @@
         "CAD": "Conception assistée par ordinateur (CAO)",
         "GIT": "Git & GitHub"
       },
+      "CERTIFICATIONS": {
+        "TITLE": "Certifications",
+        "VERIFY": "Vérifier sur Credly"
+      },
       "LANGUAGES": {
         "TITLE": "Langues",
         "GERMAN": "Allemand (B1)",

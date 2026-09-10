@@ -1,0 +1,31 @@
+.credly-badge {
+  border-color: var(--bs-border-color) !important;
+  background-color: rgba(var(--bs-body-color-rgb), 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.credly-badge:hover,
+.credly-badge:focus-visible {
+  transform: translateY(-2px);
+  background-color: rgba(var(--bs-primary-rgb), 0.08);
+  box-shadow: 0 0.35rem 0.75rem rgba(0, 0, 0, 0.15);
+}
+
+.credly-badge__image {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.credly-badge__verify {
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credly-badge,
+  .credly-badge:hover,
+  .credly-badge:focus-visible {
+    transition: none;
+    transform: none;
+  }
+}

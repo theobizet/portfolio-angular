@@ -1,0 +1,27 @@
+<a class="credly-badge d-flex align-items-center gap-3 p-2 rounded-3 border text-decoration-none text-body"
+   [href]="badgeUrl"
+   target="_blank"
+   rel="noopener noreferrer"
+   [attr.aria-label]="name + ' – ' + issuer + ' – ' + ('ABOUT.SKILLS.CERTIFICATIONS.VERIFY' | translate)">
+  <img class="credly-badge__image flex-shrink-0"
+       [ngSrc]="image"
+       [alt]="name + ' – ' + issuer"
+       width="72"
+       height="72">
+  <span class="d-flex flex-column lh-sm">
+    <span class="fw-semibold">{{ name }}</span>
+    <small class="text-body-secondary">
+      {{ issuer }}<ng-container *ngIf="issuedOn"> &middot; {{ issuedOn }}</ng-container>
+    </small>
+    <small class="credly-badge__verify text-primary mt-1 d-inline-flex align-items-center gap-1">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true">
+        <path d="M8 0 1.5 2.2v4.4c0 4 2.8 7.7 6.5 9.4 3.7-1.7 6.5-5.4 6.5-9.4V2.2L8 0Zm3.4 5.6-4 5a.8.8 0 0 1-1.2.1L4.4 8.9a.8.8 0 1 1 1.1-1.1l1.2 1.2 3.5-4.4a.8.8 0 1 1 1.2 1Z"/>
+      </svg>
+      {{ 'ABOUT.SKILLS.CERTIFICATIONS.VERIFY' | translate }}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="10" height="10" fill="currentColor" aria-hidden="true">
+        <path d="M6 1h9v9h-2V4.4L5.7 11.7 4.3 10.3 11.6 3H6V1Z"/>
+        <path d="M1 3h4v2H3v8h8v-2h2v4H1V3Z"/>
+      </svg>
+    </small>
+  </span>
+</a>

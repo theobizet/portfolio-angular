@@ -50,6 +50,10 @@
         "CAD": "Computer-Aided Design (CAD)",
         "GIT": "Git & GitHub"
       },
+      "CERTIFICATIONS": {
+        "TITLE": "Zertifizierungen",
+        "VERIFY": "Auf Credly überprüfen"
+      },
       "LANGUAGES": {
         "TITLE": "Sprachen",
         "GERMAN": "Deutsch (B1)",

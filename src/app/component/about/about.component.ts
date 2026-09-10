@@ -5,6 +5,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ThemeService } from '../../theme.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
+import { CredlyBadgeComponent } from '../credly-badge/credly-badge.component';
 
 interface SvgIcon {
   name: string;
@@ -15,7 +16,7 @@ interface SvgIcon {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, FontAwesomeModule, TranslateModule],
+  imports: [CommonModule, NgOptimizedImage, FontAwesomeModule, TranslateModule, CredlyBadgeComponent],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
