@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/portfolio-angular/browser",
   "rewrites": [
     { "source": "/webhook", "destination": "/api/index.js" },
     { "source": "/get-dialogflow-token", "destination": "/api/index.js" },
