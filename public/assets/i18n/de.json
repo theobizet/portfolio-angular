@@ -145,6 +145,12 @@
   "EXPERIENCE": {
     "TITLE": "Erfahrung",
     "SKILLS_TITLE": "Erworbene Fähigkeiten",
+    "STELLANTIS": {
+      "YEAR": "September 2025 - Heute",
+      "TITLE": "Entwickler/Data Analyst – Stellantis, Mülhausen",
+      "DESCRIPTION": "Entwickler und Data Analyst für Stellantis, spezialisiert auf Datenanalyse und Softwareentwicklung. Teilnahme an Projekten zur Verbesserung interner Prozesse und Optimierung der Entscheidungsfindung durch Datenanalyse. Nutzung von Visualisierungs- und Reporting-Tools zur Präsentation der Ergebnisse an die relevanten Teams.",
+      "SKILLS": "Power BI, Power Apps, SharePoint, SQL, Datenanalyse, Softwareentwicklung"
+    },
     "LECLERC": {
       "YEAR": "Mai 2025 - August 2025",
       "TITLE": "Kassierer – E.Leclerc, Cernay",

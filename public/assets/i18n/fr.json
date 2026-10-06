@@ -145,6 +145,12 @@
   "EXPERIENCE": {
     "TITLE": "Expérience",
     "SKILLS_TITLE": "Compétences acquises ",
+    "STELLANTIS": {
+      "YEAR": "Septembre 2025 - Aujourd'hui",
+      "TITLE": "Développeur/Data Analyst - Stellantis, Mulhouse",
+      "DESCRIPTION": "Développeur et Data Analyst pour Stellantis, spécialisé dans l'analyse de données et le développement de solutions logicielles. Participation à des projets visant à améliorer les processus internes et à optimiser la prise de décision grâce à l'analyse de données. Utilisation d'outils de visualisation et de reporting pour présenter les résultats aux équipes concernées.",
+      "SKILLS": "power BI, Power Apps, SharePoint, SQL, Analyse de données, Développement logiciel"
+    },
     "LECLERC": {
       "YEAR": "Mai 2025 - Août 2025",
       "TITLE": "Hôte de caisse - E.Leclerc, Cernay",

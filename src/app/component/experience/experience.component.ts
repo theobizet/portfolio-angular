@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class ExperienceComponent {
   experiences = [
+    { key: 'EXPERIENCE.STELLANTIS' },
     { key: 'EXPERIENCE.LECLERC' },
     { key: 'EXPERIENCE.ISL_STAGE' },
     { key: 'EXPERIENCE.CERP_RRM' },
