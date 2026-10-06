@@ -11,15 +11,17 @@ export class LLMService {
   /**
    * Envoie un message au LLM via Cloudflare Workers AI
    * @param prompt Le texte à envoyer au modèle
+   * @param lang Langue d'affichage du site (fr, en, de) : le Worker impose la réponse dans cette langue
    * @returns Observable avec la réponse du LLM
    */
-  askLLM(prompt: string): Observable<any> {
+  askLLM(prompt: string, lang: string): Observable<any> {
     if (!this.workerUrl) {
       throw new Error('Worker URL non configurée. Vérifiez environment.ts');
     }
 
     return this.http.post(this.workerUrl, {
       prompt: prompt,
+      lang: lang,
       stream: false // Set à true si tu veux du streaming
     });
   }

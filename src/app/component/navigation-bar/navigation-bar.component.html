@@ -36,31 +36,39 @@
             {{ 'NAVBAR.CONTACT' | translate }}
           </a>
         </li>
-        <li class="nav-item dropdown" ngbDropdown display="dynamic">
-          <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" ngbDropdownToggle>
-            <i class="fa fa-gear" aria-hidden="true"></i>
-          </a>
-          <div class="dropdown-menu bg-dark-subtle" aria-labelledby="navbarScrollingDropdown" ngbDropdownMenu>
-            <!-- Bouton pour changer de thème -->
-            <button class="dropdown-item text-center" ngbDropdownItem (click)="toggleDarkMode(); isMenuCollapsed = true">
-              {{ 'NAVBAR.THEME.TOGGLE' | translate }}
-              <span *ngIf="isDarkTheme; else lightTheme"><i class="fa fa-moon" aria-hidden="true"></i></span>
-              <ng-template #lightTheme><i class="fa fa-sun" aria-hidden="true"></i></ng-template>
-            </button>
+        <li class="nav-item dropdown" ngbDropdown display="dynamic" placement="bottom-end">
+          <button type="button" class="nav-link dropdown-toggle options-toggle rounded-2 px-2" ngbDropdownToggle [attr.aria-label]="'NAVBAR.OPTIONS' | translate">
+            <fa-icon [icon]="icons.gear"></fa-icon>
+          </button>
+          <div class="dropdown-menu options-menu shadow border rounded-3 p-2" ngbDropdownMenu>
+            <!-- Thème : choix clair / sombre côte à côte -->
+            <h6 class="dropdown-header px-2 pt-1">{{ 'NAVBAR.THEME.TITLE' | translate }}</h6>
+            <div class="d-flex gap-1 p-1 bg-body-tertiary rounded-2">
+              <button type="button" class="btn btn-sm flex-fill border-0 rounded-2" [class.options-seg-active]="!isDarkTheme"
+                      [attr.aria-pressed]="!isDarkTheme" (click)="setDarkMode(false); isMenuCollapsed = true">
+                <fa-icon [icon]="icons.sun" class="me-1"></fa-icon>{{ 'NAVBAR.THEME.LIGHT' | translate }}
+              </button>
+              <button type="button" class="btn btn-sm flex-fill border-0 rounded-2" [class.options-seg-active]="isDarkTheme"
+                      [attr.aria-pressed]="!!isDarkTheme" (click)="setDarkMode(true); isMenuCollapsed = true">
+                <fa-icon [icon]="icons.moon" class="me-1"></fa-icon>{{ 'NAVBAR.THEME.DARK' | translate }}
+              </button>
+            </div>
 
-            <!-- Séparateur -->
             <div class="dropdown-divider"></div>
 
-            <!-- Boutons pour changer de langue -->
-            <button class="dropdown-item text-center" ngbDropdownItem (click)="changeLanguage('fr'); isMenuCollapsed = true">
-              <i class="flag-icon flag-icon-fr me-2"></i> Français
-            </button>
-            <button class="dropdown-item text-center" ngbDropdownItem (click)="changeLanguage('en'); isMenuCollapsed = true">
-              <i class="flag-icon flag-icon-gb me-2"></i> English
-            </button>
-            <button class="dropdown-item text-center" ngbDropdownItem (click)="changeLanguage('de'); isMenuCollapsed = true">
-              <i class="flag-icon flag-icon-de me-2"></i> Deutsch
-            </button>
+            <!-- Langue : la langue active est cochée -->
+            <h6 class="dropdown-header px-2 pt-1">{{ 'NAVBAR.LANGUAGE' | translate }}</h6>
+            @for (lang of languages; track lang.id) {
+              <button type="button" class="dropdown-item d-flex align-items-center gap-2 rounded-2 px-2" ngbDropdownItem
+                      [class.active]="lang.id === currentLang" [attr.aria-pressed]="lang.id === currentLang"
+                      (click)="changeLanguage(lang.id); isMenuCollapsed = true">
+                <span class="options-code small fw-semibold text-body-secondary">{{ lang.id | uppercase }}</span>
+                <span class="flex-grow-1">{{ lang.label }}</span>
+                @if (lang.id === currentLang) {
+                  <fa-icon [icon]="icons.check"></fa-icon>
+                }
+              </button>
+            }
           </div>
         </li>
       </ul>

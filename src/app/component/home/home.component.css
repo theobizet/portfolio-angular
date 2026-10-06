@@ -1,22 +1,82 @@
-img{
-  height: 84vh;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
+/* Complément à Bootstrap : seulement ce que les utilitaires ne couvrent pas. */
+
+/* Les titres posés sur la photo de fond : une ombre les décolle. */
+.home-heading {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(1);
-  width: 90px;
-  height: 90px;
+/* Portrait en cadre décalé : panneau teinté à la taille de la photo, contour décalé derrière. */
+.home-portrait {
+  width: 300px;
+  height: 406px;
 }
-.carousel-control-prev-icon{
-  background-image: url( "data:image/svg+xml,%3Csvg width='100%' height='100%' fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.6621 17C18.933 19.989 15.7013 22 11.9999 22C6.47703 22 1.99988 17.5228 1.99988 12C1.99988 6.47715 6.47703 2 11.9999 2C15.7013 2 18.933 4.01099 20.6621 7M11.9999 8L7.99995 12M7.99995 12L11.9999 16M7.99995 12H21.9999' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E" );
+
+/* Le fond bleu vient de la classe globale .photo-studio. */
+.home-portrait-panel {
+  width: 280px;
+  height: 386px;
 }
-.carousel-control-next-icon {
-  background-image: url( "data:image/svg+xml,%3Csvg width='100%' height='100%' fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.33789 7C5.06694 4.01099 8.29866 2 12.0001 2C17.5229 2 22.0001 6.47715 22.0001 12C22.0001 17.5228 17.5229 22 12.0001 22C8.29866 22 5.06694 19.989 3.33789 17M12 16L16 12M16 12L12 8M16 12H2' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E" );
+
+.home-portrait-panel img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22));
 }
-.carousel-inner {
-  border-radius: 15px;
+
+.home-portrait-outline {
+  left: 18px;
+  top: 18px;
+  width: 280px;
+  height: 386px;
+  border: 2px solid rgba(var(--bs-primary-rgb), 0.55);
+}
+
+/* Étiquette bleu nuit, identique dans les deux thèmes (version du canevas). */
+.home-portrait-badge {
+  left: -14px;
+  top: 332px;
+  background-color: #1d2430;
+  color: #ffffff;
+}
+
+/* Bouton secondaire à contour, et boutons-icônes carrés. */
+.home-btn-ghost {
+  border: 1.5px solid var(--bs-border-color);
+  color: var(--bs-body-color);
+}
+
+.home-btn-ghost:hover {
+  background-color: rgba(var(--bs-primary-rgb), 0.08);
+  border-color: var(--bs-primary);
+  color: var(--bs-body-color);
+}
+
+.home-btn-icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-divider {
+  height: 28px;
+}
+
+/* Le texte reste à côté de la photo et garde des lignes courtes sur grand écran. */
+.home-intro {
+  flex: 1 1 420px;
+  min-width: 0;
+  max-width: 760px;
+}
+
+.home-date {
+  font-variant-numeric: tabular-nums;
+}
+
+.home-thumb {
+  height: 180px;
 }

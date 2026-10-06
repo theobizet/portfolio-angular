@@ -24,16 +24,16 @@ describe('LLMService', () => {
   });
 
   it('should throw error if worker URL is not configured', () => {
-    expect(() => service.askLLM('test prompt')).toThrowError('Worker URL non configurée');
+    expect(() => service.askLLM('test prompt', 'fr')).toThrowError('Worker URL non configurée');
   });
 
-  it('should send POST request with prompt', () => {
+  it('should send POST request with prompt and language', () => {
     spyOnProperty(service as any, 'workerUrl', 'get').and.returnValue('https://test.workers.dev');
 
-    service.askLLM('What is AI?').subscribe();
+    service.askLLM('What is AI?', 'en').subscribe();
 
     const req = httpMock.expectOne('https://test.workers.dev');
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual({ prompt: 'What is AI?', stream: false });
+    expect(req.request.body).toEqual({ prompt: 'What is AI?', lang: 'en', stream: false });
   });
 });

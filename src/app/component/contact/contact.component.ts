@@ -1,8 +1,9 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ThemeService } from '../../theme.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { ChatComponent } from "../chat/chat";
 import { ContactService } from '../../contact.service';
 
@@ -11,19 +12,21 @@ type SendStatus = 'idle' | 'sending' | 'sent' | 'error';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [NgOptimizedImage, TranslateModule, ChatComponent, FormsModule],
+  imports: [TranslateModule, ChatComponent, FormsModule, FontAwesomeModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
-  isDarkTheme: boolean | undefined;
   status: SendStatus = 'idle';
+  copied = false;
+  icons = { email: faEnvelope, linkedin: faLinkedinIn, github: faGithub };
 
   private contactService = inject(ContactService);
 
-  constructor(public themeService: ThemeService) {
-    this.themeService.darkMode$.subscribe(darkMode => {
-      this.isDarkTheme = darkMode;
+  copyEmail(): void {
+    navigator.clipboard?.writeText('theobizet@outlook.fr').then(() => {
+      this.copied = true;
+      setTimeout(() => (this.copied = false), 2000);
     });
   }
 

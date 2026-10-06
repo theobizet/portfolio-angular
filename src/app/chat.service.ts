@@ -17,13 +17,14 @@ export class ChatService {
   /**
    * Envoie un message en utilisant soit Dialogflow soit LLM
    * @param message Le texte à envoyer
+   * @param lang Langue d'affichage du site (fr, en, de), utilisée par le LLM
    * @param sessionId (optionnel) ID de session pour Dialogflow
    */
-  sendMessage(message: string, sessionId: string = '123456789'): Observable<any> {
+  sendMessage(message: string, lang: string = 'fr', sessionId: string = '123456789'): Observable<any> {
     if (environment.useLLM) {
       // Utiliser LLM (Cloudflare Workers AI)
       console.log('📨 Envoi via LLM Cloudflare...');
-      return this.llmService.askLLM(message).pipe(
+      return this.llmService.askLLM(message, lang).pipe(
         switchMap((response) => {
           // Formatter la réponse LLM pour la compatibilité avec le composant chat
           return of({

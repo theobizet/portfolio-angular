@@ -1,4 +1,117 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*
+ * Palette du site : un bleu profond (#1f4e8c) à la place du bleu vif de Bootstrap, pour les deux thèmes.
+ * Les composants Bootstrap lisent ces variables, donc boutons, liens, badges et text-primary suivent.
+ */
+/* « :root » seul s'appliquerait aussi en sombre (et passerait après Bootstrap) : on l'exclut explicitement. */
+:root:not([data-bs-theme="dark"]),
+[data-bs-theme="light"] {
+  --bs-primary: #1f4e8c;
+  --bs-primary-rgb: 31, 78, 140;
+  --bs-primary-text-emphasis: #173d6e;
+  --bs-primary-bg-subtle: #dbe4f0;
+  --bs-primary-border-subtle: #a9bdd8;
+  --bs-link-color: #1f4e8c;
+  --bs-link-color-rgb: 31, 78, 140;
+  --bs-link-hover-color: #173d6e;
+  --bs-link-hover-color-rgb: 23, 61, 110;
+  --bs-focus-ring-color: rgba(31, 78, 140, 0.25);
+  /* Fond des cartes : gris bleuté plutôt que blanc pur, moins éblouissant. */
+  --bs-body-bg: #eef1f5;
+  --bs-body-bg-rgb: 238, 241, 245;
+  --bs-body-color: #1d2430;
+  --bs-body-color-rgb: 29, 36, 48;
+}
+
+/*
+ * Thème sombre : surfaces « verre fumé » bleu nuit qui s'accordent aux tons chauds de l'image de fond.
+ * Même bleu pour les boutons ; textes et liens bleus éclaircis pour rester lisibles sur fond foncé.
+ */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #161b22;
+  --bs-body-bg-rgb: 22, 27, 34;
+  --bs-body-color: #e6eaf0;
+  --bs-body-color-rgb: 230, 234, 240;
+  --bs-emphasis-color: #ffffff;
+  --bs-emphasis-color-rgb: 255, 255, 255;
+  --bs-secondary-color: rgba(230, 234, 240, 0.72);
+  --bs-secondary-color-rgb: 230, 234, 240;
+  --bs-secondary-bg: #222a35;
+  --bs-secondary-bg-rgb: 34, 42, 53;
+  --bs-tertiary-bg: #1b212b;
+  --bs-tertiary-bg-rgb: 27, 33, 43;
+  --bs-border-color: #333c49;
+  --bs-dark-bg-subtle: #0f1318;
+
+  --bs-primary: #1f4e8c;
+  --bs-primary-rgb: 31, 78, 140;
+  --bs-primary-text-emphasis: #8fbaf3;
+  --bs-primary-bg-subtle: #172a45;
+  --bs-primary-border-subtle: #2f5285;
+  --bs-link-color: #8fbaf3;
+  --bs-link-color-rgb: 143, 186, 243;
+  --bs-link-hover-color: #b5d1f7;
+  --bs-link-hover-color-rgb: 181, 209, 247;
+  --bs-focus-ring-color: rgba(143, 186, 243, 0.3);
+}
+
+/* Sur fond foncé, le bouton bleu s'éclaircit au survol au lieu de s'assombrir. */
+[data-bs-theme="dark"] .btn-primary {
+  --bs-btn-hover-bg: #2a62ab;
+  --bs-btn-hover-border-color: #2a62ab;
+  --bs-btn-active-bg: #3270c0;
+  --bs-btn-active-border-color: #3270c0;
+}
+
+[data-bs-theme="dark"] .text-primary {
+  color: var(--bs-primary-text-emphasis) !important;
+}
+
+/* Boutons : un peu plus arrondis, couleurs reprises de la palette (Bootstrap les fige en dur). */
+.btn {
+  --bs-btn-border-radius: 0.625rem;
+  --bs-btn-font-weight: 600;
+}
+
+.btn-lg {
+  --bs-btn-border-radius: 0.625rem;
+}
+
+.btn-primary {
+  --bs-btn-bg: #1f4e8c;
+  --bs-btn-border-color: #1f4e8c;
+  --bs-btn-hover-bg: #173d6e;
+  --bs-btn-hover-border-color: #173d6e;
+  --bs-btn-active-bg: #12305a;
+  --bs-btn-active-border-color: #12305a;
+  --bs-btn-disabled-bg: #1f4e8c;
+  --bs-btn-disabled-border-color: #1f4e8c;
+  --bs-btn-focus-shadow-rgb: 31, 78, 140;
+}
+
+.form-control:focus {
+  border-color: var(--bs-primary-border-subtle);
+  box-shadow: 0 0 0 0.25rem var(--bs-focus-ring-color);
+}
+
+/* Liens : pas de soulignement permanent, seulement au survol. */
+a {
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.btn:hover,
+a.nav-link:hover,
+a.navbar-brand:hover,
+a.dropdown-item:hover {
+  text-decoration: none;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -20,10 +133,15 @@ body,main,nav,footer {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+/* Fond « studio » derrière la photo détourée (accueil, à propos, contact) : le bleu du site légèrement éclairci,
+   identique en clair et en sombre. Posé sur l'image elle-même, il remplit ses zones transparentes. */
+.photo-studio {
+  background-color: color-mix(in srgb, var(--bs-primary) 82%, #ffffff);
+}
+
 body {
   background: url('/assets/bg-img.jpeg') no-repeat center center fixed;
   background-size: cover;
-  color: black;
   position: relative;
 }
 

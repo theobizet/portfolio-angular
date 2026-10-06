@@ -1,14 +1,124 @@
-<main class="container-fluid bg-transparent py-2">
-  @if (tabs) {
-    <ngb-carousel [keyboard]="true" [pauseOnHover]="true" [interval]="5000" [wrap]="true" [showNavigationIndicators]="false" [showNavigationArrows]="true">
-      <ng-template ngbSlide *ngFor="let tab of tabs">
-        <img [src]="tab.imageUrl" width="700" height="800"/>
-        <div class="carousel-caption text-dark-emphasis bg-body-tertiary rounded-3 bg-opacity-75">
-          <h3>{{tab.titleKey | translate}}</h3>
-          <p>{{tab.descriptionKey | translate}}</p>
-          <a class="btn btn-outline-primary" [routerLink]="tab.route">{{ 'HOME.GO_TO' | translate }}</a>
+<main class="container-fluid bg-transparent py-4 d-flex flex-column gap-3">
+  <!-- Présentation -->
+  <section class="card border-0 shadow bg-body bg-opacity-75 rounded-4 p-4 p-lg-5">
+    <div class="d-flex flex-wrap align-items-center gap-5 column-gap-lg-5">
+      <!-- Portrait en cadre décalé. Le panneau a la taille exacte de la photo : le haut de la photo
+           source est coupé au ras des cheveux, calé sur le bord du panneau il devient un cadrage. -->
+      <div class="home-portrait flex-shrink-0 position-relative">
+        <div class="home-portrait-outline position-absolute rounded-4" aria-hidden="true"></div>
+        <div class="home-portrait-panel photo-studio position-relative rounded-4 overflow-hidden">
+          <img src="./assets/Image1.png" alt="{{ 'HOME.HERO.PHOTO_ALT' | translate }}" width="280" height="386">
         </div>
-      </ng-template>
-    </ngb-carousel>
-  }
+        <span class="home-portrait-badge position-absolute rounded-3 px-3 py-2 small fw-semibold shadow">{{ 'HOME.HERO.BADGE' | translate }}</span>
+      </div>
+
+      <div class="home-intro">
+        <p class="d-flex align-items-center gap-2 text-body-secondary mb-2">
+          <fa-icon [icon]="icons.location"></fa-icon>{{ 'HOME.HERO.LOCATION' | translate }}
+        </p>
+        <h1 class="display-5 fw-bold mb-2">{{ 'CONTACT.MY_NAME' | translate }}</h1>
+        <p class="fs-5 fw-semibold text-primary mb-4">{{ 'HOME.HERO.ROLE' | translate }}</p>
+        <p class="fs-5 lh-lg mb-3">{{ 'HOME.HERO.INTRO1' | translate }}</p>
+        <p class="fs-5 lh-lg mb-4">{{ 'HOME.HERO.INTRO2' | translate }}</p>
+
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <a class="btn btn-primary btn-lg d-inline-flex align-items-center gap-2 px-4 shadow-sm" routerLink="/contact">
+            {{ 'HOME.HERO.CTA_CONTACT' | translate }}<fa-icon [icon]="icons.arrow"></fa-icon>
+          </a>
+          <a class="btn btn-lg home-btn-ghost" routerLink="/projects">{{ 'HOME.HERO.CTA_PROJECTS' | translate }}</a>
+          <span class="vr mx-2 align-self-center home-divider" aria-hidden="true"></span>
+          <a class="btn btn-lg home-btn-ghost home-btn-icon" href="https://www.linkedin.com/in/theobizet" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <fa-icon [icon]="icons.linkedin"></fa-icon>
+          </a>
+          <a class="btn btn-lg home-btn-ghost home-btn-icon" href="https://github.com/theobizet" target="_blank" rel="noopener" aria-label="GitHub">
+            <fa-icon [icon]="icons.github"></fa-icon>
+          </a>
+        </div>
+        <p class="text-body-secondary mt-3 mb-0">
+          {{ 'HOME.HERO.EMAIL_PREFIX' | translate }}
+          <a class="fw-semibold" href="mailto:theobizet&#64;outlook.fr">{{ 'CONTACT.MY_EMAIL_ADDRESS' | translate }}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="row g-3">
+    <!-- Parcours -->
+    <section class="col-lg-7">
+      <div class="card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+        <h2 class="fs-4 fw-bold mb-3">{{ 'HOME.PATH.TITLE' | translate }}</h2>
+        <ul class="list-unstyled border-bottom mb-4">
+          @for (step of path; track step.titleKey) {
+            <li class="row g-1 py-3 border-top">
+              <div class="col-sm-4 col-xl-3 text-body-secondary home-date">{{ step.dateKey | translate }}</div>
+              <div class="col-sm-8 col-xl-9">
+                <div class="fw-semibold">{{ step.titleKey | translate }}</div>
+                <div>{{ step.placeKey | translate }}</div>
+                @if (step.toolsKey) {
+                  <div class="small text-body-secondary mt-1">{{ step.toolsKey | translate }}</div>
+                }
+              </div>
+            </li>
+          }
+        </ul>
+        <a class="fw-semibold mt-auto align-self-start" routerLink="/experience">{{ 'HOME.PATH.MORE' | translate }}</a>
+      </div>
+    </section>
+
+    <!-- En bref -->
+    <section class="col-lg-5">
+      <div class="card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+        <h2 class="fs-4 fw-bold mb-3">{{ 'HOME.FACTS.TITLE' | translate }}</h2>
+        <dl class="mb-0">
+          <dt class="small fw-normal text-body-secondary">{{ 'HOME.FACTS.LANGUAGES_LABEL' | translate }}</dt>
+          <dd class="mb-3">{{ 'HOME.FACTS.LANGUAGES' | translate }}</dd>
+          <dt class="small fw-normal text-body-secondary">{{ 'HOME.FACTS.CODE_LABEL' | translate }}</dt>
+          <dd class="mb-3">TypeScript, Java, C++, Python, PHP, SQL</dd>
+          <dt class="small fw-normal text-body-secondary">{{ 'HOME.FACTS.CERTIFICATIONS_LABEL' | translate }}</dt>
+          <dd class="mb-3">{{ 'HOME.FACTS.CERTIFICATIONS' | translate }}</dd>
+          <dt class="small fw-normal text-body-secondary">{{ 'HOME.FACTS.LEARNING_LABEL' | translate }}</dt>
+          <dd class="mb-3">{{ 'HOME.FACTS.LEARNING' | translate }}</dd>
+          <dt class="small fw-normal text-body-secondary">{{ 'HOME.FACTS.MOBILITY_LABEL' | translate }}</dt>
+          <dd class="mb-0">{{ 'HOME.FACTS.MOBILITY' | translate }}</dd>
+        </dl>
+      </div>
+    </section>
+  </div>
+
+  <!-- Projets -->
+  <div class="d-flex flex-wrap align-items-baseline justify-content-between column-gap-4 border-bottom border-light border-opacity-50 pb-2 mt-3">
+    <h2 class="home-heading fs-3 text-light mb-0">{{ 'HOME.PROJECTS.TITLE' | translate }}</h2>
+    <a class="home-heading link-light fw-semibold" routerLink="/projects">{{ 'HOME.PROJECTS.MORE' | translate }}</a>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+    @for (project of projects; track project.titleKey) {
+      <div class="col">
+        <article class="card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-4 overflow-hidden">
+          <img class="card-img-top home-thumb object-fit-cover" [src]="project.imageUrl" alt="" loading="lazy">
+          <div class="card-body p-4">
+            <p class="small text-body-secondary mb-2">{{ project.year }} · {{ project.roleKey | translate }}</p>
+            <h3 class="fs-5 fw-semibold mb-2">{{ project.titleKey | translate }}</h3>
+            @if (project.textKey) {
+              <p class="mb-0">{{ project.textKey | translate }}</p>
+            }
+          </div>
+        </article>
+      </div>
+    }
+  </div>
+
+  <!-- Contact -->
+  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4 mt-3">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <div>
+        <h2 class="fs-4 fw-bold mb-1">{{ 'HOME.CONTACT.TITLE' | translate }}</h2>
+        <p class="mb-0">
+          {{ 'HOME.CONTACT.TEXT_BEFORE' | translate }}
+          <a href="mailto:theobizet&#64;outlook.fr">{{ 'CONTACT.MY_EMAIL_ADDRESS' | translate }}</a>
+          {{ 'HOME.CONTACT.TEXT_AFTER' | translate }}
+        </p>
+      </div>
+      <a class="btn btn-primary btn-lg px-4 fw-semibold" routerLink="/contact">{{ 'HOME.HERO.CTA_CONTACT' | translate }}</a>
+    </div>
+  </section>
 </main>

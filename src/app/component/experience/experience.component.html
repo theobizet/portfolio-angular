@@ -1,26 +1,80 @@
-<main class="bg-transparent container-fluid py-2">
-  <h2 class="border-bottom pb-2 text-light">{{ 'EXPERIENCE.TITLE' | translate }}</h2>
-  <div ngbAccordion class="bg-transparent">
-    <div ngbAccordionItem *ngFor="let experience of experiences" class="bg-transparent">
-      <h2 ngbAccordionHeader>
-        <button ngbAccordionButton class="bg-body bg-opacity-75">
-          <span class="text-muted" style="margin-right: 10px;">{{ (experience.key + '.YEAR') | translate }}</span>
-          <span class="fw-bold">{{ (experience.key + '.TITLE') | translate }}</span>
-        </button>
-      </h2>
-      <div ngbAccordionCollapse>
-        <div ngbAccordionBody class="bg-body-secondary bg-opacity-75">
-          <ng-template>
-            <p>
-              {{ (experience.key + '.DESCRIPTION') | translate }}
-            </p>
-            <p class="mt-2">
-              <strong>{{ 'EXPERIENCE.SKILLS_TITLE' | translate }} : </strong>
-              {{ (experience.key + '.SKILLS') | translate }}
-            </p>
-          </ng-template>
+<main class="container-fluid bg-transparent py-4 d-flex flex-column gap-4">
+  <div class="row g-4 align-items-start">
+    <!-- Présentation et filtre par compétence -->
+    <aside class="col-lg-4">
+      <div class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+        <h1 class="fw-bold mb-2">{{ 'EXPERIENCE.TITLE' | translate }}</h1>
+        <p class="lh-lg mb-4">{{ 'EXPERIENCE.INTRO' | translate }}</p>
+
+        <div class="border-top pt-3">
+          <h2 class="fs-6 fw-bold mb-1">{{ 'EXPERIENCE.SKILLS_TITLE' | translate }}</h2>
+          <p class="small text-body-secondary mb-3">{{ 'EXPERIENCE.SKILLS_HINT' | translate }}</p>
+          <div class="d-flex flex-wrap gap-2">
+            @for (skill of skills; track skill.id) {
+              <button type="button" class="btn btn-sm rounded-pill d-inline-flex align-items-center gap-2 exp-chip"
+                      [class.active]="selected === skill.id" [attr.aria-pressed]="selected === skill.id" (click)="toggle(skill.id)">
+                {{ ('EXPERIENCE.SKILL.' + skill.id) | translate }}
+                @if (skill.count > 1) {
+                  <span class="badge rounded-pill exp-chip-count">{{ skill.count }}</span>
+                }
+              </button>
+            }
+          </div>
+          @if (selected) {
+            <button type="button" class="btn btn-link px-0 mt-2 fw-semibold" (click)="selected = null">{{ 'EXPERIENCE.SHOW_ALL' | translate }}</button>
+          }
         </div>
       </div>
-    </div>
+    </aside>
+
+    <!-- Frise des expériences en informatique -->
+    <section class="col-lg-8">
+      <h2 class="exp-heading fs-3 text-light mb-3">{{ 'EXPERIENCE.IT_TITLE' | translate }}</h2>
+      <ol class="exp-timeline list-unstyled d-flex flex-column gap-3 mb-0">
+        @for (job of jobs; track job.key) {
+          <li class="exp-item position-relative" [class.exp-dimmed]="!matches(job)">
+            <span class="exp-dot" [class.exp-dot-current]="job.current" aria-hidden="true"></span>
+            <article class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+              <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                <span class="small text-body-secondary exp-date">{{ (job.key + '.DATES') | translate }}</span>
+                <span class="badge rounded-pill" [class]="job.current ? 'bg-success-subtle text-success-emphasis' : 'bg-secondary-subtle text-secondary-emphasis'">
+                  {{ (job.key + '.TYPE') | translate }}
+                </span>
+              </div>
+              <h3 class="fs-5 fw-bold mb-0">{{ (job.key + '.ROLE') | translate }}</h3>
+              <p class="mb-3">{{ (job.key + '.ORG') | translate }} · {{ (job.key + '.PLACE') | translate }}</p>
+              <ul class="d-flex flex-column gap-1 mb-3">
+                @for (bullet of job.bullets; track bullet) {
+                  <li>{{ (job.key + '.' + bullet) | translate }}</li>
+                }
+              </ul>
+              <div class="d-flex flex-wrap gap-2">
+                @for (skill of job.skills; track skill) {
+                  <span class="badge fw-normal exp-tag" [class.exp-tag-hit]="skill === selected">{{ ('EXPERIENCE.SKILL.' + skill) | translate }}</span>
+                }
+              </div>
+            </article>
+          </li>
+        }
+      </ol>
+    </section>
   </div>
+
+  <!-- Jobs étudiants -->
+  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+    <div class="d-flex flex-wrap align-items-baseline justify-content-between column-gap-4 mb-2">
+      <h2 class="fs-4 fw-bold mb-0">{{ 'EXPERIENCE.STUDENT_TITLE' | translate }}</h2>
+      <span class="small text-body-secondary">{{ 'EXPERIENCE.STUDENT_TAGS' | translate }}</span>
+    </div>
+    <p class="mb-3">{{ 'EXPERIENCE.STUDENT_INTRO' | translate }}</p>
+    <ul class="list-unstyled border-bottom mb-0">
+      @for (studentJob of studentJobs; track studentJob) {
+        <li class="row g-1 py-2 border-top">
+          <div class="col-md-3 text-body-secondary exp-date">{{ (studentJob + '.DATES') | translate }}</div>
+          <div class="col-md-4 fw-semibold">{{ (studentJob + '.ROLE') | translate }}</div>
+          <div class="col-md-5">{{ (studentJob + '.ORG') | translate }}</div>
+        </li>
+      }
+    </ul>
+  </section>
 </main>

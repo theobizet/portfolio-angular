@@ -1,74 +1,107 @@
-<main class="container-fluid bg-transparent py-2">
+<main class="container-fluid bg-transparent py-3">
   <h2 class="about-heading border-bottom pb-2 text-light">{{ 'ABOUT.TITLE' | translate }}</h2>
 
-  <div class="container-fluid bg-body bg-opacity-75 rounded-3 shadow-sm p-4">
-    <div class="text-justify lh-base">
-      <!-- Ancrée à droite dans le flux : le texte l'enveloppe puis reprend toute la largeur. -->
-      <img class="img-fluid d-block mx-auto float-md-end ms-md-4 mb-3 rounded-4 shadow border border-3 border-primary-subtle"
-           ngSrc="./assets/Image1.png"
-           alt="{{ 'ABOUT.IMAGE_ALT' | translate }}"
-           width="220"
-           height="303">
-
-      <h3 class="about-subheading d-flex align-items-center gap-2 fs-5 text-primary mb-3">{{ 'ABOUT.PATH' | translate }}</h3>
-      <p>{{ 'ABOUT.PARAGRAPH1' | translate }}</p>
-
-      <h3 class="about-subheading d-flex align-items-center gap-2 fs-5 text-primary mb-3 mt-4">{{ 'ABOUT.DEFINES' | translate }}</h3>
-      <p>{{ 'ABOUT.PARAGRAPH2' | translate }}</p>
-
-      <h3 class="about-subheading d-flex align-items-center gap-2 fs-5 text-primary mb-3 mt-4">{{ 'ABOUT.PASSIONS' | translate }}</h3>
-      <p>{{ 'ABOUT.PARAGRAPH3' | translate }}</p>
-
-      <h3 class="about-subheading d-flex align-items-center gap-2 fs-5 text-primary mb-3 mt-4">{{ 'ABOUT.CONTINUOUS_LEARNING' | translate }}</h3>
-      <p>{{ 'ABOUT.PARAGRAPH4' | translate }}</p>
-      <ul class="about-list list-unstyled mb-3">
-        <li class="mb-2">{{ 'ABOUT.LEARNING1' | translate }}</li>
-        <li class="mb-2">{{ 'ABOUT.LEARNING2' | translate }}</li>
-      </ul>
-      <p class="mb-0">{{ 'ABOUT.PARAGRAPH5' | translate }}</p>
+  <!-- Présentation : photo + parcours, le texte d'accroche en premier. -->
+  <section class="card about-card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4 mb-3">
+    <div class="row align-items-center g-4">
+      <div class="col-md-4 col-lg-3 text-center">
+        <img class="img-fluid rounded-4 shadow photo-studio"
+             ngSrc="./assets/Image1.png"
+             alt="{{ 'HOME.HERO.PHOTO_ALT' | translate }}"
+             width="220"
+             height="303"
+             priority>
+      </div>
+      <div class="col-md-8 col-lg-9">
+        <h3 class="about-subheading d-flex align-items-center gap-2 fs-4 text-primary mb-3">{{ 'ABOUT.PATH' | translate }}</h3>
+        <p class="fs-5 lh-lg mb-0">{{ 'ABOUT.PARAGRAPH1' | translate }}</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <h2 class="about-heading border-bottom py-2 mt-4 text-light">{{ 'ABOUT.SKILLS.TITLE' | translate }}</h2>
+  <!-- Les trois autres facettes, côte à côte pour des lignes courtes. -->
+  <section class="row row-cols-1 row-cols-lg-3 g-3 mb-4">
+    <div class="col">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body p-4">
+          <div class="about-icon-badge d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary fs-5 mb-3">
+            <fa-icon [icon]="icons.defines"></fa-icon>
+          </div>
+          <h3 class="card-title fs-5">{{ 'ABOUT.DEFINES' | translate }}</h3>
+          <p class="card-text lh-lg mb-0">{{ 'ABOUT.PARAGRAPH2' | translate }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body p-4">
+          <div class="about-icon-badge d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary fs-5 mb-3">
+            <fa-icon [icon]="icons.passions"></fa-icon>
+          </div>
+          <h3 class="card-title fs-5">{{ 'ABOUT.PASSIONS' | translate }}</h3>
+          <p class="card-text lh-lg mb-0">{{ 'ABOUT.PARAGRAPH3' | translate }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+        <div class="card-body p-4">
+          <div class="about-icon-badge d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary fs-5 mb-3">
+            <fa-icon [icon]="icons.learning"></fa-icon>
+          </div>
+          <h3 class="card-title fs-5">{{ 'ABOUT.CONTINUOUS_LEARNING' | translate }}</h3>
+          <p class="card-text mb-2">{{ 'ABOUT.PARAGRAPH4' | translate }}</p>
+          <ul class="about-list list-unstyled mb-2">
+            <li class="mb-1">{{ 'ABOUT.LEARNING1' | translate }}</li>
+            <li class="mb-1">{{ 'ABOUT.LEARNING2' | translate }}</li>
+          </ul>
+          <p class="card-text text-body-secondary mb-0">{{ 'ABOUT.PARAGRAPH5' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="row g-3">
-    <!-- Langages de programmation et frameworks -->
-    <div class="col-md-4">
-      <div class="card about-card h-100 border shadow-sm bg-body bg-opacity-75 rounded-3">
+  <h2 class="about-heading border-bottom pb-2 text-light">{{ 'ABOUT.SKILLS.TITLE' | translate }}</h2>
+
+  <!-- Technique : deux cartes de largeur proportionnelle au nombre d'icônes. -->
+  <section class="row g-3 mb-3">
+    <div class="col-lg-8">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.PROGRAMMING' | translate }}</h3>
           <ng-container *ngTemplateOutlet="iconGrid; context: { $implicit: languages }"></ng-container>
         </div>
       </div>
     </div>
-
-    <!-- Environnements de développement -->
-    <div class="col-md-4">
-      <div class="card about-card h-100 border shadow-sm bg-body bg-opacity-75 rounded-3">
+    <div class="col-lg-4">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.ENVIRONNEMENT' | translate }}</h3>
           <ng-container *ngTemplateOutlet="iconGrid; context: { $implicit: environment }"></ng-container>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Compétences complémentaires, certifications et langues -->
-    <div class="col-md-4 d-flex flex-column gap-3">
-      <div class="card about-card border shadow-sm bg-body bg-opacity-75 rounded-3">
+  <!-- Complémentaire : trois cartes de même hauteur. -->
+  <section class="row row-cols-1 row-cols-md-3 g-3">
+    <div class="col">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.OTHER.TITLE' | translate }}</h3>
-        <ul class="about-list list-unstyled mb-0">
+          <ul class="about-list list-unstyled mb-0">
             <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.ACCOUNTING' | translate }}</li>
             <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.PROJECT_MANAGEMENT' | translate }}</li>
             <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.OFFICE_365' | translate }}</li>
             <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.AI_BASICS' | translate }}</li>
             <li class="mb-2">{{ 'ABOUT.SKILLS.OTHER.CAD' | translate }}</li>
             <li class="mb-0">{{ 'ABOUT.SKILLS.OTHER.GIT' | translate }}</li>
-        </ul>
+          </ul>
         </div>
       </div>
-
-      <div class="card about-card border shadow-sm bg-body bg-opacity-75 rounded-3">
+    </div>
+    <div class="col">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.CERTIFICATIONS.TITLE' | translate }}</h3>
           <div class="d-grid gap-2">
@@ -87,26 +120,27 @@
           </div>
         </div>
       </div>
-
-      <div class="card about-card border shadow-sm bg-body bg-opacity-75 rounded-3">
+    </div>
+    <div class="col">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.LANGUAGES.TITLE' | translate }}</h3>
-        <ul class="about-list list-unstyled mb-0">
-            <li class="mb-2">{{ 'ABOUT.SKILLS.LANGUAGES.GERMAN' | translate }}</li>
-            <li class="mb-0">{{ 'ABOUT.SKILLS.LANGUAGES.ENGLISH' | translate }}</li>
-        </ul>
+          <ul class="about-list list-unstyled mb-0">
+            <li class="mb-2">{{ 'ABOUT.SKILLS.LANGUAGES.ENGLISH' | translate }}</li>
+            <li class="mb-0">{{ 'ABOUT.SKILLS.LANGUAGES.GERMAN' | translate }}</li>
+          </ul>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </main>
 
 <!-- Grille d'icônes partagée par les cartes « Langages » et « Environnements ». -->
 <ng-template #iconGrid let-icons>
-  <ul class="list-unstyled d-flex flex-wrap justify-content-center gap-3 mb-0">
+  <ul class="list-unstyled d-flex flex-wrap justify-content-center gap-2 mb-0">
     <li *ngFor="let icon of icons; trackBy: trackByIndex" class="about-icon text-center p-2 rounded">
       <div [innerHTML]="icon.sanitized" [style.filter]="isDarkTheme ? 'invert(0.7)' : null"></div>
-      <p class="small text-body-secondary lh-sm mt-2 mb-0">{{ icon.name }}</p>
+      <p class="small text-body lh-sm mt-2 mb-0">{{ icon.name }}</p>
     </li>
   </ul>
 </ng-template>

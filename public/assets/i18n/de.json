@@ -7,27 +7,74 @@
     "PROJECTS": "Projekte",
     "EXPERIENCE": "Erfahrung",
     "CONTACT": "Kontakt",
+    "OPTIONS": "Optionen",
+    "LANGUAGE": "Sprache",
     "THEME": {
-      "TOGGLE": "Thema:"
+      "TITLE": "Design",
+      "LIGHT": "Hell",
+      "DARK": "Dunkel"
     }
   },
   "HOME": {
-    "ABOUT_TITLE": "Über mich",
-    "ABOUT_DESCRIPTION": "Vorstellung und persönlicher Werdegang",
-    "EDUCATION_TITLE": "Ausbildung",
-    "EDUCATION_DESCRIPTION": "Akademische Laufbahn und erworbene Fähigkeiten",
-    "PROJECTS_TITLE": "Projekte",
-    "PROJECTS_DESCRIPTION": "Durchgeführte Projekte und verwendete Technologien",
-    "EXPERIENCE_TITLE": "Erfahrung",
-    "EXPERIENCE_DESCRIPTION": "Berufserfahrung und Praktika",
-    "CONTACT_TITLE": "Kontakt",
-    "CONTACT_DESCRIPTION": "Kontaktinformationen und soziale Netzwerke",
-    "GO_TO": "Zum Tab gehen"
+    "HERO": {
+      "LOCATION": "Mulhouse, Elsass (Frankreich)",
+      "ROLE": "Power-Apps-Entwickler & Data Analyst im dualen Studium bei Stellantis",
+      "INTRO1": "Ich mache einen Master in MIAGE an der Université de Haute-Alsace, im dualen Studium bei Stellantis. Dort entwickle ich interne Anwendungen mit Power Apps und erstelle Power-BI-Dashboards, mit denen die Teams ihre Aktivitäten steuern.",
+      "INTRO2": "Daneben programmiere ich vor allem mit Angular und TypeScript (diese Website ist ein Beispiel) und lerne React und Kotlin.",
+      "CTA_CONTACT": "Schreiben Sie mir",
+      "CTA_PROJECTS": "Meine Projekte",
+      "PHOTO_ALT": "Foto von Théo Bizet",
+      "BADGE": "Master MIAGE · Stellantis",
+      "EMAIL_PREFIX": "Oder direkt:"
+    },
+    "PATH": {
+      "TITLE": "Werdegang",
+      "MORE": "Mein gesamter Werdegang",
+      "STELLANTIS_DATE": "Seit Sept. 2025",
+      "STELLANTIS_TITLE": "Power-Apps-Entwickler & Data Analyst, duales Studium",
+      "STELLANTIS_PLACE": "Stellantis, Mülhausen",
+      "STELLANTIS_TOOLS": "Power Apps · Power Automate · Power BI · SharePoint",
+      "MASTER_DATE": "Seit 2025",
+      "MASTER_TITLE": "Master MIAGE",
+      "UHA_PLACE": "Université de Haute-Alsace, Mülhausen",
+      "ISL_DATE": "Mai – Aug. 2024",
+      "ISL_TITLE": "Bachelor-Abschlusspraktikum, Kostenrechnung",
+      "ISL_PLACE": "ISL, Saint-Louis",
+      "ISL_TOOLS": "SQL · VBA · Excel · Sicherheit von HR-Daten",
+      "LICENCE_DATE": "2019 – 2025",
+      "LICENCE_TITLE": "Bachelor Informatik"
+    },
+    "FACTS": {
+      "TITLE": "Kurz gesagt",
+      "LANGUAGES_LABEL": "Sprachen",
+      "LANGUAGES": "Französisch, Englisch C1, Deutsch B1",
+      "CODE_LABEL": "Programmiersprachen",
+      "CERTIFICATIONS_LABEL": "Zertifikate",
+      "CERTIFICATIONS": "Cisco: Introduction to Cybersecurity, Introduction to Data Science",
+      "LEARNING_LABEL": "Lerne gerade",
+      "LEARNING": "React und Kotlin",
+      "MOBILITY_LABEL": "Mobilität",
+      "MOBILITY": "Führerschein B und AM"
+    },
+    "PROJECTS": {
+      "TITLE": "Einige Projekte",
+      "MORE": "Alle Projekte ansehen",
+      "EFA_TITLE": "Einführung von EFA Cloud für Mulhouse-Aviron",
+      "EFA_TEXT": "Das elektronische Fahrtenbuch des Ruderclubs, für die Mitglieder installiert und eingerichtet.",
+      "MAZE_TITLE": "Roboter, der Labyrinthe löst",
+      "IMAGE_TITLE": "Bildbearbeitungssoftware",
+      "IMAGE_TEXT": "Entwickelt für den Kurs Bildverarbeitung."
+    },
+    "CONTACT": {
+      "TITLE": "Eine Stelle nach meinem Master oder eine Frage?",
+      "TEXT_BEFORE": "Schreiben Sie mir an",
+      "TEXT_AFTER": "oder nutzen Sie das Kontaktformular."
+    }
   },
   "ABOUT": {
     "TITLE": "Über mich",
     "PATH": "Mein Werdegang",
-    "PARAGRAPH1": "Mit einem Abschluss eines Bachelorstudiums in Informatik und derzeit im Masterstudiengang MIAGE (Informatikmethoden für das Unternehmensmanagement) habe ich fundierte Expertise in der Lösung komplexer Probleme und die Fähigkeit entwickelt, mich schnell an technologische Entwicklungen anzupassen. Mein strenger akademischer Werdegang hat es mir ermöglicht, präzise technische Fähigkeiten zu erwerben, die ich in innovative Projekte einbringe. Mein Ziel? Expertise und Kreativität zu verbinden, um zu ehrgeizigen und wertschöpfenden Projekten beizutragen.",
+    "PARAGRAPH1": "Mit einem Abschluss eines Bachelorstudiums in Informatik und derzeit im dualen Masterstudiengang MIAGE (Informatikmethoden für das Unternehmensmanagement) bei Stellantis habe ich fundierte Expertise in der Lösung komplexer Probleme und die Fähigkeit entwickelt, mich schnell an technologische Entwicklungen anzupassen. Mein strenger akademischer Werdegang hat es mir ermöglicht, präzise technische Fähigkeiten zu erwerben, die ich in innovative Projekte einbringe. Mein Ziel? Expertise und Kreativität zu verbinden, um zu ehrgeizigen und wertschöpfenden Projekten beizutragen.",
     "DEFINES": "Was mich ausmacht",
     "PARAGRAPH2": "Neugierde und Vielseitigkeit stehen im Mittelpunkt meines Ansatzes. Mit neun Jahren Gitarrenpraxis habe ich Disziplin, Kreativität und Durchhaltevermögen entwickelt – Eigenschaften, die ich in meine technischen und kollaborativen Projekte einbringe. Im Besitz der Führerscheine B und AM bin ich mobil und bereit, sich bietende Chancen zu ergreifen.",
     "PASSIONS": "Leidenschaften & Ambitionen",
@@ -66,7 +113,7 @@
     "UHA": {
       "NAME": "Universität Oberelsass – Mülhausen",
       "LICENCE": "2019 - 2025: BACHELOR INFORMATIK",
-      "MASTER": "2025 - heute: MASTER MIAGE",
+      "MASTER": "2025 - heute: MASTER MIAGE (dual bei Stellantis)",
       "LANGUAGES_TITLE": "Erlernte Sprachen und Frameworks:",
       "LANGUAGES": {
         "C++": "C++",
@@ -144,89 +191,142 @@
   },
   "EXPERIENCE": {
     "TITLE": "Erfahrung",
-    "SKILLS_TITLE": "Erworbene Fähigkeiten",
-    "STELLANTIS": {
-      "YEAR": "September 2025 - Heute",
-      "TITLE": "Entwickler/Data Analyst – Stellantis, Mülhausen",
-      "DESCRIPTION": "Entwickler und Data Analyst für Stellantis, spezialisiert auf Datenanalyse und Softwareentwicklung. Teilnahme an Projekten zur Verbesserung interner Prozesse und Optimierung der Entscheidungsfindung durch Datenanalyse. Nutzung von Visualisierungs- und Reporting-Tools zur Präsentation der Ergebnisse an die relevanten Teams.",
-      "SKILLS": "Power BI, Power Apps, SharePoint, SQL, Datenanalyse, Softwareentwicklung"
+    "INTRO": "Von meinem dualen Studium bei Stellantis bis zu meinem Praktikum am ISL: wo ich Softwareentwicklung und Datenanalyse in die Praxis umgesetzt habe.",
+    "SKILLS_TITLE": "Kompetenzen in der Praxis",
+    "SKILLS_HINT": "Wählen Sie eine Kompetenz, um zu sehen, wo ich sie eingesetzt habe.",
+    "SHOW_ALL": "Alle anzeigen",
+    "IT_TITLE": "In der Informatik",
+    "STUDENT_TITLE": "Studentenjobs",
+    "STUDENT_TAGS": "Kundenservice · Teamarbeit · Sorgfalt und Sicherheit",
+    "STUDENT_INTRO": "Neben dem Studium Jobs in Logistik und Verkauf, die mich Sorgfalt, Kundenservice und Teamarbeit gelehrt haben.",
+    "JOBS": {
+      "STELLANTIS": {
+        "DATES": "Sept. 2025 – heute",
+        "TYPE": "Duales Studium",
+        "ROLE": "Power-Apps-Entwickler & Data Analyst",
+        "ORG": "Stellantis",
+        "PLACE": "Mülhausen",
+        "B1": "Interne Low-Code-Anwendungen mit Power Apps, verbunden mit Power Automate und SharePoint, zur Vereinfachung von Geschäftsprozessen.",
+        "B2": "Power-BI-Dashboards, mit denen die Teams ihre Aktivitäten steuern und Entscheidungen treffen.",
+        "B3": "Erfassung der Anforderungen der Fachabteilungen und Vorschlag passender Lösungen."
+      },
+      "ISL": {
+        "DATES": "Mai – Aug. 2024",
+        "TYPE": "Bachelor-Abschlusspraktikum",
+        "ROLE": "Kostenrechnung und HR-Daten",
+        "ORG": "ISL",
+        "PLACE": "Saint-Louis",
+        "B1": "Protokolle zur sicheren Extraktion von Daten aus dem HR-Informationssystem.",
+        "B2": "Bereitstellung der Daten gemäß den mit der Personalabteilung festgelegten Zugriffsgruppen.",
+        "B3": "Verfassen der technischen Dokumentation."
+      },
+      "GRG": {
+        "DATES": "Juni – Sept. 2022",
+        "TYPE": "Ferienjob",
+        "ROLE": "Datenbankmigration",
+        "ORG": "GRG Alsace",
+        "PLACE": "Straßburg",
+        "B1": "Migration des Unternehmenssystems von einer Microsoft-Access-Datenbank auf die Software WSM Akanéa.",
+        "B2": "Bereinigung und Validierung der Daten, um ihre Integrität bei der Übertragung zu sichern.",
+        "B3": "Schulung der Nutzer zur Begleitung der Umstellung."
+      }
     },
-    "LECLERC": {
-      "YEAR": "Mai 2025 - August 2025",
-      "TITLE": "Kassierer – E.Leclerc, Cernay",
-      "DESCRIPTION": "Empfang und Abrechnung der Supermarktkunden. Verwaltung von Finanztransaktionen, Bearbeitung von Kartenzahlungen und Bargeld. Sicherstellung eines qualitativ hochwertigen Kundenservice durch Beantwortung von Kundenfragen und Lösung eventueller Probleme. Nutzung von Kassensoftware zur Erfassung von Verkäufen und Verwaltung der Kassenbestände.",
-      "SKILLS": "Kassenverwaltung, Kundenservice, Verkaufsstellen-Software"
+    "STUDENT": {
+      "LECLERC": {
+        "DATES": "Mai – Aug. 2025",
+        "ROLE": "Kassierer",
+        "ORG": "E.Leclerc, Cernay"
+      },
+      "CERP": {
+        "DATES": "Feb. 2023 – Mai 2025",
+        "ROLE": "Kommissionierer",
+        "ORG": "CERP RRM, Illzach"
+      },
+      "BELL": {
+        "DATES": "Okt. 2020 – Jan. 2021",
+        "ROLE": "Kommissionierer",
+        "ORG": "Bell Suisse SA, Basel"
+      },
+      "MATCH": {
+        "DATES": "Aug. – Sept. 2020",
+        "ROLE": "Verkäufer Obst und Gemüse",
+        "ORG": "Supermarkt Match, Huningue"
+      },
+      "GRG": {
+        "DATES": "Sommer 2017 bis 2021",
+        "ROLE": "Lagerarbeiter",
+        "ORG": "GRG Alsace, Straßburg"
+      },
+      "EARL": {
+        "DATES": "Sommer 2015",
+        "ROLE": "Landarbeiter",
+        "ORG": "EARL Fix, Fessenheim-le-Bas"
+      }
     },
-    "ISL_STAGE": {
-      "YEAR": "Mai 2024 - August 2024",
-      "TITLE": "Abschluss-Praktikum – ISL, Saint-Louis",
-      "DESCRIPTION": "Kostenrechnung : Umsetzung von Protokollen für die sichere Extraktion von Daten aus dem Personalinformationssystem unter Wahrung der Vertraulichkeit und Integrität der Informationen. Diese Daten wurden anschließend autorisiertem Personal entsprechend ihrer Zugehörigkeit zu bestimmten Gruppen innerhalb der Organisation zur Verfügung gestellt. Einsatz von Verschlüsselungs- und Authentifizierungstechniken zum Schutz der Daten während der Übertragung und Speicherung. Zusammenarbeit mit den Personalverantwortlichen zur Definition der Zugriffsebenen und Sicherstellung, dass nur berechtigte Personen auf die relevanten Informationen zugreifen konnten. Schulung der Endbenutzer in den besten Praktiken der Datensicherheit und Erstellung technischer Dokumentation zur Unterstützung dieser Prozesse.",
-      "SKILLS": "Datenbanken, Kostenrechnung, IT-Sicherheit, SQL, VBA, Microsoft Excel"
-    },
-    "CERP_RRM": {
-      "YEAR": "Februar 2023 - Mai 2025",
-      "TITLE": "Kommissionierer – CERP RRM, Illzach",
-      "DESCRIPTION": "Zusammenstellung und Überprüfung von Bestellungen für Medikamente und medizinisches Material, die an Apotheken in der Region Mülhausen geliefert werden. Nutzung von Lagerverwaltungssystemen zur Lokalisierung und Zusammenstellung der bestellten Artikel. Verpackung und Etikettierung der Bestellungen unter Einhaltung der Sicherheits- und Qualitätsnormen. Zusammenarbeit mit den Logistikteams, um die pünktliche Lieferung und die Bestandsverwaltung zu gewährleisten.",
-      "SKILLS": "Kommissionierung, Bestandsmanagement, Logistik, Lagerverwaltungssysteme"
-    },
-    "GRG_ALSACE_DB": {
-      "YEAR": "Juni 2022 - September 2022",
-      "TITLE": "Datenbankmigration – GRG Alsace, Straßburg",
-      "DESCRIPTION": "Mitwirkung bei Inventur, Be- und Entladung von LKWs. Unterstützung bei der Migration des Unternehmens-IT-Systems von einer Microsoft Access-Datenbank zur WSM Akanéa-Software. Bereinigung und Validierung der Daten, um deren Integrität während des Transfers zu gewährleisten. Schulung der Endbenutzer im neuen System und Erstellung technischer Dokumentation zur Unterstützung des Übergangs.",
-      "SKILLS": "Datenbankverwaltung, Datenmigration, Microsoft Access, WSM Akanéa"
-    },
-    "BELL_SUISSE": {
-      "YEAR": "Oktober 2020 - Januar 2021",
-      "TITLE": "Kommissionierer – Bell Suisse SA, Basel",
-      "DESCRIPTION": "Zusammenstellung und Verpackung von Bestellungen für Fischereiprodukte für COOP-Supermärkte. Nutzung von Bestandsverwaltungssystemen zur Überwachung der Produktbestände und Sicherstellung der Verfügbarkeit der Artikel. Zusammenarbeit mit den Logistikteams zur Organisation der Lieferungen und Aufrechterhaltung der Kühlkette. Einhaltung der Hygiene- und Lebensmittelsicherheitsnormen.",
-      "SKILLS": "Kommissionierung, Bestandsmanagement, Logistik, Hygiene und Lebensmittelsicherheit"
-    },
-    "GRG_ALSACE_MANUT": {
-      "YEAR": "Sommer 2017, 2018, 2019, 2021",
-      "TITLE": "Lagerarbeiter – GRG Alsace, Straßburg",
-      "DESCRIPTION": "Durchführung von Inventuren, Be- und Entladung von LKWs. Einsatz von Lagergeräten zum sicheren Transport von Waren. Zusammenarbeit mit den Logistikteams zur Organisation von Lieferungen und Wareneingängen. Einhaltung der Sicherheitsvorschriften zur Vermeidung von Unfällen und Gewährleistung eines sicheren Arbeitsumfelds.",
-      "SKILLS": "Lagerarbeit, Logistik, Bedienung von Lagergeräten, Arbeitssicherheit"
-    },
-    "MATCH": {
-      "YEAR": "August 2020 - September 2020",
-      "TITLE": "Verkäufer – Supermarkt Match, Huningue",
-      "DESCRIPTION": "Verantwortlich für die Auffüllung und Pflege der Obst- und Gemüseabteilung. Beratung und Betreuung der Kunden bei den verfügbaren Produkten. Verwaltung der Bestände und Bestellung von Waren bei den Lieferanten. Mitwirkung bei der Umsetzung von Werbeaktionen und der Gestaltung von Präsentationen zur Kundenansprache.",
-      "SKILLS": "Verkauf, Regalmanagement, Kundenservice, Bestandsmanagement"
-    },
-    "JOURNAL_ALSACE": {
-      "YEAR": "Januar 2016",
-      "TITLE": "Schülerpraktikum: IT-Abteilung – Journal L’Alsace, Mülhausen",
-      "DESCRIPTION": "Beobachtung und Unterstützung der Informatiker des Journal L’Alsace bei Wartungsarbeiten. Hilfe bei der Lösung technischer Probleme und Unterstützung der Benutzer. Vertrautmachen mit Content-Management-Systemen und digitalen Veröffentlichungstools. Mitwirkung bei Projekten zur Aktualisierung der IT-Ausstattung und Wartung der Netzwerke.",
-      "SKILLS": "IT-Wartung, Technischer Support, Content-Management-Systeme"
-    },
-    "EARL_FIX": {
-      "YEAR": "Sommer 2015",
-      "TITLE": "Landwirtschaftlicher Arbeiter – EARL Fix, Fessenheim-le-Bas",
-      "DESCRIPTION": "Sortieren und Vorbereiten von Tabak für einen kleinen landwirtschaftlichen Betrieb. Mitwirkung bei Ernte- und Verarbeitungsarbeiten. Einsatz von landwirtschaftlichen Werkzeugen und Maschinen für Sortier- und Verpackungsaufgaben. Zusammenarbeit mit anderen Landwirtschaftsarbeitern für einen reibungslosen Ablauf der Operationen.",
-      "SKILLS": "Landwirtschaftliche Arbeit, Produktsortierung, Bedienung landwirtschaftlicher Maschinen, Teamarbeit"
+    "SKILL": {
+      "POWER_APPS": "Power Apps",
+      "POWER_AUTOMATE": "Power Automate",
+      "POWER_BI": "Power BI",
+      "SHAREPOINT": "SharePoint",
+      "DATA_ANALYSIS": "Datenanalyse",
+      "REQUIREMENTS": "Anforderungsaufnahme",
+      "SQL": "SQL",
+      "VBA": "VBA",
+      "EXCEL": "Excel",
+      "DATABASES": "Datenbanken",
+      "DATA_SECURITY": "Datensicherheit",
+      "DOCUMENTATION": "Dokumentation",
+      "ACCESS": "Microsoft Access",
+      "DATA_MIGRATION": "Datenmigration",
+      "USER_TRAINING": "Nutzerschulung"
     }
   },
   "CONTACT": {
-    "TITLE": "Kontaktieren Sie mich",
     "MY_NAME": "Théo Bizet",
-    "MY_JOB": "Junior-Entwickler",
-    "EMAIL": "E-Mail",
     "MY_EMAIL_ADDRESS": "theobizet@outlook.fr",
-    "PHONE": "Telefon",
-    "MY_PHONE_NUMBER": "+33 6 03 70 47 01",
-    "DESCRIPTION": "Erstellung und Wartung von Software-, Web- oder Mobilfunk-Lösungen, die auf die Bedürfnisse der Benutzer zugeschnitten sind.",
+    "INTRO": "Eine Stelle nach meinem Master, ein Projekt oder eine Frage zu meiner Arbeit: Schreiben Sie mir, ich antworte persönlich.",
+    "EMAIL": "E-Mail",
+    "COPY": "Kopieren",
+    "COPIED": "Kopiert",
+    "COPY_LABEL": "E-Mail-Adresse kopieren",
+    "LOCATION": "Wohnhaft in Mulhouse (Elsass, Frankreich) · Führerschein B und AM",
     "FORM": {
-      "TITLE": "Senden Sie mir eine Nachricht",
-      "NAME_PLACEHOLDER": "Geben Sie Ihren Namen ein",
-      "EMAIL_PLACEHOLDER": "Geben Sie Ihre E-Mail-Adresse ein",
-      "MESSAGE_PLACEHOLDER": "Geben Sie Ihre Nachricht ein",
+      "TITLE": "Nachricht senden",
+      "SUBTITLE": "Die Nachricht landet direkt in meinem Postfach.",
       "NAME": "Name",
+      "NAME_PLACEHOLDER": "Ihr Name",
       "EMAIL_ADDRESS": "E-Mail-Adresse",
+      "EMAIL_PLACEHOLDER": "sie@unternehmen.de",
       "MESSAGE": "Nachricht",
-      "SEND": "Senden",
+      "MESSAGE_PLACEHOLDER": "Die Stelle, der Kontext, Ihre Fragen…",
+      "REQUIRED": "Dieses Feld ist erforderlich.",
+      "EMAIL_INVALID": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "SEND": "Nachricht senden",
       "SENDING": "Wird gesendet…",
-      "SUCCESS": "Nachricht gesendet, danke! Ich melde mich bald.",
-      "ERROR": "Senden fehlgeschlagen. Bitte versuche es gleich noch einmal oder schreibe mir direkt eine E-Mail."
+      "PRIVACY": "Ihre Adresse wird nur für meine Antwort verwendet.",
+      "SUCCESS": "Nachricht gesendet, vielen Dank! Ich melde mich bald.",
+      "ERROR": "Das Senden ist fehlgeschlagen. Versuchen Sie es gleich noch einmal oder schreiben Sie mir direkt an theobizet@outlook.fr."
+    },
+    "CHAT": {
+      "TITLE": "Eine kurze Frage?",
+      "INTRO": "Mein KI-Assistent beantwortet Ihre Fragen auf Grundlage meines Lebenslaufs. Für Genaueres ist das Formular weiterhin der beste Weg.",
+      "FEATURE_FAST": "Antwortet in wenigen Sekunden",
+      "FEATURE_CV": "Stützt sich nur auf meinen Lebenslauf",
+      "FEATURE_LANGUAGE": "Antwortet in der Sprache der Website",
+      "HEADER_TITLE": "KI-Assistent",
+      "HEADER_SUBTITLE": "Antwortet auf Grundlage von Théos Lebenslauf",
+      "RESET": "Neues Gespräch",
+      "GREETING": "Hallo! Ich bin Théos Assistent. Stellen Sie mir eine Frage zu seinem Werdegang, seinen Kompetenzen oder seinen Projekten.",
+      "Q1": "Erzähl mir von seinem dualen Studium",
+      "Q2": "Was sind seine Kompetenzen?",
+      "Q3": "Welche Projekte hat er umgesetzt?",
+      "LABEL": "Ihre Frage",
+      "PLACEHOLDER": "Ihre Frage stellen…",
+      "SEND": "Senden",
+      "TYPING": "Der Assistent schreibt",
+      "DISCLAIMER": "KI-generierte Antworten auf Grundlage meines Lebenslaufs: Sie können Fehler enthalten.",
+      "NOT_UNDERSTOOD": "Entschuldigung, das habe ich nicht verstanden. Können Sie es anders formulieren?",
+      "ERROR": "Der Assistent antwortet gerade nicht. Nutzen Sie bitte das Formular oben."
     }
   },
   "CARD": {

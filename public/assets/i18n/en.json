@@ -7,27 +7,74 @@
     "PROJECTS": "Projects",
     "EXPERIENCE": "Experience",
     "CONTACT": "Contact",
+    "OPTIONS": "Options",
+    "LANGUAGE": "Language",
     "THEME": {
-      "TOGGLE": "Theme:"
+      "TITLE": "Theme",
+      "LIGHT": "Light",
+      "DARK": "Dark"
     }
   },
   "HOME": {
-    "ABOUT_TITLE": "About Me",
-    "ABOUT_DESCRIPTION": "Presentation and personal journey",
-    "EDUCATION_TITLE": "Education",
-    "EDUCATION_DESCRIPTION": "Academic background and acquired skills",
-    "PROJECTS_TITLE": "Projects",
-    "PROJECTS_DESCRIPTION": "Completed projects and technologies used",
-    "EXPERIENCE_TITLE": "Experience",
-    "EXPERIENCE_DESCRIPTION": "Professional experience and internships",
-    "CONTACT_TITLE": "Contact",
-    "CONTACT_DESCRIPTION": "Contact information and social networks",
-    "GO_TO": "Go to tab"
+    "HERO": {
+      "LOCATION": "Mulhouse, Alsace (France)",
+      "ROLE": "Power Apps Developer & Data Analyst, work-study at Stellantis",
+      "INTRO1": "I'm studying for a Master's in MIAGE at the University of Haute-Alsace, on a work-study programme at Stellantis. There, I build internal applications with Power Apps and design Power BI dashboards that help teams monitor their activity.",
+      "INTRO2": "On the side, I mostly code in Angular and TypeScript (this site is one example) and I'm learning React and Kotlin.",
+      "CTA_CONTACT": "Get in touch",
+      "CTA_PROJECTS": "See my projects",
+      "PHOTO_ALT": "Photo of Théo Bizet",
+      "BADGE": "Master MIAGE · Stellantis",
+      "EMAIL_PREFIX": "Or directly:"
+    },
+    "PATH": {
+      "TITLE": "Background",
+      "MORE": "My full background",
+      "STELLANTIS_DATE": "Since Sept. 2025",
+      "STELLANTIS_TITLE": "Power Apps Developer & Data Analyst, work-study",
+      "STELLANTIS_PLACE": "Stellantis, Mulhouse",
+      "STELLANTIS_TOOLS": "Power Apps · Power Automate · Power BI · SharePoint",
+      "MASTER_DATE": "Since 2025",
+      "MASTER_TITLE": "Master's in MIAGE",
+      "UHA_PLACE": "University of Haute-Alsace, Mulhouse",
+      "ISL_DATE": "May – Aug. 2024",
+      "ISL_TITLE": "Final-year bachelor's internship, cost accounting",
+      "ISL_PLACE": "ISL, Saint-Louis",
+      "ISL_TOOLS": "SQL · VBA · Excel · HR data security",
+      "LICENCE_DATE": "2019 – 2025",
+      "LICENCE_TITLE": "Bachelor's in Computer Science"
+    },
+    "FACTS": {
+      "TITLE": "At a glance",
+      "LANGUAGES_LABEL": "Languages",
+      "LANGUAGES": "French, English C1, German B1",
+      "CODE_LABEL": "Programming languages",
+      "CERTIFICATIONS_LABEL": "Certifications",
+      "CERTIFICATIONS": "Cisco: Introduction to Cybersecurity, Introduction to Data Science",
+      "LEARNING_LABEL": "Currently learning",
+      "LEARNING": "React and Kotlin",
+      "MOBILITY_LABEL": "Mobility",
+      "MOBILITY": "Driving licence (B and AM)"
+    },
+    "PROJECTS": {
+      "TITLE": "A few projects",
+      "MORE": "See all projects",
+      "EFA_TITLE": "Setting up EFA Cloud for Mulhouse-Aviron",
+      "EFA_TEXT": "The rowing club's electronic logbook, installed and configured for its members.",
+      "MAZE_TITLE": "Maze-solving robot",
+      "IMAGE_TITLE": "Image editing software",
+      "IMAGE_TEXT": "Built for the image processing course."
+    },
+    "CONTACT": {
+      "TITLE": "A position after my master's, or a question?",
+      "TEXT_BEFORE": "Write to me at",
+      "TEXT_AFTER": "or use the contact form."
+    }
   },
   "ABOUT": {
     "TITLE": "About Me",
     "PATH": "My Journey",
-    "PARAGRAPH1": "Graduated with a Bachelor's degree in Computer Science and currently pursuing a Master's degree in MIAGE (Computer Science Methods Applied to Business Management), I have developed strong expertise in solving complex problems and the ability to quickly adapt to technological changes. My rigorous academic background has allowed me to acquire sharp technical skills, which I apply to innovative projects. My goal? To combine expertise and creativity to contribute to ambitious, high-value projects.",
+    "PARAGRAPH1": "Graduated with a Bachelor's degree in Computer Science and currently pursuing a Master's degree in MIAGE (Computer Science Methods Applied to Business Management) on a work-study programme at Stellantis, I have developed strong expertise in solving complex problems and the ability to quickly adapt to technological changes. My rigorous academic background has allowed me to acquire sharp technical skills, which I apply to innovative projects. My goal? To combine expertise and creativity to contribute to ambitious, high-value projects.",
     "DEFINES": "What Defines Me",
     "PARAGRAPH2": "Curiosity and versatility are at the heart of my approach. With nine years of guitar practice, I have developed discipline, creativity, and perseverance—qualities I bring to my technical and collaborative projects. Holding both B and AM driving licenses, I am mobile and ready to seize opportunities as they arise.",
     "PASSIONS": "Passions & Ambitions",
@@ -66,7 +113,7 @@
     "UHA": {
       "NAME": "University of Upper Alsace – Mulhouse",
       "LICENCE": "2019 - 2025: BACHELOR IN COMPUTER SCIENCE",
-      "MASTER": "2025 - Present: MASTER IN MIAGE",
+      "MASTER": "2025 - Present: MASTER IN MIAGE (work-study at Stellantis)",
       "LANGUAGES_TITLE": "Languages and frameworks learned:",
       "LANGUAGES": {
         "C++": "C++",
@@ -144,89 +191,142 @@
   },
   "EXPERIENCE": {
     "TITLE": "Experience",
-    "SKILLS_TITLE": "Skills Acquired",
-    "STELLANTIS": {
-      "YEAR": "September 2025 - Present",
-      "TITLE": "Developer/Data Analyst – Stellantis, Mulhouse",
-      "DESCRIPTION": "Developer and Data Analyst for Stellantis, specializing in data analysis and software development. Participated in projects aimed at improving internal processes and optimizing decision-making through data analysis. Utilized visualization and reporting tools to present results to relevant teams.",
-      "SKILLS": "Power BI, Power Apps, SharePoint, SQL, Data Analysis, Software Development"
+    "INTRO": "From my work-study position at Stellantis to my internship at ISL: where I put software development and data analysis into practice.",
+    "SKILLS_TITLE": "Skills in practice",
+    "SKILLS_HINT": "Pick a skill to see where I used it.",
+    "SHOW_ALL": "Show all",
+    "IT_TITLE": "In IT",
+    "STUDENT_TITLE": "Student jobs",
+    "STUDENT_TAGS": "Customer service · Teamwork · Rigour and safety",
+    "STUDENT_INTRO": "Alongside my studies, jobs in logistics and retail that taught me rigour, customer service and teamwork.",
+    "JOBS": {
+      "STELLANTIS": {
+        "DATES": "Sept. 2025 – present",
+        "TYPE": "Work-study",
+        "ROLE": "Power Apps Developer & Data Analyst",
+        "ORG": "Stellantis",
+        "PLACE": "Mulhouse",
+        "B1": "Internal low-code applications built with Power Apps, connected to Power Automate and SharePoint, to streamline business processes.",
+        "B2": "Power BI dashboards that help teams monitor their activity and make decisions.",
+        "B3": "Gathering requirements from business teams and proposing suitable solutions."
+      },
+      "ISL": {
+        "DATES": "May – Aug. 2024",
+        "TYPE": "Final-year bachelor's internship",
+        "ROLE": "Cost accounting and HR data",
+        "ORG": "ISL",
+        "PLACE": "Saint-Louis",
+        "B1": "Protocols for the secure extraction of data from the HR information system.",
+        "B2": "Making the data available according to access groups defined with HR managers.",
+        "B3": "Writing the technical documentation."
+      },
+      "GRG": {
+        "DATES": "June – Sept. 2022",
+        "TYPE": "Summer job",
+        "ROLE": "Database migration",
+        "ORG": "GRG Alsace",
+        "PLACE": "Strasbourg",
+        "B1": "Migrated the company's system from a Microsoft Access database to the WSM Akanéa software.",
+        "B2": "Cleaned and validated the data to ensure its integrity during the transfer.",
+        "B3": "Trained users to support the transition."
+      }
     },
-    "LECLERC": {
-      "YEAR": "May 2025 - August 2025",
-      "TITLE": "Cashier – E.Leclerc, Cernay",
-      "DESCRIPTION": "Welcoming and checking out supermarket customers. Managing financial transactions, processing card and cash payments. Providing quality customer service by answering questions and resolving issues. Using point-of-sale software to record sales and manage cash registers.",
-      "SKILLS": "Cash register management, Customer service, Point-of-sale software"
+    "STUDENT": {
+      "LECLERC": {
+        "DATES": "May – Aug. 2025",
+        "ROLE": "Cashier",
+        "ORG": "E.Leclerc, Cernay"
+      },
+      "CERP": {
+        "DATES": "Feb. 2023 – May 2025",
+        "ROLE": "Order picker",
+        "ORG": "CERP RRM, Illzach"
+      },
+      "BELL": {
+        "DATES": "Oct. 2020 – Jan. 2021",
+        "ROLE": "Order picker",
+        "ORG": "Bell Suisse SA, Basel"
+      },
+      "MATCH": {
+        "DATES": "Aug. – Sept. 2020",
+        "ROLE": "Fruit and vegetable sales assistant",
+        "ORG": "Match supermarket, Huningue"
+      },
+      "GRG": {
+        "DATES": "Summers 2017 to 2021",
+        "ROLE": "Warehouse handler",
+        "ORG": "GRG Alsace, Strasbourg"
+      },
+      "EARL": {
+        "DATES": "Summer 2015",
+        "ROLE": "Farm worker",
+        "ORG": "EARL Fix, Fessenheim-le-Bas"
+      }
     },
-    "ISL_STAGE": {
-      "YEAR": "May 2024 - August 2024",
-      "TITLE": "End-of-studies Internship – ISL, Saint-Louis",
-      "DESCRIPTION": "Analytical Accounting : Implementing protocols for the secure extraction of data from the human resources information system, ensuring confidentiality and integrity of information. This data was then made available to authorized personnel based on their group membership within the organization. Using encryption and authentication techniques to protect data during transfer and storage. Collaborating with HR managers to define access levels and ensure only authorized individuals could access relevant information. Training end-users on data security best practices and writing technical documentation to support these processes.",
-      "SKILLS": "Databases, Analytical Accounting, IT Security, SQL, VBA, Microsoft Excel"
-    },
-    "CERP_RRM": {
-      "YEAR": "February 2023 - May 2025",
-      "TITLE": "Order Picker – CERP RRM, Illzach",
-      "DESCRIPTION": "Preparing and verifying orders for medications and medical supplies destined for pharmacies in the Mulhouse region. Using warehouse management systems to locate and gather ordered items. Packaging and labeling orders in compliance with safety and quality standards. Collaborating with logistics teams to ensure timely delivery and inventory management.",
-      "SKILLS": "Order picking, Inventory management, Logistics, Warehouse management systems"
-    },
-    "GRG_ALSACE_DB": {
-      "YEAR": "June 2022 - September 2022",
-      "TITLE": "Database Migration – GRG Alsace, Strasbourg",
-      "DESCRIPTION": "Participating in inventory, loading, and unloading trucks. Assisting in the migration of the company’s IT system from a Microsoft Access database to WSM Akanéa software. Cleaning and validating data to ensure integrity during transfer. Training end-users on the new system and writing technical documentation to support the transition.",
-      "SKILLS": "Database administration, Data migration, Microsoft Access, WSM Akanéa"
-    },
-    "BELL_SUISSE": {
-      "YEAR": "October 2020 - January 2021",
-      "TITLE": "Order Picker – Bell Suisse SA, Basel",
-      "DESCRIPTION": "Preparing and packaging orders of seafood products for COOP supermarkets. Using inventory management systems to track product levels and ensure availability. Collaborating with logistics teams to organize deliveries and maintain the cold chain. Adhering to hygiene and food safety standards.",
-      "SKILLS": "Order picking, Inventory management, Logistics, Hygiene and food safety"
-    },
-    "GRG_ALSACE_MANUT": {
-      "YEAR": "Summers of 2017, 2018, 2019, 2021",
-      "TITLE": "Warehouse Worker – GRG Alsace, Strasbourg",
-      "DESCRIPTION": "Conducting inventory, loading, and unloading trucks. Using handling equipment to safely move goods. Collaborating with logistics teams to organize deliveries and receipts. Following safety procedures to prevent accidents and ensure a safe working environment.",
-      "SKILLS": "Warehouse work, Logistics, Handling equipment, Workplace safety"
-    },
-    "MATCH": {
-      "YEAR": "August 2020 - September 2020",
-      "TITLE": "Sales Associate – Match Supermarket, Huningue",
-      "DESCRIPTION": "Responsible for restocking and maintaining the fruit and vegetable section. Welcoming and advising customers on available products. Managing inventory and ordering goods from suppliers. Participating in setting up promotions and organizing displays to attract customers.",
-      "SKILLS": "Sales, Department management, Customer service, Inventory management"
-    },
-    "JOURNAL_ALSACE": {
-      "YEAR": "January 2016",
-      "TITLE": "Observation Internship: IT Department – Journal L’Alsace, Mulhouse",
-      "DESCRIPTION": "Observing and assisting the IT technicians of Journal L’Alsace with maintenance tasks. Helping resolve technical issues and providing user support. Familiarizing myself with content management systems and digital publishing tools. Participating in projects to update IT equipment and maintain networks.",
-      "SKILLS": "IT maintenance, Technical support, Content management systems"
-    },
-    "EARL_FIX": {
-      "YEAR": "Summer 2015",
-      "TITLE": "Agricultural Worker – EARL Fix, Fessenheim-le-Bas",
-      "DESCRIPTION": "Sorting and preparing tobacco for a small farm. Participating in harvesting and processing activities. Using agricultural tools and machinery for sorting and packaging tasks. Collaborating with other farm workers to ensure smooth operations.",
-      "SKILLS": "Agricultural work, Product sorting, Agricultural machinery, Teamwork"
+    "SKILL": {
+      "POWER_APPS": "Power Apps",
+      "POWER_AUTOMATE": "Power Automate",
+      "POWER_BI": "Power BI",
+      "SHAREPOINT": "SharePoint",
+      "DATA_ANALYSIS": "Data analysis",
+      "REQUIREMENTS": "Requirements gathering",
+      "SQL": "SQL",
+      "VBA": "VBA",
+      "EXCEL": "Excel",
+      "DATABASES": "Databases",
+      "DATA_SECURITY": "Data security",
+      "DOCUMENTATION": "Documentation",
+      "ACCESS": "Microsoft Access",
+      "DATA_MIGRATION": "Data migration",
+      "USER_TRAINING": "User training"
     }
   },
   "CONTACT": {
-    "TITLE": "Contact Me",
     "MY_NAME": "Théo Bizet",
-    "MY_JOB": "Junior Developer",
-    "EMAIL": "Email",
     "MY_EMAIL_ADDRESS": "theobizet@outlook.fr",
-    "PHONE": "Phone",
-    "MY_PHONE_NUMBER": "+33 6 03 70 47 01",
-    "DESCRIPTION": "Creation and maintenance of software, web, or mobile solutions tailored to user needs.",
+    "INTRO": "A position after my master's, a project, or a question about my work: write to me and I'll answer personally.",
+    "EMAIL": "Email",
+    "COPY": "Copy",
+    "COPIED": "Copied",
+    "COPY_LABEL": "Copy email address",
+    "LOCATION": "Based in Mulhouse (Alsace, France) · Driving licence (B and AM)",
     "FORM": {
-      "TITLE": "Send Me a Message",
-      "NAME_PLACEHOLDER": "Enter your name",
-      "EMAIL_PLACEHOLDER": "Enter your email address",
-      "MESSAGE_PLACEHOLDER": "Enter your message",
+      "TITLE": "Send a message",
+      "SUBTITLE": "Your message goes straight to my inbox.",
       "NAME": "Name",
+      "NAME_PLACEHOLDER": "Your name",
       "EMAIL_ADDRESS": "Email address",
+      "EMAIL_PLACEHOLDER": "you@company.com",
       "MESSAGE": "Message",
-      "SEND": "Send",
+      "MESSAGE_PLACEHOLDER": "The position, the context, your questions…",
+      "REQUIRED": "This field is required.",
+      "EMAIL_INVALID": "Please enter a valid email address.",
+      "SEND": "Send message",
       "SENDING": "Sending…",
-      "SUCCESS": "Message sent, thanks! I'll get back to you shortly.",
-      "ERROR": "Sending failed. Try again in a moment, or email me directly."
+      "PRIVACY": "Your address is only used to reply to you.",
+      "SUCCESS": "Message sent, thank you! I'll get back to you soon.",
+      "ERROR": "Sending failed. Please try again in a moment or email me directly at theobizet@outlook.fr."
+    },
+    "CHAT": {
+      "TITLE": "A quick question?",
+      "INTRO": "My AI assistant answers your questions based on my CV. For anything more specific, the form is still the best way.",
+      "FEATURE_FAST": "Answers in a few seconds",
+      "FEATURE_CV": "Relies only on my CV",
+      "FEATURE_LANGUAGE": "Answers in the site's language",
+      "HEADER_TITLE": "AI assistant",
+      "HEADER_SUBTITLE": "Answers based on Théo's CV",
+      "RESET": "New conversation",
+      "GREETING": "Hello! I'm Théo's assistant. Ask me anything about his background, skills or projects.",
+      "Q1": "Tell me about his work-study position",
+      "Q2": "What are his skills?",
+      "Q3": "What projects has he worked on?",
+      "LABEL": "Your question",
+      "PLACEHOLDER": "Ask your question…",
+      "SEND": "Send",
+      "TYPING": "The assistant is typing",
+      "DISCLAIMER": "AI-generated answers based on my CV: they may contain mistakes.",
+      "NOT_UNDERSTOOD": "Sorry, I didn't understand. Could you rephrase?",
+      "ERROR": "The assistant isn't responding right now. Please use the form above instead."
     }
   },
   "CARD": {

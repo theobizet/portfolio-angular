@@ -6,6 +6,7 @@ import { ThemeService } from '../../theme.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
 import { CredlyBadgeComponent } from '../credly-badge/credly-badge.component';
+import { faBookOpen, faFingerprint, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 interface SvgIcon {
   name: string;
@@ -22,6 +23,7 @@ interface SvgIcon {
 })
 export class AboutComponent {
   isDarkTheme: boolean | undefined;
+  icons = { defines: faFingerprint, passions: faHeart, learning: faBookOpen };
 
   languages: SvgIcon[] = [
   {

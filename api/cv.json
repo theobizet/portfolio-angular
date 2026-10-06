@@ -105,16 +105,17 @@
   "experiences": [
     {
       "entreprise": "Stellantis",
-      "poste": "Développeur low code/no code Power Apps (alternance)",
+      "poste": "Développeur Power Apps (low code/no code) & Data Analyst Power BI (alternance)",
       "annee": "2025-en cours",
       "lieu": "Mulhouse, France",
       "type": "Alternance",
       "details": [
-        "Développement d’applications internes pour améliorer les processus métier.",
+        "Développement d’applications internes en low code/no code avec Power Apps pour améliorer les processus métier.",
         "Collaboration avec les équipes fonctionnelles pour recueillir les besoins et proposer des solutions adaptées.",
-        "Intégration avec d’autres services Microsoft (Power Automate, SharePoint, etc.)."
+        "Intégration avec d’autres services Microsoft (Power Automate, SharePoint, etc.).",
+        "Analyse de données et conception de tableaux de bord Power BI pour le pilotage et l’aide à la décision."
       ],
-      "competences": ["Power Apps", "Power Automate", "SharePoint", "Gestion de projet"]
+      "competences": ["Power Apps", "Power Automate", "Power BI", "SharePoint", "Analyse de données", "Gestion de projet"]
     },
     {
       "entreprise": "E.Leclerc",
@@ -178,7 +179,7 @@
       "details": [
         "Spécialisation en développement full-stack et gestion de projet.",
         "Cours avancés en contrôle de gestion, bases de données et architecture logicielle.",
-        "Alternance chez Stellantis en tant que développeur no code Power Apps."
+        "Alternance chez Stellantis en tant que développeur Power Apps (low code/no code) et data analyst Power BI."
       ],
       "competences": ["IA", "Gestion de projet", "Base de données", "SQL", "VBA", "Office 365", "comptabilité et gestion", "Git", "Laravel", "PHP", "JavaScript", "HTML/CSS"]
     },

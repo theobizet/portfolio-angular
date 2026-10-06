@@ -1,0 +1,30 @@
+/* Complément à Bootstrap : seulement ce que les utilitaires ne couvrent pas. */
+
+.contact-photo {
+  width: 76px;
+  height: 92px;
+  object-position: center 20%;
+}
+
+/* Pastille d'icône devant chaque moyen de contact. */
+.contact-icon {
+  flex: 0 0 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.contact-icon-linkedin {
+  background-color: #0a66c2;
+}
+
+.contact-icon-github {
+  background-color: #24292f;
+}
+
+.contact-row:hover {
+  background-color: var(--bs-secondary-bg);
+}

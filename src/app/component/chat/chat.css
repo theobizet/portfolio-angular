@@ -1,0 +1,118 @@
+/* Complément à Bootstrap : fenêtre de chat. Les couleurs passent par les variables Bootstrap,
+   donc le thème sombre suit sans règle supplémentaire. */
+
+.chat-feature-icon {
+  width: 1.25rem;
+}
+
+.chat-messages {
+  height: 380px;
+}
+
+/* Avatar de l'assistant : une icône, pas la photo de Théo (ce n'est pas lui qui parle). */
+.chat-avatar {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  background-color: var(--bs-primary-bg-subtle);
+  color: var(--bs-primary-text-emphasis);
+}
+
+.chat-avatar-lg {
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+}
+
+.chat-status {
+  width: 12px;
+  height: 12px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid var(--bs-body-bg);
+}
+
+.chat-icon-btn,
+.chat-send {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.chat-icon-btn {
+  border-color: var(--bs-border-color);
+  border-radius: 0.625rem;
+}
+
+/* Bulles : le coin « pointe » vers l'auteur du message. */
+.chat-row-bot {
+  max-width: 82%;
+}
+
+.chat-bubble {
+  padding: 0.7rem 0.95rem;
+  line-height: 1.55;
+  border-radius: 1.125rem;
+}
+
+.chat-bubble-bot {
+  border-bottom-left-radius: 0.375rem;
+}
+
+.chat-bubble-user {
+  max-width: 75%;
+  border-bottom-right-radius: 0.375rem;
+}
+
+/* Questions toutes prêtes, alignées sous la bulle d'accueil (avatar 28px + espace 8px). */
+.chat-suggestions {
+  padding-left: 36px;
+}
+
+.chat-chip {
+  background-color: var(--bs-primary-bg-subtle);
+  border: 1px solid var(--bs-primary-border-subtle);
+  color: var(--bs-primary-text-emphasis);
+}
+
+.chat-chip:hover {
+  background-color: var(--bs-primary-border-subtle);
+}
+
+.chat-composer:focus-within {
+  border-color: var(--bs-primary-border-subtle) !important;
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.15);
+}
+
+/* Indicateur « l'assistant écrit ». */
+.chat-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--bs-secondary-color);
+  animation: chat-typing 1.2s infinite ease-in-out;
+}
+
+.chat-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.chat-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes chat-typing {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-dot {
+    animation: none;
+  }
+}
