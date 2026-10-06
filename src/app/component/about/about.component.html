@@ -71,12 +71,20 @@
       <div class="card about-card border shadow-sm bg-body bg-opacity-75 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.CERTIFICATIONS.TITLE' | translate }}</h3>
-          <app-credly-badge
-            badgeId="01f83ed1-ebe1-4056-a912-381e81d261bc"
-            name="Introduction to Cybersecurity"
-            issuer="Cisco"
-            image="./assets/credly-intro-cybersecurity.png">
-          </app-credly-badge>
+          <div class="d-grid gap-2">
+            <app-credly-badge
+              badgeId="01f83ed1-ebe1-4056-a912-381e81d261bc"
+              name="Introduction to Cybersecurity"
+              issuer="Cisco"
+              image="./assets/credly-intro-cybersecurity.png">
+            </app-credly-badge>
+            <app-credly-badge
+              badgeId="7c628968-89e3-490d-a994-beee398590ea"
+              name="Introduction to Data Science"
+              issuer="Cisco"
+              image="./assets/credly-intro-data-science.png">
+            </app-credly-badge>
+          </div>
         </div>
       </div>
 
