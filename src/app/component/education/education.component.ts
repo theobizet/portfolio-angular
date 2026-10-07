@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCheck, faCode } from '@fortawesome/free-solid-svg-icons';
 
 interface Diploma {
   key: string;
@@ -30,11 +32,13 @@ interface Step {
 @Component({
   selector: 'app-education',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, FontAwesomeModule],
   templateUrl: './education.component.html',
   styleUrl: './education.component.css'
 })
 export class EducationComponent {
+  readonly icons = { code: faCode, check: faCheck };
+
   /** Étapes du parcours, de la plus ancienne à la plus récente. Les compétences sont traduites sous EDUCATION. */
   steps: Step[] = [
     {

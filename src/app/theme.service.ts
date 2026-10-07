@@ -6,20 +6,21 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class ThemeService {
-  private darkMode = new BehaviorSubject<boolean>(false);
+  private readonly darkMode = new BehaviorSubject<boolean>(false);
 
-  darkMode$ = this.darkMode.asObservable();
+  readonly darkMode$ = this.darkMode.asObservable();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private readonly platformId: Object) {
     this.loadDarkMode();
   }
 
   private loadDarkMode(): void {
     if (isPlatformBrowser(this.platformId)) {
       const savedMode = localStorage.getItem('darkmode');
-      if (savedMode !== null) {
-        this.darkMode.next(savedMode === 'true');
-      }
+      // Sans choix enregistré, on suit le thème du système.
+      this.darkMode.next(savedMode === null
+        ? matchMedia('(prefers-color-scheme: dark)').matches
+        : savedMode === 'true');
     }
   }
 

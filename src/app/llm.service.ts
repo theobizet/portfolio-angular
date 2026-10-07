@@ -5,8 +5,8 @@ import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class LLMService {
-  private http = inject(HttpClient);
-  private workerUrl = environment.cloudflareWorkerUrl || '';
+  private readonly http = inject(HttpClient);
+  private readonly workerUrl = environment.cloudflareWorkerUrl || '';
 
   /**
    * Envoie un message au LLM via Cloudflare Workers AI
@@ -14,12 +14,12 @@ export class LLMService {
    * @param lang Langue d'affichage du site (fr, en, de) : le Worker impose la réponse dans cette langue
    * @returns Observable avec la réponse du LLM
    */
-  askLLM(prompt: string, lang: string): Observable<any> {
+  askLLM(prompt: string, lang: string): Observable<{ response?: string }> {
     if (!this.workerUrl) {
       throw new Error('Worker URL non configurée. Vérifiez environment.ts');
     }
 
-    return this.http.post(this.workerUrl, {
+    return this.http.post<{ response?: string }>(this.workerUrl, {
       prompt: prompt,
       lang: lang,
       stream: false // Set à true si tu veux du streaming

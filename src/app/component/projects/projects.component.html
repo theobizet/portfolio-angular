@@ -5,7 +5,8 @@
       <h1 class="fw-bold mb-2">{{ 'PROJECTS.TITLE' | translate }}</h1>
       <p class="lh-lg text-body-secondary mb-0">{{ 'PROJECTS.INTRO' | translate }}</p>
     </div>
-    <div class="d-flex flex-wrap gap-2" role="group" [attr.aria-label]="'PROJECTS.FILTER_LABEL' | translate">
+    <fieldset class="d-flex flex-wrap gap-2">
+      <legend class="visually-hidden">{{ 'PROJECTS.FILTER_LABEL' | translate }}</legend>
       @for (filter of filters; track filter.context) {
         <button type="button" class="btn rounded-pill d-inline-flex align-items-center gap-2 proj-chip"
                 [class.active]="selected === filter.context" [attr.aria-pressed]="selected === filter.context" (click)="selected = filter.context">
@@ -13,7 +14,7 @@
           <span class="badge rounded-pill proj-chip-count">{{ filter.count }}</span>
         </button>
       }
-    </div>
+    </fieldset>
   </section>
 
   <!-- Grille des projets -->
@@ -45,7 +46,7 @@
           }
           @if (project.code) {
             <a class="d-inline-flex align-items-center gap-2 fw-semibold border-top pt-2 mt-1 proj-link" [href]="project.code" target="_blank" rel="noopener">
-              <i class="fa fa-code" aria-hidden="true"></i>{{ 'PROJECTS.CODE' | translate }}
+              <fa-icon [icon]="icons.code"></fa-icon>{{ 'PROJECTS.CODE' | translate }}
             </a>
           }
         </div>

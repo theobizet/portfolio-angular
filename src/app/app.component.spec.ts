@@ -14,9 +14,8 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'CV-Theo-BIZET' title`, () => {
+  it('should show the current year in the footer', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('CV-Theo-BIZET');
+    expect(fixture.componentInstance.year).toEqual(new Date().getFullYear());
   });
 });

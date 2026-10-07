@@ -1,6 +1,7 @@
 {
   "NAVBAR": {
     "BRAND": "BIZET Théo - Entwickler",
+    "MENU": "Menü öffnen",
     "HOME": "Startseite",
     "ABOUT": "Über mich",
     "EDUCATION": "Ausbildung",
@@ -23,7 +24,7 @@
       "INTRO2": "Daneben programmiere ich vor allem mit Angular und TypeScript (diese Website ist ein Beispiel) und lerne React und Kotlin.",
       "CTA_CONTACT": "Schreiben Sie mir",
       "CTA_PROJECTS": "Meine Projekte",
-      "PHOTO_ALT": "Foto von Théo Bizet",
+      "PHOTO_ALT": "Théo Bizet",
       "BADGE": "Master MIAGE · Stellantis",
       "EMAIL_PREFIX": "Oder direkt:"
     },
@@ -407,6 +408,9 @@
       "NOT_UNDERSTOOD": "Entschuldigung, das habe ich nicht verstanden. Können Sie es anders formulieren?",
       "ERROR": "Der Assistent antwortet gerade nicht. Nutzen Sie bitte das Formular oben."
     }
+  },
+  "FOOTER": {
+    "RIGHTS": "Alle Rechte vorbehalten."
   },
   "404": {
     "TITLE": "404 - Seite nicht gefunden",

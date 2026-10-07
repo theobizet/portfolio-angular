@@ -12,7 +12,7 @@
             @if (step.year) {
               {{ step.year }}
             } @else {
-              <i class="fa fa-code" aria-hidden="true"></i>
+              <fa-icon [icon]="icons.code"></fa-icon>
             }
           </span>
           <span class="d-flex flex-column">
@@ -44,7 +44,7 @@
                 <span class="fw-bold">{{ (diploma.key + '.NAME') | translate }}</span>
                 @if (diploma.done) {
                   <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis">
-                    <i class="fas fa-check me-1" aria-hidden="true"></i>{{ (diploma.key + '.STATUS') | translate }}
+                    <fa-icon [icon]="icons.check" class="me-1"></fa-icon>{{ (diploma.key + '.STATUS') | translate }}
                   </span>
                 } @else {
                   <span class="badge rounded-pill bg-success-subtle text-success-emphasis">{{ 'EDUCATION.IN_PROGRESS' | translate }}</span>

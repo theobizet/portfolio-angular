@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCode } from '@fortawesome/free-solid-svg-icons';
 
 type Context = 'UNIVERSITY' | 'ASSOCIATION' | 'HIGH_SCHOOL';
 
@@ -19,11 +21,13 @@ interface Project {
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, FontAwesomeModule],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css',
 })
 export class ProjectsComponent {
+  readonly icons = { code: faCode };
+
   /** Projets du plus récent au plus ancien. */
   projects: Project[] = [
     { id: 'IMAGE_PROCESSOR', year: '2024 – 2025', context: 'UNIVERSITY', role: 'DEVELOPER', tech: ['PYTHON', 'OPENCV', 'TKINTER'],

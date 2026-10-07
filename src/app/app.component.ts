@@ -3,39 +3,45 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavigationBarComponent } from './component/navigation-bar/navigation-bar.component';
 import { ThemeService } from './theme.service';
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
+
+const LANGUAGES = ['fr', 'de', 'en'];
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavigationBarComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RouterOutlet, NavigationBarComponent, TranslateModule],
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  title = 'CV-Theo-BIZET';
+  readonly year = new Date().getFullYear();
+
   constructor(
-    private themeService: ThemeService, private translate: TranslateService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private readonly themeService: ThemeService, private readonly translate: TranslateService,
+    @Inject(PLATFORM_ID) private readonly platformId: Object
   ) {
-    this.translate.addLangs(['fr', 'de', 'en']);
+    this.translate.addLangs(LANGUAGES);
     this.translate.setFallbackLang('fr');
     this.loadLanguage();
   }
 
+  /** Langue enregistrée, sinon celle du navigateur si le site la propose, sinon le français. */
   private loadLanguage(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const savedLocal = localStorage.getItem('local');
-      if (savedLocal !== null) {
-        this.translate.use(savedLocal);
-      }
+      const browserLang = navigator.language.slice(0, 2);
+      const lang = localStorage.getItem('local') ?? (LANGUAGES.includes(browserLang) ? browserLang : 'fr');
+      this.translate.use(lang);
     }
   }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.themeService.darkMode$.subscribe(darkMode => {
-        document.documentElement.setAttribute('data-bs-theme', darkMode ? 'dark' : 'light');
+        document.documentElement.dataset['bsTheme'] = darkMode ? 'dark' : 'light';
+      });
+      // Les lecteurs d'écran et la traduction automatique lisent la langue sur <html>.
+      this.translate.onLangChange.subscribe(({ lang }) => {
+        document.documentElement.lang = lang;
       });
     }
   }

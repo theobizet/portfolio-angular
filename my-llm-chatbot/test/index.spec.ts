@@ -6,6 +6,16 @@ const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
 const ORIGIN = "https://portfolio-angular-theo.vercel.app";
 
+/** Limiteur factice : laisse tout passer, sauf si on lui demande de refuser. */
+const limiter = (success = true) => ({ limit: vi.fn(async () => ({ success })) });
+
+const call = async (request: Request, overrides: Partial<Env> = {}) => {
+  const ctx = createExecutionContext();
+  const response = await worker.fetch(request, { ...env, RATE_LIMITER: limiter(), ...overrides } as Env, ctx);
+  await waitOnExecutionContext(ctx);
+  return response;
+};
+
 const post = async (body: unknown, init: RequestInit = {}) => {
   const request = new IncomingRequest("https://worker.test/contact", {
     method: "POST",
@@ -13,10 +23,7 @@ const post = async (body: unknown, init: RequestInit = {}) => {
     body: JSON.stringify(body),
     ...init,
   });
-  const ctx = createExecutionContext();
-  const response = await worker.fetch(request, { ...env, STATICFORMS_API_KEY: "test-key" }, ctx);
-  await waitOnExecutionContext(ctx);
-  return response;
+  return call(request, { STATICFORMS_API_KEY: "test-key" });
 };
 
 afterEach(() => {
@@ -72,10 +79,45 @@ describe("POST /contact", () => {
       headers: { "Content-Type": "application/json", Origin: ORIGIN },
       body: JSON.stringify({ name: "Alice", email: "alice@example.com", message: "Bonjour" }),
     });
-    const ctx = createExecutionContext();
-    const response = await worker.fetch(request, { ...env, STATICFORMS_API_KEY: "" }, ctx);
-    await waitOnExecutionContext(ctx);
+    const response = await call(request, { STATICFORMS_API_KEY: "" });
     expect(response.status).toBe(500);
+  });
+
+  it("rejects a request without Origin (scripts, curl)", async () => {
+    const request = new IncomingRequest("https://worker.test/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "Alice", email: "alice@example.com", message: "Bonjour" }),
+    });
+    expect((await call(request)).status).toBe(403);
+  });
+
+  it("rejects an invalid email and oversized fields", async () => {
+    expect((await post({ name: "Alice", email: "pas-un-email", message: "Bonjour" })).status).toBe(400);
+    expect((await post({ name: "Alice", email: "alice@example.com", message: "x".repeat(5001) })).status).toBe(400);
+  });
+
+  it("rejects malformed JSON with a 400", async () => {
+    const response = await post(undefined, { body: "{pas du json" });
+    expect(response.status).toBe(400);
+  });
+
+  it("returns 429 once the rate limit is reached", async () => {
+    const request = new IncomingRequest("https://worker.test/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Origin: ORIGIN },
+      body: JSON.stringify({ name: "Alice", email: "alice@example.com", message: "Bonjour" }),
+    });
+    expect((await call(request, { RATE_LIMITER: limiter(false) as unknown as RateLimit })).status).toBe(429);
+  });
+
+  it("echoes only allowed origins in CORS headers", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify({ success: true }))));
+    const ok = await post({ name: "Alice", email: "alice@example.com", message: "Bonjour" });
+    expect(ok.headers.get("Access-Control-Allow-Origin")).toBe(ORIGIN);
+
+    const evil = await post({ name: "A", email: "a@b.co", message: "m" }, { headers: { Origin: "https://evil.example" } });
+    expect(evil.headers.get("Access-Control-Allow-Origin")).toBeNull();
   });
 });
 
@@ -87,9 +129,7 @@ describe("POST / (chatbot)", () => {
       headers: { "Content-Type": "application/json", Origin: ORIGIN },
       body: JSON.stringify(body),
     });
-    const ctx = createExecutionContext();
-    const response = await worker.fetch(request, { ...env, AI: { run } } as unknown as Env, ctx);
-    await waitOnExecutionContext(ctx);
+    const response = await call(request, { AI: { run } as unknown as Ai });
     const [, options] = run.mock.calls[0] as unknown as [string, { messages: { role: string; content: string }[] }];
     const json = (await response.json()) as { response: string };
     return { status: response.status, reply: json.response, system: options.messages[0].content, user: options.messages[1].content };
@@ -120,6 +160,29 @@ describe("POST / (chatbot)", () => {
     expect((await ask({ prompt: "Compétences ?" }, { response: duplicated })).reply).toBe(
       "Théo maîtrise Python et JavaScript."
     );
+  });
+
+  it("rejects an oversized prompt without calling the model", async () => {
+    const run = vi.fn();
+    const request = new IncomingRequest("https://worker.test/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Origin: ORIGIN },
+      body: JSON.stringify({ prompt: "x".repeat(501) }),
+    });
+    expect((await call(request, { AI: { run } as unknown as Ai })).status).toBe(400);
+    expect(run).not.toHaveBeenCalled();
+  });
+
+  it("hides internal error details from the client", async () => {
+    const run = vi.fn(async () => { throw new Error("secret internal detail"); });
+    const request = new IncomingRequest("https://worker.test/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Origin: ORIGIN },
+      body: JSON.stringify({ prompt: "Hello" }),
+    });
+    const response = await call(request, { AI: { run } as unknown as Ai });
+    expect(response.status).toBe(500);
+    expect(await response.text()).not.toContain("secret internal detail");
   });
 
   it("reads OpenAI-style replies too", async () => {

@@ -1,37 +1,38 @@
 <nav class="navbar navbar-expand-lg bg-dark-subtle py-2">
   <div class="container-fluid d-flex justify-content-between align-items-center">
     <a class="navbar-brand text-dark-emphasis" routerLink="/home" (click)="isMenuCollapsed == false ? isMenuCollapsed = true : null">
-      {{ 'NAVBAR.BRAND' | translate }} <i class="fa fa-code" aria-hidden="true"></i>
+      {{ 'NAVBAR.BRAND' | translate }} <fa-icon [icon]="icons.code"></fa-icon>
     </a>
-    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"
+            [attr.aria-label]="'NAVBAR.MENU' | translate" aria-controls="navbarNav" [attr.aria-expanded]="!isMenuCollapsed">&#9776;</button>
     <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="isMenuCollapsed">
       <ul class="navbar-nav ms-auto text-dark-emphasis">
-        <li class="nav-item" ngbNavItem>
+        <li class="nav-item">
           <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             {{ 'NAVBAR.HOME' | translate }}
           </a>
         </li>
-        <li class="nav-item" ngbNavItem>
+        <li class="nav-item">
           <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/about" routerLinkActive="active">
             {{ 'NAVBAR.ABOUT' | translate }}
           </a>
         </li>
-        <li class="nav-item" ngbNavItem>
+        <li class="nav-item">
           <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/education" routerLinkActive="active">
             {{ 'NAVBAR.EDUCATION' | translate }}
           </a>
         </li>
-        <li class="nav-item" ngbNavItem>
+        <li class="nav-item">
           <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/projects" routerLinkActive="active">
             {{ 'NAVBAR.PROJECTS' | translate }}
           </a>
         </li>
-        <li class="nav-item" ngbNavItem>
+        <li class="nav-item">
           <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/experience" routerLinkActive="active">
             {{ 'NAVBAR.EXPERIENCE' | translate }}
           </a>
         </li>
-        <li class="nav-item" ngbNavItem>
+        <li class="nav-item">
           <a class="nav-link" (click)="isMenuCollapsed = true" routerLink="/contact" routerLinkActive="active">
             {{ 'NAVBAR.CONTACT' | translate }}
           </a>

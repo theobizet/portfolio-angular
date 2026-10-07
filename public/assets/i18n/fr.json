@@ -1,6 +1,7 @@
 {
   "NAVBAR": {
     "BRAND": "BIZET Théo - Développeur",
+    "MENU": "Ouvrir le menu",
     "HOME": "Accueil",
     "ABOUT": "À propos de moi",
     "EDUCATION": "Éducation",
@@ -23,7 +24,7 @@
       "INTRO2": "À côté, je code surtout en Angular et TypeScript (ce site en est un exemple) et je me forme à React et Kotlin.",
       "CTA_CONTACT": "M'écrire",
       "CTA_PROJECTS": "Voir mes projets",
-      "PHOTO_ALT": "Photo de Théo Bizet",
+      "PHOTO_ALT": "Théo Bizet",
       "BADGE": "Master MIAGE · Stellantis",
       "EMAIL_PREFIX": "Ou directement :"
     },
@@ -407,6 +408,9 @@
       "NOT_UNDERSTOOD": "Désolé, je n'ai pas compris. Pouvez-vous reformuler ?",
       "ERROR": "L'assistant ne répond pas pour le moment. Écrivez-moi plutôt avec le formulaire ci-dessus."
     }
+  },
+  "FOOTER": {
+    "RIGHTS": "Tous droits réservés."
   },
   "404": {
     "TITLE": "404 - Page non trouvée",

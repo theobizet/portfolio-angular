@@ -59,7 +59,8 @@
 
         <form class="d-flex flex-column gap-3" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
           <!-- Champ piège : masqué pour un humain, rempli par les robots -->
-          <input class="d-none" type="text" name="honeypot" ngModel tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="d-none" for="contact-website">Website</label>
+          <input class="d-none" id="contact-website" type="text" name="honeypot" ngModel tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="row g-3">
             <div class="col-md-6">
@@ -87,7 +88,7 @@
           </div>
 
           @if (status === 'sent') {
-            <p class="alert alert-success mb-0" role="status">{{ 'CONTACT.FORM.SUCCESS' | translate }}</p>
+            <output class="alert alert-success d-block mb-0">{{ 'CONTACT.FORM.SUCCESS' | translate }}</output>
           }
           @if (status === 'error') {
             <p class="alert alert-danger mb-0" role="alert">{{ 'CONTACT.FORM.ERROR' | translate }}</p>

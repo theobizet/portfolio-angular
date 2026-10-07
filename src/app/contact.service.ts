@@ -22,8 +22,8 @@ export interface ContactResponse {
  */
 @Injectable({ providedIn: 'root' })
 export class ContactService {
-  private http = inject(HttpClient);
-  private workerUrl = environment.cloudflareWorkerUrl || '';
+  private readonly http = inject(HttpClient);
+  private readonly workerUrl = environment.cloudflareWorkerUrl || '';
 
   send(payload: ContactPayload): Observable<ContactResponse> {
     return this.http.post<ContactResponse>(`${this.workerUrl}/contact`, payload);

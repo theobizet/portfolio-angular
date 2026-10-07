@@ -1,9 +1,9 @@
-<main class="bg-transparent content-wrapper">
+<div class="bg-transparent content-wrapper">
   <app-navigation-bar></app-navigation-bar>
   <div class="flex-grow-1">
     <router-outlet/>
   </div>
   <footer class="text-center text-muted py-3 bg-dark-subtle">
-    <p class="mb-0">© 2026 BIZET Théo. All rights reserved.</p>
+    <p class="mb-0">© {{ year }} BIZET Théo. {{ 'FOOTER.RIGHTS' | translate }}</p>
   </footer>
-</main>
+</div>

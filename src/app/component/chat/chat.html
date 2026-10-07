@@ -52,7 +52,7 @@
           } @else {
             <div class="chat-row-bot d-flex align-items-end gap-2">
               <span class="chat-avatar" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
-              <div class="chat-bubble chat-bubble-bot bg-body border" [innerHTML]="message.text"></div>
+              <div class="chat-bubble chat-bubble-bot bg-body border">{{ message.text }}</div>
             </div>
           }
         }
@@ -60,9 +60,9 @@
         @if (isLoading) {
           <div class="d-flex align-items-end gap-2">
             <span class="chat-avatar" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
-            <div class="chat-bubble chat-bubble-bot bg-body border d-flex align-items-center gap-1 py-3" role="status" [attr.aria-label]="'CONTACT.CHAT.TYPING' | translate">
+            <output class="chat-bubble chat-bubble-bot bg-body border d-flex align-items-center gap-1 py-3" [attr.aria-label]="'CONTACT.CHAT.TYPING' | translate">
               <span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span>
-            </div>
+            </output>
           </div>
         }
       </div>

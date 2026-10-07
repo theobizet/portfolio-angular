@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ThemeService } from '../../theme.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,7 +22,7 @@ interface SvgIcon {
 })
 export class AboutComponent {
   isDarkTheme: boolean | undefined;
-  icons = { defines: faFingerprint, passions: faHeart, learning: faBookOpen };
+  readonly icons = { defines: faFingerprint, passions: faHeart, learning: faBookOpen };
 
   languages: SvgIcon[] = [
   {
@@ -306,7 +305,7 @@ export class AboutComponent {
   ]
 
 
-  constructor(private sanitizer: DomSanitizer, public themeService: ThemeService) {
+  constructor(private readonly sanitizer: DomSanitizer, public readonly themeService: ThemeService) {
     this.languages = this.languages.map(icon => ({
       ...icon,
       sanitized: this.sanitizer.bypassSecurityTrustHtml(icon.content)

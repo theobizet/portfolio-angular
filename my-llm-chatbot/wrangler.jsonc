@@ -20,7 +20,18 @@
 	 */
 	"ai": {
 		"binding": "AI"
-	}
+	},
+	/**
+	 * Rate limiting natif : 10 requêtes par minute et par IP sur le chat et le formulaire.
+	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
+	 */
+	"ratelimits": [
+		{
+			"name": "RATE_LIMITER",
+			"namespace_id": "1001",
+			"simple": { "limit": 10, "period": 60 }
+		}
+	]
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

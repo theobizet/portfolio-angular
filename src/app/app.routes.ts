@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { AboutComponent } from './component/about/about.component';

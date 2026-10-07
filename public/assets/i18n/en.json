@@ -1,6 +1,7 @@
 {
   "NAVBAR": {
     "BRAND": "BIZET Théo - Developer",
+    "MENU": "Open menu",
     "HOME": "Home",
     "ABOUT": "About Me",
     "EDUCATION": "Education",
@@ -23,7 +24,7 @@
       "INTRO2": "On the side, I mostly code in Angular and TypeScript (this site is one example) and I'm learning React and Kotlin.",
       "CTA_CONTACT": "Get in touch",
       "CTA_PROJECTS": "See my projects",
-      "PHOTO_ALT": "Photo of Théo Bizet",
+      "PHOTO_ALT": "Théo Bizet",
       "BADGE": "Master MIAGE · Stellantis",
       "EMAIL_PREFIX": "Or directly:"
     },
@@ -407,6 +408,9 @@
       "NOT_UNDERSTOOD": "Sorry, I didn't understand. Could you rephrase?",
       "ERROR": "The assistant isn't responding right now. Please use the form above instead."
     }
+  },
+  "FOOTER": {
+    "RIGHTS": "All rights reserved."
   },
   "404": {
     "TITLE": "404 - Page Not Found",

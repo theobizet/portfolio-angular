@@ -19,14 +19,16 @@ type SendStatus = 'idle' | 'sending' | 'sent' | 'error';
 export class ContactComponent {
   status: SendStatus = 'idle';
   copied = false;
-  icons = { email: faEnvelope, linkedin: faLinkedinIn, github: faGithub };
+  readonly icons = { email: faEnvelope, linkedin: faLinkedinIn, github: faGithub };
 
-  private contactService = inject(ContactService);
+  private readonly contactService = inject(ContactService);
 
   copyEmail(): void {
     navigator.clipboard?.writeText('theobizet@outlook.fr').then(() => {
       this.copied = true;
       setTimeout(() => (this.copied = false), 2000);
+    }).catch(() => {
+      // Copie refusée par le navigateur : le lien mailto reste disponible.
     });
   }
 

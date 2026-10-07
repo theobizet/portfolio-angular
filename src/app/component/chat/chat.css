@@ -55,6 +55,7 @@
 }
 
 .chat-bubble {
+  white-space: pre-line;
   padding: 0.7rem 0.95rem;
   line-height: 1.55;
   border-radius: 1.125rem;
