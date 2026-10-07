@@ -272,7 +272,6 @@
       "annee": "2022",
       "details": [
         "Développement d’une interface utilisateur intuitive avec Qt.",
-        "ase de données SQL pour stocker les informations des patients et des rendez-vous.",
         "Fonctionnalités : création, modification et annulation de rendez-vous."
       ]
     },

@@ -110,11 +110,24 @@
   },
   "EDUCATION": {
     "TITLE": "Éducation",
+    "INTRO": "Du bac Sciences de l'ingénieur au Master MIAGE en alternance. Choisissez une étape pour voir ce que j'y ai appris.",
+    "IN_PROGRESS": "En cours",
     "UHA": {
-      "NAME": "Université de Haute Alsace - Mulhouse",
-      "LICENCE": "2019 - 2025 : LICENCE INFORMATIQUE",
-      "MASTER": "2025 - aujourd'hui : MASTER MIAGE (en alternance chez Stellantis)",
-      "LANGUAGES_TITLE": "Langages et frameworks appris :",
+      "NAME": "Université de Haute-Alsace",
+      "PLACE": "Mulhouse",
+      "DATES": "2019 – aujourd'hui",
+      "STEP": "Licence → Master",
+      "MASTER": {
+        "NAME": "Master MIAGE",
+        "NOTE": "Depuis 2025, en alternance chez Stellantis"
+      },
+      "LICENCE": {
+        "NAME": "Licence Informatique",
+        "NOTE": "2019 – 2025",
+        "STATUS": "Obtenue"
+      },
+      "LANGUAGES_TITLE": "Langages et frameworks",
+      "SKILLS_TITLE": "Autres compétences",
       "LANGUAGES": {
         "C++": "C++",
         "PHP": "PHP",
@@ -130,7 +143,6 @@
         "BASH": "Bash scripting",
         "POWERSHELL": "PowerShell scripting"
       },
-      "SKILLS_TITLE": "Autres compétences acquises :",
       "SKILLS": {
         "AI": "Bases de l'intelligence artificielle",
         "PROJECT_MANAGEMENT": "Gestion de projets",
@@ -144,27 +156,39 @@
       }
     },
     "DON_BOSCO": {
-      "NAME": "Lycée Général Don Bosco - Landser",
-      "BAC": "2016 - 2019 : BACCALAURÉAT SCIENCE DE L'INGÉNIEUR",
-      "SKILLS_TITLE": "Compétences acquises :",
-      "SKILLS": {
+      "NAME": "Lycée général Don Bosco",
+      "PLACE": "Landser",
+      "DATES": "2016 – 2019",
+      "STEP": "Baccalauréat",
+      "BAC": {
+        "NAME": "Bac Sciences de l'ingénieur",
+        "NOTE": "2016 – 2019",
+        "STATUS": "Obtenu"
+      },
+      "TOOLS_TITLE": "Outils et logiciels",
+      "SKILLS_TITLE": "Sciences de l'ingénieur",
+      "TOOLS": {
         "PYTHON": "Python",
         "CAO": "CAO (conception assistée par ordinateur)",
-        "OFFICE": "Office 365",
+        "SOLIDWORKS": "SolidWorks",
+        "SKETCHUP": "SketchUp",
+        "ARDUINO": "Arduino",
+        "OFFICE": "Office 365"
+      },
+      "SKILLS": {
         "ELECTRONICS": "Notions d'électronique",
         "MECHANICS": "Notions de mécanique",
         "AUTOMATIC": "Notions d'automatique",
         "ROBOTICS": "Notions de robotique",
-        "TEAMWORK": "Travail en équipe",
-        "SOLIDWORKS": "SolidWorks",
-        "SKETCHUP": "SketchUp",
-        "ARDUINO": "Arduino"
+        "TEAMWORK": "Travail en équipe"
       }
     },
     "SELF_TAUGHT": {
       "TITLE": "En autodidacte",
       "SUBTITLE": "Sur mon temps libre",
-      "SKILLS_TITLE": "Compétences acquises :",
+      "DATES": "En continu",
+      "NOTE": "Ce site est construit avec Angular et TypeScript.",
+      "SKILLS_TITLE": "Appris par moi-même",
       "SKILLS": {
         "ANGULAR": "Angular",
         "TYPESCRIPT": "TypeScript",
@@ -174,15 +198,70 @@
     }
   },
   "PROJECTS": {
-    "IMAGE_PROCESSOR_TITLE": "Création d’un logiciel basique de modification d’image pour le cours de traitement d’image",
-    "GRAPH_SOFTWARE_TITLE": "Création d’un logiciel démonstratif de la notion de graphe dans le cadre du cours sur les graphes",
-    "MAZE_ROBOT_TITLE": "Création d'un robot résolvant des labyrinthes",
-    "EFA_CLOUD_TITLE": "Mise en place du logiciel EFA cloud pour Mulhouse-Aviron",
-    "MOBILENET_PRESENTATION_TITLE": "Présentation de MobileNet-SSD (Intelligence artificielle)",
-    "APPOINTMENT_MANAGER_TITLE": "Gestionnaire de rendez-vous avec C++ et QT",
-    "VACATION_DATABASE_TITLE": "Base de données avec Microsoft Access : Gestion des vacataires de l'UHA",
-    "SKATEBOARD_MODULE_TITLE": "Module pour motoriser un skateboard",
-    "PYTHON_PONG_TITLE": "Jeu vidéo « Pong » en Python",
+    "TITLE": "Projets",
+    "INTRO": "Des projets menés au lycée, à l'université et pour une association, du jeu Pong en Python au robot qui résout des labyrinthes.",
+    "FILTER_LABEL": "Filtrer les projets",
+    "ALL": "Tous",
+    "CONTEXT": {
+      "UNIVERSITY": "Université",
+      "ASSOCIATION": "Associatif",
+      "HIGH_SCHOOL": "Lycée"
+    },
+    "ROLE": "Rôle :",
+    "CODE": "Voir le code",
+    "TECH": {
+      "PYTHON": "Python",
+      "OPENCV": "OpenCV",
+      "TKINTER": "tkinter",
+      "CPP": "C++",
+      "QT": "Qt",
+      "ACCESS": "Microsoft Access",
+      "ALGORITHMS": "Algorithmes",
+      "AI": "IA",
+      "OBJECT_DETECTION": "Détection d'objets",
+      "PHP": "PHP",
+      "DEPLOYMENT": "Déploiement",
+      "SOLIDWORKS": "SolidWorks",
+      "ARDUINO": "Arduino"
+    },
+    "ITEMS": {
+      "IMAGE_PROCESSOR": {
+        "TITLE": "Logiciel de retouche d'image",
+        "SUB": "Cours de traitement d'image"
+      },
+      "GRAPH_SOFTWARE": {
+        "TITLE": "Démonstrateur de graphes",
+        "SUB": "Cours sur les graphes"
+      },
+      "MAZE_ROBOT": {
+        "TITLE": "Robot solveur de labyrinthes",
+        "SUB": "Algorithme de la main gauche"
+      },
+      "EFA_CLOUD": {
+        "TITLE": "EFA Cloud pour Mulhouse-Aviron",
+        "SUB": "Mise en place du logiciel pour le club"
+      },
+      "MOBILENET": {
+        "TITLE": "Présentation de MobileNet-SSD",
+        "SUB": "Intelligence artificielle"
+      },
+      "APPOINTMENT_MANAGER": {
+        "TITLE": "Gestionnaire de rendez-vous",
+        "SUB": "Application de bureau"
+      },
+      "VACATION_DATABASE": {
+        "TITLE": "Base de données des vacataires",
+        "SUB": "Gestion des vacataires de l'UHA"
+      },
+      "SKATEBOARD": {
+        "TITLE": "Skateboard motorisé",
+        "SUB": "Module de motorisation"
+      },
+      "PONG": {
+        "TITLE": "Jeu Pong",
+        "SUB": "Jeu vidéo en Python"
+      }
+    },
     "ROLES": {
       "DEVELOPER": "Développeur",
       "PROJECT_LEAD": "Chef de projet",
@@ -329,13 +408,10 @@
       "ERROR": "L'assistant ne répond pas pour le moment. Écrivez-moi plutôt avec le formulaire ci-dessus."
     }
   },
-  "CARD":{
-    "ROLE": "Rôle : "
-  },
-  "404":{
-    "TITLE":"404 - Page non trouvée",
-    "DESCRIPTION":"Désolé, la page que vous cherchez n'existe pas ou a été déplacée",
-    "RETURN":"Retour à l'accueil",
-    "SUGGESTION":"Utilisez le menu de navigation pour explorer mon portfolio"
+  "404": {
+    "TITLE": "404 - Page non trouvée",
+    "DESCRIPTION": "Désolé, la page que vous cherchez n'existe pas ou a été déplacée",
+    "RETURN": "Retour à l'accueil",
+    "SUGGESTION": "Utilisez le menu de navigation pour explorer mon portfolio"
   }
 }

@@ -1,11 +1,55 @@
-<main class="container-fluid py-2 bg-transparent">
-  <h2 class="border-bottom pb-2 mb-4 text-light">Projets</h2>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-    <div *ngFor="let project of projects" class="col d-flex">
-      <app-card
-        [project]="project"
-        class="flex-fill d-flex flex-column h-100">
-      </app-card>
+<main class="container-fluid bg-transparent py-4 d-flex flex-column gap-4">
+  <!-- Présentation et filtre par contexte -->
+  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4 d-flex flex-row flex-wrap align-items-end justify-content-between column-gap-4 row-gap-3">
+    <div class="proj-intro">
+      <h1 class="fw-bold mb-2">{{ 'PROJECTS.TITLE' | translate }}</h1>
+      <p class="lh-lg text-body-secondary mb-0">{{ 'PROJECTS.INTRO' | translate }}</p>
     </div>
+    <div class="d-flex flex-wrap gap-2" role="group" [attr.aria-label]="'PROJECTS.FILTER_LABEL' | translate">
+      @for (filter of filters; track filter.context) {
+        <button type="button" class="btn rounded-pill d-inline-flex align-items-center gap-2 proj-chip"
+                [class.active]="selected === filter.context" [attr.aria-pressed]="selected === filter.context" (click)="selected = filter.context">
+          {{ (filter.context ? 'PROJECTS.CONTEXT.' + filter.context : 'PROJECTS.ALL') | translate }}
+          <span class="badge rounded-pill proj-chip-count">{{ filter.count }}</span>
+        </button>
+      }
+    </div>
+  </section>
+
+  <!-- Grille des projets -->
+  <div class="proj-grid">
+    @for (project of shown; track project.id) {
+      <article class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 overflow-hidden">
+        <img class="proj-img" [src]="project.image" alt="" loading="lazy">
+        <div class="card-body d-flex flex-column gap-2 p-4 pt-3">
+          <div class="d-flex flex-wrap align-items-center column-gap-2 row-gap-1">
+            <span class="small text-body-secondary proj-year">{{ project.year }}</span>
+            <span class="badge rounded-pill proj-context" [class]="'proj-context-' + project.context">{{ ('PROJECTS.CONTEXT.' + project.context) | translate }}</span>
+          </div>
+          <div>
+            <h2 class="fs-5 fw-bold mb-0">{{ ('PROJECTS.ITEMS.' + project.id + '.TITLE') | translate }}</h2>
+            <p class="small text-body-secondary mb-0">{{ ('PROJECTS.ITEMS.' + project.id + '.SUB') | translate }}</p>
+          </div>
+          @if (project.role) {
+            <p class="small mb-0">
+              <span class="text-body-secondary">{{ 'PROJECTS.ROLE' | translate }}</span>
+              <span class="fw-semibold">{{ ('PROJECTS.ROLES.' + project.role) | translate }}</span>
+            </p>
+          }
+          @if (project.tech.length) {
+            <div class="d-flex flex-wrap gap-2 mt-auto pt-1">
+              @for (tech of project.tech; track tech) {
+                <span class="badge fw-normal proj-tag">{{ ('PROJECTS.TECH.' + tech) | translate }}</span>
+              }
+            </div>
+          }
+          @if (project.code) {
+            <a class="d-inline-flex align-items-center gap-2 fw-semibold border-top pt-2 mt-1 proj-link" [href]="project.code" target="_blank" rel="noopener">
+              <i class="fa fa-code" aria-hidden="true"></i>{{ 'PROJECTS.CODE' | translate }}
+            </a>
+          }
+        </div>
+      </article>
+    }
   </div>
 </main>

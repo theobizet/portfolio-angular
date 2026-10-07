@@ -1,77 +1,73 @@
-<main class="container-fluid bg-transparent py-2">
-  <h2 class="border-bottom pb-2 text-light mb-2">{{ 'EDUCATION.TITLE' | translate }}</h2>
-  <div class="row row-cols-1 row-cols-md-2 g-2">
-    <!-- UHA -->
-    <div class="col-md-4">
-      <div class="card bg-body bg-opacity-75 shadow-sm border-0">
-        <div class="card-header bg-transparent border-bottom border-secondary">
-          <div class="h5">{{ 'EDUCATION.UHA.NAME' | translate }}</div>
-          <p class="text-secondary mb-0">{{ 'EDUCATION.UHA.LICENCE' | translate }} <i class="fas fa-check-circle text-success" aria-hidden="true"></i></p>
-          <p class="text-secondary mb-0">{{ 'EDUCATION.UHA.MASTER' | translate }} <i class="fa fa-spinner spinning-icon" aria-hidden="true"></i></p>
-        </div>
-        <div class="card-body row">
-          <div class="col-6">
-            <h5 class="card-title fw-bold text-decoration-underline">{{ 'EDUCATION.UHA.LANGUAGES_TITLE' | translate }}</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2" *ngFor="let language of uhaLanguages">
-                <i class="fas fa-check-circle text-primary me-2"></i>{{ language }}
-              </li>
-            </ul>
-          </div>
-          <div class="col-6">
-            <h5 class="card-title fw-bold text-decoration-underline">{{ 'EDUCATION.UHA.SKILLS_TITLE' | translate }}</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2" *ngFor="let skill of uhaSkills">
-                <i class="fas fa-check-circle text-primary me-2"></i>{{ skill }}
-              </li>
-            </ul>
-          </div>
-        </div>
-        @if (isDarkTheme) {
-          <img class="img-card-bottom h-100 w-100 p-1" ngSrc="/assets/Logo-Uha-blanc.png" alt="image" height="200" width="800">
-        }
-        @else {
-          <img class="img-card-bottom h-100 w-100 p-1" ngSrc="/assets/Logo-Uha-blanc.png" alt="image" style="filter: invert(1);" height="200" width="800">
-        }
-      </div>
-    </div>
+<main class="container-fluid bg-transparent py-4 d-flex flex-column gap-4 edu-page">
+  <!-- Présentation et frise des étapes -->
+  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+    <h1 class="fw-bold mb-2">{{ 'EDUCATION.TITLE' | translate }}</h1>
+    <p class="lh-lg text-body-secondary mb-4 edu-intro">{{ 'EDUCATION.INTRO' | translate }}</p>
 
-    <!-- Don Bosco -->
-    <div class="col-md-4">
-      <div class="card bg-body bg-opacity-75 shadow-sm border-0">
-        <div class="card-header bg-transparent border-bottom border-secondary">
-          <div class="h5">{{ 'EDUCATION.DON_BOSCO.NAME' | translate }}</div>
-          <p class="text-secondary mb-0">{{ 'EDUCATION.DON_BOSCO.BAC' | translate }} <i class="fas fa-check-circle text-success" aria-hidden="true"></i></p>
-          <br>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title fw-bold text-decoration-underline">{{ 'EDUCATION.DON_BOSCO.SKILLS_TITLE' | translate }}</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2" *ngFor="let skill of donBoscoSkills">
-              <i class="fas fa-check-circle text-primary me-2"></i>{{ skill }}
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div class="edu-steps position-relative">
+      @for (step of steps; track step.id) {
+        <button type="button" class="edu-step d-flex flex-column align-items-start gap-2 p-0 border-0 bg-transparent text-start"
+                [class.active]="selected === step" [attr.aria-pressed]="selected === step" (click)="selected = step">
+          <span class="edu-dot" [class.edu-dot-current]="step.current">
+            @if (step.year) {
+              {{ step.year }}
+            } @else {
+              <i class="fa fa-code" aria-hidden="true"></i>
+            }
+          </span>
+          <span class="d-flex flex-column">
+            <span class="fw-bold edu-step-label">{{ (step.key + (step.year ? '.STEP' : '.TITLE')) | translate }}</span>
+            <span class="small text-body-secondary">{{ (step.key + (step.year ? '.NAME' : '.SUBTITLE')) | translate }}</span>
+          </span>
+        </button>
+      }
     </div>
+  </section>
 
-    <!-- Autodidacte -->
-    <div class="col-md-4">
-      <div class="card bg-body bg-opacity-75 shadow-sm border-0">
-        <div class="card-header bg-transparent border-bottom border-secondary">
-          <div class="h5">{{ 'EDUCATION.SELF_TAUGHT.TITLE' | translate }}</div>
-          <p class="text-secondary mb-0">{{ 'EDUCATION.SELF_TAUGHT.SUBTITLE' | translate }}</p>
-          <br>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title fw-bold text-decoration-underline">{{ 'EDUCATION.SELF_TAUGHT.SKILLS_TITLE' | translate }}</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2" *ngFor="let skill of selfTaughtSkills">
-              <i class="fas fa-check-circle text-primary me-2"></i>{{ skill }}
-            </li>
-          </ul>
+  <!-- Détail de l'étape choisie -->
+  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4" aria-live="polite">
+    <div class="d-flex flex-wrap gap-4">
+      <div class="edu-side">
+        <p class="small text-body-secondary mb-1 edu-date">{{ (selected.key + '.DATES') | translate }}</p>
+        <h2 class="fs-4 fw-bold mb-0">{{ (selected.key + (selected.year ? '.NAME' : '.TITLE')) | translate }}</h2>
+        <p class="text-body-secondary mb-3">{{ (selected.key + (selected.year ? '.PLACE' : '.SUBTITLE')) | translate }}</p>
+        @if (selected.logo) {
+          <img class="edu-logo d-block mb-3" src="/assets/Logo-Uha-blanc.png" [alt]="selected.key + '.NAME' | translate" height="44">
+        }
+        @if (!selected.year) {
+          <p class="mb-0">{{ (selected.key + '.NOTE') | translate }}</p>
+        }
+        <div class="d-flex flex-column gap-2">
+          @for (diploma of selected.diplomas; track diploma.key) {
+            <div class="edu-diploma rounded-3 px-3 py-2">
+              <div class="d-flex flex-wrap align-items-center justify-content-between column-gap-3 row-gap-1">
+                <span class="fw-bold">{{ (diploma.key + '.NAME') | translate }}</span>
+                @if (diploma.done) {
+                  <span class="badge rounded-pill bg-secondary-subtle text-secondary-emphasis">
+                    <i class="fas fa-check me-1" aria-hidden="true"></i>{{ (diploma.key + '.STATUS') | translate }}
+                  </span>
+                } @else {
+                  <span class="badge rounded-pill bg-success-subtle text-success-emphasis">{{ 'EDUCATION.IN_PROGRESS' | translate }}</span>
+                }
+              </div>
+              <span class="small text-body-secondary">{{ (diploma.key + '.NOTE') | translate }}</span>
+            </div>
+          }
         </div>
       </div>
+
+      <div class="edu-skills d-flex flex-column gap-4">
+        @for (group of selected.groups; track group.key) {
+          <div>
+            <h3 class="fs-6 fw-bold mb-2">{{ (selected.key + '.' + group.title) | translate }}</h3>
+            <div class="d-flex flex-wrap gap-2">
+              @for (id of group.ids; track id) {
+                <span class="badge fw-normal edu-tag" [class.edu-tag-accent]="group.accent">{{ (selected.key + '.' + group.key + '.' + id) | translate }}</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
     </div>
-  </div>
+  </section>
 </main>

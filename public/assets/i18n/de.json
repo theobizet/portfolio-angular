@@ -110,11 +110,24 @@
   },
   "EDUCATION": {
     "TITLE": "Ausbildung",
+    "INTRO": "Vom Abitur in Ingenieurwissenschaften zum dualen Master MIAGE. Wählen Sie eine Etappe, um zu sehen, was ich dort gelernt habe.",
+    "IN_PROGRESS": "Laufend",
     "UHA": {
-      "NAME": "Universität Oberelsass – Mülhausen",
-      "LICENCE": "2019 - 2025: BACHELOR INFORMATIK",
-      "MASTER": "2025 - heute: MASTER MIAGE (dual bei Stellantis)",
-      "LANGUAGES_TITLE": "Erlernte Sprachen und Frameworks:",
+      "NAME": "Universität Oberelsass",
+      "PLACE": "Mülhausen",
+      "DATES": "2019 – heute",
+      "STEP": "Bachelor → Master",
+      "MASTER": {
+        "NAME": "Master MIAGE",
+        "NOTE": "Seit 2025, dual bei Stellantis"
+      },
+      "LICENCE": {
+        "NAME": "Bachelor Informatik",
+        "NOTE": "2019 – 2025",
+        "STATUS": "Abgeschlossen"
+      },
+      "LANGUAGES_TITLE": "Sprachen und Frameworks",
+      "SKILLS_TITLE": "Weitere Fähigkeiten",
       "LANGUAGES": {
         "C++": "C++",
         "PHP": "PHP",
@@ -130,7 +143,6 @@
         "BASH": "Bash-Scripting",
         "POWERSHELL": "PowerShell-Scripting"
       },
-      "SKILLS_TITLE": "Weitere erworbene Fähigkeiten:",
       "SKILLS": {
         "AI": "Grundlagen der künstlichen Intelligenz",
         "PROJECT_MANAGEMENT": "Projektmanagement",
@@ -144,27 +156,39 @@
       }
     },
     "DON_BOSCO": {
-      "NAME": "Lycée Général Don Bosco – Landser",
-      "BAC": "2016 - 2019: ABITUR INGENIEURWISSENSCHAFTEN",
-      "SKILLS_TITLE": "Erworbene Fähigkeiten:",
-      "SKILLS": {
+      "NAME": "Lycée Général Don Bosco",
+      "PLACE": "Landser",
+      "DATES": "2016 – 2019",
+      "STEP": "Abitur",
+      "BAC": {
+        "NAME": "Abitur Ingenieurwissenschaften",
+        "NOTE": "2016 – 2019",
+        "STATUS": "Abgeschlossen"
+      },
+      "TOOLS_TITLE": "Werkzeuge und Software",
+      "SKILLS_TITLE": "Ingenieurwissenschaften",
+      "TOOLS": {
         "PYTHON": "Python",
         "CAO": "Computer-Aided Design (CAD)",
-        "OFFICE": "Office 365",
+        "SOLIDWORKS": "SolidWorks",
+        "SKETCHUP": "SketchUp",
+        "ARDUINO": "Arduino",
+        "OFFICE": "Office 365"
+      },
+      "SKILLS": {
         "ELECTRONICS": "Grundlagen der Elektronik",
         "MECHANICS": "Grundlagen der Mechanik",
         "AUTOMATIC": "Grundlagen der Automatisierungstechnik",
         "ROBOTICS": "Grundlagen der Robotik",
-        "TEAMWORK": "Teamarbeit",
-        "SOLIDWORKS": "SolidWorks",
-        "SKETCHUP": "SketchUp",
-        "ARDUINO": "Arduino"
+        "TEAMWORK": "Teamarbeit"
       }
     },
     "SELF_TAUGHT": {
       "TITLE": "Selbststudium",
       "SUBTITLE": "In meiner Freizeit",
-      "SKILLS_TITLE": "Erworbene Fähigkeiten:",
+      "DATES": "Fortlaufend",
+      "NOTE": "Diese Website ist mit Angular und TypeScript gebaut.",
+      "SKILLS_TITLE": "Selbst gelernt",
       "SKILLS": {
         "ANGULAR": "Angular",
         "TYPESCRIPT": "TypeScript",
@@ -174,15 +198,70 @@
     }
   },
   "PROJECTS": {
-    "IMAGE_PROCESSOR_TITLE": "Erstellung einer einfachen Bildbearbeitungssoftware für den Bildverarbeitungskurs",
-    "GRAPH_SOFTWARE_TITLE": "Erstellung einer Demonstrationssoftware zum Konzept von Graphen im Rahmen des Graphenkurses",
-    "MAZE_ROBOT_TITLE": "Erstellung eines Roboters zur Lösung von Labyrinthen",
-    "EFA_CLOUD_TITLE": "Einrichtung der EFA-Cloud-Software für Mulhouse-Aviron",
-    "MOBILENET_PRESENTATION_TITLE": "Präsentation von MobileNet-SSD (Künstliche Intelligenz)",
-    "APPOINTMENT_MANAGER_TITLE": "Terminmanager mit C++ und QT",
-    "VACATION_DATABASE_TITLE": "Datenbank mit Microsoft Access: Verwaltung der Aushilfskräfte der UHA",
-    "SKATEBOARD_MODULE_TITLE": "Modul zur Motorisierung eines Skateboards",
-    "PYTHON_PONG_TITLE": "Videospiel „Pong“ in Python",
+    "TITLE": "Projekte",
+    "INTRO": "Projekte aus Gymnasium, Universität und Verein, vom Pong-Spiel in Python bis zum Roboter, der Labyrinthe löst.",
+    "FILTER_LABEL": "Projekte filtern",
+    "ALL": "Alle",
+    "CONTEXT": {
+      "UNIVERSITY": "Universität",
+      "ASSOCIATION": "Verein",
+      "HIGH_SCHOOL": "Gymnasium"
+    },
+    "ROLE": "Rolle:",
+    "CODE": "Code ansehen",
+    "TECH": {
+      "PYTHON": "Python",
+      "OPENCV": "OpenCV",
+      "TKINTER": "tkinter",
+      "CPP": "C++",
+      "QT": "Qt",
+      "ACCESS": "Microsoft Access",
+      "ALGORITHMS": "Algorithmen",
+      "AI": "KI",
+      "OBJECT_DETECTION": "Objekterkennung",
+      "PHP": "PHP",
+      "DEPLOYMENT": "Bereitstellung",
+      "SOLIDWORKS": "SolidWorks",
+      "ARDUINO": "Arduino"
+    },
+    "ITEMS": {
+      "IMAGE_PROCESSOR": {
+        "TITLE": "Bildbearbeitungssoftware",
+        "SUB": "Kurs Bildverarbeitung"
+      },
+      "GRAPH_SOFTWARE": {
+        "TITLE": "Graphen-Demonstrator",
+        "SUB": "Kurs Graphentheorie"
+      },
+      "MAZE_ROBOT": {
+        "TITLE": "Labyrinth-Roboter",
+        "SUB": "Linke-Hand-Regel"
+      },
+      "EFA_CLOUD": {
+        "TITLE": "EFA Cloud für Mulhouse-Aviron",
+        "SUB": "Einrichtung der Software für den Ruderverein"
+      },
+      "MOBILENET": {
+        "TITLE": "Präsentation von MobileNet-SSD",
+        "SUB": "Künstliche Intelligenz"
+      },
+      "APPOINTMENT_MANAGER": {
+        "TITLE": "Terminmanager",
+        "SUB": "Desktop-Anwendung"
+      },
+      "VACATION_DATABASE": {
+        "TITLE": "Datenbank der Aushilfskräfte",
+        "SUB": "Verwaltung der Aushilfskräfte der UHA"
+      },
+      "SKATEBOARD": {
+        "TITLE": "Motorisiertes Skateboard",
+        "SUB": "Motorisierungsmodul"
+      },
+      "PONG": {
+        "TITLE": "Pong-Spiel",
+        "SUB": "Videospiel in Python"
+      }
+    },
     "ROLES": {
       "DEVELOPER": "Entwickler",
       "PROJECT_LEAD": "Projektleiter",
@@ -328,9 +407,6 @@
       "NOT_UNDERSTOOD": "Entschuldigung, das habe ich nicht verstanden. Können Sie es anders formulieren?",
       "ERROR": "Der Assistent antwortet gerade nicht. Nutzen Sie bitte das Formular oben."
     }
-  },
-  "CARD": {
-    "ROLE": "Rolle: "
   },
   "404": {
     "TITLE": "404 - Seite nicht gefunden",

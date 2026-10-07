@@ -110,11 +110,24 @@
   },
   "EDUCATION": {
     "TITLE": "Education",
+    "INTRO": "From an engineering science high school diploma to a work-study Master in MIAGE. Pick a step to see what I learned there.",
+    "IN_PROGRESS": "In progress",
     "UHA": {
-      "NAME": "University of Upper Alsace – Mulhouse",
-      "LICENCE": "2019 - 2025: BACHELOR IN COMPUTER SCIENCE",
-      "MASTER": "2025 - Present: MASTER IN MIAGE (work-study at Stellantis)",
-      "LANGUAGES_TITLE": "Languages and frameworks learned:",
+      "NAME": "University of Upper Alsace",
+      "PLACE": "Mulhouse",
+      "DATES": "2019 – present",
+      "STEP": "Bachelor → Master",
+      "MASTER": {
+        "NAME": "Master in MIAGE",
+        "NOTE": "Since 2025, work-study at Stellantis"
+      },
+      "LICENCE": {
+        "NAME": "Bachelor in Computer Science",
+        "NOTE": "2019 – 2025",
+        "STATUS": "Completed"
+      },
+      "LANGUAGES_TITLE": "Languages and frameworks",
+      "SKILLS_TITLE": "Other skills",
       "LANGUAGES": {
         "C++": "C++",
         "PHP": "PHP",
@@ -130,7 +143,6 @@
         "BASH": "Bash scripting",
         "POWERSHELL": "PowerShell scripting"
       },
-      "SKILLS_TITLE": "Other skills acquired:",
       "SKILLS": {
         "AI": "Basics of Artificial Intelligence",
         "PROJECT_MANAGEMENT": "Project Management",
@@ -144,27 +156,39 @@
       }
     },
     "DON_BOSCO": {
-      "NAME": "Lycée Général Don Bosco – Landser",
-      "BAC": "2016 - 2019: HIGH SCHOOL DIPLOMA IN ENGINEERING SCIENCE",
-      "SKILLS_TITLE": "Skills acquired:",
-      "SKILLS": {
+      "NAME": "Lycée Général Don Bosco",
+      "PLACE": "Landser",
+      "DATES": "2016 – 2019",
+      "STEP": "High school diploma",
+      "BAC": {
+        "NAME": "Baccalauréat in Engineering Science",
+        "NOTE": "2016 – 2019",
+        "STATUS": "Completed"
+      },
+      "TOOLS_TITLE": "Tools and software",
+      "SKILLS_TITLE": "Engineering science",
+      "TOOLS": {
         "PYTHON": "Python",
         "CAO": "Computer-Aided Design (CAD)",
-        "OFFICE": "Office 365",
+        "SOLIDWORKS": "SolidWorks",
+        "SKETCHUP": "SketchUp",
+        "ARDUINO": "Arduino",
+        "OFFICE": "Office 365"
+      },
+      "SKILLS": {
         "ELECTRONICS": "Basics of Electronics",
         "MECHANICS": "Basics of Mechanics",
         "AUTOMATIC": "Basics of Automation",
         "ROBOTICS": "Basics of Robotics",
-        "TEAMWORK": "Teamwork",
-        "SOLIDWORKS": "SolidWorks",
-        "SKETCHUP": "SketchUp",
-        "ARDUINO": "Arduino"
+        "TEAMWORK": "Teamwork"
       }
     },
     "SELF_TAUGHT": {
-      "TITLE": "Self-Taught",
+      "TITLE": "Self-taught",
       "SUBTITLE": "In my free time",
-      "SKILLS_TITLE": "Skills acquired:",
+      "DATES": "Ongoing",
+      "NOTE": "This site is built with Angular and TypeScript.",
+      "SKILLS_TITLE": "Learned on my own",
       "SKILLS": {
         "ANGULAR": "Angular",
         "TYPESCRIPT": "TypeScript",
@@ -174,15 +198,70 @@
     }
   },
   "PROJECTS": {
-    "IMAGE_PROCESSOR_TITLE": "Creation of basic image editing software for the image processing course",
-    "GRAPH_SOFTWARE_TITLE": "Creation of demonstrative software on graph theory for the graphs course",
-    "MAZE_ROBOT_TITLE": "Creation of a robot solving mazes",
-    "EFA_CLOUD_TITLE": "Implementation of EFA Cloud software for Mulhouse-Aviron",
-    "MOBILENET_PRESENTATION_TITLE": "Presentation of MobileNet-SSD (Artificial Intelligence)",
-    "APPOINTMENT_MANAGER_TITLE": "Appointment manager with C++ and QT",
-    "VACATION_DATABASE_TITLE": "Database with Microsoft Access: Management of temporary workers at UHA",
-    "SKATEBOARD_MODULE_TITLE": "Module to motorize a skateboard",
-    "PYTHON_PONG_TITLE": "Video game 'Pong' in Python",
+    "TITLE": "Projects",
+    "INTRO": "Projects from high school, university and a sports club, from a Pong game in Python to a maze-solving robot.",
+    "FILTER_LABEL": "Filter projects",
+    "ALL": "All",
+    "CONTEXT": {
+      "UNIVERSITY": "University",
+      "ASSOCIATION": "Club",
+      "HIGH_SCHOOL": "High school"
+    },
+    "ROLE": "Role:",
+    "CODE": "View the code",
+    "TECH": {
+      "PYTHON": "Python",
+      "OPENCV": "OpenCV",
+      "TKINTER": "tkinter",
+      "CPP": "C++",
+      "QT": "Qt",
+      "ACCESS": "Microsoft Access",
+      "ALGORITHMS": "Algorithms",
+      "AI": "AI",
+      "OBJECT_DETECTION": "Object detection",
+      "PHP": "PHP",
+      "DEPLOYMENT": "Deployment",
+      "SOLIDWORKS": "SolidWorks",
+      "ARDUINO": "Arduino"
+    },
+    "ITEMS": {
+      "IMAGE_PROCESSOR": {
+        "TITLE": "Image editing software",
+        "SUB": "Image processing course"
+      },
+      "GRAPH_SOFTWARE": {
+        "TITLE": "Graph demonstrator",
+        "SUB": "Graph theory course"
+      },
+      "MAZE_ROBOT": {
+        "TITLE": "Maze-solving robot",
+        "SUB": "Left-hand rule algorithm"
+      },
+      "EFA_CLOUD": {
+        "TITLE": "EFA Cloud for Mulhouse-Aviron",
+        "SUB": "Software setup for the rowing club"
+      },
+      "MOBILENET": {
+        "TITLE": "MobileNet-SSD presentation",
+        "SUB": "Artificial intelligence"
+      },
+      "APPOINTMENT_MANAGER": {
+        "TITLE": "Appointment manager",
+        "SUB": "Desktop application"
+      },
+      "VACATION_DATABASE": {
+        "TITLE": "Temporary staff database",
+        "SUB": "Managing temporary lecturers at UHA"
+      },
+      "SKATEBOARD": {
+        "TITLE": "Motorized skateboard",
+        "SUB": "Motorization module"
+      },
+      "PONG": {
+        "TITLE": "Pong game",
+        "SUB": "Video game in Python"
+      }
+    },
     "ROLES": {
       "DEVELOPER": "Developer",
       "PROJECT_LEAD": "Project Lead",
@@ -328,9 +407,6 @@
       "NOT_UNDERSTOOD": "Sorry, I didn't understand. Could you rephrase?",
       "ERROR": "The assistant isn't responding right now. Please use the form above instead."
     }
-  },
-  "CARD": {
-    "ROLE": "Role: "
   },
   "404": {
     "TITLE": "404 - Page Not Found",
