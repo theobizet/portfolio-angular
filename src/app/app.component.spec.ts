@@ -13,9 +13,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-
-  it('should show the current year in the footer', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    expect(fixture.componentInstance.year).toEqual(new Date().getFullYear());
-  });
 });

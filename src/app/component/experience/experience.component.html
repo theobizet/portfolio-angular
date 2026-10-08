@@ -2,7 +2,7 @@
   <div class="row g-4 align-items-start">
     <!-- Présentation et filtre par compétence -->
     <aside class="col-lg-4">
-      <div class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+      <div class="card border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4">
         <h1 class="fw-bold mb-2">{{ 'EXPERIENCE.TITLE' | translate }}</h1>
         <p class="lh-lg mb-4">{{ 'EXPERIENCE.INTRO' | translate }}</p>
 
@@ -34,7 +34,7 @@
         @for (job of jobs; track job.key) {
           <li class="exp-item position-relative" [class.exp-dimmed]="!matches(job)">
             <span class="exp-dot" [class.exp-dot-current]="job.current" aria-hidden="true"></span>
-            <article class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+            <article class="card border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4">
               <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
                 <span class="small text-body-secondary exp-date">{{ (job.key + '.DATES') | translate }}</span>
                 <span class="badge rounded-pill" [class]="job.current ? 'bg-success-subtle text-success-emphasis' : 'bg-secondary-subtle text-secondary-emphasis'">
@@ -61,7 +61,7 @@
   </div>
 
   <!-- Jobs étudiants -->
-  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+  <section class="card border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4">
     <div class="d-flex flex-wrap align-items-baseline justify-content-between column-gap-4 mb-2">
       <h2 class="fs-4 fw-bold mb-0">{{ 'EXPERIENCE.STUDENT_TITLE' | translate }}</h2>
       <span class="small text-body-secondary">{{ 'EXPERIENCE.STUDENT_TAGS' | translate }}</span>

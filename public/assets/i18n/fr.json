@@ -415,9 +415,6 @@
       "ERROR": "L'assistant ne répond pas pour le moment. Écrivez-moi plutôt avec le formulaire de la page Contact."
     }
   },
-  "FOOTER": {
-    "RIGHTS": "Tous droits réservés."
-  },
   "404": {
     "TITLE": "404 - Page non trouvée",
     "DESCRIPTION": "Désolé, la page que vous cherchez n'existe pas ou a été déplacée",

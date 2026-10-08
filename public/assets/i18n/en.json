@@ -415,9 +415,6 @@
       "ERROR": "The assistant isn't responding right now. Please use the form on the Contact page instead."
     }
   },
-  "FOOTER": {
-    "RIGHTS": "All rights reserved."
-  },
   "404": {
     "TITLE": "404 - Page Not Found",
     "DESCRIPTION": "Sorry, the page you are looking for does not exist or has been moved.",

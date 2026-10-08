@@ -1,6 +1,6 @@
 <main class="container-fluid bg-transparent py-4 d-flex flex-column gap-3">
   <!-- Présentation -->
-  <section class="card border-0 shadow bg-body bg-opacity-75 rounded-4 p-4 p-lg-5">
+  <section class="card border-0 shadow bg-body bg-opacity-90 rounded-4 p-4 p-lg-5">
     <div class="d-flex flex-wrap align-items-center gap-5 column-gap-lg-5">
       <!-- Portrait en cadre décalé. Le panneau a la taille exacte de la photo : le haut de la photo
            source est coupé au ras des cheveux, calé sur le bord du panneau il devient un cadrage. -->
@@ -45,7 +45,7 @@
   <div class="row g-3">
     <!-- Parcours -->
     <section class="col-lg-7">
-      <div class="card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+      <div class="card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4">
         <h2 class="fs-4 fw-bold mb-3">{{ 'HOME.PATH.TITLE' | translate }}</h2>
         <ul class="list-unstyled border-bottom mb-4">
           @for (step of path; track step.titleKey) {
@@ -67,7 +67,7 @@
 
     <!-- En bref -->
     <section class="col-lg-5">
-      <div class="card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
+      <div class="card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4">
         <h2 class="fs-4 fw-bold mb-3">{{ 'HOME.FACTS.TITLE' | translate }}</h2>
         <dl class="mb-0">
           <dt class="small fw-normal text-body-secondary">{{ 'HOME.FACTS.LANGUAGES_LABEL' | translate }}</dt>
@@ -93,7 +93,7 @@
   <div class="row row-cols-1 row-cols-md-3 g-3">
     @for (project of projects; track project.titleKey) {
       <div class="col">
-        <article class="card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-4 overflow-hidden">
+        <article class="card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-4 overflow-hidden">
           <img class="card-img-top home-thumb object-fit-cover" [src]="project.imageUrl" alt="" loading="lazy">
           <div class="card-body p-4">
             <p class="small text-body-secondary mb-2">{{ project.year }} · {{ project.roleKey | translate }}</p>
@@ -108,7 +108,7 @@
   </div>
 
   <!-- Contact -->
-  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4 mt-3">
+  <section class="card border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4 mt-3">
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
       <div>
         <h2 class="fs-4 fw-bold mb-1">{{ 'HOME.CONTACT.TITLE' | translate }}</h2>

@@ -2,7 +2,7 @@
   <h2 class="about-heading border-bottom pb-2 text-light">{{ 'ABOUT.TITLE' | translate }}</h2>
 
   <!-- Présentation : photo + parcours, le texte d'accroche en premier. -->
-  <section class="card about-card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4 mb-3">
+  <section class="card about-card border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4 mb-3">
     <div class="row align-items-center g-4">
       <div class="col-md-4 col-lg-2 text-center">
         <img class="img-fluid rounded-4 shadow photo-studio"
@@ -22,7 +22,7 @@
   <!-- Les trois autres facettes, côte à côte pour des lignes courtes. -->
   <section class="row row-cols-1 row-cols-lg-3 g-3 mb-4">
     <div class="col">
-      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-3">
         <div class="card-body p-4">
           <div class="about-icon-badge d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary fs-5 mb-3">
             <fa-icon [icon]="icons.defines"></fa-icon>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="col">
-      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-3">
         <div class="card-body p-4">
           <div class="about-icon-badge d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary fs-5 mb-3">
             <fa-icon [icon]="icons.passions"></fa-icon>
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="col">
-      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-3">
         <div class="card-body p-4">
           <div class="about-icon-badge d-inline-flex align-items-center justify-content-center rounded-circle bg-primary-subtle text-primary fs-5 mb-3">
             <fa-icon [icon]="icons.learning"></fa-icon>
@@ -66,7 +66,7 @@
   <!-- Technique : deux cartes de largeur proportionnelle au nombre d'icônes. -->
   <section class="row g-3 mb-3">
     <div class="col-lg-8">
-      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.PROGRAMMING' | translate }}</h3>
           <ng-container *ngTemplateOutlet="iconGrid; context: { $implicit: languages }"></ng-container>
@@ -74,7 +74,7 @@
       </div>
     </div>
     <div class="col-lg-4">
-      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.ENVIRONNEMENT' | translate }}</h3>
           <ng-container *ngTemplateOutlet="iconGrid; context: { $implicit: environment }"></ng-container>
@@ -86,7 +86,7 @@
   <!-- Complémentaire : trois cartes de même hauteur. -->
   <section class="row row-cols-1 row-cols-md-3 g-3">
     <div class="col">
-      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.OTHER.TITLE' | translate }}</h3>
           <ul class="about-list list-unstyled mb-0">
@@ -101,7 +101,7 @@
       </div>
     </div>
     <div class="col">
-      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.CERTIFICATIONS.TITLE' | translate }}</h3>
           <div class="d-grid gap-2">
@@ -122,7 +122,7 @@
       </div>
     </div>
     <div class="col">
-      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-75 rounded-3">
+      <div class="card about-card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-3">
         <div class="card-body">
           <h3 class="card-title fs-5 text-center pb-2 mb-3 border-bottom border-2 border-primary">{{ 'ABOUT.SKILLS.LANGUAGES.TITLE' | translate }}</h3>
           <ul class="about-list list-unstyled mb-0">

@@ -4,19 +4,17 @@ import { RouterOutlet } from '@angular/router';
 import { NavigationBarComponent } from './component/navigation-bar/navigation-bar.component';
 import { ChatComponent } from './component/chat/chat';
 import { ThemeService } from './theme.service';
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 const LANGUAGES = ['fr', 'de', 'en'];
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavigationBarComponent, ChatComponent, TranslateModule],
+  imports: [RouterOutlet, NavigationBarComponent, ChatComponent],
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  readonly year = new Date().getFullYear();
-
   constructor(
     private readonly themeService: ThemeService, private readonly translate: TranslateService,
     @Inject(PLATFORM_ID) private readonly platformId: Object

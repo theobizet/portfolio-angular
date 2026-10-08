@@ -1,10 +1,7 @@
 <div class="bg-transparent content-wrapper">
-  <app-navigation-bar></app-navigation-bar>
-  <div class="flex-grow-1">
+  <app-navigation-bar class="sticky-top"></app-navigation-bar>
+  <div class="flex-grow-1 w-100 page-width">
     <router-outlet/>
   </div>
-  <footer class="text-center text-muted py-3 bg-dark-subtle">
-    <p class="mb-0">© {{ year }} BIZET Théo. {{ 'FOOTER.RIGHTS' | translate }}</p>
-  </footer>
 </div>
 <app-chat></app-chat>

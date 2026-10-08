@@ -152,3 +152,34 @@ body {
     text-align: justify;
     text-justify: inter-word;
 }
+
+/* Blocs de texte : plus opaques que le 75 % de Bootstrap, pour bien se détacher de la photo de fond. */
+.bg-opacity-90 {
+  --bs-bg-opacity: 0.9;
+}
+
+/* Sur très grand écran (2K et plus), le contenu ne s'étire pas au-delà de cette largeur. */
+.page-width {
+  max-width: 1600px;
+  margin-inline: auto;
+}
+
+/* Mobile : textes et marges intérieures des blocs resserrés, sinon les paragraphes deviennent trop aérés. */
+@media (max-width: 575.98px) {
+  .fs-5 {
+    font-size: 1.0625rem !important;
+  }
+
+  .lh-lg {
+    line-height: 1.6 !important;
+  }
+
+  .card.p-4,
+  .card-body.p-4 {
+    padding: 1.25rem !important;
+  }
+
+  .btn-lg {
+    --bs-btn-font-size: 1.0625rem;
+  }
+}
