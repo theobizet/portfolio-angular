@@ -388,6 +388,12 @@
       "ERROR": "Das Senden ist fehlgeschlagen. Versuchen Sie es gleich noch einmal oder schreiben Sie mir direkt an theobizet@outlook.fr."
     },
     "CHAT": {
+      "OPEN": "KI-Assistent öffnen",
+      "CLOSE": "KI-Assistent schließen",
+      "MINIMIZE": "Minimieren",
+      "HINT": "Eine Frage zu meinem Werdegang?",
+      "HINT_CLOSE": "Hinweis ausblenden",
+      "CTA": "Den Assistenten fragen",
       "TITLE": "Eine kurze Frage?",
       "INTRO": "Mein KI-Assistent beantwortet Ihre Fragen auf Grundlage meines Lebenslaufs. Für Genaueres ist das Formular weiterhin der beste Weg.",
       "FEATURE_FAST": "Antwortet in wenigen Sekunden",
@@ -406,7 +412,7 @@
       "TYPING": "Der Assistent schreibt",
       "DISCLAIMER": "KI-generierte Antworten auf Grundlage meines Lebenslaufs: Sie können Fehler enthalten.",
       "NOT_UNDERSTOOD": "Entschuldigung, das habe ich nicht verstanden. Können Sie es anders formulieren?",
-      "ERROR": "Der Assistent antwortet gerade nicht. Nutzen Sie bitte das Formular oben."
+      "ERROR": "Der Assistent antwortet gerade nicht. Nutzen Sie bitte das Formular auf der Kontaktseite."
     }
   },
   "FOOTER": {

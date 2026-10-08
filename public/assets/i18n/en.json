@@ -388,6 +388,12 @@
       "ERROR": "Sending failed. Please try again in a moment or email me directly at theobizet@outlook.fr."
     },
     "CHAT": {
+      "OPEN": "Open the AI assistant",
+      "CLOSE": "Close the AI assistant",
+      "MINIMIZE": "Minimise",
+      "HINT": "A question about my background?",
+      "HINT_CLOSE": "Hide this tip",
+      "CTA": "Ask the assistant",
       "TITLE": "A quick question?",
       "INTRO": "My AI assistant answers your questions based on my CV. For anything more specific, the form is still the best way.",
       "FEATURE_FAST": "Answers in a few seconds",
@@ -406,7 +412,7 @@
       "TYPING": "The assistant is typing",
       "DISCLAIMER": "AI-generated answers based on my CV: they may contain mistakes.",
       "NOT_UNDERSTOOD": "Sorry, I didn't understand. Could you rephrase?",
-      "ERROR": "The assistant isn't responding right now. Please use the form above instead."
+      "ERROR": "The assistant isn't responding right now. Please use the form on the Contact page instead."
     }
   },
   "FOOTER": {

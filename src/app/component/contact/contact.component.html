@@ -109,8 +109,21 @@
     </section>
   </div>
 
-  <!-- Assistant IA -->
-  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4">
-    <app-chat></app-chat>
+  <!-- Assistant IA : il vit dans la bulle en bas à droite, ce bouton l'ouvre -->
+  <section class="card border-0 shadow-sm bg-body bg-opacity-75 rounded-4 p-4 p-xl-5 d-flex flex-column flex-lg-row align-items-lg-center gap-4">
+    <div class="flex-grow-1">
+      <h2 class="fs-3 fw-bold mb-2">{{ 'CONTACT.CHAT.TITLE' | translate }}</h2>
+      <p class="mb-3">{{ 'CONTACT.CHAT.INTRO' | translate }}</p>
+      <ul class="list-unstyled d-flex flex-column flex-md-row flex-wrap gap-2 column-gap-md-4 mb-0">
+        @for (feature of chatFeatures; track feature.key) {
+          <li class="d-flex align-items-center gap-2">
+            <fa-icon [icon]="feature.icon" class="text-primary"></fa-icon>{{ feature.key | translate }}
+          </li>
+        }
+      </ul>
+    </div>
+    <button type="button" class="btn btn-primary btn-lg px-4 flex-shrink-0" (click)="openChat()" aria-controls="chat-panel">
+      <fa-icon [icon]="icons.chat" class="me-2"></fa-icon>{{ 'CONTACT.CHAT.CTA' | translate }}
+    </button>
   </section>
 </main>

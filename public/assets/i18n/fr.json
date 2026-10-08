@@ -388,6 +388,12 @@
       "ERROR": "L'envoi a échoué. Réessayez dans un instant ou écrivez-moi directement à theobizet@outlook.fr."
     },
     "CHAT": {
+      "OPEN": "Ouvrir l'assistant IA",
+      "CLOSE": "Fermer l'assistant IA",
+      "MINIMIZE": "Réduire",
+      "HINT": "Une question sur mon parcours ?",
+      "HINT_CLOSE": "Masquer l'invitation",
+      "CTA": "Poser une question à l'assistant",
       "TITLE": "Une question rapide ?",
       "INTRO": "Mon assistant IA répond à vos questions à partir de mon CV. Pour un échange plus précis, le formulaire reste le meilleur moyen.",
       "FEATURE_FAST": "Répond en quelques secondes",
@@ -406,7 +412,7 @@
       "TYPING": "L'assistant écrit",
       "DISCLAIMER": "Réponses générées par IA à partir de mon CV : elles peuvent contenir des erreurs.",
       "NOT_UNDERSTOOD": "Désolé, je n'ai pas compris. Pouvez-vous reformuler ?",
-      "ERROR": "L'assistant ne répond pas pour le moment. Écrivez-moi plutôt avec le formulaire ci-dessus."
+      "ERROR": "L'assistant ne répond pas pour le moment. Écrivez-moi plutôt avec le formulaire de la page Contact."
     }
   },
   "FOOTER": {

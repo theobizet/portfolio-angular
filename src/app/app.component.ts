@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavigationBarComponent } from './component/navigation-bar/navigation-bar.component';
+import { ChatComponent } from './component/chat/chat';
 import { ThemeService } from './theme.service';
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
@@ -10,7 +11,7 @@ const LANGUAGES = ['fr', 'de', 'en'];
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavigationBarComponent, TranslateModule],
+  imports: [RouterOutlet, NavigationBarComponent, ChatComponent, TranslateModule],
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {

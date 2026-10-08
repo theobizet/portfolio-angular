@@ -1,86 +1,94 @@
-<div class="row g-4 g-xl-5 align-items-start">
-  <!-- Présentation de l'assistant -->
-  <div class="col-lg-4">
-    <h2 class="fs-3 fw-bold mb-2">{{ 'CONTACT.CHAT.TITLE' | translate }}</h2>
-    <p class="mb-4">{{ 'CONTACT.CHAT.INTRO' | translate }}</p>
-    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-      @for (feature of features; track feature.key) {
-        <li class="d-flex align-items-center gap-2">
-          <fa-icon [icon]="feature.icon" class="text-primary chat-feature-icon"></fa-icon>{{ feature.key | translate }}
-        </li>
-      }
-    </ul>
+<!-- Invitation discrète à la première visite (masquée sur téléphone pour ne pas couvrir le contenu) -->
+@if (showHint() && !open()) {
+  <div class="chat-hint d-none d-md-flex align-items-center gap-1 bg-body border rounded-4 shadow ps-3 pe-1 py-1">
+    <span class="fw-semibold small">{{ 'CONTACT.CHAT.HINT' | translate }}</span>
+    <button type="button" class="btn btn-sm chat-hint-close" (click)="dismissHint()"
+            [attr.aria-label]="'CONTACT.CHAT.HINT_CLOSE' | translate">
+      <fa-icon [icon]="icons.close"></fa-icon>
+    </button>
   </div>
+}
 
-  <!-- Fenêtre de chat -->
-  <div class="col-lg-8">
-    <div class="border rounded-4 bg-body shadow overflow-hidden">
-      <!-- En-tête -->
-      <div class="d-flex align-items-center gap-3 px-3 py-2 border-bottom">
-        <div class="position-relative flex-shrink-0">
-          <span class="chat-avatar chat-avatar-lg" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
-          <span class="chat-status position-absolute rounded-circle bg-success" aria-hidden="true"></span>
+<!-- Panneau de chat -->
+@if (open()) {
+  <section id="chat-panel" class="chat-panel border rounded-4 bg-body shadow-lg d-flex flex-column overflow-hidden"
+           [attr.aria-label]="'CONTACT.CHAT.HEADER_TITLE' | translate" (keydown.escape)="close()">
+    <!-- En-tête -->
+    <div class="d-flex align-items-center gap-2 ps-3 pe-2 py-2 border-bottom">
+      <div class="position-relative flex-shrink-0 me-1">
+        <span class="chat-avatar chat-avatar-lg" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
+        <span class="chat-status position-absolute rounded-circle bg-success" aria-hidden="true"></span>
+      </div>
+      <div class="flex-grow-1 lh-sm">
+        <h2 class="fs-6 fw-semibold mb-0">{{ 'CONTACT.CHAT.HEADER_TITLE' | translate }}</h2>
+        <div class="small text-body-secondary">{{ 'CONTACT.CHAT.HEADER_SUBTITLE' | translate }}</div>
+      </div>
+      <button type="button" class="btn chat-icon-btn text-body-secondary" (click)="reset()" [disabled]="!messages.length || isLoading"
+              [attr.aria-label]="'CONTACT.CHAT.RESET' | translate" [title]="'CONTACT.CHAT.RESET' | translate">
+        <fa-icon [icon]="icons.reset"></fa-icon>
+      </button>
+      <button type="button" class="btn chat-icon-btn text-body-secondary" (click)="close()"
+              [attr.aria-label]="'CONTACT.CHAT.MINIMIZE' | translate" [title]="'CONTACT.CHAT.MINIMIZE' | translate">
+        <fa-icon [icon]="icons.minimize"></fa-icon>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div #messagesContainer class="chat-messages flex-grow-1 overflow-auto p-3 bg-body-tertiary d-flex flex-column gap-3" aria-live="polite">
+      <div class="chat-row-bot d-flex align-items-end gap-2">
+        <span class="chat-avatar" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
+        <div class="chat-bubble chat-bubble-bot bg-body border">{{ 'CONTACT.CHAT.GREETING' | translate }}</div>
+      </div>
+
+      @if (!messages.length) {
+        <div class="chat-suggestions d-flex flex-wrap gap-2">
+          @for (key of suggestions; track key) {
+            <button type="button" class="btn btn-sm rounded-pill px-3 chat-chip" (click)="ask(key)">{{ key | translate }}</button>
+          }
         </div>
-        <div class="flex-grow-1">
-          <div class="fw-semibold">{{ 'CONTACT.CHAT.HEADER_TITLE' | translate }}</div>
-          <div class="small text-body-secondary">{{ 'CONTACT.CHAT.HEADER_SUBTITLE' | translate }}</div>
+      }
+
+      @for (message of messages; track $index) {
+        @if (message.isUser) {
+          <div class="chat-bubble chat-bubble-user align-self-end bg-primary text-white">{{ message.text }}</div>
+        } @else {
+          <div class="chat-row-bot d-flex align-items-end gap-2">
+            <span class="chat-avatar" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
+            <div class="chat-bubble chat-bubble-bot bg-body border">{{ message.text }}</div>
+          </div>
+        }
+      }
+
+      @if (isLoading) {
+        <div class="d-flex align-items-end gap-2">
+          <span class="chat-avatar" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
+          <output class="chat-bubble chat-bubble-bot bg-body border d-flex align-items-center gap-1 py-3" [attr.aria-label]="'CONTACT.CHAT.TYPING' | translate">
+            <span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span>
+          </output>
         </div>
-        <button type="button" class="btn btn-outline-secondary chat-icon-btn" (click)="reset()" [disabled]="!messages.length || isLoading"
-                [attr.aria-label]="'CONTACT.CHAT.RESET' | translate" [title]="'CONTACT.CHAT.RESET' | translate">
-          <fa-icon [icon]="icons.reset"></fa-icon>
+      }
+    </div>
+
+    <!-- Saisie -->
+    <form class="px-3 pt-3 pb-2 border-top" (ngSubmit)="sendMessage()">
+      <div class="chat-composer d-flex align-items-center gap-2 border rounded-pill bg-body ps-3 pe-1 py-1">
+        <label class="visually-hidden" for="chat-input">{{ 'CONTACT.CHAT.LABEL' | translate }}</label>
+        <input #chatInput id="chat-input" class="form-control border-0 shadow-none bg-transparent px-0" name="userMessage" autocomplete="off"
+               [(ngModel)]="userMessage" [disabled]="isLoading"
+               placeholder="{{ 'CONTACT.CHAT.PLACEHOLDER' | translate }}">
+        <button type="submit" class="btn btn-primary rounded-circle chat-send flex-shrink-0" [disabled]="isLoading || !userMessage.trim()"
+                [attr.aria-label]="'CONTACT.CHAT.SEND' | translate">
+          <fa-icon [icon]="icons.send"></fa-icon>
         </button>
       </div>
+      <p class="small text-body-secondary text-center mt-2 mb-0">{{ 'CONTACT.CHAT.DISCLAIMER' | translate }}</p>
+    </form>
+  </section>
+}
 
-      <!-- Messages -->
-      <div #messagesContainer class="chat-messages overflow-auto p-3 p-md-4 bg-body-tertiary d-flex flex-column gap-3" aria-live="polite">
-        <div class="chat-row-bot d-flex align-items-end gap-2">
-          <span class="chat-avatar" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
-          <div class="chat-bubble chat-bubble-bot bg-body border">{{ 'CONTACT.CHAT.GREETING' | translate }}</div>
-        </div>
-
-        @if (!messages.length) {
-          <div class="chat-suggestions d-flex flex-wrap gap-2">
-            @for (key of suggestions; track key) {
-              <button type="button" class="btn btn-sm rounded-pill px-3 chat-chip" (click)="ask(key)">{{ key | translate }}</button>
-            }
-          </div>
-        }
-
-        @for (message of messages; track $index) {
-          @if (message.isUser) {
-            <div class="chat-bubble chat-bubble-user align-self-end bg-primary text-white">{{ message.text }}</div>
-          } @else {
-            <div class="chat-row-bot d-flex align-items-end gap-2">
-              <span class="chat-avatar" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
-              <div class="chat-bubble chat-bubble-bot bg-body border">{{ message.text }}</div>
-            </div>
-          }
-        }
-
-        @if (isLoading) {
-          <div class="d-flex align-items-end gap-2">
-            <span class="chat-avatar" aria-hidden="true"><fa-icon [icon]="icons.robot"></fa-icon></span>
-            <output class="chat-bubble chat-bubble-bot bg-body border d-flex align-items-center gap-1 py-3" [attr.aria-label]="'CONTACT.CHAT.TYPING' | translate">
-              <span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span>
-            </output>
-          </div>
-        }
-      </div>
-
-      <!-- Saisie -->
-      <form class="px-3 pt-3 pb-2 border-top" (ngSubmit)="sendMessage()">
-        <div class="chat-composer d-flex align-items-center gap-2 border rounded-pill bg-body ps-3 pe-1 py-1">
-          <label class="visually-hidden" for="chat-input">{{ 'CONTACT.CHAT.LABEL' | translate }}</label>
-          <input id="chat-input" class="form-control border-0 shadow-none bg-transparent px-0" name="userMessage" autocomplete="off"
-                 [(ngModel)]="userMessage" [disabled]="isLoading"
-                 placeholder="{{ 'CONTACT.CHAT.PLACEHOLDER' | translate }}">
-          <button type="submit" class="btn btn-primary rounded-circle chat-send flex-shrink-0" [disabled]="isLoading || !userMessage.trim()"
-                  [attr.aria-label]="'CONTACT.CHAT.SEND' | translate">
-            <fa-icon [icon]="icons.send"></fa-icon>
-          </button>
-        </div>
-        <p class="small text-body-secondary text-center mt-2 mb-0">{{ 'CONTACT.CHAT.DISCLAIMER' | translate }}</p>
-      </form>
-    </div>
-  </div>
-</div>
+<!-- Bulle : ouvre / ferme le panneau -->
+<button #bubble type="button" class="btn btn-primary rounded-circle chat-fab" [class.chat-fab-open]="open()" (click)="toggle()"
+        aria-controls="chat-panel" [attr.aria-expanded]="open()"
+        [attr.aria-label]="(open() ? 'CONTACT.CHAT.CLOSE' : 'CONTACT.CHAT.OPEN') | translate">
+  <fa-icon [icon]="open() ? icons.close : icons.bubble"></fa-icon>
+</button>
