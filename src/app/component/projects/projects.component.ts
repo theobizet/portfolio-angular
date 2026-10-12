@@ -14,7 +14,7 @@ interface Project {
   role?: string;
   /** Clés sous PROJECTS.TECH. */
   tech: string[];
-  image: string;
+  image?: string;
   code?: string;
 }
 
@@ -30,6 +30,12 @@ export class ProjectsComponent {
 
   /** Projets du plus récent au plus ancien. */
   projects: Project[] = [
+    { id: 'BLACK_BOX', year: '2025 – 2026', context: 'UNIVERSITY', tech: ['FLUTTER', 'SUPABASE'],
+      image: 'assets/boite-noire.png' },
+    { id: 'FINANCIAL_GAN', year: '2025 – 2026', context: 'UNIVERSITY', tech: ['PYTHON', 'AI'],
+      image: 'assets/gan-financier.jpg' },
+    { id: 'IMAGE_GAN', year: '2025 – 2026', context: 'UNIVERSITY', tech: ['PYTHON', 'AI', 'GAN'],
+      image: 'assets/gan-mnist.png' },
     { id: 'IMAGE_PROCESSOR', year: '2024 – 2025', context: 'UNIVERSITY', role: 'DEVELOPER', tech: ['PYTHON', 'OPENCV', 'TKINTER'],
       image: 'assets/imgprocessorapp.jpg', code: 'https://github.com/theobizet/image_processing_app' },
     { id: 'GRAPH_SOFTWARE', year: '2024 – 2025', context: 'UNIVERSITY', role: 'PROJECT_LEAD', tech: ['CPP'],

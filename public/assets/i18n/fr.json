@@ -231,9 +231,24 @@
       "PHP": "PHP",
       "DEPLOYMENT": "Déploiement",
       "SOLIDWORKS": "SolidWorks",
-      "ARDUINO": "Arduino"
+      "ARDUINO": "Arduino",
+      "FLUTTER": "Flutter",
+      "SUPABASE": "Supabase",
+      "GAN": "GAN"
     },
     "ITEMS": {
+      "BLACK_BOX": {
+        "TITLE": "Smartphone boîte noire",
+        "SUB": "Enregistrements infalsifiables pour les assurances"
+      },
+      "FINANCIAL_GAN": {
+        "TITLE": "Générateur de données financières synthétiques",
+        "SUB": "Données clients : âge, revenu, achats"
+      },
+      "IMAGE_GAN": {
+        "TITLE": "GAN d'images",
+        "SUB": "Chiffres manuscrits (MNIST)"
+      },
       "IMAGE_PROCESSOR": {
         "TITLE": "Logiciel de retouche d'image",
         "SUB": "Cours de traitement d'image"

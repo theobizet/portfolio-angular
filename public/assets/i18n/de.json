@@ -231,9 +231,24 @@
       "PHP": "PHP",
       "DEPLOYMENT": "Bereitstellung",
       "SOLIDWORKS": "SolidWorks",
-      "ARDUINO": "Arduino"
+      "ARDUINO": "Arduino",
+      "FLUTTER": "Flutter",
+      "SUPABASE": "Supabase",
+      "GAN": "GAN"
     },
     "ITEMS": {
+      "BLACK_BOX": {
+        "TITLE": "Smartphone als Blackbox",
+        "SUB": "Fälschungssichere Aufzeichnungen für Versicherungen"
+      },
+      "FINANCIAL_GAN": {
+        "TITLE": "Generator für synthetische Finanzdaten",
+        "SUB": "Kundendaten: Alter, Einkommen, Käufe"
+      },
+      "IMAGE_GAN": {
+        "TITLE": "Bild-GAN",
+        "SUB": "Handschriftliche Ziffern (MNIST)"
+      },
       "IMAGE_PROCESSOR": {
         "TITLE": "Bildbearbeitungssoftware",
         "SUB": "Kurs Bildverarbeitung"
