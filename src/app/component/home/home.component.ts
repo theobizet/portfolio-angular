@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowRight, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faArrowRight, faAward, faBookOpen, faCar, faCode, faLanguage, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -29,6 +29,14 @@ export class HomeComponent {
       url: `https://img.shields.io/badge/${encodeURIComponent(name)}-${color}?style=for-the-badge&logo=${logo}&logoColor=${logoColor}`
     }))
   }));
+
+  facts: { icon: IconDefinition; labelKey: string; valueKey?: string; value?: string }[] = [
+    { icon: faLanguage, labelKey: 'HOME.FACTS.LANGUAGES_LABEL', valueKey: 'HOME.FACTS.LANGUAGES' },
+    { icon: faCode, labelKey: 'HOME.FACTS.CODE_LABEL', value: 'TypeScript, Java, C++, Python, PHP, SQL' },
+    { icon: faAward, labelKey: 'HOME.FACTS.CERTIFICATIONS_LABEL', valueKey: 'HOME.FACTS.CERTIFICATIONS' },
+    { icon: faBookOpen, labelKey: 'HOME.FACTS.LEARNING_LABEL', valueKey: 'HOME.FACTS.LEARNING' },
+    { icon: faCar, labelKey: 'HOME.FACTS.MOBILITY_LABEL', valueKey: 'HOME.FACTS.MOBILITY' }
+  ];
 
   pathGroups: { titleKey: string; steps: { dateKey: string; titleKey: string; placeKey: string; toolsKey?: string }[] }[] = [
     {

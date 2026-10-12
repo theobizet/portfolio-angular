@@ -73,6 +73,12 @@
   max-width: 760px;
 }
 
+/* Pastilles d'icônes de la carte Profil, comme sur la page À propos. */
+.home-fact-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .home-date {
   font-variant-numeric: tabular-nums;
 }
