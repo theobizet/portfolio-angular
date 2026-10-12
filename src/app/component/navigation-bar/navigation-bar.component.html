@@ -63,7 +63,7 @@
               <button type="button" class="dropdown-item d-flex align-items-center gap-2 rounded-2 px-2" ngbDropdownItem
                       [class.active]="lang.id === currentLang" [attr.aria-pressed]="lang.id === currentLang"
                       (click)="changeLanguage(lang.id); isMenuCollapsed = true">
-                <span class="options-code small fw-semibold text-body-secondary">{{ lang.id | uppercase }}</span>
+                <img class="options-flag rounded-1" [src]="'assets/flags/' + lang.id + '.svg'" alt="" width="24" height="16">
                 <span class="flex-grow-1">{{ lang.label }}</span>
                 @if (lang.id === currentLang) {
                   <fa-icon [icon]="icons.check"></fa-icon>

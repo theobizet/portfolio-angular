@@ -49,7 +49,8 @@
   font-weight: 600;
 }
 
-.options-code {
-  width: 1.75rem;
-  letter-spacing: 0.04em;
+/* Ratio fixe pour les trois drapeaux (3:2, 5:3, 2:1) ; le contour garde le blanc visible sur fond clair. */
+.options-flag {
+  object-fit: cover;
+  box-shadow: 0 0 0 1px var(--bs-border-color);
 }
