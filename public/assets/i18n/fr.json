@@ -28,9 +28,18 @@
       "BADGE": "Master MIAGE · Stellantis",
       "EMAIL_PREFIX": "Ou directement :"
     },
+    "STACK": {
+      "SOFTWARE": "Développement logiciel",
+      "WEB": "Développement web",
+      "DATA": "Bases de données",
+      "BOTH": "Multiplateforme",
+      "SELF_TAUGHT": "En autodidacte"
+    },
     "PATH": {
       "TITLE": "Parcours",
       "MORE": "Tout mon parcours",
+      "WORK": "Expérience professionnelle",
+      "EDUCATION": "Formation",
       "STELLANTIS_DATE": "Depuis sept. 2025",
       "STELLANTIS_TITLE": "Développeur Power Apps & Data Analyst, en alternance",
       "STELLANTIS_PLACE": "Stellantis, Mulhouse",
@@ -46,7 +55,7 @@
       "LICENCE_TITLE": "Licence informatique"
     },
     "FACTS": {
-      "TITLE": "En bref",
+      "TITLE": "Profil",
       "LANGUAGES_LABEL": "Langues",
       "LANGUAGES": "Français, anglais C1, allemand B1",
       "CODE_LABEL": "Langages",

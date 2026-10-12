@@ -15,11 +15,36 @@ import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 export class HomeComponent {
   icons = { arrow: faArrowRight, location: faLocationDot, linkedin: faLinkedinIn, github: faGithub };
 
-  path = [
-    { dateKey: 'HOME.PATH.STELLANTIS_DATE', titleKey: 'HOME.PATH.STELLANTIS_TITLE', placeKey: 'HOME.PATH.STELLANTIS_PLACE', toolsKey: 'HOME.PATH.STELLANTIS_TOOLS' },
-    { dateKey: 'HOME.PATH.MASTER_DATE', titleKey: 'HOME.PATH.MASTER_TITLE', placeKey: 'HOME.PATH.UHA_PLACE' },
-    { dateKey: 'HOME.PATH.ISL_DATE', titleKey: 'HOME.PATH.ISL_TITLE', placeKey: 'HOME.PATH.ISL_PLACE', toolsKey: 'HOME.PATH.ISL_TOOLS' },
-    { dateKey: 'HOME.PATH.LICENCE_DATE', titleKey: 'HOME.PATH.LICENCE_TITLE', placeKey: 'HOME.PATH.UHA_PLACE' }
+  // Badges shields.io : [libellé, couleur, logo simple-icons, couleur du logo]
+  stack = [
+    { labelKey: 'HOME.STACK.SOFTWARE', badges: [['C++', '00599C', 'cplusplus'], ['Java', 'ED8B00', 'openjdk']] },
+    { labelKey: 'HOME.STACK.WEB', badges: [['JavaScript', 'F7DF1E', 'javascript', 'black'], ['PHP', '777BB4', 'php'], ['HTML5', 'E34F26', 'html5'], ['CSS', '663399', 'css']] },
+    { labelKey: 'HOME.STACK.DATA', badges: [['SQL', '4479A1', '']] },
+    { labelKey: 'HOME.STACK.BOTH', badges: [['Flutter', '02569B', 'flutter']] },
+    { labelKey: 'HOME.STACK.SELF_TAUGHT', badges: [['Angular', 'DD0031', 'angular'], ['TypeScript', '3178C6', 'typescript'], ['Kotlin', '7F52FF', 'kotlin']] }
+  ].map(group => ({
+    labelKey: group.labelKey,
+    badges: group.badges.map(([name, color, logo, logoColor = 'white']) => ({
+      name,
+      url: `https://img.shields.io/badge/${encodeURIComponent(name)}-${color}?style=for-the-badge&logo=${logo}&logoColor=${logoColor}`
+    }))
+  }));
+
+  pathGroups: { titleKey: string; steps: { dateKey: string; titleKey: string; placeKey: string; toolsKey?: string }[] }[] = [
+    {
+      titleKey: 'HOME.PATH.WORK',
+      steps: [
+        { dateKey: 'HOME.PATH.STELLANTIS_DATE', titleKey: 'HOME.PATH.STELLANTIS_TITLE', placeKey: 'HOME.PATH.STELLANTIS_PLACE', toolsKey: 'HOME.PATH.STELLANTIS_TOOLS' },
+        { dateKey: 'HOME.PATH.ISL_DATE', titleKey: 'HOME.PATH.ISL_TITLE', placeKey: 'HOME.PATH.ISL_PLACE', toolsKey: 'HOME.PATH.ISL_TOOLS' }
+      ]
+    },
+    {
+      titleKey: 'HOME.PATH.EDUCATION',
+      steps: [
+        { dateKey: 'HOME.PATH.MASTER_DATE', titleKey: 'HOME.PATH.MASTER_TITLE', placeKey: 'HOME.PATH.UHA_PLACE' },
+        { dateKey: 'HOME.PATH.LICENCE_DATE', titleKey: 'HOME.PATH.LICENCE_TITLE', placeKey: 'HOME.PATH.UHA_PLACE' }
+      ]
+    }
   ];
 
   projects = [

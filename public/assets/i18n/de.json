@@ -28,9 +28,18 @@
       "BADGE": "Master MIAGE · Stellantis",
       "EMAIL_PREFIX": "Oder direkt:"
     },
+    "STACK": {
+      "SOFTWARE": "Softwareentwicklung",
+      "WEB": "Webentwicklung",
+      "DATA": "Datenbanken",
+      "BOTH": "Plattformübergreifend",
+      "SELF_TAUGHT": "Autodidaktisch"
+    },
     "PATH": {
       "TITLE": "Werdegang",
       "MORE": "Mein gesamter Werdegang",
+      "WORK": "Berufserfahrung",
+      "EDUCATION": "Ausbildung",
       "STELLANTIS_DATE": "Seit Sept. 2025",
       "STELLANTIS_TITLE": "Power-Apps-Entwickler & Data Analyst, duales Studium",
       "STELLANTIS_PLACE": "Stellantis, Mülhausen",
@@ -46,7 +55,7 @@
       "LICENCE_TITLE": "Bachelor Informatik"
     },
     "FACTS": {
-      "TITLE": "Kurz gesagt",
+      "TITLE": "Profil",
       "LANGUAGES_LABEL": "Sprachen",
       "LANGUAGES": "Französisch, Englisch C1, Deutsch B1",
       "CODE_LABEL": "Programmiersprachen",

@@ -21,6 +21,19 @@
         <p class="fs-5 lh-lg mb-3">{{ 'HOME.HERO.INTRO1' | translate }}</p>
         <p class="fs-5 lh-lg mb-4">{{ 'HOME.HERO.INTRO2' | translate }}</p>
 
+        <div class="d-flex flex-wrap column-gap-4 row-gap-3 mb-4">
+          @for (group of stack; track group.labelKey) {
+            <div>
+              <div class="small text-body-secondary mb-1">{{ group.labelKey | translate }}</div>
+              <div class="d-flex flex-wrap gap-1">
+                @for (badge of group.badges; track badge.name) {
+                  <img [src]="badge.url" [alt]="badge.name" height="28" loading="lazy">
+                }
+              </div>
+            </div>
+          }
+        </div>
+
         <div class="d-flex flex-wrap align-items-center gap-2">
           <a class="btn btn-primary btn-lg d-inline-flex align-items-center gap-2 px-4 shadow-sm" routerLink="/contact">
             {{ 'HOME.HERO.CTA_CONTACT' | translate }}<fa-icon [icon]="icons.arrow"></fa-icon>
@@ -47,25 +60,28 @@
     <section class="col-lg-7">
       <div class="card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4">
         <h2 class="fs-4 fw-bold mb-3">{{ 'HOME.PATH.TITLE' | translate }}</h2>
-        <ul class="list-unstyled border-bottom mb-4">
-          @for (step of path; track step.titleKey) {
-            <li class="row g-1 py-3 border-top">
-              <div class="col-sm-4 col-xl-3 text-body-secondary home-date">{{ step.dateKey | translate }}</div>
-              <div class="col-sm-8 col-xl-9">
-                <div class="fw-semibold">{{ step.titleKey | translate }}</div>
-                <div>{{ step.placeKey | translate }}</div>
-                @if (step.toolsKey) {
-                  <div class="small text-body-secondary mt-1">{{ step.toolsKey | translate }}</div>
-                }
-              </div>
-            </li>
-          }
-        </ul>
+        @for (group of pathGroups; track group.titleKey) {
+          <h3 class="fs-6 fw-semibold text-uppercase text-primary mb-2">{{ group.titleKey | translate }}</h3>
+          <ul class="list-unstyled border-bottom mb-4">
+            @for (step of group.steps; track step.titleKey) {
+              <li class="row g-1 py-3 border-top">
+                <div class="col-sm-4 col-xl-3 text-body-secondary home-date">{{ step.dateKey | translate }}</div>
+                <div class="col-sm-8 col-xl-9">
+                  <div class="fw-semibold">{{ step.titleKey | translate }}</div>
+                  <div>{{ step.placeKey | translate }}</div>
+                  @if (step.toolsKey) {
+                    <div class="small text-body-secondary mt-1">{{ step.toolsKey | translate }}</div>
+                  }
+                </div>
+              </li>
+            }
+          </ul>
+        }
         <a class="fw-semibold mt-auto align-self-start" routerLink="/experience">{{ 'HOME.PATH.MORE' | translate }}</a>
       </div>
     </section>
 
-    <!-- En bref -->
+    <!-- Profil -->
     <section class="col-lg-5">
       <div class="card h-100 border-0 shadow-sm bg-body bg-opacity-90 rounded-4 p-4">
         <h2 class="fs-4 fw-bold mb-3">{{ 'HOME.FACTS.TITLE' | translate }}</h2>
