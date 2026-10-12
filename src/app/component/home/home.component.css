@@ -1,14 +1,5 @@
 /* Complément à Bootstrap : seulement ce que les utilitaires ne couvrent pas. */
 
-/* Séparateurs des cartes plus marqués : la bordure Bootstrap se confond avec le fond gris bleuté. */
-:host {
-  --bs-border-color: #a9b3c1;
-}
-
-:host-context([data-bs-theme="dark"]) {
-  --bs-border-color: #4a5566;
-}
-
 /* Les titres posés sur la photo de fond : une ombre les décolle. */
 .home-heading {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);

@@ -142,6 +142,15 @@
   background-color: var(--bs-primary-border-subtle);
 }
 
+/* Zone de saisie : même bordure à 3:1 que les champs de formulaire. */
+.chat-composer {
+  --bs-border-color: #7d8898;
+}
+
+:host-context([data-bs-theme="dark"]) .chat-composer {
+  --bs-border-color: #5d6878;
+}
+
 .chat-composer:focus-within {
   border-color: var(--bs-primary-border-subtle) !important;
   box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.15);

@@ -22,6 +22,8 @@
   --bs-body-bg-rgb: 238, 241, 245;
   --bs-body-color: #1d2430;
   --bs-body-color-rgb: 29, 36, 48;
+  /* Séparateurs : la bordure Bootstrap (#dee2e6) se confond avec ce fond gris bleuté. */
+  --bs-border-color: #a9b3c1;
 }
 
 /*
@@ -41,7 +43,7 @@
   --bs-secondary-bg-rgb: 34, 42, 53;
   --bs-tertiary-bg: #1b212b;
   --bs-tertiary-bg-rgb: 27, 33, 43;
-  --bs-border-color: #333c49;
+  --bs-border-color: #4a5566;
   --bs-dark-bg-subtle: #0f1318;
 
   --bs-primary: #1f4e8c;
@@ -88,6 +90,15 @@
   --bs-btn-disabled-bg: #1f4e8c;
   --bs-btn-disabled-border-color: #1f4e8c;
   --bs-btn-focus-shadow-rgb: 31, 78, 140;
+}
+
+/* Champs : seule leur bordure les distingue du fond, elle doit atteindre 3:1 (WCAG 1.4.11). */
+.form-control {
+  --bs-border-color: #7d8898;
+}
+
+[data-bs-theme="dark"] .form-control {
+  --bs-border-color: #5d6878;
 }
 
 .form-control:focus {
