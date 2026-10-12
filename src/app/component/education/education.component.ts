@@ -62,7 +62,7 @@ export class EducationComponent {
     {
       id: 'self', key: 'EDUCATION.SELF_TAUGHT',
       diplomas: [],
-      groups: [{ title: 'SKILLS_TITLE', key: 'SKILLS', accent: true, ids: ['ANGULAR', 'TYPESCRIPT', 'REACT', 'KOTLIN'] }]
+      groups: [{ title: 'SKILLS_TITLE', key: 'SKILLS', accent: true, ids: ['ANGULAR', 'TYPESCRIPT', 'KOTLIN'] }]
     }
   ];
 

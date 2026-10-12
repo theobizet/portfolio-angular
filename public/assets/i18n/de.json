@@ -21,7 +21,7 @@
       "LOCATION": "Mulhouse, Elsass (Frankreich)",
       "ROLE": "Power-Apps-Entwickler & Data Analyst im dualen Studium bei Stellantis",
       "INTRO1": "Ich mache einen Master in MIAGE an der Université de Haute-Alsace, im dualen Studium bei Stellantis. Dort entwickle ich interne Anwendungen mit Power Apps und erstelle Power-BI-Dashboards, mit denen die Teams ihre Aktivitäten steuern.",
-      "INTRO2": "Daneben programmiere ich vor allem mit Angular und TypeScript (diese Website ist ein Beispiel) und lerne React und Kotlin.",
+      "INTRO2": "Daneben programmiere ich vor allem mit Angular und TypeScript (diese Website ist ein Beispiel) und lerne Kotlin.",
       "CTA_CONTACT": "Schreiben Sie mir",
       "CTA_PROJECTS": "Meine Projekte",
       "PHOTO_ALT": "Théo Bizet",
@@ -91,7 +91,7 @@
     "PARAGRAPH3": "Begeistert von Geschichte, Allgemeinwissen und Technologien, erkunde ich gerne die Verbindungen zwischen Technik und Kreativität. Besonders faszinieren mich Computer-Aided Design (CAD) und Frontend-Entwicklung. Mein Ziel? Ein Full-Stack-Entwickler zu werden, um umfassende Lösungen zu konzipieren, die Leistung und Benutzererlebnis vereinen.",
     "CONTINUOUS_LEARNING": "Weiterbildung",
     "PARAGRAPH4": "Im Selbststudium bilde ich mich derzeit in folgenden Bereichen weiter:",
-    "LEARNING1": "Angular & ReactJS für moderne Frontend-Entwicklung,",
+    "LEARNING1": "Angular für moderne Frontend-Entwicklung,",
     "LEARNING2": "Kotlin für die Erkundung der mobilen und Backend-Entwicklung.",
     "PARAGRAPH5": "Dieser proaktive Ansatz ermöglicht es mir, auf dem neuesten Stand der Technik zu bleiben und meine Horizonte als Entwickler zu erweitern.",
     "SKILLS": {
@@ -202,7 +202,6 @@
       "SKILLS": {
         "ANGULAR": "Angular",
         "TYPESCRIPT": "TypeScript",
-        "REACT": "ReactJS",
         "KOTLIN": "Kotlin"
       }
     }

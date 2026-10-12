@@ -21,7 +21,7 @@
       "LOCATION": "Mulhouse, Alsace (France)",
       "ROLE": "Power Apps Developer & Data Analyst, work-study at Stellantis",
       "INTRO1": "I'm studying for a Master's in MIAGE at the University of Haute-Alsace, on a work-study programme at Stellantis. There, I build internal applications with Power Apps and design Power BI dashboards that help teams monitor their activity.",
-      "INTRO2": "On the side, I mostly code in Angular and TypeScript (this site is one example) and I'm learning React and Kotlin.",
+      "INTRO2": "On the side, I mostly code in Angular and TypeScript (this site is one example) and I'm learning Kotlin.",
       "CTA_CONTACT": "Get in touch",
       "CTA_PROJECTS": "See my projects",
       "PHOTO_ALT": "Théo Bizet",
@@ -91,7 +91,7 @@
     "PARAGRAPH3": "Passionate about history, general culture, and technology, I love exploring the links between technique and creativity. Computer-aided design (CAD) and frontend development are two areas that particularly fascinate me. My ambition? To become a full-stack developer to design comprehensive solutions that combine performance and user experience.",
     "CONTINUOUS_LEARNING": "Continuous Learning",
     "PARAGRAPH4": "Self-taught, I am currently learning:",
-    "LEARNING1": "Angular & ReactJS for modern frontend development,",
+    "LEARNING1": "Angular for modern frontend development,",
     "LEARNING2": "Kotlin to explore mobile and backend development.",
     "PARAGRAPH5": "This proactive approach allows me to stay at the forefront of technology and broaden my horizons as a developer.",
     "SKILLS": {
@@ -202,7 +202,6 @@
       "SKILLS": {
         "ANGULAR": "Angular",
         "TYPESCRIPT": "TypeScript",
-        "REACT": "ReactJS",
         "KOTLIN": "Kotlin"
       }
     }

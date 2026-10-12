@@ -21,7 +21,7 @@
       "LOCATION": "Mulhouse, Alsace",
       "ROLE": "Développeur Power Apps & Data Analyst, en alternance chez Stellantis",
       "INTRO1": "Je prépare un Master MIAGE à l'Université de Haute-Alsace, en alternance chez Stellantis. J'y développe des applications internes avec Power Apps et je construis des tableaux de bord Power BI pour aider les équipes à piloter leur activité.",
-      "INTRO2": "À côté, je code surtout en Angular et TypeScript (ce site en est un exemple) et je me forme à React et Kotlin.",
+      "INTRO2": "À côté, je code surtout en Angular et TypeScript (ce site en est un exemple) et je me forme à Kotlin.",
       "CTA_CONTACT": "M'écrire",
       "CTA_PROJECTS": "Voir mes projets",
       "PHOTO_ALT": "Théo Bizet",
@@ -91,7 +91,7 @@
     "PARAGRAPH3": "Passionné par l'histoire, la culture générale et les technologies, j'aime explorer les liens entre technique et créativité. La conception assistée par ordinateur (CAO) et le développement frontend sont deux domaines qui me fascinent particulièrement. Mon ambition ? Devenir développeur full-stack pour concevoir des solutions complètes, alliant performance et expérience utilisateur.",
     "CONTINUOUS_LEARNING": "Formation Continue",
     "PARAGRAPH4": "En autodidacte, je me forme actuellement à :",
-    "LEARNING1": "Angular & ReactJS pour le développement frontend moderne,",
+    "LEARNING1": "Angular pour le développement frontend moderne,",
     "LEARNING2": "Kotlin pour explorer le développement mobile et backend.",
     "PARAGRAPH5": "Cette démarche proactive me permet de rester à la pointe des technologies et d’élargir mes horizons en tant que développeur.",
     "SKILLS": {
@@ -202,7 +202,6 @@
       "SKILLS": {
         "ANGULAR": "Angular",
         "TYPESCRIPT": "TypeScript",
-        "REACT": "ReactJS",
         "KOTLIN": "Kotlin"
       }
     }
