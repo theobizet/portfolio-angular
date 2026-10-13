@@ -57,7 +57,7 @@
     "FACTS": {
       "TITLE": "Profil",
       "LANGUAGES_LABEL": "Sprachen",
-      "LANGUAGES": "Französisch, Englisch C1, Deutsch B1",
+      "LANGUAGES": "Französisch, Englisch C1, Deutsch A2",
       "CODE_LABEL": "Programmiersprachen",
       "CERTIFICATIONS_LABEL": "Zertifikate",
       "CERTIFICATIONS": "Cisco: Introduction to Cybersecurity, Introduction to Data Science",
@@ -113,7 +113,7 @@
       },
       "LANGUAGES": {
         "TITLE": "Sprachen",
-        "GERMAN": "Deutsch (B1)",
+        "GERMAN": "Deutsch (A2)",
         "ENGLISH": "Englisch (C1)"
       }
     }
@@ -392,6 +392,9 @@
     "COPY": "Kopieren",
     "COPIED": "Kopiert",
     "COPY_LABEL": "E-Mail-Adresse kopieren",
+    "CV": "Lebenslauf",
+    "CV_FILE": "cv-theo-bizet-de.pdf",
+    "CV_DOWNLOAD": "Als PDF herunterladen",
     "LOCATION": "Wohnhaft in Mulhouse (Elsass, Frankreich) · Führerschein B und AM",
     "FORM": {
       "TITLE": "Nachricht senden",

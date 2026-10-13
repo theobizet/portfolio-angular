@@ -45,6 +45,15 @@
               </div>
             </a>
           </li>
+          <li class="border-top">
+            <a class="contact-row d-flex align-items-center gap-3 p-2 rounded-2 text-body text-decoration-none" [href]="'./assets/' + ('CONTACT.CV_FILE' | translate)" download>
+              <span class="contact-icon bg-body-secondary text-body" aria-hidden="true"><fa-icon [icon]="icons.cv"></fa-icon></span>
+              <div>
+                <div class="small text-body-secondary">{{ 'CONTACT.CV' | translate }}</div>
+                <div class="fw-semibold">{{ 'CONTACT.CV_DOWNLOAD' | translate }}</div>
+              </div>
+            </a>
+          </li>
         </ul>
 
         <p class="text-body-secondary mt-auto mb-0">{{ 'CONTACT.LOCATION' | translate }}</p>

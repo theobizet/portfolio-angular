@@ -57,7 +57,7 @@
     "FACTS": {
       "TITLE": "Profil",
       "LANGUAGES_LABEL": "Langues",
-      "LANGUAGES": "Français, anglais C1, allemand B1",
+      "LANGUAGES": "Français, anglais C1, allemand A2",
       "CODE_LABEL": "Langages",
       "CERTIFICATIONS_LABEL": "Certifications",
       "CERTIFICATIONS": "Cisco : Introduction to Cybersecurity, Introduction to Data Science",
@@ -113,7 +113,7 @@
       },
       "LANGUAGES": {
         "TITLE": "Langues",
-        "GERMAN": "Allemand (B1)",
+        "GERMAN": "Allemand (A2)",
         "ENGLISH": "Anglais (C1)"
       }
     }
@@ -392,6 +392,9 @@
     "COPY": "Copier",
     "COPIED": "Copié",
     "COPY_LABEL": "Copier l'adresse e-mail",
+    "CV": "CV",
+    "CV_FILE": "cv-theo-bizet.pdf",
+    "CV_DOWNLOAD": "Télécharger en PDF",
     "LOCATION": "Basé à Mulhouse (Alsace) · Permis B et AM",
     "FORM": {
       "TITLE": "Envoyer un message",

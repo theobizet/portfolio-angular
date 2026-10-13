@@ -19,7 +19,7 @@ type SendStatus = 'idle' | 'sending' | 'sent' | 'error';
 export class ContactComponent {
   status: SendStatus = 'idle';
   copied = false;
-  readonly icons = { email: faEnvelope, linkedin: faLinkedinIn, github: faGithub, chat: faCommentDots };
+  readonly icons = { email: faEnvelope, linkedin: faLinkedinIn, github: faGithub, chat: faCommentDots, cv: faFileLines };
   readonly chatFeatures = [
     { icon: faClock, key: 'CONTACT.CHAT.FEATURE_FAST' },
     { icon: faFileLines, key: 'CONTACT.CHAT.FEATURE_CV' },
