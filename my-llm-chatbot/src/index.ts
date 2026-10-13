@@ -230,8 +230,7 @@ const contactEmailHtml = ({ name, email, message, lang, receivedAt }: ContactEma
     </td></tr>
 
     <tr><td class="px fg-muted" style="padding:16px 32px 28px;font-size:13px;line-height:1.5;color:#6c757d">
-      Reçu le ${escapeHtml(date)}.<br>
-      Le bouton « Répondre » d'Outlook écrit aussi directement à ${n}.
+      Reçu le ${escapeHtml(date)}.
     </td></tr>
   </table>
 </td></tr>
