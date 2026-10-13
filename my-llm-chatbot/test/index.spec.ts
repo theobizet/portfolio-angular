@@ -23,7 +23,7 @@ const post = async (body: unknown, init: RequestInit = {}) => {
     body: JSON.stringify(body),
     ...init,
   });
-  return call(request, { STATICFORMS_API_KEY: "test-key" });
+  return call(request, { RESEND_API_KEY: "test-key" });
 };
 
 afterEach(() => {
@@ -31,10 +31,8 @@ afterEach(() => {
 });
 
 describe("POST /contact", () => {
-  it("forwards the submission to Static Forms with the server-side key", async () => {
-    const upstream = vi.fn(async () =>
-      new Response(JSON.stringify({ success: true, message: "Form submission received" }), { status: 200 })
-    );
+  it("sends the submission through Resend with the server-side key", async () => {
+    const upstream = vi.fn(async () => new Response(JSON.stringify({ id: "email-id" }), { status: 200 }));
     vi.stubGlobal("fetch", upstream);
 
     const response = await post({ name: "Alice", email: "alice@example.com", message: "Bonjour" });
@@ -43,10 +41,35 @@ describe("POST /contact", () => {
     expect(await response.json()).toEqual({ success: true });
     expect(upstream).toHaveBeenCalledOnce();
 
-    const sent = JSON.parse(upstream.mock.calls[0][1].body as string);
-    expect(sent.apiKey).toBe("test-key");
-    expect(sent.name).toBe("Alice");
-    expect(sent.replyTo).toBe("alice@example.com");
+    const [url, init] = upstream.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toBe("https://api.resend.com/emails");
+    expect((init.headers as Record<string, string>).Authorization).toBe("Bearer test-key");
+    const sent = JSON.parse(init.body as string);
+    expect(sent.to).toEqual(["theobizet@outlook.fr"]);
+    expect(sent.reply_to).toBe("alice@example.com");
+    expect(sent.subject).toContain("Alice");
+    expect(sent.text).toContain("Bonjour");
+    expect(sent.html).toContain("Bonjour");
+  });
+
+  it("escapes visitor input in the HTML email", async () => {
+    const upstream = vi.fn(async () => new Response(JSON.stringify({ id: "email-id" }), { status: 200 }));
+    vi.stubGlobal("fetch", upstream);
+
+    await post({ name: "<b>Eve</b>", email: "eve@example.com", message: `<script>alert("x")</script>` });
+
+    const { html } = JSON.parse((upstream.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    expect(html).not.toContain("<script>");
+    expect(html).not.toContain("<b>Eve");
+    expect(html).toContain("&lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt;");
+  });
+
+  it("reports a Resend refusal as a 502", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () =>
+      new Response(JSON.stringify({ name: "validation_error", message: "nope" }), { status: 422 })
+    ));
+    const response = await post({ name: "Alice", email: "alice@example.com", message: "Bonjour" });
+    expect(response.status).toBe(502);
   });
 
   it("silently drops submissions that fill the honeypot", async () => {
@@ -79,7 +102,7 @@ describe("POST /contact", () => {
       headers: { "Content-Type": "application/json", Origin: ORIGIN },
       body: JSON.stringify({ name: "Alice", email: "alice@example.com", message: "Bonjour" }),
     });
-    const response = await call(request, { STATICFORMS_API_KEY: "" });
+    const response = await call(request, { RESEND_API_KEY: "" });
     expect(response.status).toBe(500);
   });
 

@@ -10,7 +10,7 @@ Mon portfolio personnel : parcours, expériences, projets et contact, avec un as
 - Trois langues (français, anglais, allemand) via ngx-translate
 - Thème clair / sombre
 - Assistant IA (Mistral Small 3.1 sur Cloudflare Workers AI), qui répond dans la langue du site
-- Formulaire de contact relayé par le Worker vers Static Forms
+- Formulaire de contact envoyé par email via le Worker et Resend
 
 ## Stack
 
@@ -46,7 +46,7 @@ Le site utilise par défaut le Worker déployé (`cloudflareWorkerUrl` dans [src
 ```bash
 cd my-llm-chatbot
 npm install
-npx wrangler secret put STATICFORMS_API_KEY   # une seule fois
+npx wrangler secret put RESEND_API_KEY        # une seule fois
 npm run dev        # local
 npm run deploy     # production
 npm test

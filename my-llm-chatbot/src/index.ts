@@ -7,8 +7,8 @@
 
 interface Env {
   AI: Ai;
-  /** Clé API Static Forms, injectée via `wrangler secret put STATICFORMS_API_KEY`. */
-  STATICFORMS_API_KEY: string;
+  /** Clé API Resend, injectée via `wrangler secret put RESEND_API_KEY`. */
+  RESEND_API_KEY: string;
   /** Limiteur natif Cloudflare (wrangler.jsonc > ratelimits) : protège le quota Workers AI. */
   RATE_LIMITER: RateLimit;
 }
@@ -100,7 +100,10 @@ interface ContactRequest {
   honeypot?: string;
 }
 
-const STATICFORMS_ENDPOINT = 'https://api.staticforms.dev/submit';
+const RESEND_ENDPOINT = 'https://api.resend.com/emails';
+/** Expéditeur de test Resend : n'envoie qu'à l'adresse du compte Resend. À remplacer une fois un domaine vérifié. */
+const CONTACT_FROM = 'Portfolio <onboarding@resend.dev>';
+const CONTACT_TO = 'theobizet@outlook.fr';
 
 /** Seules origines autorisées à appeler le Worker (chat et formulaire). */
 const ALLOWED_ORIGINS = new Set([
@@ -134,8 +137,32 @@ const jsonResponse = (body: unknown, status = 200, extraHeaders: Record<string, 
 
 const badRequest = (error: string) => jsonResponse({ success: false, error }, 400);
 
+/** Les champs du visiteur sont injectés dans le HTML du mail : on les échappe tous. */
+const escapeHtml = (value: string) =>
+  value.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+
+/** Mail de notification : tableaux et styles en ligne, seuls rendus fiables dans les clients mail. */
+const contactEmailHtml = (name: string, email: string, message: string) => {
+  const [n, e, m] = [name, email, message].map(escapeHtml);
+  return `<!doctype html>
+<html lang="fr"><body style="margin:0;padding:24px 12px;background:#f1f3f5;font-family:Segoe UI,Arial,sans-serif;color:#212529">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden">
+  <tr><td style="background:#0d6efd;color:#ffffff;padding:20px 28px;font-size:20px;font-weight:600">Nouveau message depuis ton portfolio</td></tr>
+  <tr><td style="padding:24px 28px 8px">
+    <p style="margin:0 0 4px;font-size:13px;color:#6c757d">De</p>
+    <p style="margin:0 0 16px;font-size:17px;font-weight:600">${n}</p>
+    <p style="margin:0 0 4px;font-size:13px;color:#6c757d">Email</p>
+    <p style="margin:0 0 20px;font-size:16px"><a href="mailto:${e}" style="color:#0d6efd">${e}</a></p>
+    <p style="margin:0 0 4px;font-size:13px;color:#6c757d">Message</p>
+    <div style="padding:16px;background:#f8f9fa;border-left:4px solid #0d6efd;border-radius:4px;font-size:15px;line-height:1.6;white-space:pre-wrap">${m}</div>
+  </td></tr>
+  <tr><td style="padding:16px 28px 24px;font-size:13px;color:#6c757d">Réponds directement à ce mail pour écrire à ${n}.</td></tr>
+</table>
+</body></html>`;
+};
+
 /**
- * Relaie le formulaire de contact vers Static Forms.
+ * Relaie le formulaire de contact par email via Resend.
  * La clé API reste côté Worker : elle n'apparaît jamais dans le bundle du site.
  */
 const handleContact = async ({ name, email, message, honeypot }: ContactRequest, env: Env): Promise<Response> => {
@@ -157,33 +184,29 @@ const handleContact = async ({ name, email, message, honeypot }: ContactRequest,
     return badRequest('Adresse email invalide');
   }
 
-  if (!env.STATICFORMS_API_KEY) {
-    console.error('❌ STATICFORMS_API_KEY absente : `wrangler secret put STATICFORMS_API_KEY`');
+  if (!env.RESEND_API_KEY) {
+    console.error('❌ RESEND_API_KEY absente : `wrangler secret put RESEND_API_KEY`');
     return jsonResponse({ success: false, error: 'Formulaire non configuré' }, 500);
   }
 
-  const upstream = await fetch(STATICFORMS_ENDPOINT, {
+  // Le nom finit dans l'objet du mail : on l'aplatit sur une ligne
+  const sender = name.trim().replace(/\s+/g, ' ');
+  const upstream = await fetch(RESEND_ENDPOINT, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.RESEND_API_KEY}` },
     body: JSON.stringify({
-      apiKey: env.STATICFORMS_API_KEY,
-      subject: 'Contact depuis mon site',
-      name: name.trim(),
-      email: email.trim(),
-      message: message.trim(),
-      replyTo: email.trim(),
+      from: CONTACT_FROM,
+      to: [CONTACT_TO],
+      reply_to: email.trim(),
+      subject: `Contact depuis mon site : ${sender}`,
+      html: contactEmailHtml(sender, email.trim(), message.trim()),
+      text: `De : ${sender} <${email.trim()}>\n\n${message.trim()}`,
     }),
   });
 
-  // Lu en texte d'abord : en cas de refus, le corps n'est pas forcément du JSON et sert au diagnostic
-  const raw = await upstream.text();
-  let result: { success?: boolean } = {};
-  try {
-    result = JSON.parse(raw);
-  } catch { /* corps non JSON : on se fie au statut HTTP */ }
-
-  if (!upstream.ok || result.success === false) {
-    console.error('❌ Static Forms a refusé la soumission:', upstream.status, raw.slice(0, 500));
+  if (!upstream.ok) {
+    // Le corps d'erreur Resend ({ name, message }) sert au diagnostic, il reste dans les logs
+    console.error("❌ Resend a refusé l'envoi:", upstream.status, (await upstream.text()).slice(0, 500));
     return jsonResponse({ success: false, error: "L'envoi a échoué, réessaie plus tard." }, 502);
   }
 

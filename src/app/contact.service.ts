@@ -17,8 +17,8 @@ export interface ContactResponse {
 }
 
 /**
- * Envoie le formulaire de contact au Worker Cloudflare, qui relaie vers Static Forms.
- * La clé API du service de formulaire vit côté Worker, jamais dans le bundle du site.
+ * Envoie le formulaire de contact au Worker Cloudflare, qui envoie le mail via Resend.
+ * La clé API Resend vit côté Worker, jamais dans le bundle du site.
  */
 @Injectable({ providedIn: 'root' })
 export class ContactService {
