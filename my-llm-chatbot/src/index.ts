@@ -104,6 +104,7 @@ const STATICFORMS_ENDPOINT = 'https://api.staticforms.dev/submit';
 
 /** Seules origines autorisées à appeler le Worker (chat et formulaire). */
 const ALLOWED_ORIGINS = new Set([
+  'https://theo-bizet.vercel.app',
   'https://portfolio-angular-theo.vercel.app',
   'http://localhost:4200',
 ]);
@@ -174,10 +175,15 @@ const handleContact = async ({ name, email, message, honeypot }: ContactRequest,
     }),
   });
 
-  const result = (await upstream.json()) as { success?: boolean; message?: string };
+  // Lu en texte d'abord : en cas de refus, le corps n'est pas forcément du JSON et sert au diagnostic
+  const raw = await upstream.text();
+  let result: { success?: boolean } = {};
+  try {
+    result = JSON.parse(raw);
+  } catch { /* corps non JSON : on se fie au statut HTTP */ }
 
   if (!upstream.ok || result.success === false) {
-    console.error('❌ Static Forms a refusé la soumission:', upstream.status, result.message);
+    console.error('❌ Static Forms a refusé la soumission:', upstream.status, raw.slice(0, 500));
     return jsonResponse({ success: false, error: "L'envoi a échoué, réessaie plus tard." }, 502);
   }
 

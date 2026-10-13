@@ -4,7 +4,7 @@ import worker from "../src/index";
 
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>;
 
-const ORIGIN = "https://portfolio-angular-theo.vercel.app";
+const ORIGIN = "https://theo-bizet.vercel.app";
 
 /** Limiteur factice : laisse tout passer, sauf si on lui demande de refuser. */
 const limiter = (success = true) => ({ limit: vi.fn(async () => ({ success })) });
