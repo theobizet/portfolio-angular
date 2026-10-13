@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faClock, faCommentDots, faEnvelope, faFileLines, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
@@ -27,6 +27,7 @@ export class ContactComponent {
   ];
 
   private readonly contactService = inject(ContactService);
+  private readonly translate = inject(TranslateService);
 
   openChat(): void {
     chatOpen.set(true);
@@ -48,7 +49,7 @@ export class ContactComponent {
     }
 
     this.status = 'sending';
-    this.contactService.send(form.value).subscribe({
+    this.contactService.send({ ...form.value, lang: this.translate.getCurrentLang() || 'fr' }).subscribe({
       next: (response) => {
         this.status = response.success ? 'sent' : 'error';
         if (response.success) form.resetForm();

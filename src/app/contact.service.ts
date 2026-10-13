@@ -7,6 +7,8 @@ export interface ContactPayload {
   name: string;
   email: string;
   message: string;
+  /** Langue d'affichage du site (fr, en, de) : indique dans quelle langue répondre. */
+  lang?: string;
   /** Champ piège anti-robots : toujours vide chez un humain. */
   honeypot?: string;
 }

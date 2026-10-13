@@ -96,13 +96,15 @@ interface ContactRequest {
   name?: string;
   email?: string;
   message?: string;
+  /** Langue d'affichage du site : fr, en ou de. */
+  lang?: string;
   /** Champ piège : invisible pour un humain, rempli par les robots. */
   honeypot?: string;
 }
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 /** Expéditeur de test Resend : n'envoie qu'à l'adresse du compte Resend. À remplacer une fois un domaine vérifié. */
-const CONTACT_FROM = 'Portfolio <onboarding@resend.dev>';
+const CONTACT_FROM_ADDRESS = 'onboarding@resend.dev';
 const CONTACT_TO = 'theobizet@outlook.fr';
 
 /** Seules origines autorisées à appeler le Worker (chat et formulaire). */
@@ -141,31 +143,108 @@ const badRequest = (error: string) => jsonResponse({ success: false, error }, 40
 const escapeHtml = (value: string) =>
   value.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
-/** Mail de notification : tableaux et styles en ligne, seuls rendus fiables dans les clients mail. */
-const contactEmailHtml = (name: string, email: string, message: string) => {
-  const [n, e, m] = [name, email, message].map(escapeHtml);
+/** Objet du bouton « Répondre », dans la langue du visiteur. */
+const REPLY_SUBJECTS: Record<string, string> = {
+  fr: 'Votre message sur mon portfolio',
+  en: 'Your message on my portfolio',
+  de: 'Ihre Nachricht auf meinem Portfolio',
+};
+
+interface ContactEmail {
+  name: string;
+  email: string;
+  message: string;
+  lang: string;
+  receivedAt: Date;
+}
+
+/**
+ * Mail de notification, pensé pour Outlook (web et nouvel Outlook) : tableaux et styles en ligne,
+ * texte d'aperçu caché, bouton « Répondre » pré-rempli, et thème sombre pour les clients qui le gèrent.
+ */
+const contactEmailHtml = ({ name, email, message, lang, receivedAt }: ContactEmail) => {
+  const n = escapeHtml(name);
+  const e = escapeHtml(email);
+  const m = escapeHtml(message);
+  const initials = escapeHtml(name.split(' ').map((w) => Array.from(w)[0] ?? '').join('').slice(0, 2).toUpperCase());
+  const preview = escapeHtml(message.replace(/\s+/g, ' ').slice(0, 140));
+  const replyHref = escapeHtml(`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(REPLY_SUBJECTS[lang] ?? REPLY_SUBJECTS.fr)}`);
+  const date = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(receivedAt);
+  const words = message.trim().split(/\s+/).length;
+
   return `<!doctype html>
-<html lang="fr"><body style="margin:0;padding:24px 12px;background:#f1f3f5;font-family:Segoe UI,Arial,sans-serif;color:#212529">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden">
-  <tr><td style="background:#0d6efd;color:#ffffff;padding:20px 28px;font-size:20px;font-weight:600">Nouveau message depuis ton portfolio</td></tr>
-  <tr><td style="padding:24px 28px 8px">
-    <p style="margin:0 0 4px;font-size:13px;color:#6c757d">De</p>
-    <p style="margin:0 0 16px;font-size:17px;font-weight:600">${n}</p>
-    <p style="margin:0 0 4px;font-size:13px;color:#6c757d">Email</p>
-    <p style="margin:0 0 20px;font-size:16px"><a href="mailto:${e}" style="color:#0d6efd">${e}</a></p>
-    <p style="margin:0 0 4px;font-size:13px;color:#6c757d">Message</p>
-    <div style="padding:16px;background:#f8f9fa;border-left:4px solid #0d6efd;border-radius:4px;font-size:15px;line-height:1.6;white-space:pre-wrap">${m}</div>
-  </td></tr>
-  <tr><td style="padding:16px 28px 24px;font-size:13px;color:#6c757d">Réponds directement à ce mail pour écrire à ${n}.</td></tr>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>Nouveau message de ${n}</title>
+<style>
+  @media (max-width: 600px) { .px { padding-left: 20px !important; padding-right: 20px !important; } }
+  @media (prefers-color-scheme: dark) {
+    .bg-page { background: #111418 !important; }
+    .bg-card { background: #1b1f24 !important; }
+    .bg-quote { background: #242a31 !important; }
+    .fg { color: #e9ecef !important; }
+    .fg-muted { color: #adb5bd !important; }
+    .fg-link { color: #8fb4e8 !important; }
+    .chip { background: #23344d !important; color: #c9d7ea !important; }
+    .chip-muted { background: #2b3036 !important; color: #ced4da !important; }
+  }
+</style>
+</head>
+<body class="bg-page" style="margin:0;padding:0;background:#eef1f5;font-family:'Segoe UI',Arial,sans-serif;-webkit-text-size-adjust:100%">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">${preview}${'&#847;&zwnj;&nbsp;'.repeat(60)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-page" style="background:#eef1f5">
+<tr><td align="center" style="padding:32px 12px">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="bg-card" style="max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(16,24,40,.08)">
+    <tr><td class="px" style="background:#1f4e8c;padding:22px 32px">
+      <p style="margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#c9d7ea">Portfolio · Formulaire de contact</p>
+      <p style="margin:6px 0 0;font-size:22px;font-weight:600;color:#ffffff">Nouveau message</p>
+    </td></tr>
+
+    <tr><td class="px" style="padding:28px 32px 0">
+      <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+        <td valign="middle" style="width:52px">
+          <div style="width:52px;height:52px;line-height:52px;border-radius:50%;background:#dbe4f0;color:#1f4e8c;font-size:19px;font-weight:700;text-align:center">${initials}</div>
+        </td>
+        <td valign="middle" style="padding-left:16px">
+          <p class="fg" style="margin:0;font-size:18px;font-weight:600;color:#1d2433">${n}</p>
+          <p style="margin:2px 0 0;font-size:15px"><a class="fg-link" href="mailto:${e}" style="color:#1f4e8c;text-decoration:none">${e}</a></p>
+        </td>
+      </tr></table>
+    </td></tr>
+
+    <tr><td class="px" style="padding:20px 32px 0">
+      <span class="chip" style="display:inline-block;padding:4px 10px;margin:0 6px 6px 0;border-radius:999px;background:#dbe4f0;color:#173d6e;font-size:12px;font-weight:600">Site consulté en ${escapeHtml(resolveLanguage(lang).name)}</span>
+      <span class="chip-muted" style="display:inline-block;padding:4px 10px;margin:0 6px 6px 0;border-radius:999px;background:#e9ecef;color:#495057;font-size:12px;font-weight:600">${words} mot${words > 1 ? 's' : ''}</span>
+    </td></tr>
+
+    <tr><td class="px" style="padding:14px 32px 0">
+      <div class="bg-quote fg" style="padding:18px 20px;background:#f5f7fa;border-left:4px solid #1f4e8c;border-radius:8px;color:#1d2433;font-size:15px;line-height:1.65;white-space:pre-wrap;word-break:break-word">${m}</div>
+    </td></tr>
+
+    <tr><td class="px" style="padding:24px 32px 8px">
+      <a href="${replyHref}" style="display:inline-block;padding:12px 24px;border-radius:8px;background:#1f4e8c;color:#ffffff;font-size:15px;font-weight:600;text-decoration:none">Répondre à ${n}</a>
+    </td></tr>
+
+    <tr><td class="px fg-muted" style="padding:16px 32px 28px;font-size:13px;line-height:1.5;color:#6c757d">
+      Reçu le ${escapeHtml(date)}.<br>
+      Le bouton « Répondre » d'Outlook écrit aussi directement à ${n}.
+    </td></tr>
+  </table>
+</td></tr>
 </table>
-</body></html>`;
+</body>
+</html>`;
 };
 
 /**
  * Relaie le formulaire de contact par email via Resend.
  * La clé API reste côté Worker : elle n'apparaît jamais dans le bundle du site.
  */
-const handleContact = async ({ name, email, message, honeypot }: ContactRequest, env: Env): Promise<Response> => {
+const handleContact = async ({ name, email, message, lang, honeypot }: ContactRequest, env: Env): Promise<Response> => {
   // Piège à robots : on répond « ok » sans rien transmettre
   if (honeypot) {
     return jsonResponse({ success: true }, 200);
@@ -195,11 +274,18 @@ const handleContact = async ({ name, email, message, honeypot }: ContactRequest,
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.RESEND_API_KEY}` },
     body: JSON.stringify({
-      from: CONTACT_FROM,
+      // Le nom du visiteur s'affiche comme expéditeur dans la liste des mails (guillemets retirés : ils casseraient l'adresse)
+      from: `"${sender.replace(/["\\<>]/g, '')} via portfolio" <${CONTACT_FROM_ADDRESS}>`,
       to: [CONTACT_TO],
       reply_to: email.trim(),
       subject: `Contact depuis mon site : ${sender}`,
-      html: contactEmailHtml(sender, email.trim(), message.trim()),
+      html: contactEmailHtml({
+        name: sender,
+        email: email.trim(),
+        message: message.trim(),
+        lang: typeof lang === 'string' ? lang.toLowerCase() : 'fr',
+        receivedAt: new Date(),
+      }),
       text: `De : ${sender} <${email.trim()}>\n\n${message.trim()}`,
     }),
   });

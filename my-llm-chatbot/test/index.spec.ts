@@ -50,6 +50,18 @@ describe("POST /contact", () => {
     expect(sent.subject).toContain("Alice");
     expect(sent.text).toContain("Bonjour");
     expect(sent.html).toContain("Bonjour");
+    expect(sent.from).toBe('"Alice via portfolio" <onboarding@resend.dev>');
+  });
+
+  it("shows the visitor's site language and replies in it", async () => {
+    const upstream = vi.fn(async () => new Response(JSON.stringify({ id: "email-id" }), { status: 200 }));
+    vi.stubGlobal("fetch", upstream);
+
+    await post({ name: "Hans", email: "hans@example.de", message: "Hallo", lang: "de" });
+
+    const { html } = JSON.parse((upstream.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    expect(html).toContain("Site consulté en allemand");
+    expect(html).toContain("subject=Ihre%20Nachricht");
   });
 
   it("escapes visitor input in the HTML email", async () => {
@@ -62,6 +74,7 @@ describe("POST /contact", () => {
     expect(html).not.toContain("<script>");
     expect(html).not.toContain("<b>Eve");
     expect(html).toContain("&lt;script&gt;alert(&quot;x&quot;)&lt;/script&gt;");
+    expect(html).toContain("&lt;b&gt;Eve&lt;/b&gt;");
   });
 
   it("reports a Resend refusal as a 502", async () => {
