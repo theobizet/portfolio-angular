@@ -2,7 +2,7 @@
 
 Portfolio personnel : parcours, expériences, projets et contact, avec un assistant IA qui répond aux questions des visiteurs sur mon profil.
 
-**En ligne :** https://portfolio-angular-theo.vercel.app
+**En ligne :** https://theo-bizet.vercel.app
 
 ## Fonctionnalités
 
