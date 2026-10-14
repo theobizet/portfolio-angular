@@ -89,4 +89,4 @@ npm test                                 # Vitest
 
 ## Contact
 
-theobizet@outlook.fr · [GitHub](https://github.com/theobizet)
+theobizet@outlook.fr · [GitHub](https://github.com/theobizet) · [LinkedIn](https://linkedin.com/theobizet)
